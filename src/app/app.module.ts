@@ -4,13 +4,21 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { CompetitionComponent } from './competition/competition.component';
+import { CompetitionInfoComponent } from './competition/competition-info/competition-info.component';
+import { CompetitionAwardsComponent } from './competition/competition-awards/competition-awards.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CompetitionComponent,
+    CompetitionInfoComponent,
+    CompetitionAwardsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
