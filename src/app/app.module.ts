@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { CompetitionComponent } from './competition/competition.component';
 import { CompetitionInfoComponent } from './competition/competition-info/competition-info.component';
 import { CompetitionAwardsComponent } from './competition/competition-awards/competition-awards.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CompetitionComponent,
     CompetitionInfoComponent,
-    CompetitionAwardsComponent
+    CompetitionAwardsComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
