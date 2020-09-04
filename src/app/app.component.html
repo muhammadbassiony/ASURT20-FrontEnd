@@ -1,3 +1,13 @@
 <router-outlet></router-outlet>
-<app-header></app-header>
-<app-competition (scroll)="onWindowScroll($event)"></app-competition>
+
+<ng-container *ngIf="!isAdminMode">
+  <app-header></app-header>
+  <app-competition (scroll)="onWindowScroll($event)"></app-competition>
+</ng-container>
+
+<app-admin-panel *ngIf="isAdminMode"></app-admin-panel>
+<div class="container" style="margin-top: -3.34rem">
+  <div class="row justify-content-center">
+    <button class="btn btn-primary" (click)="isAdminMode = !isAdminMode">Go to {{isAdminMode? 'home page': 'admin panel'}}</button>
+  </div>
+</div>
