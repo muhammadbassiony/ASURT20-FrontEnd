@@ -1,9 +1,9 @@
 <router-outlet></router-outlet>
-<app-competition></app-competition>
 
 <ng-container *ngIf="!isAdminMode">
   <app-header></app-header>
   <app-competition (scroll)="onWindowScroll($event)"></app-competition>
+  <app-competition></app-competition>
 </ng-container>
 
 <app-admin-panel *ngIf="isAdminMode"></app-admin-panel>

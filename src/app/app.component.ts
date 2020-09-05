@@ -20,7 +20,7 @@ export class AppComponent {
     if (!mql.matches)
     {
       let header = document.getElementById('header');
-      if (window.pageYOffset > 200) {
+      if (window.pageYOffset > 120) {
         header.classList.add('header-min');
       } else {
         header.classList.remove('header-min');
