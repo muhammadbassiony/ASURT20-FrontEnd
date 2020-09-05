@@ -5,10 +5,24 @@ header, h1, p, svg, div, nav, ul, li, img {
   box-sizing: border-box;
 }
 .utility-margin-bottom-big {
-  font-size: 10px;
+  font-size: 8px;
   margin-bottom: 15em;
 }
-
+@media only screen and (max-width: 1150px) {
+  .utility-margin-bottom-big {
+    font-size: 7px;
+  }
+}
+@media only screen and (max-width: 1035px) {
+  .utility-margin-bottom-big {
+    font-size: 6px;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .utility-margin-bottom-big {
+    font-size: 7px;
+  }
+}
 .header {
   position: fixed;
   top: 0;
@@ -19,9 +33,24 @@ header, h1, p, svg, div, nav, ul, li, img {
   background-color: #1f1f1f;
   display: flex;
   align-items: center;
+  justify-content: center;
   box-shadow: 0 2em 4em rgba(0, 0, 0, 0.4);
   transition: all 0.3s;
   z-index: 2000;
+}
+@media only screen and (max-width: 900px)  {
+  .header {
+    padding: 0;
+    height: 70em;
+    flex-direction: column;
+  }
+  .header-closed {
+    height: 15em;
+  }
+  .header-closed > .navigation,
+  .header-closed > .social-links {
+    display: none;
+  }
 }
 .header-min {
   height: 9em;
@@ -29,12 +58,62 @@ header, h1, p, svg, div, nav, ul, li, img {
   padding-left: 5em;
   transition: all 0.3s;
 }
+@media only screen and (max-width: 900px) {
+  .header-min {
+    height: 70em;
+    padding: 0;
+  }
+}
+.header-toggle {
+  display: none;
+}
+@media only screen and (max-width: 900px) {
+  .header-toggle,
+  .header-toggle:before,
+  .header-toggle:after {
+    display: inline-block;
+    width: 5em;
+    height: 2px;
+    position: absolute;
+    top: 7em;
+    right: 5em;
+    background-color: white;
+    content: "";
+    text-align: center;
+  }
+  .header-toggle:before {
+    top: -1.3em;
+    right: 0;
+  }
+  .header-toggle:after {
+    top: 1.3em;
+    right: 0;
+  }
+}
 .logo-container {
-  font-size: 10px;
+  font-size: 8px;
   height: 100%;
-  padding: 2em;
+  padding: 1.7em;
   margin-right: auto;
 }
+@media only screen and (max-width: 1150px) {
+  .logo-container {
+    font-size: 7px;
+  }
+}
+@media only screen and (max-width: 1035px) {
+  .logo-container {
+    font-size: 6px;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .logo-container {
+    font-size: 7px;
+    max-height: 11em;
+    margin: 0 auto;
+  }
+}
+
 .logo-link {
   display: inline-block;
   height: 100%;
@@ -44,11 +123,22 @@ header, h1, p, svg, div, nav, ul, li, img {
 }
 .navigation {
   margin-right: 6em;
+  transition: all 0.3s;
+}
+@media only screen and (max-width: 900px)  {
+  .navigation {
+    margin: 0;
+  }
 }
 .navigation__list {
   display: flex;
   align-items: center;
   list-style: none;
+}
+@media only screen and (max-width: 900px) {
+  .navigation__list {
+    flex-direction: column;
+  }
 }
 .navigation__item {
   padding: 2.5em;
@@ -75,7 +165,14 @@ header, h1, p, svg, div, nav, ul, li, img {
   justify-content: center;
   align-items: center;
   margin-right: 6em;
+  transition: all 0.3s;
 }
+@media only screen and (max-width: 900px) {
+  .social-links {
+    margin: 0;
+  }
+}
+
 .social-links__link:not(:last-child) {
   margin-right: 2em;
 }
