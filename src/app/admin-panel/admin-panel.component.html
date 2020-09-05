@@ -1,0 +1,23 @@
+<div class="background-red">
+  <div class="mb-5 p-2">
+    <header class="top-header">
+      <a href="#">Admin Panel</a>
+      <div class="menu-title-container">
+        <input type="checkbox" name="menuBtn" id="menuBtn" class="menuBtn" (click)="onOpenMenu()">
+        <label for="menuBtn">Menu</label>
+      </div>
+    </header>
+  </div>
+  <nav class="menu-container">
+    <a href="#" class="closeBtn" (click)="onCloseMenu()">
+      <svg class="close-icon" viewBox="0 0 100 100">
+        <use xlink:href="../../assets/img/times.svg#close-icon"></use>
+      </svg>
+    </a>
+    <ul class="menu">
+      <li class="menu__item"><a href="../../index.html">Home</a></li>
+      <li class="menu__item"><a href="#">Edit Competitions</a></li>
+    </ul>
+  </nav>
+  <app-competition-edit></app-competition-edit>
+</div>
