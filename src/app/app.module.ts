@@ -22,12 +22,12 @@ import {FormsModule} from "@angular/forms";
     AdminPanelComponent,
     CompetitionEditComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
 
-    ],
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
