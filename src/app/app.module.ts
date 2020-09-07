@@ -7,6 +7,7 @@ import { CompetitionComponent } from './competition/competition.component';
 import { CompetitionInfoComponent } from './competition/competition-info/competition-info.component';
 import { CompetitionAwardsComponent } from './competition/competition-awards/competition-awards.component';
 import { HeaderComponent } from './header/header.component';
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CompetitionsComponent } from './landing-page/competitions/competitions.component';
 import { PhotoRollComponent } from './landing-page/photo-roll/photo-roll.component';
@@ -22,6 +23,10 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {ReactiveFormsModule,  FormsModule} from '@angular/forms';
 
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { CompetitionEditComponent } from './admin-panel/competition-edit/competition-edit.component';
+import {FormsModule} from "@angular/forms";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,10 +34,13 @@ import {ReactiveFormsModule,  FormsModule} from '@angular/forms';
     CompetitionInfoComponent,
     CompetitionAwardsComponent,
     HeaderComponent,
+
     CompetitionsComponent,
     PhotoRollComponent,
     LandingPageComponent,
     PhotorollEditComponent,
+
+
     AdminPanelComponent,
     CompetitionEditComponent
   ],
@@ -49,6 +57,7 @@ import {ReactiveFormsModule,  FormsModule} from '@angular/forms';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
