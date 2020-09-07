@@ -11,6 +11,9 @@ import { HeaderComponent } from './header/header.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { CompetitionEditComponent } from './admin-panel/competition-edit/competition-edit.component';
 import {FormsModule} from "@angular/forms";
+import { AddPrizesComponent } from './competition/add-prizes/add-prizes.component';
+import { CardsRollComponent } from './competition/cards-roll/cards-roll.component';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import {FormsModule} from "@angular/forms";
     CompetitionAwardsComponent,
     HeaderComponent,
     AdminPanelComponent,
-    CompetitionEditComponent
+    CompetitionEditComponent,
+    AddPrizesComponent,
+    CardsRollComponent
   ],
   imports: [
     BrowserModule,
