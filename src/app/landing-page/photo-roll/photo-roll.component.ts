@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Photoroll} from "../photoroll.model";
+import {PhotorollService} from "../photoroll.service";
 
 @Component({
   selector: 'app-photo-roll',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./photo-roll.component.css']
 })
 export class PhotoRollComponent implements OnInit {
+  photoroll: Photoroll;
 
-  constructor() { }
+  constructor(
+    public photorollService: PhotorollService
+     ) { }
 
   ngOnInit(): void {
+    this.photoroll = this.photorollService.photoroll;
   }
 
 }

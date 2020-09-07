@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -119,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ASURT20-FrontEnd"
+    }
+  },
+  "defaultProject": "ASURT20-FrontEnd",
+  "cli": {
+    "analytics": "a19d2bc1-f2ee-4e21-855a-40b73eaab099"
+  }
 }
