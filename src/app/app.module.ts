@@ -23,11 +23,10 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {ReactiveFormsModule,  FormsModule} from '@angular/forms';
 
-import { AdminPanelComponent } from './admin-panel/admin-panel.component';
-import { CompetitionEditComponent } from './admin-panel/competition-edit/competition-edit.component';
-import {FormsModule} from "@angular/forms";
 import { AddPrizesComponent } from './competition/add-prizes/add-prizes.component';
 import { CardsRollComponent } from './competition/cards-roll/cards-roll.component';
+import { SponsorsComponent } from './sponsors/sponsors.component';
+import { SponsorsEditComponent } from './admin-panel/sponsors-edit/sponsors-edit.component';
 
 
 @NgModule({
@@ -47,7 +46,9 @@ import { CardsRollComponent } from './competition/cards-roll/cards-roll.componen
     AdminPanelComponent,
     CompetitionEditComponent,
     AddPrizesComponent,
-    CardsRollComponent
+    CardsRollComponent,
+    SponsorsComponent,
+    SponsorsEditComponent
   ],
   imports: [
     BrowserModule,

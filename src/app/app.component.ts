@@ -8,7 +8,7 @@ import {DOCUMENT} from "@angular/common";
 })
 export class AppComponent {
   title = 'ASURT20-FrontEnd';
-  isAdminMode = true;
+  isAdminMode = false;
   constructor(@Inject(DOCUMENT) document) {
   }
   ngOnInit() {
