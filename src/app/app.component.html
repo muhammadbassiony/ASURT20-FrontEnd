@@ -4,7 +4,6 @@
   <router-outlet></router-outlet>
 
 <ng-container *ngIf="!isAdminMode">
-  <app-header></app-header>
   <app-competition (scroll)="onWindowScroll($event)"></app-competition>
 </ng-container>
 
