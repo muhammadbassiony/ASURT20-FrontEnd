@@ -6,7 +6,7 @@ header, h1, p, svg, div, nav, ul, li, img {
 }
 .utility-margin-bottom-big {
   font-size: 8px;
-  margin-bottom: 13em;
+  margin-bottom: 17em;
 }
 @media only screen and (max-width: 1150px) {
   .utility-margin-bottom-big {
@@ -197,4 +197,19 @@ header, h1, p, svg, div, nav, ul, li, img {
 .social-links__link:hover .social-links__icon.insta-icon{
   /*background-color: #b21212;*/
   fill: #5B51D8;
+}
+/*Bootstrap modification*/
+.dropdown {
+  color: white;
+}
+.dropdown-menu {
+  background-color: #E5AC00;
+  overflow: hidden;
+}
+.dropdown-item {
+  color: white;
+}
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: #b21212;
 }
