@@ -29,14 +29,14 @@ export class PhotorollEditComponent implements OnInit {
       validators: [Validators.required],
         asyncValidators: [mimeType]
     }),
-      image2: new FormControl(null, {
-        validators: [Validators.required],
-        asyncValidators: [mimeType]
-      }),
-      image3: new FormControl(null, {
-        validators: [Validators.required],
-        asyncValidators: [mimeType]
-      })
+    image2: new FormControl(null, {
+      validators: [Validators.required],
+      asyncValidators: [mimeType]
+    }),
+    image3: new FormControl(null, {
+      validators: [Validators.required],
+      asyncValidators: [mimeType]
+    })
     });
   }
 
