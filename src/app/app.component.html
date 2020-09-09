@@ -1,19 +1,27 @@
 
 
 <app-header></app-header>
-  <router-outlet></router-outlet>
+<!-- <app-admin-panel></app-admin-panel> -->
+<!-- <router-outlet></router-outlet> -->
 
-<ng-container *ngIf="!isAdminMode">
+<!-- <app-photoroll-edit></app-photoroll-edit> -->
+
+<!-- <ng-container *ngIf="!isAdminMode">
+
   <app-header></app-header>
-  <app-competition (scroll)="onWindowScroll($event)"></app-competition>
-</ng-container>
 
-<app-admin-panel *ngIf="isAdminMode"></app-admin-panel>
+  <app-competition (scroll)="onWindowScroll($event)"></app-competition>
+</ng-container> -->
+
+<!-- <app-competition></app-competition> -->
+
+<!-- <app-admin-panel></app-admin-panel> -->
+<!-- <app-admin-panel *ngIf="isAdminMode"></app-admin-panel>
 <div class="container" style="margin-top: -3.34rem">
   <div class="row justify-content-center">
     <button class="btn btn-primary" (click)="isAdminMode = !isAdminMode">Go to {{isAdminMode? 'home page': 'admin panel'}}</button>
   </div>
-</div>
+</div> -->
 
 <app-sponsors></app-sponsors>
 <app-sponsors-edit></app-sponsors-edit>

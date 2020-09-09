@@ -26,6 +26,7 @@ export class AdminPanelComponent implements OnInit {
   onCloseMenu() {
     let menu = <HTMLElement>document.querySelector('.menu-container');
     menu.style.right = '-23rem';
+    // menu.style.left = '-23rem';
   }
 
 }

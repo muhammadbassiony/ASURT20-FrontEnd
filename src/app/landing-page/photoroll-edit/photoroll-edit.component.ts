@@ -20,8 +20,7 @@ export class PhotorollEditComponent implements OnInit {
 
 
   constructor( public route: ActivatedRoute,
-               public photorollService: PhotorollService
-) { }
+               public photorollService: PhotorollService) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({

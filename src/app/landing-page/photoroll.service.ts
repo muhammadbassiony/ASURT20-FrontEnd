@@ -10,8 +10,7 @@ export class PhotorollService {
   public photoroll: Photoroll;
   // private postsUpdated = new Subject<Photoroll>();
 
-  constructor(private http: HttpClient, private router: Router) {
-  }
+  constructor(private http: HttpClient, private router: Router) { }
 
   getPhotos() {
     this.http
@@ -29,6 +28,7 @@ export class PhotorollService {
           this.photoroll = transformedPhotos.photoroll;
         });
   }
+
   addPhotoroll(image1: File, image2: File, image3: File) {
     const photoroll  = new FormData();
     photoroll.append("image1", image1);
