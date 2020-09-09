@@ -1,21 +1,23 @@
-
+<main *ngIf="index>=0" class="py-5">
     <!-- Competition Name and the Logo -->
-    <div class="row pt-5">
-        <div class="col-12">
-            <img class="sizeOfImg bg-light p-1 rounded" [src]="'assets/img/formula.png'" alt="Competion Logo">
-            <h3 class="d-inline-block ml-5 text-light align-middle">Shell</h3>
+    <div class="row py-5">
+        <div class="col-12 py-5">
+            <img class="sizeOfImg bg-light p-1 rounded" [src]="competitionsData[index].competitionLogo"
+                alt="Competion Logo">
+            <h3 class="d-inline-block ml-5 text-light align-middle">{{competitionsData[index].competitionName}}</h3>
             <hr>
         </div>
     </div>
 
     <!-- Competition Photo and description -->
-    <div class="row pt-5">
+    <div class="row py-5">
         <!-- Description -->
         <div class="col-sm-6 col-12">
-            <p class="text-break text-justify text-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis lorem volutpat, euismod lectus sed, convallis magna. Donec quis diam sit amet magna finibus condimentum non nec purus. Sed volutpat dui mauris, vehicula pretium sem venenatis vitae. Aenean ac eros nulla. Integer mollis erat vitae vehicula faucibus. Curabitur vel lorem a lorem interdum feugiat nec ac dui. Duis placerat risus id nunc sodales volutpat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+            <p class="text-break text-justify text-light">{{competitionsData[index].competitionInfo}}</p>
         </div>
         <!-- Photo -->
         <div class="col-sm-6 col-12">
-            <img class="w-100 img-thumbnail" [src]="'https://images.unsplash.com/photo-1541769740-098e80269166?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjEyMDd9'" alt="Competition Photo">
+            <img class="w-100 img-thumbnail" [src]="competitionsData[index].competitionImage" alt="Competition Photo">
         </div>
     </div>
+</main>

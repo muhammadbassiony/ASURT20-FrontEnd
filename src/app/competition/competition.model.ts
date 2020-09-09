@@ -1,11 +1,13 @@
 export class Competition {
 
   public competitionName: string;
-  public description: string;
-  public LogoPath: string;
-  constructor(name: string, description: string, path: string) {
+  public competitionInfo: string;
+  public competitionImage: string;
+  public competitionLogo:string;
+  constructor(name: string, description: string,imagePath:string, logoPath: string) {
     this.competitionName = name;
-    this.description = description;
-    this.LogoPath = path;
+    this.competitionInfo = description;
+    this.competitionImage= imagePath;
+    this.competitionLogo= logoPath;
   }
 }

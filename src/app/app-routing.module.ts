@@ -5,8 +5,8 @@ import {LandingPageComponent} from './landing-page/landing-page.component';
 import {PhotorollEditComponent} from './landing-page/photoroll-edit/photoroll-edit.component';
 
 const routes: Routes = [
-  {path: 'competition', component: CompetitionComponent},
-  {path: '', component: LandingPageComponent},
+  {path: '', component: LandingPageComponent,pathMatch:'full'},
+  {path: 'competition/:competitionName', component: CompetitionComponent},
   {path: 'edit/photo-roll', component: PhotorollEditComponent}
 ];
 
