@@ -1,20 +1,32 @@
 <body>
+  <div class="row">
+    <div class="col-2" *ngFor="let sponsor of sponsorsInfo">
+      <div class="spons_img mt-4 mb-2">
+          <img [src]=sponsor.logo alt="logo" style="max-width : 100%">
+      </div>
+      <div class="checkboxMargin mb-3">
+        <h6 class="d-inline mr-2 pt-4 text-white">{{sponsor.name}}</h6>
+        <input type="checkbox" class="font-weight-bold"> 
+      </div>
+    </div>
+
+  </div>
     <div class="row">
         <div class="col-md-8 mx-auto">
-            <form>
+            <form [formGroup] = "sponsorEditForm" class="mt-5">
                 <div class="form-group">
                   <label for="exampleLogoUrl" class="text-white">Logo Url</label>
-                  <input type="url" class="form-control" id="exampleInputUrl"  placeholder="Enter url">
+                  <input type="url" class="form-control" id="exampleInputUrl" formControlName = "sponsorLogo" placeholder="Enter url">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputName" class="text-white">Sponsor Name</label>
-                  <input type="text" class="form-control" id="exampleInputName">
+                  <input type="text" class="form-control" id="exampleInputName" formControlName = "sponsorName">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputDesc" class="text-white">Sponsor Description</label>
-                    <textarea class="form-control" id="exampleInputDesc"></textarea>
+                    <textarea class="form-control" id="exampleInputDesc" formControlName = "sponsorDesc"></textarea>
                   </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" [disabled]="!sponsorEditForm.valid" class="btn btn-primary">Submit</button>
               </form>
         </div>
     </div>
