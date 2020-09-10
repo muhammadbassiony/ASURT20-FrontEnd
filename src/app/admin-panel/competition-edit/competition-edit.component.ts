@@ -14,7 +14,7 @@ export class CompetitionEditComponent implements OnInit {
   }
 
   addCompetition = false;
-  competitions: string[] = ['competition-1', 'competition-2', 'competition-3'];
+  competitions: string[] = ['Formula', 'Shell', 'ROV'];
   onSubmit(form:NgForm) {
     console.log(form);
   }

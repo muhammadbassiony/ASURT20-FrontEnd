@@ -2,3 +2,33 @@ body
 {
     background-color: #b21212;
 }
+.spons_img
+{
+    
+    width: 100px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: #fff;
+    margin-left: 10%;
+}
+
+.spons_img img
+{
+    margin: 0 auto;
+    padding: 17%;
+    height: 100%;
+    width: 100%;
+}
+
+.checkboxMargin
+{
+    margin-left: 20%;
+}
+
+.checkboxMargin h4 
+{
+    overflow: hidden;
+    max-width: 50%;
+  }

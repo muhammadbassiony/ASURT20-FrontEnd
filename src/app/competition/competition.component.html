@@ -1,11 +1,13 @@
-<main>
+<main [ngStyle]="{'background-color': backgroundColor}">
     <div class="container">
         <app-competition-info></app-competition-info>
-        
-        <app-competition-awards ></app-competition-awards>
 
-        <app-add-prizes></app-add-prizes>
+        <app-competition-awards></app-competition-awards>
+
     </div>
-</main>
 
+
+    <!-- For admin panel -->
+<!--    <app-add-prizes></app-add-prizes>-->
+</main>
 

@@ -8,22 +8,23 @@
 <!--      </div>-->
 <!--    </header>-->
 <!--  </div>-->
-  <nav class="menu-container">
-    <a href="#" class="closeBtn" (click)="onCloseMenu()">
-      <svg class="close-icon" viewBox="0 0 100 100">
-        <use xlink:href="../../assets/img/times.svg#close-icon"></use>
-      </svg>
-    </a>
-    <ul class="menu">
-      <li class="menu__item"><a href="../../index.html">Home</a></li>
-      <li class="menu__item"><a href="#">Edit Competitions</a></li>
-      <li class="menu__item"><a href="#">Edit Competitions</a></li>
-      <li class="menu__item"><a href="#">Edit Competitions</a></li>
+<nav class="menu-container">
+  <a href="#" class="closeBtn" (click)="onCloseMenu()">
+    <svg class="close-icon" viewBox="0 0 100 100">
+      <use xlink:href="../../assets/img/times.svg#close-icon"></use>
+    </svg>
+  </a>
+  <ul class="menu">
+    <li class="menu__item"><a href="../../index.html">Home</a></li>
+    <li class="menu__item"><a routerLink="">Edit Competitions</a></li>
+    <li class="menu__item"><a routerLink="">Edit Photo Roll</a></li>
+    <li class="menu__item"><a routerLink="">Edit Sponsors</a></li>
 
-    </ul>
-  </nav>
-  <app-competition-edit></app-competition-edit>
-  <app-photoroll-edit></app-photoroll-edit>
-  <app-sponsors-edit></app-sponsors-edit>
+  </ul>
+</nav>
+<app-competition-edit></app-competition-edit>
+<app-add-prizes></app-add-prizes>
+<app-photoroll-edit></app-photoroll-edit>
+<app-sponsors-edit></app-sponsors-edit>
 
 <!--</div>-->
