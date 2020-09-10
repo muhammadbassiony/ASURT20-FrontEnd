@@ -8,23 +8,7 @@
           <input type="checkbox" class="form-check-input" id="{{competition}}"  ngModel name="{{competition}}">
           <label class="form-check-label" for="{{competition}}">{{competition}}</label>
         </div>
-        <div class="form-group">
-          <button class="btn btn-primary" (click)="addCompetition = !addCompetition">{{!addCompetition? 'Add': 'Hide'}} New Competitions</button>
-        </div>
-        <div class="form-group" *ngIf="addCompetition">
-          <div class="form-group">
-            <label for="competition-name">Competition Name</label>
-            <input type="text" class="form-control" id="competition-name" ngModel name="competition-name">
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlTextarea1">Give some details</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" ngModel name="competition-details"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlFile1">Choose Competition Photo</label>
-            <input type="file" class="form-control-file" id="exampleFormControlFile1" multiple ngModel name="competition-photos">
-          </div>
-        </div>
+
         <button type="submit" class="btn btn-success mb-3">Submit Changes</button>
       </form>
     </form>

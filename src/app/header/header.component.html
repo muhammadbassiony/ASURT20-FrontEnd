@@ -41,8 +41,8 @@
 <!--END SVG-->
 
 <div class="utility-margin-bottom-big">
-  <header class="header" id="header">
-    <a href="#" id="header-toggle-link" (click)="onToggleHeader()"><span class="header-toggle"></span></a>
+  <header class="header" id="header" [ngClass]="{'header-closed':applyMql('900px')}">
+    <a style="cursor: pointer;" id="header-toggle-link" (click)="onToggleHeader()"><span class="header-toggle"></span></a>
     <h1 class="logo-container">
       <a href="#" class="logo-link">
         <img src="assets/img/ASURT_LOGO_B-min.png" alt="ASU Racing Team Logo" class="logo">
@@ -50,6 +50,9 @@
     </h1>
     <nav class="navigation">
       <ul class="navigation__list">
+        <li class="navigation__item" *ngIf="isAdminMode">
+          <a href="#" id="menu-btn" class="navigation__link" (click)="onOpenMenu()">Admin menu</a>
+        </li>
         <li class="navigation__item">
           <a href="#" class="navigation__link">Home</a>
         </li>

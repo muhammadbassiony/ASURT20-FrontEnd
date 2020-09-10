@@ -12,21 +12,12 @@ export class AdminPanelComponent implements OnInit {
   ngOnInit(): void {
 
   }
-  onOpenMenu() {
-    let menu = <HTMLElement>document.querySelector('.menu-container');
-    let menuBtn = <HTMLInputElement>document.getElementById('menuBtn');
-    if (menuBtn.checked) {
-      menuBtn.checked = false;
-      menu.style.right = '0';
-    } else {
-      menu.style.right = '-23rem';
-    }
-  }
+
 
   onCloseMenu() {
     let menu = <HTMLElement>document.querySelector('.menu-container');
-    menu.style.right = '-23rem';
-    // menu.style.left = '-23rem';
+    // menu.style.right = '-23rem';
+    menu.style.left = '-23rem';
   }
 
 }

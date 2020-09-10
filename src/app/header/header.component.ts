@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {AfterViewChecked, Component, Inject, OnInit} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
 
 @Component({
@@ -6,15 +6,43 @@ import {DOCUMENT} from "@angular/common";
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, AfterViewChecked {
 
-  constructor(@Inject(DOCUMENT) document) { }
+  isAdminMode: boolean = true;
+  constructor(@Inject(DOCUMENT) document) {
+
+  }
 
   ngOnInit(): void {
+    const header = document.getElementById('header');
+    if (this.applyMql('900px')) {
+      header.classList.add('header-closed');
+    }
+  }
+
+  ngAfterViewChecked() {
+
   }
 
   onToggleHeader() {
     const header = document.getElementById('header');
     header.classList.toggle('header-closed');
+  }
+
+  applyMql(bp: string) {
+    let mql = window.matchMedia(`only screen and (max-width: ${bp})`);
+    return mql.matches;
+  }
+
+  // ADMIN MODE SPECIFIC
+  onOpenMenu() {
+    let menu = <HTMLElement>document.querySelector('.menu-container');
+    // let menuBtn = <HTMLInputElement>document.getElementById('menu-btn');
+    // if (menuBtn.checked) {
+    //   menuBtn.checked = false;
+    //   menu.style.right = '0';
+    // } else {
+    // }
+    menu.style.left = '0';
   }
 }
