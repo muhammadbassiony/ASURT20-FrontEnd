@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {SponsorsService} from './sponsors.service';
+import {Sponsor} from './sponsor.model'
 
 @Component({
   selector: 'app-sponsors',
@@ -7,15 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SponsorsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _SponsorsService:SponsorsService) { }
+
+  sponsorsInfo :Sponsor[]=[];
 
   ngOnInit(): void {
+    this.sponsorsInfo = this._SponsorsService.getTrueCheckedSponsors();
+    this._SponsorsService.checkedSponsors.subscribe(
+      (sponsors:Sponsor[])=>{
+        this.sponsorsInfo=sponsors;
+      })
   }
 
-  sponsorsInfo = [
-    {logo : "assets/img/kader.png", name : "Arab Organization for Industrialization" , desc : 'KADER factory for developed industries was established in 1949 under the name of "HELIOPOLIS AIRCRAFT FACTORY" to produce the primary training Aircraft ..'},
-    {logo : "assets/img/alumisr.png", name : "ALUMISR", desc : "Alumisr company produces aluminum for the purposes of the various use with many finishes.It was established in 1977"},
-    {logo : "assets/img/emar.png", name : "EMAR", desc : "Emaar Misr is one of the largest real estate companies in Egypt and the developer of iconic projects such as Uptown Cairo, Marassi, and Mivida"}
-  ]
+  
 
 }

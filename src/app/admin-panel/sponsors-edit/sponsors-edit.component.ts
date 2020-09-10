@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms'
+import {SponsorsService} from '../../sponsors/sponsors.service'
+import {Sponsor} from '../../sponsors/sponsor.model'
 
 @Component({
   selector: 'app-sponsors-edit',
@@ -9,19 +11,37 @@ import {FormGroup, FormControl, Validators} from '@angular/forms'
 export class SponsorsEditComponent implements OnInit {
 
   sponsorEditForm : FormGroup;
-  constructor() { }
+  sponsorsInfo : Sponsor[];
+  isChecked :boolean[] =[];
+
+  constructor(private _SponsorsService:SponsorsService) {}
 
   ngOnInit(): void {
+    this.sponsorsInfo= this._SponsorsService.getAllSponsorsInfo(); 
+    this._SponsorsService.allSponsors.subscribe(
+    (sponsors:Sponsor[])=>{
+      this.sponsorsInfo=sponsors;
+    })
+  
     this.sponsorEditForm = new FormGroup({
       'sponsorLogo' : new FormControl('', Validators.required),
       'sponsorName' : new FormControl('', Validators.required),
       'sponsorDesc' : new FormControl('', Validators.required)
     })
   }
-  sponsorsInfo = [
-    {logo : "assets/img/kader.png", name : "Arab Organization for Industrialization" , desc : 'KADER factory for developed industries was established in 1949 under the name of "HELIOPOLIS AIRCRAFT FACTORY" to produce the primary training Aircraft ..'},
-    {logo : "assets/img/alumisr.png", name : "ALUMISR", desc : "Alumisr company produces aluminum for the purposes of the various use with many finishes.It was established in 1977"},
-    {logo : "assets/img/emar.png", name : "EMAR", desc : "Emaar Misr is one of the largest real estate companies in Egypt and the developer of iconic projects such as Uptown Cairo, Marassi, and Mivida"}
-  ]
+
+  onSubmit()
+  {  
+    let logo = this.sponsorEditForm.value.sponsorLogo;
+    let name = this.sponsorEditForm.value.sponsorName;
+    let desc = this.sponsorEditForm.value.sponsorDesc;
+    let addedSponsor = new Sponsor (logo, name, desc,false, 2022);
+    this._SponsorsService.addSponsor(addedSponsor);
+  }
+
+  changeState()
+  {
+    this._SponsorsService.editSponsorsState(this.isChecked);
+  }
 
 }
