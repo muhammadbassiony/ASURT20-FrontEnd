@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CompetitionComponent } from './competition/competition.component';
-import { CompetitionInfoComponent } from './competition/competition-info/competition-info.component';
 import { CompetitionAwardsComponent } from './competition/competition-awards/competition-awards.component';
 import { HeaderComponent } from './header/header.component';
 
@@ -27,13 +26,16 @@ import { AddPrizesComponent } from './competition/add-prizes/add-prizes.componen
 import { CardsRollComponent } from './competition/cards-roll/cards-roll.component';
 import { SponsorsComponent } from './sponsors/sponsors.component';
 import { SponsorsEditComponent } from './admin-panel/sponsors-edit/sponsors-edit.component';
+import { ShellComponent } from './competition/shell/shell.component';
+import { RovComponent } from './competition/rov/rov.component';
+import { FormulaComponent } from './competition/formula/formula.component';
+import { CompetitionParagraphComponent } from './competition/competition-paragraph/competition-paragraph.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CompetitionComponent,
-    CompetitionInfoComponent,
     CompetitionAwardsComponent,
     HeaderComponent,
 
@@ -48,7 +50,11 @@ import { SponsorsEditComponent } from './admin-panel/sponsors-edit/sponsors-edit
     AddPrizesComponent,
     CardsRollComponent,
     SponsorsComponent,
-    SponsorsEditComponent
+    SponsorsEditComponent,
+    ShellComponent,
+    RovComponent,
+    FormulaComponent,
+    CompetitionParagraphComponent
   ],
   imports: [
     BrowserModule,
