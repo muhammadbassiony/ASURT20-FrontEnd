@@ -5,46 +5,60 @@
 <!--&lt;!&ndash;      <mat-error *ngIf="form.get('title').invalid">Please enter a post title.</mat-error>&ndash;&gt;-->
 <!--    </mat-form-field>-->
 
-  <h1 class="text-primary u-margin text-center">Choose 3 photos</h1>
+  <h1 class="text-primary u-margin text-center">Choose  photos</h1>
   <div class="row">
     <div class="col">
       <div class="u-margin">
         <button class="btn btn-dark" type="button" (click)="filePicker1.click()">Pick Image 1 (Active)</button>
-        <input type="file" #filePicker1 (change)="onImagePicked1($event)" >
+        <input type="file" #filePicker1 (change)="onActiveImagePicked($event)"  >
       </div>
-      <div class="form-group image-preview u-margin" *ngIf="imagePreview1 !== '' && imagePreview1 && form.get('image1').valid">
-        <img class="image-preview" [src]="imagePreview1" alt="hello">
-      </div>
+<!--      <div class="form-group image-preview u-margin" *ngIf="imagePreview1 !== '' && imagePreview1 && form.get('image1').valid">-->
+<!--        <img class="image-preview" [src]="imagePreview1" alt="hello">-->
+<!--      </div>-->
     </div>
     <div class="col">
       <div class="u-margin">
-        <button class="btn btn-dark"  type="button" (click)="filePicker2.click()">Pick Image 2</button>
-        <input type="file" #filePicker2 (change)="onImagePicked2($event)"  >
+        <button class="btn btn-dark"  type="button" (click)="filePicker2.click()">Pick other Images</button>
+        <input type="file" multiple #filePicker2 (change)="onOtherImagePicked($event) "  >
       </div>
-      <div class="u-margin" *ngIf="imagePreview2 !== '' && imagePreview2 && form.get('image2').valid">
-        <img class="image-preview" [src]="imagePreview2" [alt]="form.value.title">
-      </div>
+<!--      <div class="u-margin" *ngIf="imagePreview2 !== '' && imagePreview2 && form.get('image2').valid">-->
+<!--        <img class="image-preview" [src]="imagePreview2" [alt]="form.value.title">-->
+<!--      </div>-->
     </div>
-    <div class="col">
-      <div class="u-margin">
-        <button class="btn btn-dark" type="button" (click)="filePicker3.click()">Pick Image 3</button>
-        <input type="file"  #filePicker3 (change)="onImagePicked3($event)"  >
-      </div>
-      <div class="u-margin" *ngIf="imagePreview3 !== '' && imagePreview3 && form.get('image3').valid">
-        <img class="image-preview" [src]="imagePreview3" [alt]="form.value.title" >
-      </div>
-    </div>
-  
-    
-   
-    
+<!--    <div class="col">-->
+<!--      <div class="u-margin">-->
+<!--        <button class="btn btn-dark" type="button" (click)="filePicker3.click()">Pick Image 3</button>-->
+<!--        <input type="file"  #filePicker3 (change)="onImagePicked3($event)"  >-->
+<!--      </div>-->
+<!--      <div class="u-margin" *ngIf="imagePreview3 !== '' && imagePreview3 && form.get('image3').valid">-->
+<!--        <img class="image-preview" [src]="imagePreview3" [alt]="form.value.title" >-->
+<!--      </div>-->
+<!--    </div>-->
+
+
+
+
     <div class="u-margin">
     <button class="btn btn-success"  type="submit" [disabled]="form.invalid">Save Photo-roll</button>
     </div>
-    <app-photo-roll *ngIf="imagePreview3 !== '' && imagePreview3 && form.get('image3').valid && imagePreview2 !== '' && imagePreview2 && form.get('image2').valid && imagePreview1 !== '' && imagePreview1 && form.get('image1').valid">
+<!--    <app-photo-roll *ngIf="imagePreview3 !== '' && imagePreview3 && form.get('image3').valid && imagePreview2 !== '' && imagePreview2 && form.get('image2').valid && imagePreview1 !== '' && imagePreview1 && form.get('image1').valid">-->
 
-    </app-photo-roll>
+<!--    </app-photo-roll>-->
   </div>
+<!--  <div class="row">-->
+<!--    <div class="col" >-->
+<!--      <h3>Active image :</h3>-->
+<!--      <img class="d-block w-100 img-fluid " [src]="this.photoroll.imagePaths[0]" alt="First slide">-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="row">-->
+<!--  <div class="col" >-->
+<!--    <h3>Other images :</h3>-->
+<!--    <div *ngFor="let item of this.photoroll.imagePaths.slice(1,this.photoroll.imagePaths.length)" >-->
+<!--      <img class="d-block w-100 img-fluid " [src]="item" alt="Second slide">-->
+<!--  </div>-->
+<!--  </div>-->
+<!--  </div>-->
 </form>
 
 

@@ -7,48 +7,66 @@ import {Photoroll} from "./photoroll.model";
 
 @Injectable({ providedIn: 'root' })
 export class PhotorollService {
-  public photoroll: Photoroll;
-  // private postsUpdated = new Subject<Photoroll>();
+   private photoroll: Photoroll
 
-  constructor(private http: HttpClient, private router: Router) { }
+   photorollUpdated = new Subject<Photoroll>();
+
+  constructor(private http: HttpClient, private router: Router) {
+
+  }
+
+
 
   getPhotos() {
     this.http
-      .get<{ message: string; posts: any }>("http://localhost:3000/api/photo-roll")
-      .pipe(
-        map(photoData => {
-          return photoData.posts.map(photoroll => {
-            return {
-              imagePath1: photoroll.imagePath1,
-              imagePath2: photoroll.imagePath2,
-              imagePath3: photoroll.imagePath3,
-            };
-          });
-        })).subscribe(transformedPhotos => {
-          this.photoroll = transformedPhotos.photoroll;
+      .get<{ message: string; imagePaths: string[] }>("http://localhost:3000/api/photo-roll")
+      // .pipe(
+        // map(photoData => {
+        //   return photoData.photos.map(photoroll => {
+        //     return {
+        //       imagePaths: photoroll.imagePaths,
+        //       noPhotos: photoroll.imagePaths.length
+        //     };
+        //   });
+        // })).subscribe(transformedPhotos => {
+      .subscribe(imagePaths => {
+          this.photoroll.imagePaths = imagePaths.imagePaths;
+          this.photoroll.noPhotos = imagePaths.imagePaths.length;
+          this.photorollUpdated.next(this.photoroll);
         });
   }
 
-  addPhotoroll(image1: File, image2: File, image3: File) {
+  addPhotoroll(activeImage: File, otherImages: File[]) {
     const photoroll  = new FormData();
-    photoroll.append("image1", image1);
-    photoroll.append("image2", image2);
-    photoroll.append("image3", image3);
-    console.log(image1);
+    photoroll.append("activeImage", activeImage);
+    for (let i = 0 ; i< otherImages.length;i++) {
+      photoroll.append("otherImages", otherImages[i]);
+    }
+    //console.log(photoroll); //form data
+    console.log(activeImage);
+    console.log(otherImages); //image selected on other images
     this.http
       .post<{ message: string; photoroll: Photoroll }>(
         "http://localhost:3000/api/photo-roll",
         photoroll
       )
       .subscribe(responseData => {
-        const photoroll: Photoroll = {
-          imagePath1: responseData.photoroll.imagePath1,
-          imagePath2: responseData.photoroll.imagePath2,
-          imagePath3: responseData.photoroll.imagePath3,
-        };
-        this.photoroll = photoroll;
+        const photoroll: Photoroll = null;
+          // imagePath1: responseData.photoroll.imagePath1,
+          // imagePath2: responseData.photoroll.imagePath2,
+          // imagePath3: responseData.photoroll.imagePath3,
+          photoroll.noPhotos = responseData.photoroll.imagePaths.length;
+          photoroll.imagePaths = responseData.photoroll.imagePaths;
+          this.photoroll = photoroll;
         // this.router.navigate(["/"]);
-      });
 
+      });
   }
+   initialize () {
+     let photoroll: Photoroll = new Photoroll(4,['https://placeimg.com/1080/500/nat','https://placeimg.com/1080/500/nature','https://placeimg.com/1080/500/arch','https://placeimg.com/1080/500/history']);
+     this.photoroll =photoroll;
+     // console.log(this.photoroll);
+     return this.photoroll ;
+   }
+
 }
