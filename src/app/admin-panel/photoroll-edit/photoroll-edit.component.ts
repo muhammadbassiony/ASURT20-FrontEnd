@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import { mimeType } from './mime-type.validator';
-import {Photoroll} from '../photoroll.model';
-import {PhotorollService} from "../photoroll.service";
+import {Photoroll} from '../../landing-page/photoroll.model';
+import {PhotorollService} from "../../landing-page/photoroll.service";
 
 @Component({
   selector: 'app-photoroll-edit',
