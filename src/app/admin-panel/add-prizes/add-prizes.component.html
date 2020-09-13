@@ -1,31 +1,29 @@
 <main class="row">
     <div class="col-sm-8 col-12 mx-auto">
-        <form >
+        <form (ngSubmit)="onPrizeSubmit(form)" #form = "ngForm">
             <div class="form-group">
                 <label for="competitionName" class="text-light">Competition Name</label>
-                <select class="form-control" id="competitionName" name="competitionName" required>
+                <select class="form-control" id="competitionName" name="competitionName" required ngModel>
                     <option>Formula Student UK</option>
                     <option>Shell Eco Marathon</option>
                     <option>ROV</option>
-                  </select>
+                </select>
             </div>
 
             <div class="form-group">
                 <label for="prizeTitle" class="text-light">Prize Title</label>
-                <input type="text" class="form-control" id="prizeTitle" required>
+                <input type="text" class="form-control" id="prizeTitle" name="prizeTitle" required ngModel>
             </div>
 
             <div class="form-group">
                 <label for="prizeDescription" class="text-light">Prize Description</label>
-                <textarea type="text" class="form-control" id="prizeDescription" cols="4" rows="4" required></textarea>
+                <textarea class="form-control" id="prizeDescription" name="prizeDescription" cols="4" rows="4" required ngModel></textarea>
             </div>
 
             <div class="form-group">
                 <label for="prizeImage" class="text-light">Prize Image</label>
-                <input type="file" class="form-control-file text-light" id="prizeImage" required>
+                <input type="file" accept="image/*" class="form-control-file text-light" name="prizeImgPath" id="prizeImage" required ngModel>
             </div>
-
-
 
             <button class="btn btn-success" type="submit">Add Prize</button>
         </form>

@@ -37,12 +37,6 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
   // ADMIN MODE SPECIFIC
   onOpenMenu() {
     let menu = <HTMLElement>document.querySelector('.menu-container');
-    // let menuBtn = <HTMLInputElement>document.getElementById('menu-btn');
-    // if (menuBtn.checked) {
-    //   menuBtn.checked = false;
-    //   menu.style.right = '0';
-    // } else {
-    // }
     menu.style.left = '0';
   }
 }
