@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms'
-import {SponsorsService} from '../../sponsors/sponsors.service'
-import {Sponsor} from '../../sponsors/sponsor.model'
+import {SponsorsService} from '../../services/sponsors.service'
+import {Sponsor} from '../../models/sponsor.model'
 
 @Component({
   selector: 'app-sponsors-edit',
