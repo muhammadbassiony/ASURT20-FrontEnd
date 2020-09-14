@@ -23,13 +23,13 @@ export class PhotorollEditComponent implements OnInit {
   ngOnInit(): void {
     this.form = new FormGroup({
       activeImage: new FormControl(null, {
-        validators: [Validators.required],
+      validators: [Validators.required],
         asyncValidators: [mimeType]
-      }),
-      otherImages: new FormControl(null, {
-        validators: [Validators.required],
-        asyncValidators: [mimeType]
-      })
+    }),
+    otherImages: new FormControl(null, {
+      validators: [Validators.required],
+      asyncValidators: [mimeType]
+    })
     });
 
 

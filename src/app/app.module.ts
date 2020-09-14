@@ -14,6 +14,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { PhotorollEditComponent } from './admin-panel/photoroll-edit/photoroll-edit.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { CompetitionEditComponent } from './admin-panel/competition-edit/competition-edit.component';
+
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
@@ -31,6 +32,7 @@ import { RovComponent } from './competition/rov/rov.component';
 import { FormulaComponent } from './competition/formula/formula.component';
 import { CompetitionParagraphComponent } from './competition/competition-paragraph/competition-paragraph.component';
 import {DataStorageService} from "./admin-panel/add-prizes/data-storage.service";
+import { from } from 'rxjs';
 
 
 @NgModule({
@@ -60,7 +62,7 @@ import {DataStorageService} from "./admin-panel/add-prizes/data-storage.service"
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatInputModule,
+   MatInputModule,
     MatCardModule,
     MatButtonModule,
     MatToolbarModule,
@@ -75,4 +77,4 @@ import {DataStorageService} from "./admin-panel/add-prizes/data-storage.service"
   providers: [DataStorageService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule{ }

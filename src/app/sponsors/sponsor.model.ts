@@ -1,6 +1,6 @@
 export class Sponsor
 {
-    constructor(
+     constructor(
         public logo : string,
         public name : string,
         public desc : string,

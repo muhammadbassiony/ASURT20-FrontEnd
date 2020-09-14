@@ -7,17 +7,19 @@ import {Photoroll} from "./photoroll.model";
 
 @Injectable({ providedIn: 'root' })
 export class PhotorollService {
-  private photoroll: Photoroll;
+   private photoroll: Photoroll
 
-  photorollUpdated = new Subject<Photoroll>();
+   photorollUpdated = new Subject<Photoroll>();
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {
+
+  }
 
 
 
   getPhotos() {
     this.http
-      .get<{ message: string; imagePaths: string[] }>("http://localhost:3000/api/photo-roll") //http://localhost:3000/api/photo-roll/:photorollId
+      .get<{ message: string; imagePaths: string[] }>("http://localhost:3000/api/photo-roll")
       // .pipe(
         // map(photoData => {
         //   return photoData.photos.map(photoroll => {
@@ -28,7 +30,6 @@ export class PhotorollService {
         //   });
         // })).subscribe(transformedPhotos => {
       .subscribe(imagePaths => {
-        //photoroll id hena bardo
           this.photoroll.imagePaths = imagePaths.imagePaths;
           this.photoroll.noPhotos = imagePaths.imagePaths.length;
           this.photorollUpdated.next(this.photoroll);
@@ -61,7 +62,6 @@ export class PhotorollService {
 
       });
   }
-  
    initialize () {
      let photoroll: Photoroll = new Photoroll(4,['https://placeimg.com/1080/500/nat','https://placeimg.com/1080/500/nature','https://placeimg.com/1080/500/arch','https://placeimg.com/1080/500/history']);
      this.photoroll =photoroll;
