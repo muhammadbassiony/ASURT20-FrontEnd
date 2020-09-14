@@ -7,17 +7,15 @@ import {FadeInService} from "./fade-in.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, AfterContentChecked{
+export class AppComponent implements OnInit{
   title = 'ASURT20-FrontEnd';
   isAdminMode = false;
   constructor(@Inject(DOCUMENT) document, private fadeInService: FadeInService) {
   }
   ngOnInit() {
-  }
-
-  ngAfterContentChecked() {
     this.fadeInService.fadeIn();
   }
+
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll(event) {
