@@ -147,6 +147,7 @@ header, h1, p, svg, div, nav, ul, li, img {
 }
 .navigation__item:nth-child(1) {
 }
+.navigation__link,
 .navigation__link:link,
 .navigation__link:visited {
   font-size: 2em;

@@ -17,6 +17,9 @@
   transition-delay: 0s;
   transition-timing-function: ease;
 }
+.closed .menu-container {
+  left: -23rem;
+}
 .close-icon {
   fill: red;
   height: 1.5rem;

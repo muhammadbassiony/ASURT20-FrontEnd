@@ -33,6 +33,7 @@ import { FormulaComponent } from './competition/formula/formula.component';
 import { CompetitionParagraphComponent } from './competition/competition-paragraph/competition-paragraph.component';
 import {DataStorageService} from "./admin-panel/add-prizes/data-storage.service";
 import { from } from 'rxjs';
+import {CloseDirective} from "./admin-panel/close.directive";
 
 
 @NgModule({
@@ -57,12 +58,13 @@ import { from } from 'rxjs';
     ShellComponent,
     RovComponent,
     FormulaComponent,
-    CompetitionParagraphComponent
+    CompetitionParagraphComponent,
+    CloseDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-   MatInputModule,
+    MatInputModule,
     MatCardModule,
     MatButtonModule,
     MatToolbarModule,
