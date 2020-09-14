@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Sponsor } from './sponsor.model';
+import { Sponsor } from '../models/sponsor.model';
 import { Subject } from 'rxjs';
 
 @Injectable({

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {SponsorsService} from './sponsors.service';
-import {Sponsor} from './sponsor.model'
+import {SponsorsService} from '../services/sponsors.service';
+import {Sponsor} from '../models/sponsor.model'
 
 @Component({
   selector: 'app-sponsors',
