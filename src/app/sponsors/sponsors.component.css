@@ -1,8 +1,7 @@
-body
-{
-    background-color: rgb(232, 248, 232);
+.bg-dark{
+    box-shadow: 0 2em 4em rgba(0, 0, 0, 0.4); 
+    background-color:black;
 }
-
 .partners
 {
     color: #B21212;
@@ -10,29 +9,23 @@ body
 
 .card
 {
-    width: 70%;
+    width: 60%;
     height: auto;
     margin: auto;
-    transform: skewX(-20deg);
+    transform: skewX(-10deg);
     background-color: rgb(238, 244, 247);
-}
-
-.spons_desc
-{
-    transform: skewX(20deg);
-    width: 90%;
 }
 
 .spons_img
 {
-    transform: skewX(20deg);
+    transform: skewX(10deg);
     width: 180px;
     height: 180px;
     position: relative;
     overflow: hidden;
     border-radius: 50%;
     background-color: #fff;
-    margin-left: 10%;
+
 }
 
 .spons_img img
