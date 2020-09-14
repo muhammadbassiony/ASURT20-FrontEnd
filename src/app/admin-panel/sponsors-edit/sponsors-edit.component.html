@@ -17,12 +17,13 @@
 <h4 class="text-center "> Select the sponsors to website</h4>
   <div class="row">
     <div class="col-lg-4 col-sm-12" *ngFor="let sponsor of sponsorsInfo let i=index ">     
-        <div class="spons_img mt-4 mb-2">
-          <img [src]=sponsor.logo alt="logo" style="max-width : 100%">
+        <div class="spons_img  mx-auto d-block">
+          <img [src]=sponsor.logo alt="logo" style="max-width : 100%" >
         </div>
         <div class="checkboxMargin mb-3">
-        <h6 class="d-inline mr-2 pt-4 text-white">{{sponsor.name}}</h6>
-        <input type="checkbox" [(ngModel)] = "isChecked[i]"> 
+        <input type="checkbox" [(ngModel)] = "isChecked[i]" class=""> 
+        <h6 class="d-inline pt-4 text-white ml-3">{{sponsor.name}}</h6>
+       
         </div>
     </div>
   </div>
@@ -49,7 +50,12 @@
                 <input type="text" class="form-control form-control-lg" id="exampleInputName" formControlName = "sponsorName"  placeholder="Enter Sponsor Name">
               </div>
               <div class="form-group">
-                <input type="url" class="form-control form-control-lg" id="exampleInputUrl" formControlName = "sponsorLogo" placeholder="Enter Sponsor Logo url">
+                <input type="url" class="form-control form-control-lg" id="exampleInputUrl" formControlName = "sponsorLogo" placeholder="Enter Sponsor url">
+              </div>
+
+              <div class="form-group" >
+                <label class="btn btn-dark btn-dark"><i class="material-icons"></i> Add Sponsor Image</label>
+                <input type="file" style="display:none;" id="exampleInputImage">
               </div>
               <div class="form-group">
                 <textarea class="form-control form-control-lg" id="exampleInputDesc" formControlName = "sponsorDesc"  placeholder="Enter Sponsor Description"></textarea>
