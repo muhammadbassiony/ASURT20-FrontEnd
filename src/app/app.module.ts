@@ -34,6 +34,7 @@ import { CompetitionParagraphComponent } from './competition/competition-paragra
 import {DataStorageService} from "./admin-panel/add-prizes/data-storage.service";
 import { from } from 'rxjs';
 import {CloseDirective} from "./admin-panel/close.directive";
+import {FadeInService} from "./fade-in.service";
 
 
 @NgModule({
@@ -59,7 +60,7 @@ import {CloseDirective} from "./admin-panel/close.directive";
     RovComponent,
     FormulaComponent,
     CompetitionParagraphComponent,
-    CloseDirective
+    CloseDirective,
   ],
   imports: [
     BrowserModule,
@@ -76,7 +77,7 @@ import {CloseDirective} from "./admin-panel/close.directive";
     FormsModule
 
   ],
-  providers: [DataStorageService],
+  providers: [DataStorageService, FadeInService],
   bootstrap: [AppComponent]
 })
 export class AppModule{ }

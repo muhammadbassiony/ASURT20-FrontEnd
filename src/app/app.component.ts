@@ -1,17 +1,22 @@
-import {Component, HostListener, Inject} from '@angular/core';
+import {AfterContentChecked, Component, HostListener, Inject, OnInit} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
+import {FadeInService} from "./fade-in.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, AfterContentChecked{
   title = 'ASURT20-FrontEnd';
   isAdminMode = false;
-  constructor(@Inject(DOCUMENT) document) {
+  constructor(@Inject(DOCUMENT) document, private fadeInService: FadeInService) {
   }
   ngOnInit() {
+  }
+
+  ngAfterContentChecked() {
+    this.fadeInService.fadeIn();
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -28,4 +33,5 @@ export class AppComponent {
     }
 
   }
+
 }

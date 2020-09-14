@@ -1,5 +1,7 @@
+@import "../fade-in.css";
+
 .bg-dark{
-    box-shadow: 0 2em 4em rgba(0, 0, 0, 0.4); 
+    box-shadow: 0 2em 4em rgba(0, 0, 0, 0.4);
     background-color:black;
 }
 .partners
