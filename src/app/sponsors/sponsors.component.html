@@ -1,37 +1,18 @@
 <section id="explore-section" class="fade-in">
-<!--<section id="explore-section" >
->>>>>>> 5eb158541a013f189929a7809c0e76c6c3d33cf1
-  <h2 class="text-center mt-5 partners">OUR PARTNERS </h2>
-    <div class="bg-light text-muted py-5 card my-5 bg-dark" *ngFor = "let sponsor of sponsorsInfo"  style=" background:  black;">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-md-2">
-                <img [src]=sponsor.logo alt="logo" class="img-fluid mb-3 rounded-circle spons_img">
-                </div>
-
-                <div class="col-md-8 text-center pt-4 text-white">
-                <h3 class="partners">{{sponsor.name}}</h3>
-                <p>{{sponsor.desc}} </p>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</section>-->
-<h2 class="text-center mt-3 partners">OUR PARTNERS IN SUCCESS </h2>
- <div class="card my-5" *ngFor = "let sponsor of sponsorsInfo">
-    <div class="row pt-5 pb-4 pl-5 pr-5">
-        <div class="col-sm-4 transform">
-            <div class="spons_img">
-                <img [src]=sponsor.logo alt="logo">
-            </div>
-        </div>
-        <div class="col-sm-8 transform">
-            <div class="spons_desc">
-                <h3>{{sponsor.name}}</h3>
-                <p>{{sponsor.desc}}</p>
-            </div>
-        </div>
-    </div>
-</div>
+  <h2 class="text-center mt-3 partners">OUR PARTNERS IN SUCCESS </h2>
+   <div class="card my-5" *ngFor = "let sponsor of sponsorsInfo">
+      <div class="row pt-5 pb-4 pl-5 pr-5">
+          <div class="col-sm-4 transform">
+              <div class="spons_img">
+                  <img [src]=sponsor.logo alt="logo">
+              </div>
+          </div>
+          <div class="col-sm-8 transform">
+              <div class="spons_desc">
+                  <h3>{{sponsor.name}}</h3>
+                  <p>{{sponsor.desc}}</p>
+              </div>
+          </div>
+      </div>
+   </div>
+</section>
