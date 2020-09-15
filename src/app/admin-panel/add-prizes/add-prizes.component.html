@@ -22,7 +22,7 @@
 
             <div class="form-group">
                 <label for="prizeImage" class="text-light">Prize Image</label>
-                <input type="file" accept="image/*" class="form-control-file text-light" name="prizeImgPath" id="prizeImage" required ngModel>
+                <input type="file" accept="image/*" class="form-control-file text-light" name="prizeImgPath" id="prizeImage" (change)="onImgUploaded($event)" required ngModel>
             </div>
 
             <button class="btn btn-success" type="submit">Add Prize</button>
