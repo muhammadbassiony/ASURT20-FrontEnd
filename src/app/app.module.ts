@@ -35,6 +35,7 @@ import {PrizeService} from "./services/prize.service";
 import { from } from 'rxjs';
 import {CloseDirective} from "./admin-panel/close.directive";
 import {FadeInService} from "./fade-in.service";
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import {FadeInService} from "./fade-in.service";
     FormulaComponent,
     CompetitionParagraphComponent,
     CloseDirective,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

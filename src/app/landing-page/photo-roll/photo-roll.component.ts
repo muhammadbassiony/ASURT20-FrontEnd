@@ -49,7 +49,6 @@ export class PhotoRollComponent implements OnInit, OnDestroy {
     if (document.readyState === 'complete') {
       const loadedImages = document.querySelector('.carousel-inner').getElementsByClassName('img-fluid');
       const lastImage = <HTMLImageElement>loadedImages[loadedImages.length - 1];
-      console.log(lastImage.complete);
       return lastImage.complete;
     }
     else return false;
