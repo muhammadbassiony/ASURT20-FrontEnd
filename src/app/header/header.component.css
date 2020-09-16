@@ -151,14 +151,14 @@ header, h1, p, svg, div, nav, ul, li, img {
 .navigation__link:link,
 .navigation__link:visited {
   font-size: 2em;
-  color: white;
+  color: white !important; /*This is set to important to overwrite the bootstrap styling*/
   text-decoration: none;
   transition: all .3s;
 }
 .navigation__link:hover,
 .navigation__link:active,
 .navigation__link:focus {
-  color: #b21212;
+  color: #b21212 !important; /*This is set to important to overwrite the bootstrap styling*/
 }
 
 .social-links {
