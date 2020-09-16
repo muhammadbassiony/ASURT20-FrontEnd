@@ -1,4 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
+import { Prize } from 'src/app/models/prize.model';
+import { PrizeService } from 'src/app/services/prize.service';
 
 @Component({
   selector: 'app-competition-awards',
@@ -7,14 +9,20 @@ import { Component, OnInit, Input} from '@angular/core';
 })
 export class CompetitionAwardsComponent implements OnInit{
 
-  awards=[1,2,3] //from the back end
+  prizes:Prize[];
   @Input('competitionName') competitionName:string; //for the back end
 
 
-  constructor() { }
+  constructor(private prizeService:PrizeService) { }
   
   ngOnInit(): void {
-    
+    // this.prizeService.getPrize(this.competitionName).toPromise()
+    // .then(prizes=>{
+    //   this.prizes=prizes;
+    // })
+    // .catch()
+    this.prizes=this.prizeService.dummyPrizes;
+  
   }
 
   

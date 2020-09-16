@@ -1,11 +1,13 @@
 <!-- Competition Photo and description -->
-<div class="row py-5">
-    <!-- Description -->
-    <div class="col-sm-6 col-12">
-        <p class="text-break text-justify text-light">{{paragraph.info}}</p>
-    </div>
-    <!-- Photo -->
-    <div [ngClass]="inverted? 'order-first':''"  class="col-sm-6 col-12 ">
-        <img class="w-100 img-thumbnail" [src]="paragraph.image" alt="Competition Photo">
+<div class="container">
+    <div class="row py-5">
+        <!-- Description -->
+        <div class="col-sm-6 col-12">
+            <p class="text-break text-justify text-light">{{paragraph.info}}</p>
+        </div>
+        <!-- Photo -->
+        <div [ngClass]="inverted? 'order-first':''"  class="col-sm-6 col-12 ">
+            <img class="w-100 img-thumbnail" [src]="paragraph.image" alt="Competition Photo">
+        </div>
     </div>
 </div>

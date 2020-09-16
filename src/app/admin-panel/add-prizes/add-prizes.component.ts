@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from "@angular/forms";
-import {Prize} from "./prize.model";
-import {DataStorageService} from "./data-storage.service";
+import {Prize} from "../../models/prize.model";
+import {PrizeService} from "../../services/prize.service";
 
 @Component({
   selector: 'app-add-prizes',
@@ -10,7 +10,7 @@ import {DataStorageService} from "./data-storage.service";
 })
 export class AddPrizesComponent implements OnInit {
 
-  constructor(private dataStorageService: DataStorageService) { }
+  constructor(private prizeService: PrizeService) { }
   selectedImg: File = null;
   ngOnInit(): void {
   }
@@ -25,6 +25,9 @@ export class AddPrizesComponent implements OnInit {
     formData.append('title', form.control.value.prizeTitle);
     formData.append('description', form.control.value.prizeDescription);
     formData.append('imagePrize', this.selectedImg, this.selectedImg.name);
-    this.dataStorageService.storePrize(formData);
+    this.prizeService.storePrize(formData).toPromise()
+    .then(result=>{
+      console.log(result)
+    });
   }
 }

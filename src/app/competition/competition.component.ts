@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 })
 export class CompetitionComponent implements OnInit {
 
-  backgroundColor:string='#B21212'
+  
 
 
   constructor(private activeRoute:ActivatedRoute) { }

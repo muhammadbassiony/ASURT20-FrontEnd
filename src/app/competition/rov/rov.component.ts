@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RovComponent implements OnInit {
 
+  backgroundColor:string='#177EE5'
+
   constructor() { }
 
   ngOnInit(): void {

@@ -31,7 +31,7 @@ import { ShellComponent } from './competition/shell/shell.component';
 import { RovComponent } from './competition/rov/rov.component';
 import { FormulaComponent } from './competition/formula/formula.component';
 import { CompetitionParagraphComponent } from './competition/competition-paragraph/competition-paragraph.component';
-import {DataStorageService} from "./admin-panel/add-prizes/data-storage.service";
+import {PrizeService} from "./services/prize.service";
 import { from } from 'rxjs';
 import {CloseDirective} from "./admin-panel/close.directive";
 import {FadeInService} from "./fade-in.service";
@@ -77,7 +77,7 @@ import {FadeInService} from "./fade-in.service";
     FormsModule
 
   ],
-  providers: [DataStorageService, FadeInService],
+  providers: [PrizeService, FadeInService],
   bootstrap: [AppComponent]
 })
 export class AppModule{ }

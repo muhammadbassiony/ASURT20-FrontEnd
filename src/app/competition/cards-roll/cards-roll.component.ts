@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Prize } from 'src/app/models/prize.model';
 
 @Component({
   selector: 'app-cards-roll',
@@ -7,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CardsRollComponent implements OnInit {
 
-  @Input('prizesPhotos') prizesPhotos=[];
+  @Input('prizesPhotos') prizesPhotos:Prize[];
   constructor() { }
 
   ngOnInit(): void {

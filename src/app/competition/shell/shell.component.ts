@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shell.component.css']
 })
 export class ShellComponent implements OnInit {
+  backgroundColor:string='#E5AC00'
 
   constructor() { }
 

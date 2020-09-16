@@ -13,11 +13,17 @@ img {
   width: 100%;
 
 }
+.customWidth{
+  width: 100%;
+}
 
                   /*At Large Screens*/
 @media only screen and (min-width: 550px) {
   img {
-      max-height: 100vh; 
+      height: 100%; 
       width: auto;
+  }
+  .customWidth{
+    width: 75%;
   }
 }
