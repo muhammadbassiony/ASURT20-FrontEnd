@@ -44,21 +44,21 @@
   <header class="header" id="header" [ngClass]="{'header-closed':applyMql('900px')}">
     <a style="cursor: pointer;" id="header-toggle-link" (click)="onToggleHeader()"><span class="header-toggle"></span></a>
     <h1 class="logo-container">
-      <a href="#" class="logo-link">
+      <a routerLink="" class="logo-link">
         <img src="assets/img/ASURT_LOGO_B-min.png" alt="ASU Racing Team Logo" class="logo">
       </a>
     </h1>
     <nav class="navigation">
       <ul class="navigation__list">
         <li class="navigation__item" *ngIf="isAdminMode">
-          <a style="cursor: pointer; color: white" id="menu-btn" class="navigation__link" (click)="onOpenMenu()">Admin menu</a>
+          <a style="cursor: pointer" id="menu-btn" class="navigation__link" (click)="onOpenMenu()">Admin menu</a>
         </li>
         <li class="navigation__item">
-          <a href="#" class="navigation__link">Home</a>
+          <a routerLink="" class="navigation__link">Home</a>
         </li>
         <li class="navigation__item">
           <div class="dropdown">
-            <a class="navigation__link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="navigation__link dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Competitions
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -69,7 +69,7 @@
           </div>
         </li>
         <li class="navigation__item">
-          <a href="#" class="navigation__link">Sponsors</a>
+          <a [routerLink]="['/sponsors']" class="navigation__link">Sponsors</a>
         </li>
         <li class="navigation__item">
           <a href="#" class="navigation__link">About us</a>

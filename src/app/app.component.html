@@ -1,5 +1,5 @@
 
-<app-header></app-header>
+<app-header [isAdminMode]="isAdminMode"></app-header>
 
 <router-outlet></router-outlet>
 
@@ -9,7 +9,7 @@
 
 <!-- <app-sponsors></app-sponsors>  -->
 
-<!-- <app-admin-panel></app-admin-panel> -->
+<app-admin-panel *ngIf="isAdminMode"></app-admin-panel>
 
 <!-- <app-formula></app-formula>
 <app-shell></app-shell>

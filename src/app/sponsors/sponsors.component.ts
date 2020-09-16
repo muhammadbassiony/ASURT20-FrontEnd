@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SponsorsService} from '../services/sponsors.service';
 import {Sponsor} from '../models/sponsor.model'
+import {FadeInService} from "../fade-in.service";
 
 @Component({
   selector: 'app-sponsors',
@@ -9,7 +10,7 @@ import {Sponsor} from '../models/sponsor.model'
 })
 export class SponsorsComponent implements OnInit {
 
-  constructor(private _SponsorsService:SponsorsService) { }
+  constructor(private _SponsorsService:SponsorsService, private fadeInService: FadeInService) { }
 
   sponsorsInfo :Sponsor[]=[];
 
@@ -19,8 +20,9 @@ export class SponsorsComponent implements OnInit {
       (sponsors:Sponsor[])=>{
         this.sponsorsInfo=sponsors;
       })
+    this.fadeInService.fadeIn();
   }
 
-  
+
 
 }

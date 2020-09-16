@@ -1,4 +1,4 @@
-import {AfterViewChecked, Component, Inject, OnInit} from '@angular/core';
+import {AfterViewChecked, Component, Inject, Input, OnInit} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
 
 @Component({
@@ -8,7 +8,7 @@ import {DOCUMENT} from "@angular/common";
 })
 export class HeaderComponent implements OnInit, AfterViewChecked {
 
-  isAdminMode: boolean = true;
+  @Input()isAdminMode: boolean;
   constructor(@Inject(DOCUMENT) document) {
 
   }
