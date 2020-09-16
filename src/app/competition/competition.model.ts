@@ -4,6 +4,7 @@ export class Competition {
   public competitionInfo: string;
   public competitionImage: string;
   public competitionLogo:string;
+  
   constructor(name: string, description: string,imagePath:string, logoPath: string) {
     this.competitionName = name;
     this.competitionInfo = description;
