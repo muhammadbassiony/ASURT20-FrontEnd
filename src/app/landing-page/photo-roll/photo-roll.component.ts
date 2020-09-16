@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {Photoroll} from "../photoroll.model";
 import {PhotorollService} from "../photoroll.service";
 import {Subscription} from "rxjs";
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'app-photo-roll',
@@ -15,7 +16,7 @@ export class PhotoRollComponent implements OnInit {
    _subscription: Subscription;
 
   constructor(
-    public photorollService: PhotorollService
+    public photorollService: PhotorollService, @Inject(DOCUMENT) document
      ) {
     // this.photoroll = photorollService.photoroll;
     // this._subscription = photorollService.photorollUpdated.subscribe((photoRoll) => {
@@ -42,5 +43,9 @@ export class PhotoRollComponent implements OnInit {
   ngOnDestroy() {
     //prevent memory leak when component destroyed
     this._subscription.unsubscribe();
+  }
+
+  documentHasLoaded() {
+    return document.readyState === 'complete';
   }
 }

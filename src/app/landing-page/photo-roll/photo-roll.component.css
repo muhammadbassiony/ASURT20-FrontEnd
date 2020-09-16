@@ -1,4 +1,8 @@
-
+.placeholder {
+  display: block !important;
+  width: 100% !important;
+  height: 703.33px !important;
+}
 
 /*carousel-item{*/
 /*  height: 100vh;*/

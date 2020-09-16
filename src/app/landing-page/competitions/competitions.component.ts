@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FadeInService} from "../../fade-in.service";
 
 @Component({
   selector: 'app-competitions',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompetitionsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fadeInService: FadeInService) { }
 
   ngOnInit(): void {
+    this.fadeInService.fadeIn();
   }
 
 }

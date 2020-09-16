@@ -1,4 +1,9 @@
-import {AfterContentChecked, Component, HostListener, Inject, OnInit} from '@angular/core';
+import {
+  Component,
+  HostListener,
+  Inject,
+  OnInit,
+} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
 import {FadeInService} from "./fade-in.service";
 
