@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {Photoroll} from "../photoroll.model";
 import {PhotorollService} from "../photoroll.service";
 import {Subscription} from "rxjs";
@@ -9,7 +9,7 @@ import {DOCUMENT} from "@angular/common";
   templateUrl: './photo-roll.component.html',
   styleUrls: ['./photo-roll.component.css']
 })
-export class PhotoRollComponent implements OnInit {
+export class PhotoRollComponent implements OnInit, OnDestroy {
   public  photoroll: Photoroll ;
    noPhotos = 5;
   // noPhotos = this.photoroll.noPhotos;
@@ -46,6 +46,12 @@ export class PhotoRollComponent implements OnInit {
   }
 
   documentHasLoaded() {
-    return document.readyState === 'complete';
+    if (document.readyState === 'complete') {
+      const loadedImages = document.querySelector('.carousel-inner').getElementsByClassName('img-fluid');
+      const lastImage = <HTMLImageElement>loadedImages[loadedImages.length - 1];
+      console.log(lastImage.complete);
+      return lastImage.complete;
+    }
+    else return false;
   }
 }
