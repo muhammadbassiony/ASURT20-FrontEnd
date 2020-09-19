@@ -1,0 +1,71 @@
+<!--simple navbar for Sponsors Dashboard -->
+<div class="row">
+  <div class="col-12 ">
+    <div class="card">
+      <div class="card-header card-header-text card-header-info">
+        <div class="card-text">
+          <h4 class="card-title ">Sponsors Dashboard</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--show of all sponsors -->
+<div style=" background: #b21212">
+<h4 class="text-center "> Select the sponsors to website</h4>
+  <div class="row">
+    <div class="col-lg-4 col-sm-12" *ngFor="let sponsor of sponsorsInfo let i=index ">     
+        <div class="spons_img  mx-auto d-block">
+          <img [src]=sponsor.logo alt="logo" style="max-width : 100%" >
+        </div>
+        <div class="checkboxMargin mb-3">
+        <input type="checkbox" [(ngModel)] = "isChecked[i]" class=""> 
+        <h6 class="d-inline pt-4 text-white ml-3">{{sponsor.name}}</h6>
+       
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="container">
+    <div class="text center" >
+    <button type="submit" value="Submit"  class="btn btn-outline-dark btn-block"  (click)="changeState()">Submit Changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- the form of add new sponsor-->
+<div class=" dark-overlay mt-4 mb-4 ">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card  text-center card-form " style=" background: #b21212">
+          <div class="card-body">
+            <h3>Add New Sponsor</h3>
+            <form [formGroup] = "sponsorEditForm" (ngSubmit)="onSubmit()" class="mt-5">
+              <div class="form-group">
+                <input type="text" class="form-control form-control-lg" id="exampleInputName" formControlName = "sponsorName"  placeholder="Enter Sponsor Name">
+              </div>
+
+              <div class="form-group">
+                <textarea class="form-control form-control-lg" id="exampleInputDesc" formControlName = "sponsorDesc"  placeholder="Enter Sponsor Description"></textarea>
+              </div>
+
+              <div class="form-group" >
+                <label class="btn btn-dark btn-dark"><i class="material-icons"></i> Add Sponsor Image</label>
+                <input type="file" style="display:none;" id="exampleInputImage">
+              </div>
+
+              <button type="submit" value="Submit" [disabled]="!sponsorEditForm.valid" class="btn btn-outline-dark btn-block">Add New sponsor</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

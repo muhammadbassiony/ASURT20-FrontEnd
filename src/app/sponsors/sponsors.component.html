@@ -1,0 +1,18 @@
+<section id="explore-section" class="explore-section fade-in">
+  <h2 class="text-center mt-3 partners" style="margin-top: 20px;"> OUR PARTNERS IN SUCCESS </h2>
+   <div class="card my-5" *ngFor = "let sponsor of sponsorsInfo">
+      <div class="row pt-5 pb-4 pl-5 pr-5">
+          <div class="col-sm-4 transform">
+              <div class="spons_img">
+                  <img [src]=sponsor.logo alt="logo">
+              </div>
+          </div>
+          <div class="col-sm-8 transform text-center">
+              <div class="spons_desc">
+                  <h3 class="partners" >{{sponsor.name}}</h3>
+                  <p>{{sponsor.desc}}</p>
+              </div>
+          </div>
+      </div>
+   </div>
+</section>

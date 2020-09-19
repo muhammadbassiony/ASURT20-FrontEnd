@@ -1,0 +1,56 @@
+.footer {
+  /*padding: 4rem 2rem;*/
+  background-color: #1f1f1f;
+  color: white;
+}
+.footer-copyright {
+  background-color: #383838;
+}
+
+.social-links {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*margin-right: 6em;*/
+  transition: all 0.3s;
+}
+@media only screen and (max-width: 900px) {
+  .social-links {
+    margin: 0;
+  }
+}
+
+.social-links__link:not(:last-child) {
+  margin-right: 2em;
+}
+.social-links__icon {
+  height: 2.5em;
+  width: 2.5em;
+  fill: #b21212;
+}
+
+.social-links__link:hover .social-links__icon.face-icon{
+  /*background-color: #b21212;*/
+  fill: #4267B2;
+}
+.social-links__link:hover .social-links__icon.linkedin-icon{
+  /*background-color: #b21212;*/
+  fill: #0072b1;
+}
+.social-links__link:hover .social-links__icon.youtube-icon{
+  /*background-color: #b21212;*/
+  fill: #ff0000;
+}
+.social-links__link:hover .social-links__icon.insta-icon{
+  /*background-color: #b21212;*/
+  fill: #5B51D8;
+}
+
+
+/*UTILITIES*/
+.flex-center {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}

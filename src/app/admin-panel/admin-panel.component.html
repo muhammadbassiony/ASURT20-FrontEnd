@@ -1,0 +1,15 @@
+<nav class="menu-container" close>
+  <a style="cursor: pointer" class="closeBtn" (click)="onCloseMenu()">
+    <svg class="close-icon" viewBox="0 0 100 100">
+      <use xlink:href="../../assets/img/times.svg#close-icon"></use>
+    </svg>
+  </a>
+  <ul class="menu">
+    <li class="menu__item"><a [routerLink]="'/'">Home</a></li>
+    <li class="menu__item"><a [routerLink]="['edit', 'add-prize']">Add Prizes</a></li>
+    <li class="menu__item"><a [routerLink]="['edit', 'competition']">Edit Competitions</a></li>
+    <li class="menu__item"><a [routerLink]="['edit', 'photo-roll']">Edit Photo Roll</a></li>
+    <li class="menu__item"><a [routerLink]="['edit', 'sponsors']">Edit Sponsors</a></li>
+  </ul>
+</nav>
+<router-outlet></router-outlet>

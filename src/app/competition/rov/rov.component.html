@@ -1,0 +1,38 @@
+<main [ngStyle]="{'background-color': backgroundColor}">
+
+    <!-- Competition Name and the Logo -->
+    <div class="container">
+
+        <div class="row py-5">
+            <div class="col-12 py-5">
+                <img class="bg-light p-1 rounded" src="assets/img/ROV.png" height="100px" width="100px"
+                alt="Competion Logo">
+                <h3 class="d-inline-block ml-5 text-light align-middle fade-in">ROV</h3>
+                <hr>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Paragraphs -->
+    <app-competition-paragraph [paragraph]="
+    {
+        info:'W3Schools is optimized for learning, testing, and training. Examples might be simplified to improve reading and basic understanding. Tutorials, references, and examples are constantly reviewed to avoid errors, but we cannot warrant full correctness of all content. While using this site, you agree to have read and accepted our terms of use, cookie and privacy policy. Copyright 1999-2020 by Refsnes Data. All Rights Reserved.',
+        image:'assets/img/image1.jpg'
+    }"
+    ></app-competition-paragraph>
+
+    <app-competition-paragraph [inverted]="true" [paragraph]="
+    {
+        info:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer semper ligula in quam iaculis, vel euismod nulla elementum. Nunc vitae arcu pellentesque, tincidunt ex vitae, lacinia justo. Fusce eu dolor nisl. Mauris ac fermentum est. Mauris et tellus dapibus, dictum arcu quis, pellentesque quam. Sed quis lorem in diam sollicitudin fringilla. Aenean efficitur cursus elit in hendrerit. Duis vel odio pellentesque, molestie lectus ut, porta elit. Pellentesque mi lorem, condimentum quis porta nec, malesuada in nibh. Maecenas sed ornare ipsum, vel mattis risus. Donec sollicitudin, metus quis consequat porttitor, ante massa volutpat turpis, ac commodo dui diam sit amet justo. Etiam aliquet vulputate aliquet.',
+        image:'assets/img/image2.jpg'
+    }"
+    ></app-competition-paragraph>
+
+    <!-- photo Roll -->
+    <app-photo-roll></app-photo-roll>
+
+
+    <!-- awards -->
+    <app-competition-awards [competitionName]="'rov'"></app-competition-awards>
+</main>

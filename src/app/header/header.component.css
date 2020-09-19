@@ -1,0 +1,217 @@
+header, h1, p, svg, div, nav, ul, li, img {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.utility-margin-bottom-big {
+  font-size: 8px;
+  margin-bottom: 15em;
+}
+
+@media only screen and (max-width: 1150px) {
+  .utility-margin-bottom-big {
+    font-size: 7px;
+  }
+}
+@media only screen and (max-width: 1035px) {
+  .utility-margin-bottom-big {
+    font-size: 6px;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .utility-margin-bottom-big {
+    font-size: 7px;
+  }
+}
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 15em;
+  width: 100%;
+  padding-left: 10em;
+  background-color: #1f1f1f;
+  display: flex;
+  align-items: center;
+  /*justify-content: center;*/
+   box-shadow: 0 2em 4em rgba(0, 0, 0, 0.4);
+  transition: all 0.3s;
+  z-index: 2000;
+}
+@media only screen and (max-width: 900px)  {
+  .header {
+    padding: 0;
+    height: 78em;
+    flex-direction: column;
+  }
+}
+.header-min {
+  height: 9em;
+  width: 100%;
+  padding-left: 5em;
+  transition: all 0.3s;
+}
+@media only screen and (max-width: 900px) {
+  .header-min {
+    height: 78em;
+    padding: 0;
+  }
+  .header-closed {
+    height: 15em;
+  }
+  .header-closed > .navigation,
+  .header-closed > .social-links {
+    display: none;
+  }
+}
+.header-toggle {
+  display: none;
+}
+@media only screen and (max-width: 900px) {
+  .header-toggle,
+  .header-toggle:before,
+  .header-toggle:after {
+    display: inline-block;
+    width: 5em;
+    height: 2px;
+    position: absolute;
+    top: 7em;
+    right: 5em;
+    background-color: white;
+    content: "";
+    text-align: center;
+  }
+  .header-toggle:before {
+    top: -1.3em;
+    right: 0;
+  }
+  .header-toggle:after {
+    top: 1.3em;
+    right: 0;
+  }
+}
+.logo-container {
+  font-size: 8px;
+  height: 100%;
+  padding: 1.7em;
+  margin-right: auto;
+}
+@media only screen and (max-width: 1150px) {
+  .logo-container {
+    font-size: 7px;
+  }
+}
+@media only screen and (max-width: 1035px) {
+  .logo-container {
+    font-size: 6px;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .logo-container {
+    font-size: 7px;
+    max-height: 11em;
+    margin: 2em auto;
+  }
+}
+
+.logo-link {
+  display: inline-block;
+  height: 100%;
+}
+.logo {
+  height: 100%;
+}
+.navigation {
+  margin-right: 6em;
+  transition: all 0.3s;
+}
+@media only screen and (max-width: 900px)  {
+  .navigation {
+    margin: 0;
+  }
+}
+.navigation__list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+@media only screen and (max-width: 900px) {
+  .navigation__list {
+    flex-direction: column;
+  }
+}
+.navigation__item {
+  padding: 2.5em;
+  transition: all .3s;
+}
+.navigation__item:nth-child(1) {
+}
+.navigation__link,
+.navigation__link:link,
+.navigation__link:visited {
+  font-size: 2em;
+  color: white !important; /*This is set to important to overwrite the bootstrap styling*/
+  text-decoration: none;
+  transition: all .3s;
+}
+.navigation__link:hover,
+.navigation__link:active,
+.navigation__link:focus {
+  color: #b21212 !important; /*This is set to important to overwrite the bootstrap styling*/
+}
+
+.social-links {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 6em;
+  transition: all 0.3s;
+}
+@media only screen and (max-width: 900px) {
+  .social-links {
+    margin: 0;
+  }
+}
+
+.social-links__link:not(:last-child) {
+  margin-right: 2em;
+}
+.social-links__icon {
+  height: 2.5em;
+  width: 2.5em;
+  fill: #b21212;
+}
+
+.social-links__link:hover .social-links__icon.face-icon{
+  /*background-color: #b21212;*/
+  fill: #4267B2;
+}
+.social-links__link:hover .social-links__icon.linkedin-icon{
+  /*background-color: #b21212;*/
+  fill: #0072b1;
+}
+.social-links__link:hover .social-links__icon.youtube-icon{
+  /*background-color: #b21212;*/
+  fill: #ff0000;
+}
+.social-links__link:hover .social-links__icon.insta-icon{
+  /*background-color: #b21212;*/
+  fill: #5B51D8;
+}
+/*Bootstrap modification*/
+.dropdown {
+  color: white;
+}
+.dropdown-menu {
+  background-color: #E5AC00;
+  overflow: hidden;
+}
+.dropdown-item {
+  color: white;
+}
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: #b21212;
+}
