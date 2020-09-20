@@ -16,6 +16,9 @@ img {
 .customWidth{
   width: 100%;
 }
+.fixHightInSmall{
+  height: 100% !important;
+}
 
                   /*At Large Screens*/
 @media only screen and (min-width: 550px) {
@@ -27,3 +30,4 @@ img {
     width: 75%;
   }
 }
+
