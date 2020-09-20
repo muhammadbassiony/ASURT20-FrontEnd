@@ -11,6 +11,7 @@ import {RegistrationService} from '../registration/registration.service';
 export class HeaderComponent implements OnInit, OnDestroy {
 
   isAuthorized: boolean = false;
+    
   private userSubscription: Subscription;
   @Input()isAdminMode: boolean;
   constructor(@Inject(DOCUMENT) document, private registrationService: RegistrationService) {
