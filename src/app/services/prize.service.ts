@@ -25,16 +25,18 @@ export class PrizeService {
       imagePrize:'assets/img/image3.jpg'
     },
 
-  ]
+  ];
+
   constructor(private http: HttpClient) {
   }
+
   storePrize(prizeFormData:FormData) {
-    return  this.http.post('', prizeFormData)
+    return  this.http.post('', prizeFormData);
   }
 
 
   getPrize(competitionName:string){
-    // return this.http.get<Prize[]>(`/${competitionName}`)
+    // return this.http.get<Prize[]>(`/${competitionName}`);
     return this.dummyPrizes;
   }
 }
