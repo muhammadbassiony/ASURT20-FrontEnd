@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormulaComponent implements OnInit {
 
-  backgroundColor:string='#B21212'
+  backgroundColor:string='#B21212';
   
   constructor() { }
 
