@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import {DOCUMENT} from "@angular/common";
 import {FadeInService} from "./fade-in.service";
+import {RegistrationService} from './registration/registration.service';
 
 @Component({
   selector: 'app-root',
@@ -15,9 +16,10 @@ import {FadeInService} from "./fade-in.service";
 export class AppComponent implements OnInit{
   title = 'ASURT20-FrontEnd';
   isAdminMode = true;
-  constructor(@Inject(DOCUMENT) document) {
+  constructor(@Inject(DOCUMENT) document, private registrationService: RegistrationService) {
   }
   ngOnInit() {
+    this.registrationService.autoSign();
   }
 
 

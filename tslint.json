@@ -148,5 +148,15 @@
   },
   "rulesDirectory": [
     "codelyzer"
-  ]
+  ],
+  "type": "array",
+  "items": {
+    "type": "string",
+    "enum": [
+      "ignore-comments",
+      "ignore-jsdoc",
+      "ignore-template-strings",
+      "ignore-blank-lines"
+    ]
+  }
 }

@@ -12,14 +12,17 @@ import {AddPrizesComponent} from "./admin-panel/add-prizes/add-prizes.component"
 import {CompetitionEditComponent} from "./admin-panel/competition-edit/competition-edit.component";
 import {SponsorsEditComponent} from "./admin-panel/sponsors-edit/sponsors-edit.component";
 import {AboutUsComponent} from "./about-us/about-us.component";
+import {RegistrationComponent} from './registration/registration.component';
+import {SignUpComponent} from './registration/sign-up/sign-up.component';
+import {SignInComponent} from './registration/sign-in/sign-in.component';
 
 const routes: Routes = [
-  {path: '', component: LandingPageComponent, pathMatch:'full'},
-
+  {path: '', component: LandingPageComponent, pathMatch: 'full'},
+  {path: 'home', component: LandingPageComponent},
   {path: 'competition', component: CompetitionComponent, children:[
-      {path:'formula',component:FormulaComponent},
-      {path:'shell',component:ShellComponent},
-      {path:'rov',component:RovComponent}
+      {path: 'formula', component: FormulaComponent},
+      {path: 'shell', component: ShellComponent},
+      {path: 'rov', component: RovComponent}
     ]},
   {path: 'sponsors', component: SponsorsComponent},
   {path: 'edit', component: AdminPanelComponent, children:[
@@ -28,7 +31,11 @@ const routes: Routes = [
       {path: 'photo-roll', component: PhotorollEditComponent},
       {path: 'sponsors', component: SponsorsEditComponent}
     ]},
-  {path: 'about-us', component: AboutUsComponent}
+  {path: 'about-us', component: AboutUsComponent},
+  {path: 'register', component: RegistrationComponent, children:[
+      {path: 'sign-up', component: SignUpComponent},
+      {path: 'sign-in', component: SignInComponent}
+    ]}
 ];
 
 @NgModule({

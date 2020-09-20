@@ -72,9 +72,9 @@
               Competitions
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" [routerLink]="['/competition','formula']">Formula</a>
-              <a class="dropdown-item" [routerLink]="['/competition','shell']">Shell</a>
-              <a class="dropdown-item" [routerLink]="['/competition','rov']">ROV</a>
+              <a class="dropdown-item" [routerLink]="['/competition', 'formula']">Formula</a>
+              <a class="dropdown-item" [routerLink]="['/competition', 'shell']">Shell</a>
+              <a class="dropdown-item" [routerLink]="['/competition', 'rov']">ROV</a>
             </div>
           </div>
         </li>
@@ -84,11 +84,17 @@
         <li class="navigation__item">
           <a [routerLink]="['/about-us']" class="navigation__link">About us</a>
         </li>
-        <li class="navigation__item">
-          <a href="#" class="navigation__link">Login</a>
+        <li class="navigation__item" *ngIf="!isAuthorized">
+          <a [routerLink]="['register', 'sign-in']"  class="navigation__link">Login</a>
         </li>
-        <li class="navigation__item">
-          <a href="#" class="navigation__link">Sign Up</a>
+        <li class="navigation__item" *ngIf="!isAuthorized">
+          <a [routerLink]="['register', 'sign-up']"  class="navigation__link">Sign Up</a>
+        </li>
+        <li class="navigation__item" *ngIf="isAuthorized">
+          <a style="cursor: pointer" class="navigation__link">Edit Profile</a>
+        </li>
+        <li class="navigation__item" *ngIf="isAuthorized">
+          <a style="cursor: pointer" (click)="onLogout()" class="navigation__link">Logout</a>
         </li>
       </ul>
     </nav>

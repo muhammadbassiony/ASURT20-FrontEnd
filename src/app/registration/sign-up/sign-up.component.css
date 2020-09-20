@@ -1,12 +1,12 @@
 
 #home-section {
-    background: url(/lights.jpg); 
+    background: url(/lights.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
     min-height: 800px;
   }
-  
+
   #home-section .dark-overlay {
     position: absolute;
     top: 0;
@@ -14,23 +14,22 @@
     width: 100%;
     min-height: 800px;
     background: rgba(0, 0, 0, 0.7);
-  
+
   }
-  
+
    #home-section .home-inner {
-    padding-top: 150px;
+    padding-top: 75px;
   }
-  
-  
-  
+
+
+
   /* Style the form icons */
   .icon {
     padding: 10px;
-   
+
     color: white;
     min-width: 50px;
     text-align: center;
   }
-  
-  
-  
+
+

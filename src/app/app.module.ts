@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,6 +39,9 @@ import { FooterComponent } from './footer/footer.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { SignUpComponent } from './registration/sign-up/sign-up.component';
 import { SignInComponent } from './registration/sign-in/sign-in.component';
+import {RegistrationService} from './registration/registration.service';
+import {RegistrationInterceptorService} from './registration/registration-interceptor.service';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 
 @NgModule({
@@ -69,6 +72,7 @@ import { SignInComponent } from './registration/sign-in/sign-in.component';
     RegistrationComponent,
     SignUpComponent,
     SignInComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,7 +89,8 @@ import { SignInComponent } from './registration/sign-in/sign-in.component';
     FormsModule
 
   ],
-  providers: [PrizeService, FadeInService],
+  providers: [PrizeService, FadeInService, RegistrationService,
+    {provide: HTTP_INTERCEPTORS, useClass: RegistrationInterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule{ }
