@@ -28,9 +28,17 @@ export class PhotoRollComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // this.photoroll = this.photorollService.photoroll;
     // console.log(this.photoroll);
+<<<<<<< HEAD
     this.photoroll = this.photorollService.initialize();
     console.log(this.photoroll.noPhotos);
     this._subscription = this.photorollService.photorollUpdated.subscribe((photoRoll:Photoroll) => {
+=======
+    //this.photoroll = this.photorollService.initialize()[1];
+    this.photorollService.initialize();
+    this.photoroll = this.photorollService.getPhotorollByName('landing-page');
+    console.log(this.photoroll.noPhotos);
+    this._subscription = this.photorollService.photorollUpdated.subscribe((photoRoll: Photoroll) => {
+>>>>>>> 0fbbb9b2d182fa8a9c48f20c176815d830cc6d40
       this.photoroll = photoRoll;
     });
    console.log(this.photoroll);
@@ -45,6 +53,7 @@ export class PhotoRollComponent implements OnInit, OnDestroy {
     this._subscription.unsubscribe();
   }
 
+<<<<<<< HEAD
   documentHasLoaded() {
     if (document.readyState === 'complete') {
       const loadedImages = document.querySelector('.carousel-inner').getElementsByClassName('img-fluid');
@@ -53,4 +62,14 @@ export class PhotoRollComponent implements OnInit, OnDestroy {
     }
     else return false;
   }
+=======
+  // documentHasLoaded() {
+  //   if (document.readyState === 'complete') {
+  //     const loadedImages = document.querySelector('.carousel-inner').getElementsByClassName('img-fluid');
+  //     const lastImage = <HTMLImageElement>loadedImages[loadedImages.length - 1];
+  //     return lastImage.complete;
+  //   }
+  //   else return false;
+  // }
+>>>>>>> 0fbbb9b2d182fa8a9c48f20c176815d830cc6d40
 }

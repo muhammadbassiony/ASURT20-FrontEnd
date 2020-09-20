@@ -148,5 +148,20 @@
   },
   "rulesDirectory": [
     "codelyzer"
+<<<<<<< HEAD
   ]
 }
+=======
+  ],
+  "type": "array",
+  "items": {
+    "type": "string",
+    "enum": [
+      "ignore-comments",
+      "ignore-jsdoc",
+      "ignore-template-strings",
+      "ignore-blank-lines"
+    ]
+  }
+}
+>>>>>>> 0fbbb9b2d182fa8a9c48f20c176815d830cc6d40

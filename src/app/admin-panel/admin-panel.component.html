@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!--<div class="background-red">-->
 <!--  <div class="mb-5 p-2">-->
 <!--    <header class="top-header">-->
@@ -8,6 +9,8 @@
 <!--      </div>-->
 <!--    </header>-->
 <!--  </div>-->
+=======
+>>>>>>> 0fbbb9b2d182fa8a9c48f20c176815d830cc6d40
 <nav class="menu-container" close>
   <a style="cursor: pointer" class="closeBtn" (click)="onCloseMenu()">
     <svg class="close-icon" viewBox="0 0 100 100">
@@ -15,6 +18,7 @@
     </svg>
   </a>
   <ul class="menu">
+<<<<<<< HEAD
     <li class="menu__item"><a href="../../index.html">Home</a></li>
     <li class="menu__item"><a routerLink="">Edit Competitions</a></li>
     <li class="menu__item"><a routerLink="">Edit Photo Roll</a></li>
@@ -28,3 +32,13 @@
 <app-sponsors-edit></app-sponsors-edit>
 
 <!--</div>-->
+=======
+    <li class="menu__item"><a [routerLink]="'/'">Home</a></li>
+    <li class="menu__item"><a [routerLink]="['edit', 'add-prize']">Add Prizes</a></li>
+    <li class="menu__item"><a [routerLink]="['edit', 'competition']">Edit Competitions</a></li>
+    <li class="menu__item"><a [routerLink]="['edit', 'photo-roll']">Edit Photo Roll</a></li>
+    <li class="menu__item"><a [routerLink]="['edit', 'sponsors']">Edit Sponsors</a></li>
+  </ul>
+</nav>
+<router-outlet></router-outlet>
+>>>>>>> 0fbbb9b2d182fa8a9c48f20c176815d830cc6d40

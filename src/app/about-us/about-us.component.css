@@ -1,0 +1,20 @@
+/*FADE-IN EFFECT. PLEASE DO NOT REMOVE SO THE COMPONENT IS FADED IN WHEN IT IS LOADED*/
+@import "../fade-in.css";
+h2
+{
+  font-size: 55px;
+  color: #B21212;
+}
+
+div
+{
+  width: auto;
+}
+
+p
+{
+  font-size: 20px;
+  font-weight: 500;
+}
+
+

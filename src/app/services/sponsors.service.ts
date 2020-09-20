@@ -9,9 +9,15 @@ export class SponsorsService {
 
   constructor() { }
   private allSponsorsInfo : Sponsor[]=[
+<<<<<<< HEAD
     new Sponsor("assets/img/kader.png", "Arab Organization for Industrialization",'KADER factory for developed industries was established in 1949 under the name of "HELIOPOLIS AIRCRAFT FACTORY" to produce the primary training Aircraft ..', true, 1),
     new Sponsor("assets/img/alumisr.png", "ALUMISR", "Alumisr company produces aluminum for the purposes of the various use with many finishes.It was established in 1977", true, 2),
     new Sponsor("assets/img/emar.png", "EMAR", "Emaar Misr is one of the largest real estate companies in Egypt and the developer of iconic projects such as Uptown Cairo, Marassi, and Mivida", true, 3)
+=======
+    new Sponsor("assets/img/kader.png", "Arab Organization for Industrialization",'KADER factory for developed industries was established in 1949 under the name of "HELIOPOLIS AIRCRAFT FACTORY" to produce the primary training Aircraft ..', true, '1'),
+    new Sponsor("assets/img/alumisr.png", "ALUMISR", "Alumisr company produces aluminum for the purposes of the various use with many finishes.It was established in 1977", true, '2'),
+    new Sponsor("assets/img/emar.png", "EMAR", "Emaar Misr is one of the largest real estate companies in Egypt and the developer of iconic projects such as Uptown Cairo, Marassi, and Mivida", true, '3')
+>>>>>>> 0fbbb9b2d182fa8a9c48f20c176815d830cc6d40
   ]
 
   private trueCheckedSponsors :Sponsor[]=[];
@@ -51,7 +57,11 @@ export class SponsorsService {
   {
     this.trueCheckedSponsors = [];
     for(var value of this.allSponsorsInfo)
+<<<<<<< HEAD
     { 
+=======
+    {
+>>>>>>> 0fbbb9b2d182fa8a9c48f20c176815d830cc6d40
       if(value.isChecked == true)
       {
         this.trueCheckedSponsors.push(value);

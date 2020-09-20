@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 <form [formGroup]="this.form" (submit)="onSavePhotos()">
 <!--    <mat-form-field>-->
 <!--&lt;!&ndash;      <input matInput type="text" formControlName="title" placeholder="Post Title">&ndash;&gt;-->
@@ -34,10 +35,48 @@
 <!--        <img class="image-preview" [src]="imagePreview3" [alt]="form.value.title" >-->
 <!--      </div>-->
 <!--    </div>-->
+=======
+<!--<form [formGroup]="this.form" (submit)="onSavePhotos()">-->
+<!--&lt;!&ndash;    <mat-form-field>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;      <input matInput type="text" formControlName="title" placeholder="Post Title">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;      <mat-error *ngIf="form.get('title').invalid">Please enter a post title.</mat-error>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    </mat-form-field>&ndash;&gt;-->
+
+<!--  <h1 class="text-primary u-margin text-center">Choose  photos</h1>-->
+<!--  <div class="row">-->
+<!--    <div class="col">-->
+<!--      <div class="u-margin">-->
+<!--        <button class="btn btn-dark" type="button" (click)="filePicker1.click()">Pick Image 1 (Active)</button>-->
+<!--        <input type="file" #filePicker1 (change)="onActiveImagePicked($event)"  >-->
+<!--      </div>-->
+<!--&lt;!&ndash;      <div class="form-group image-preview u-margin" *ngIf="imagePreview1 !== '' && imagePreview1 && form.get('image1').valid">&ndash;&gt;-->
+<!--&lt;!&ndash;        <img class="image-preview" [src]="imagePreview1" alt="hello">&ndash;&gt;-->
+<!--&lt;!&ndash;      </div>&ndash;&gt;-->
+<!--    </div>-->
+<!--    <div class="col">-->
+<!--      <div class="u-margin">-->
+<!--        <button class="btn btn-dark"  type="button" (click)="filePicker2.click()">Pick other Images</button>-->
+<!--        <input type="file" multiple #filePicker2 (change)="onOtherImagePicked($event) "  >-->
+<!--      </div>-->
+<!--&lt;!&ndash;      <div class="u-margin" *ngIf="imagePreview2 !== '' && imagePreview2 && form.get('image2').valid">&ndash;&gt;-->
+<!--&lt;!&ndash;        <img class="image-preview" [src]="imagePreview2" [alt]="form.value.title">&ndash;&gt;-->
+<!--&lt;!&ndash;      </div>&ndash;&gt;-->
+<!--    </div>-->
+<!--&lt;!&ndash;    <div class="col">&ndash;&gt;-->
+<!--&lt;!&ndash;      <div class="u-margin">&ndash;&gt;-->
+<!--&lt;!&ndash;        <button class="btn btn-dark" type="button" (click)="filePicker3.click()">Pick Image 3</button>&ndash;&gt;-->
+<!--&lt;!&ndash;        <input type="file"  #filePicker3 (change)="onImagePicked3($event)"  >&ndash;&gt;-->
+<!--&lt;!&ndash;      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;      <div class="u-margin" *ngIf="imagePreview3 !== '' && imagePreview3 && form.get('image3').valid">&ndash;&gt;-->
+<!--&lt;!&ndash;        <img class="image-preview" [src]="imagePreview3" [alt]="form.value.title" >&ndash;&gt;-->
+<!--&lt;!&ndash;      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+>>>>>>> 0fbbb9b2d182fa8a9c48f20c176815d830cc6d40
 
 
 
 
+<<<<<<< HEAD
     <div class="u-margin">
     <button class="btn btn-success"  type="submit" [disabled]="form.invalid">Save Photo-roll</button>
     </div>
@@ -60,5 +99,142 @@
 <!--  </div>-->
 <!--  </div>-->
 </form>
+=======
+<!--    <div class="u-margin">-->
+<!--    <button class="btn btn-success"  type="submit" [disabled]="form.invalid">Save Photo-roll</button>-->
+<!--    </div>-->
+<!--&lt;!&ndash;    <app-photo-roll *ngIf="imagePreview3 !== '' && imagePreview3 && form.get('image3').valid && imagePreview2 !== '' && imagePreview2 && form.get('image2').valid && imagePreview1 !== '' && imagePreview1 && form.get('image1').valid">&ndash;&gt;-->
+
+<!--&lt;!&ndash;    </app-photo-roll>&ndash;&gt;-->
+<!--  </div>-->
+<!--&lt;!&ndash;  <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;    <div class="col" >&ndash;&gt;-->
+<!--&lt;!&ndash;      <h3>Active image :</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;      <img class="d-block w-100 img-fluid " [src]="this.photoroll.imagePaths[0]" alt="First slide">&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;  <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;  <div class="col" >&ndash;&gt;-->
+<!--&lt;!&ndash;    <h3>Other images :</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;    <div *ngFor="let item of this.photoroll.imagePaths.slice(1,this.photoroll.imagePaths.length)" >&ndash;&gt;-->
+<!--&lt;!&ndash;      <img class="d-block w-100 img-fluid " [src]="item" alt="Second slide">&ndash;&gt;-->
+<!--&lt;!&ndash;  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;  </div>&ndash;&gt;-->
+<!--</form>-->
+
+<!--<div *ngIf="true" > <p> {{filename}}</p> </div>-->
+<!--<div class="row">-->
+<!--  <div *ngIf="true">Content to render when condition is true.</div>-->
+<!--  <div class="col-12">-->
+<!--    <div *ngIf="1" >-->
+<!--    <p> {{filename}}</p>-->
+<!--    </div>-->
+<!--    <div *ngFor="let photos of photoroll">-->
+<!--    <p > {{photos.photorollName}} </p>-->
+<!--    </div>-->
+<form action="#">
+  <label for="name">Select Photoroll you want to edit :</label>
+      <select name="name" id="name" class="form-control" multiple (change)="onChange($event.target)">
+
+          <option *ngFor="let Photoroll of photoroll"  value="{{Photoroll.photorollName}}">{{Photoroll.photorollName}}</option>
+
+      </select>
+  <div *ngIf="currentPhotoroll!==null">
+    <p> {{currentPhotoroll.photorollName}}</p>
+  </div>
+</form>
+
+<!--    <label *ngFor="let photos in photoroll" for="name">Choose Photo-roll {{photos.imagePaths[0]}}</label>-->
+<!--    &lt;!&ndash;            <input type="text" id="name" formControlName="name" class="form-control">&ndash;&gt;-->
+<!--    <select name="name" id="name" class="form-control" multiple>-->
+<!--        <option *ngFor="let Photoroll in photoroll"  [ngValue]="Photoroll[0].photorollName">{{Photoroll.photorollName}}</option>-->
+<!--    </select>-->
+<!--<div *ngFor="let photos of photoroll" >-->
+<!--  <p> {{photos.photorollName}} </p>-->
+<!--  <p>{{filename}}</p>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--  <div >-->
+<!--    <p *ngFor="let photos of photoroll">{{photos.noPhotos}}</p>-->
+<!--  </div>-->
+<!--  <div class="col-12">-->
+<!--    <form [formGroup]="photorollForm" (ngSubmit)="onSubmit()" >-->
+<!--      <p> {{filename}} </p>-->
+<!--      <div class="row">-->
+<!--        <div class="col-12">-->
+<!--          <button type="submit" class="btn btn-success" [disabled]="!photorollForm.valid">Save</button>-->
+<!--          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="row">-->
+<!--        <div class="col-12">-->
+<!--          <p> {{photoroll[0].photorollName}} </p>-->
+<!--          <p> {{filename}} </p>-->
+<!--          <p>ddddddddddd</p>-->
+<!--          <div class="form-group">-->
+<!--            <label for="name">Choose Photo-roll</label>-->
+<!--&lt;!&ndash;            <input type="text" id="name" formControlName="name" class="form-control">&ndash;&gt;-->
+<!--            <select name="name" id="name"formControlName="name" class="form-control" multiple>-->
+<!--&lt;!&ndash;              <div *ngFor="let Photoroll of this.photoroll">&ndash;&gt;-->
+<!--              <div *ngFor="let photos of photoroll">-->
+<!--                <p>{{photos.noPhotos}}</p>-->
+<!--              </div>-->
+<!--              <option *ngFor="let Photoroll of this.photoroll" value="{{Photoroll.photorollName}}">{{Photoroll.photorollName}}</option>-->
+<!--&lt;!&ndash;              </div>&ndash;&gt;-->
+<!--             <option value="saab">Saab</option>-->
+<!--&lt;!&ndash;              <option value="opel">Opel</option>&ndash;&gt;-->
+<!--              <option value="audi">Audi</option>-->
+
+<!--            </select>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="row">-->
+<!--        <div class="col-12">-->
+<!--          <div class="form-group">-->
+<!--            <label for="imagePath">Image URL</label>-->
+<!--            <input type="text" id="imagePath" formControlName="imagePath" class="form-control" #imagePath>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="row">-->
+<!--        <div class="col-12">-->
+<!--          <img [src]="imagePath.value" class="img-responsive" alt="">-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="row">-->
+<!--        <div class="col-12">-->
+<!--          <div class="form-group">-->
+<!--            <label for="description">Description</label>-->
+<!--            <textarea type="text" id="description" formControlName="description" class="form-control" rows="6"></textarea>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="row">-->
+<!--        <div class="col-12" formArrayName="ingredients">-->
+<!--          <div class="row" *ngFor="let ingredientCtrl of controls; let i = index" [formGroupName]="i" style="margin-top: 0.6rem">-->
+<!--            <div class="col-8">-->
+<!--              <input type="text"class="form-control" formControlName="name">-->
+<!--            </div>-->
+<!--            <div class="col-2">-->
+<!--              <input type="number" class="form-control" formControlName="amount">-->
+<!--            </div>-->
+<!--            <div class="col-2">-->
+<!--              <button type="button" class="btn btn-danger" (click)="onDeleteIngredient(i)">X</button>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <hr>-->
+<!--          <div class="row">-->
+<!--            <div class="col-12">-->
+<!--              <button type="button" class="btn btn-success" (click)="onAddIngredient()">Add Ingredient</button>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </form>-->
+<!--  </div>-->
+<!--</div>-->
+>>>>>>> 0fbbb9b2d182fa8a9c48f20c176815d830cc6d40
 
 
