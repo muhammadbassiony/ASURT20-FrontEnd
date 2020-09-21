@@ -13,7 +13,7 @@
           <div class="col-lg-8">
             <div class="card text-center card-form" style="background-color: #b21212">
               <div class="card-body">
-                <h1 class="mb-4 mt-4">Sign in</h1>
+                <h1 class="mb-4 mt-4" style="color: white;">Sign in</h1>
 
 <br>
                 <form #signInForm = "ngForm" (ngSubmit)="onSignInSubmit(signInForm)">
@@ -32,11 +32,11 @@
                   </div>
 
                   <button type="submit" class="btn btn-outline-dark btn-block mt-4 mb-4"
-                          [disabled]="!signInForm.valid">Submit</button>
+                          [disabled]="!signInForm.valid" style="color: white;">Submit</button>
                 </form>
 
                   <div class="form-group mt-4">
-                    <a routerLink="/register/sign-up" class="text-dark">Not a member?</a>
+                    <a routerLink="/register/sign-up" style="color: white;">Not a member?</a>
                   </div>
 
               </div>
