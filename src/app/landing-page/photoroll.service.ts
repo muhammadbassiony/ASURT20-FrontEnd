@@ -7,25 +7,14 @@ import {Photoroll} from "./photoroll.model";
 
 @Injectable({ providedIn: 'root' })
 export class PhotorollService {
-<<<<<<< HEAD
-   private photoroll: Photoroll
-
-   photorollUpdated = new Subject<Photoroll>();
-
-=======
    public photoroll: Photoroll[] =  [
      new Photoroll(1,'prize', 4, ['https://placeimg.com/1080/500/nat','https://placeimg.com/1080/500/nature','https://placeimg.com/1080/500/arch','https://placeimg.com/1080/500/history'] ),
      new Photoroll(1, 'landing-page', 4, ['https://placeimg.com/1080/500/nat','https://placeimg.com/1080/500/nature','https://placeimg.com/1080/500/arch','https://placeimg.com/1080/500/history'])
    ];
    photorollUpdated = new Subject<Photoroll>();
->>>>>>> 0fbbb9b2d182fa8a9c48f20c176815d830cc6d40
   constructor(private http: HttpClient, private router: Router) {
 
   }
-
-<<<<<<< HEAD
-
-
   getPhotos() {
     this.http
       .get<{ message: string; imagePaths: string[] }>("http://localhost:3000/api/photo-roll")
@@ -71,13 +60,6 @@ export class PhotorollService {
 
       });
   }
-   initialize () {
-     let photoroll: Photoroll = new Photoroll(4,['https://placeimg.com/1080/500/nat','https://placeimg.com/1080/500/nature','https://placeimg.com/1080/500/arch','https://placeimg.com/1080/500/history']);
-     this.photoroll =photoroll;
-     // console.log(this.photoroll);
-     return this.photoroll ;
-   }
-=======
   initialize () {
     const photoroll: Photoroll = new Photoroll(1, 'landing-page', 4, ['https://placeimg.com/1080/500/nat','https://placeimg.com/1080/500/nature','https://placeimg.com/1080/500/arch','https://placeimg.com/1080/500/history']);
     this.photoroll.push(photoroll) ;
@@ -142,8 +124,5 @@ export class PhotorollService {
   //
   //     });
   // }
-
-
->>>>>>> 0fbbb9b2d182fa8a9c48f20c176815d830cc6d40
 
 }

@@ -1,38 +1,3 @@
-<<<<<<< HEAD
-<body>
-  <div class="row">
-    <div class="col-2" *ngFor="let sponsor of sponsorsInfo  let i=index ">
-      <div class="spons_img mt-4 mb-2">
-          <img [src]=sponsor.logo alt="logo" style="max-width : 100%">
-      </div>
-      <div class="checkboxMargin mb-3">
-        <h6 class="d-inline mr-2 pt-4 text-white">{{sponsor.name}}</h6>
-        <input type="checkbox" [(ngModel)] = "isChecked[i]"> 
-      </div>
-    </div>
-  </div>
-  <button type="submit" class="btn btn-primary" (click)="changeState()">Submit Changes</button>
-    <div class="row">
-        <div class="col-md-8 mx-auto">
-            <form [formGroup] = "sponsorEditForm" (ngSubmit)="onSubmit()" class="mt-5">
-                <div class="form-group">
-                  <label for="exampleLogoUrl" class="text-white">Logo Url</label>
-                  <input type="url" class="form-control" id="exampleInputUrl" formControlName = "sponsorLogo" placeholder="Enter url">
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputName" class="text-white">Sponsor Name</label>
-                  <input type="text" class="form-control" id="exampleInputName" formControlName = "sponsorName">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputDesc" class="text-white">Sponsor Description</label>
-                    <textarea class="form-control" id="exampleInputDesc" formControlName = "sponsorDesc"></textarea>
-                  </div>
-                <button type="submit" [disabled]="!sponsorEditForm.valid" class="btn btn-primary">Submit</button>
-              </form>
-        </div>
-    </div>
-</body>
-=======
 <!--simple navbar for Sponsors Dashboard -->
 <div class="row">
   <div class="col-12 ">
@@ -51,14 +16,14 @@
 <div style=" background: #b21212">
 <h4 class="text-center "> Select the sponsors to website</h4>
   <div class="row">
-    <div class="col-lg-4 col-sm-12" *ngFor="let sponsor of sponsorsInfo; let i=index ">     
+    <div class="col-lg-4 col-sm-12" *ngFor="let sponsor of sponsorsInfo; let i=index ">
         <div class="spons_img  mx-auto d-block">
           <img [src]=sponsor.logo alt="logo" style="max-width : 100%" >
         </div>
         <div class="checkboxMargin mb-3">
-        <input type="checkbox" [(ngModel)] = "isChecked[i]" class=""> 
+        <input type="checkbox" [(ngModel)] = "isChecked[i]" class="">
         <h6 class="d-inline pt-4 text-white ml-3">{{sponsor.name}}</h6>
-       
+
         </div>
     </div>
   </div>
@@ -102,6 +67,5 @@
     </div>
   </div>
 </div>
->>>>>>> 0fbbb9b2d182fa8a9c48f20c176815d830cc6d40
 
 

@@ -24,31 +24,18 @@ export class PrizeService {
       description:'we winnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn!!!!',
       imagePrize:'assets/img/image3.jpg'
     },
-
-<<<<<<< HEAD
   ]
-  constructor(private http: HttpClient) {
-  }
-  storePrize(prizeFormData:FormData) {
-    return  this.http.post('', prizeFormData)
-=======
-  ];
+
+
 
   constructor(private http: HttpClient) {
   }
 
   storePrize(prizeFormData:FormData) {
-    return  this.http.post('', prizeFormData);
->>>>>>> 0fbbb9b2d182fa8a9c48f20c176815d830cc6d40
+    return this.http.post('', prizeFormData);
   }
-
 
   getPrize(competitionName:string){
-<<<<<<< HEAD
-    // return this.http.get<Prize[]>(`/${competitionName}`)
-=======
-    // return this.http.get<Prize[]>(`/${competitionName}`);
->>>>>>> 0fbbb9b2d182fa8a9c48f20c176815d830cc6d40
     return this.dummyPrizes;
   }
 }

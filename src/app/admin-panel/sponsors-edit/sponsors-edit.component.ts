@@ -17,20 +17,11 @@ export class SponsorsEditComponent implements OnInit {
   constructor(private _SponsorsService:SponsorsService) {}
 
   ngOnInit(): void {
-<<<<<<< HEAD
-    this.sponsorsInfo= this._SponsorsService.getAllSponsorsInfo(); 
-=======
     this.sponsorsInfo= this._SponsorsService.getAllSponsorsInfo();
->>>>>>> 0fbbb9b2d182fa8a9c48f20c176815d830cc6d40
     this._SponsorsService.allSponsors.subscribe(
     (sponsors:Sponsor[])=>{
       this.sponsorsInfo=sponsors;
     })
-<<<<<<< HEAD
-  
-=======
-
->>>>>>> 0fbbb9b2d182fa8a9c48f20c176815d830cc6d40
     this.sponsorEditForm = new FormGroup({
       'sponsorLogo' : new FormControl('', Validators.required),
       'sponsorName' : new FormControl('', Validators.required),
@@ -39,19 +30,11 @@ export class SponsorsEditComponent implements OnInit {
   }
 
   onSubmit()
-<<<<<<< HEAD
-  {  
-    let logo = this.sponsorEditForm.value.sponsorLogo;
-    let name = this.sponsorEditForm.value.sponsorName;
-    let desc = this.sponsorEditForm.value.sponsorDesc;
-    let addedSponsor = new Sponsor (logo, name, desc,false, 2022);
-=======
   {
     let logo = this.sponsorEditForm.value.sponsorLogo;
     let name = this.sponsorEditForm.value.sponsorName;
     let desc = this.sponsorEditForm.value.sponsorDesc;
-    let addedSponsor = new Sponsor (logo, name, desc,false, '2022');
->>>>>>> 0fbbb9b2d182fa8a9c48f20c176815d830cc6d40
+    let addedSponsor = new Sponsor (logo, name, desc,false, 2022);
     this._SponsorsService.addSponsor(addedSponsor);
   }
 

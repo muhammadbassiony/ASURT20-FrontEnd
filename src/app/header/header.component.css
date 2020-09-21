@@ -205,16 +205,6 @@ header, h1, p, svg, div, nav, ul, li, img {
   color: white;
 }
 .dropdown-menu {
-<<<<<<< HEAD
-  background-color: #E5AC00;
-  overflow: hidden;
-}
-.dropdown-item {
-  color: white;
-}
-.dropdown-item:hover,
-.dropdown-item:focus {
-=======
   /* background-color: #E5AC00; */
   background-color: white;
   overflow: hidden;
@@ -226,6 +216,5 @@ header, h1, p, svg, div, nav, ul, li, img {
 .dropdown-item:hover,
 .dropdown-item:focus {
   color: white;
->>>>>>> 0fbbb9b2d182fa8a9c48f20c176815d830cc6d40
   background-color: #b21212;
 }

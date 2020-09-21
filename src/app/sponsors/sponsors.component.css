@@ -1,14 +1,9 @@
-<<<<<<< HEAD
-@import "../fade-in.css";
-
-=======
 /*FADE-IN EFFECT. PLEASE DO NOT REMOVE SO THE COMPONENT IS FADED IN WHEN IT IS LOADED*/
 @import "../fade-in.css";
 /*Margin to push the section away from the header*/
 .explore-section {
   margin-top: 11rem;
 }
->>>>>>> 0fbbb9b2d182fa8a9c48f20c176815d830cc6d40
 .bg-dark{
     box-shadow: 0 2em 4em rgba(0, 0, 0, 0.4);
     background-color:black;
@@ -32,10 +27,6 @@
     background-color: rgb(238, 244, 247);
 }
 
-<<<<<<< HEAD
-=======
-
-
 .spons_img img
 {
     margin: 0 auto;
@@ -44,7 +35,6 @@
     width: 100%;
 }
 
->>>>>>> 0fbbb9b2d182fa8a9c48f20c176815d830cc6d40
 .spons_img
 {
     width: 180px;
@@ -56,17 +46,6 @@
 
 }
 
-<<<<<<< HEAD
-.spons_img img
-{
-    margin: 0 auto;
-    padding: 17%;
-    height: 100%;
-    width: 100%;
-}
-
-=======
->>>>>>> 0fbbb9b2d182fa8a9c48f20c176815d830cc6d40
 
 @media only screen and (min-width: 992px) and (max-width:1200px) {
     .card

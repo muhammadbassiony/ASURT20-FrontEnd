@@ -1,9 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-<<<<<<< HEAD
-import { HttpClientModule } from '@angular/common/http';
-=======
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
->>>>>>> 0fbbb9b2d182fa8a9c48f20c176815d830cc6d40
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -40,15 +36,13 @@ import { from } from 'rxjs';
 import {CloseDirective} from "./admin-panel/close.directive";
 import {FadeInService} from "./fade-in.service";
 import { FooterComponent } from './footer/footer.component';
-<<<<<<< HEAD
-=======
 import { RegistrationComponent } from './registration/registration.component';
 import { SignUpComponent } from './registration/sign-up/sign-up.component';
 import { SignInComponent } from './registration/sign-in/sign-in.component';
 import {RegistrationService} from './registration/registration.service';
 import {RegistrationInterceptorService} from './registration/registration-interceptor.service';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
->>>>>>> 0fbbb9b2d182fa8a9c48f20c176815d830cc6d40
+import {AboutUsComponent} from './about-us/about-us.component';
 
 
 @NgModule({
@@ -67,6 +61,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     AdminPanelComponent,
     CompetitionEditComponent,
     AddPrizesComponent,
+    AboutUsComponent,
     CardsRollComponent,
     SponsorsComponent,
     SponsorsEditComponent,
@@ -76,13 +71,10 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     CompetitionParagraphComponent,
     CloseDirective,
     FooterComponent,
-<<<<<<< HEAD
-=======
     RegistrationComponent,
     SignUpComponent,
     SignInComponent,
     LoadingSpinnerComponent,
->>>>>>> 0fbbb9b2d182fa8a9c48f20c176815d830cc6d40
   ],
   imports: [
     BrowserModule,
@@ -99,12 +91,8 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     FormsModule
 
   ],
-<<<<<<< HEAD
-  providers: [PrizeService, FadeInService],
-=======
   providers: [PrizeService, FadeInService, RegistrationService,
     {provide: HTTP_INTERCEPTORS, useClass: RegistrationInterceptorService, multi: true}],
->>>>>>> 0fbbb9b2d182fa8a9c48f20c176815d830cc6d40
   bootstrap: [AppComponent]
 })
 export class AppModule{ }
