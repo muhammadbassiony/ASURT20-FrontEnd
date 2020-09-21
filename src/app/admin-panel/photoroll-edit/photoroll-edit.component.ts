@@ -27,9 +27,9 @@ export class PhotorollEditComponent implements OnInit {
 
   // filename = 'robert fermino';
 
-    /*= this.photorollService.getPhotorollByName(this.selectedPhotoroll);*/
+  /*= this.photorollService.getPhotorollByName(this.selectedPhotoroll);*/
 
-    // onImagePicked2(event: Event) {
+  // onImagePicked2(event: Event) {
   //   const file = (event.target as HTMLInputElement).files[0];
   //   this.form.patchValue({ image2: file });
   //   this.form.get('image2').updateValueAndValidity();
@@ -110,19 +110,19 @@ export class PhotorollEditComponent implements OnInit {
   onActiveImagePicked(event: Event) {
     // let noFiles = (event.target as HTMLInputElement).files.length;
 
-      const file = (event.target as HTMLInputElement).files[0];
-      this.form.patchValue({activeImage: file});
-      this.form.get('activeImage').updateValueAndValidity({onlySelf: true});
-      const reader = new FileReader();
+    const file = (event.target as HTMLInputElement).files[0];
+    this.form.patchValue({activeImage: file});
+    this.form.get('activeImage').updateValueAndValidity({onlySelf: true});
+    const reader = new FileReader();
     // this.photoroll.imagePaths.push((reader.result as string));
-      reader.onload = () => {
-        // this.photoroll.imagePaths.push((reader.result as string));
-        // this.imagePreview.push((reader.result as string));
-      };
-      reader.readAsDataURL(file);
-      // this.photoroll.imagePaths.push(reader.result as string );
-      // console.log(this.imagePreview)
-    }
+    reader.onload = () => {
+      // this.photoroll.imagePaths.push((reader.result as string));
+      // this.imagePreview.push((reader.result as string));
+    };
+    reader.readAsDataURL(file);
+    // this.photoroll.imagePaths.push(reader.result as string );
+    // console.log(this.imagePreview)
+  }
 
 
   onOtherImagePicked(event: Event) {
@@ -142,7 +142,7 @@ export class PhotorollEditComponent implements OnInit {
       const file = files[i];
       console.log(file);
       reader.readAsDataURL(file);
-     }
+    }
   }
 
   onSubmit() {
