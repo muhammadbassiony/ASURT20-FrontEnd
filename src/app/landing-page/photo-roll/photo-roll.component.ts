@@ -1,7 +1,7 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {Photoroll} from "../photoroll.model";
 import {PhotorollService} from "../photoroll.service";
-import {Subscription} from "rxjs";
+import {Subject, Subscription} from 'rxjs';
 import {DOCUMENT} from "@angular/common";
 
 @Component({
@@ -11,10 +11,12 @@ import {DOCUMENT} from "@angular/common";
 })
 export class PhotoRollComponent implements OnInit, OnDestroy {
   public  photoroll: Photoroll ;
-   noPhotos = 5;
-  // noPhotos = this.photoroll.noPhotos;
-   _subscription: Subscription;
-
+  loadedSubject = new Subject<boolean>();
+  noPhotos: number = 0;
+  noLoaded: number = 0;
+  _loadedSubscription: Subscription;
+  _subscription: Subscription;
+  naturalHeight: any;
   constructor(
     public photorollService: PhotorollService, @Inject(DOCUMENT) document
      ) {
@@ -35,6 +37,15 @@ export class PhotoRollComponent implements OnInit, OnDestroy {
     this._subscription = this.photorollService.photorollUpdated.subscribe((photoRoll: Photoroll) => {
       this.photoroll = photoRoll;
     });
+    this.noPhotos = this.photoroll.noPhotos;
+    this._loadedSubscription = this.loadedSubject.subscribe((loaded) => {
+      if (loaded) {
+        this.noLoaded++;
+      }
+      if (this.noLoaded == this.noPhotos) {
+        this._loadedSubscription.unsubscribe();
+      }
+    });
    console.log(this.photoroll);
   }
 
@@ -45,13 +56,14 @@ export class PhotoRollComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     //prevent memory leak when component destroyed
     this._subscription.unsubscribe();
+    this._loadedSubscription.unsubscribe();
   }
-  // documentHasLoaded() {
-  //   if (document.readyState === 'complete') {
-  //     const loadedImages = document.querySelector('.carousel-inner').getElementsByClassName('img-fluid');
-  //     const lastImage = <HTMLImageElement>loadedImages[loadedImages.length - 1];
-  //     return lastImage.complete;
-  //   }
-  //   else return false;
-  // }
+  allIsLoaded() {
+    if (this.noLoaded < this.noPhotos) {
+      console.log('notLoaded');
+    } else {
+      console.log('loaded');
+    }
+    return this.noLoaded == this.noPhotos;
+  }
 }
