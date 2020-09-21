@@ -54,14 +54,14 @@
     <header class="header" id="header" [ngClass]="{'header-closed':applyMql('900px')}">
         <a style="cursor: pointer;" id="header-toggle-link" (click)="onToggleHeader()"><span class="header-toggle"></span></a>
         <h1 class="logo-container">
-            <a routerLink="" class="logo-link">
+            <a routerLink="home" (click)="onToggleHeader()" class="logo-link">
                 <img src="assets/img/ASURT_LOGO_B-min.png" alt="ASU Racing Team Logo" class="logo">
             </a>
         </h1>
         <nav class="navigation">
             <ul class="navigation__list">
                 <li class="navigation__item" *ngIf="isAdminMode">
-                    <a style="cursor: pointer" id="menu-btn" class="navigation__link" (click)="onOpenMenu()">Admin menu</a>
+                    <a style="cursor: pointer" id="menu-btn" class="navigation__link" (click)="onOpenMenu(); onToggleHeader()">Admin menu</a>
                 </li>
                 <li class="navigation__item">
                     <a routerLink="" (click)="onToggleHeader()" class="navigation__link">Home</a>
