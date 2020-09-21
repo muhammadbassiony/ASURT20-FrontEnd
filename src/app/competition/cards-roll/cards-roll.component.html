@@ -1,27 +1,25 @@
 <div id="carouselExampleCaptions" class="carousel  slide text-dark" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li *ngFor="let item of prizesPhotos;let i=index" data-target="#carouselExampleCaptions" [attr.data-slide-to]="i"
-      [ngClass]="i==0? 'active':''"></li>
-  </ol>
-  <div class="carousel-inner fixHightInSmall" >
-    <div [ngClass]="i==0? 'active':''" *ngFor="let item of prizesPhotos;let i=index" class="carousel-item position-relative"
-      style="height: 100vh;">
-      <img src="{{item.imagePrize}}" class="d-block vertical-center" alt="...">
-      <div class="carousel-caption rounded p-1 d-none d-md-block" >
-        <div class="mx-auto p-3 customWidth" style="background-color: rgba(0, 0, 0, 0.445);">
-          <h5>{{item.title}}</h5>
-          <p class="text-wrap text-break">{{item.description}}</p>
+    <ol class="carousel-indicators">
+        <li *ngFor="let item of prizesPhotos;let i=index" data-target="#carouselExampleCaptions" [attr.data-slide-to]="i" [ngClass]="i==0? 'active':''"></li>
+    </ol>
+    <div class="carousel-inner ">
+        <div [ngClass]="i==0? 'active':''" *ngFor="let item of prizesPhotos;let i=index" class="carousel-item position-relative awardsPhoto">
+            <img src="{{item.imagePrize}}" class="d-block vertical-center" alt="...">
+            <div class="carousel-caption rounded  d-none d-md-block">
+                <div class="mx-auto customWidth" style="background-color: rgba(0, 0, 0, 0.445);">
+                    <h5>{{item.title}}</h5>
+                    <p class="text-wrap text-break">{{item.description}}</p>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
 </div>
