@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {FormGroup, FormControl, Validators, FormArray} from '@angular/forms';
 import {NgForm} from '@angular/forms';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import { mimeType } from './mime-type.validator';
@@ -68,7 +68,7 @@ export class PhotorollEditComponent implements OnInit {
   //   // }, 4000);
   // }
   photorollForm: any;
-  controls: any;
+
 
   ngOnInit(): void {
     // this.photoroll = [
@@ -86,7 +86,37 @@ export class PhotorollEditComponent implements OnInit {
     //   asyncValidators: [mimeType]
     // })
     // });
+   this.initForm();
+  }
 
+  private initForm() {
+    let photorollName = '';
+    let photorollIndex = null;
+    let photorollPaths = new FormArray([]);
+
+    let files = new FormArray([new FormGroup({'file':new FormControl(null, Validators.required)})]) ;
+    const photoroll: Photoroll = this.currentPhotoroll;
+    photorollName = photoroll.photorollName;
+    photorollIndex = photoroll.index;
+    for (let imagePath of photoroll.imagePaths) {
+      photorollPaths.push(new FormGroup({
+        'imagePath': new FormControl(imagePath, Validators.required)
+      }));
+    }
+    this.form = new FormGroup({
+      'name': new FormControl(photorollName, Validators.required),
+      'index': new FormControl(photorollIndex, Validators.required),
+      'paths' : photorollPaths,
+      'files' : files
+    });
+  }
+
+  get controls() { // a getter!
+    return (<FormArray>this.form.get('paths')).controls;
+  }
+
+  onDeletePath(index: number) {
+    (<FormArray>this.form.get('paths')).removeAt(index);
   }
 
   // items: any[] = [
@@ -147,6 +177,8 @@ export class PhotorollEditComponent implements OnInit {
 
   onSubmit() {
 
+    this.photorollService.updatePhotoroll (this.form.value);
+
   }
 
   onCancel() {
@@ -166,5 +198,30 @@ export class PhotorollEditComponent implements OnInit {
     console.log(this.selectedPhotorollName);
     this.currentPhotoroll = this.photorollService.getPhotorollByName(this.selectedPhotorollName);
     console.log(this.currentPhotoroll);
+    this.initForm();
   }
+
+  onAddPhoto() {
+    (<FormArray>this.form.get('paths')).push(
+      new FormGroup({
+        'imagePath': new FormControl(null, Validators.required)
+      })
+    );
+  }
+
+  onImagePicked(event: Event) {
+
+    const reader = new FileReader();
+    const file = (event.target as HTMLInputElement).files[0];
+      reader.readAsDataURL(file);
+
+      reader.onload = () => {
+        // this.form.patchValue({
+          // file: reader.result;
+          // console.log(this.form.get('file'));});
+        (<FormArray>this.form.get('files')).push(new FormGroup({
+          'file': new FormControl(file, Validators.required)}));
+      };
+    }
+
 }

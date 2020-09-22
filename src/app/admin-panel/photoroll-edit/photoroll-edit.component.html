@@ -66,17 +66,74 @@
 <!--    <div *ngFor="let photos of photoroll">-->
 <!--    <p > {{photos.photorollName}} </p>-->
 <!--    </div>-->
-<form action="#">
-  <label for="name">Select Photoroll you want to edit :</label>
-      <select name="name" id="name" class="form-control" multiple (change)="onChange($event.target)">
+<div class="row">
+  <div class="col-12">
+    <label for="name"> <h3 class="text-center">Select Photoroll you want to edit :</h3></label>
+    <select name="phname" id="phname" class="form-control" multiple (change)="onChange($event.target)">
+      <option *ngFor="let Photoroll of photoroll"  value="{{Photoroll.photorollName}}">{{Photoroll.photorollName}}</option>
+    </select>
+  </div>
+</div>
 
-          <option *ngFor="let Photoroll of photoroll"  value="{{Photoroll.photorollName}}">{{Photoroll.photorollName}}</option>
+<form [formGroup] = "form" (ngSubmit)="onSubmit()">
 
-      </select>
   <div *ngIf="currentPhotoroll!==null">
-    <p> {{currentPhotoroll.photorollName}}</p>
+    <div class="row">
+      <div class="col-xs-12">
+        <button type="submit" class="btn btn-success" [disabled]="!form.valid">Save</button>
+        <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+      </div>
+    </div>
+
+    <h2 class="text-center"> current edit photoroll name : {{currentPhotoroll.photorollName}}</h2>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" formControlName="name" class="form-control">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <label for="index">index</label>
+          <input type="text" id="index" formControlName="index" class="form-control">
+        </div>
+      </div>
+    </div>
+
+    <div class="row" formArrayName="paths" >
+      <div class="row" *ngFor="let imagepathsCtrl of controls; index as i" [formGroupName]="i">
+      <div class="col-6">
+        <label >Image Path </label>
+    <textarea type="text" class="form-control" formControlName="imagePath" #pathRef > </textarea>
+      </div>
+      <div class="col-4">
+        <img [src]="pathRef.value"  alt="photo not available">
+      </div>
+        <div class="col-2">
+          <button type="button" class="btn btn-danger" (click)="onDeletePath(i)">X</button>
+        </div>
+    </div>
+      <hr>
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="button" class="btn btn-success" (click)="onAddPhoto()">Add Photo</button>
+        </div>
+      </div>
+    </div>
   </div>
 </form>
+
+<!--<div class="row" formArrayName="files">-->
+<!--  <div class="col-6">-->
+<!--    <input  type="file" formControlName="file" (change)="onImagePicked($event)">-->
+<!--  </div>-->
+<!--</div>-->
+
 
 <!--    <label *ngFor="let photos in photoroll" for="name">Choose Photo-roll {{photos.imagePaths[0]}}</label>-->
 <!--    &lt;!&ndash;            <input type="text" id="name" formControlName="name" class="form-control">&ndash;&gt;-->

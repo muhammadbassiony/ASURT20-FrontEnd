@@ -10,7 +10,9 @@ import {DOCUMENT} from "@angular/common";
   styleUrls: ['./photo-roll.component.css']
 })
 export class PhotoRollComponent implements OnInit, OnDestroy {
+  // public photoRoll: Photoroll[];
   public  photoroll: Photoroll ;
+  subscription: Subscription;
   loadedSubject = new Subject<boolean>();
   noPhotos: number = 0;
   noLoaded: number = 0;
@@ -31,12 +33,20 @@ export class PhotoRollComponent implements OnInit, OnDestroy {
     // this.photoroll = this.photorollService.photoroll;
     // console.log(this.photoroll);
     //this.photoroll = this.photorollService.initialize()[1];
-    this.photorollService.initialize();
     this.photoroll = this.photorollService.getPhotorollByName('landing-page');
+    this.subscription = this.photorollService.photorollChanged.subscribe(
+      (photoRoll: Photoroll) => {
+        this.photoroll = photoRoll;
+        console.log("hi"+ this.photoroll);
+        // location.reload();
+      }
+    );
+    //this.photorollService.initialize();
+
     console.log(this.photoroll.noPhotos);
-    this._subscription = this.photorollService.photorollUpdated.subscribe((photoRoll: Photoroll) => {
-      this.photoroll = photoRoll;
-    });
+    // this._subscription = this.photorollService.photorollUpdated.subscribe((photoRoll: Photoroll) => {
+    //   this.photoroll = photoRoll;
+    // });
     this.noPhotos = this.photoroll.noPhotos;
     this._loadedSubscription = this.loadedSubject.subscribe((loaded) => {
       if (loaded) {
@@ -55,8 +65,9 @@ export class PhotoRollComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     //prevent memory leak when component destroyed
-    this._subscription.unsubscribe();
-    this._loadedSubscription.unsubscribe();
+    // this._subscription.unsubscribe();
+     this._loadedSubscription.unsubscribe();
+    this.subscription.unsubscribe();
   }
   allIsLoaded() {
     if (this.noLoaded < this.noPhotos) {

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Subject } from "rxjs";
+import {BehaviorSubject, Subject} from "rxjs";
 import { map } from "rxjs/operators";
 import { Router } from "@angular/router";
 import {Photoroll} from "./photoroll.model";
@@ -11,7 +11,9 @@ export class PhotorollService {
     new Photoroll(1,'prize', 4, ['https://placeimg.com/1080/500/nat','https://placeimg.com/1080/500/nature','https://placeimg.com/1080/500/arch','https://placeimg.com/1080/500/history'] ),
     new Photoroll(1, 'landing-page', 4, ['https://placeimg.com/1080/500/nat','https://placeimg.com/1080/500/nature','https://placeimg.com/1080/500/arch','https://placeimg.com/1080/500/history'])
   ];
-  photorollUpdated = new Subject<Photoroll>();
+  // photorollUpdated = new Subject<Photoroll>();
+  public photorollChanged = new Subject<Photoroll>();
+  //public photorollChanged = new BehaviorSubject<Photoroll>(this.photoroll[1]);
   constructor(private http: HttpClient, private router: Router) {
 
   }
@@ -82,5 +84,13 @@ export class PhotorollService {
   // }
 
 
+  updatePhotoroll(value: any) {
+    this.photoroll[value.index] = value;
+    this.photoroll[value.index].noPhotos =  value.paths.length;
+    console.log(this.photoroll[value.index]);
+    let pr = this.photoroll[value.index];
+    this.photorollChanged.next(pr);
+    console.log("done updating photoroll");
 
+  }
 }
