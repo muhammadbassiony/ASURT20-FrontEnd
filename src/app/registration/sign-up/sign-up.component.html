@@ -12,8 +12,8 @@
         <div class="col-lg-8">
         <div class=" card text-center card-group" style="background-color: #b21212">
             <div class="card-body">
-            <h1>Sign Up Today</h1>
-            <p>Please fill out this form to register</p>
+            <h1 style="color: white;">Sign Up Today</h1>
+            <p style="color: white;">Please fill out this form to register</p>
 
 
         <br>
@@ -48,11 +48,11 @@
                   <span class="form-text">Passwords don't match!</span>
                 </div>
 
-                <button type="submit" class="btn btn-outline-dark btn-block mt-4 mb-4"
+                <button type="submit" class="btn btn-outline-dark btn-block mt-4 mb-4" style="color: white;"
                         [disabled]="!signUpForm.valid && (signUpForm.value.password !== signUpForm.value.confirmPassword)">Submit</button>
 
-                <div class="form-group mt-4">
-                    <a routerLink="/register/sign-in" class="text-dark">Have an account?</a>
+                <div class="form-group mt-4" style="color: white;">
+                    <a routerLink="/register/sign-in" style="color: white;">Have an account?</a>
                 </div>
 
             </form>

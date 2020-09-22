@@ -11,7 +11,7 @@ export class CloseDirective {
     let offset = 180; // Why 180? it's empirical, man. It's here to prevent clicks on header from closing the menu.
     let mql = window.matchMedia('only screen and (max-width: 900px)');
     if (mql.matches) {
-      offset = 500; //Same but for smaller screen with bigger header size
+      offset = 292; //Same but for smaller screen with bigger header size
     }
     if (event.screenY > offset) {
       const menu = <HTMLElement>document.querySelector('.menu-container');

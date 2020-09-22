@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input,ViewChild } from '@angular/core';
 import { Prize } from 'src/app/models/prize.model';
 
 @Component({
@@ -9,9 +9,16 @@ import { Prize } from 'src/app/models/prize.model';
 export class CardsRollComponent implements OnInit {
 
   @Input('prizesPhotos') prizesPhotos:Prize[];
+  
   constructor() { }
 
   ngOnInit(): void {
+  
+
+    
   }
 
+  
+
+  
 }
