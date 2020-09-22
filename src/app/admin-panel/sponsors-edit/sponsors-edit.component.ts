@@ -13,7 +13,7 @@ export class SponsorsEditComponent implements OnInit {
   sponsorEditForm : FormGroup;
   sponsorsInfo : Sponsor[];
   isChecked :boolean[] =[];
-
+  selectedImg: File = null;
   constructor(private _SponsorsService:SponsorsService) {}
 
   ngOnInit(): void {
@@ -35,12 +35,17 @@ export class SponsorsEditComponent implements OnInit {
     let name = this.sponsorEditForm.value.sponsorName;
     let desc = this.sponsorEditForm.value.sponsorDesc;
     let addedSponsor = new Sponsor (logo, name, desc,false, 2022);
-    this._SponsorsService.addSponsor(addedSponsor);
+    this._SponsorsService.addSponsor(addedSponsor, this.selectedImg);
   }
 
   changeState()
   {
     this._SponsorsService.editSponsorsState(this.isChecked);
+  }
+
+  onImgUpdated(event) {
+    this.selectedImg = <File>event.target.files[0];
+    console.log(this.selectedImg);
   }
 
 }

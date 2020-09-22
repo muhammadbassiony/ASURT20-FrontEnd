@@ -4,7 +4,7 @@
     <div class="card">
       <div class="card-header card-header-text card-header-info">
         <div class="card-text">
-          <h4 class="card-title ">Sponsors Dashboard</h4>
+          <h4 class="card-title text-center">Sponsors Dashboard</h4>
         </div>
       </div>
     </div>
@@ -21,7 +21,7 @@
           <img [src]=sponsor.logo alt="logo" style="max-width : 100%" >
         </div>
         <div class="checkboxMargin mb-3">
-        <input type="checkbox" [(ngModel)] = "isChecked[i]" class="">
+        <input type="checkbox" [(ngModel)] = "isChecked[i]" class="custom-checkbox">
         <h6 class="d-inline pt-4 text-white ml-3">{{sponsor.name}}</h6>
 
         </div>
@@ -32,7 +32,7 @@
 <div class="row mt-4">
   <div class="container">
     <div class="text center" >
-    <button type="submit" value="Submit"  class="btn btn-outline-dark btn-block"  (click)="changeState()">Submit Changes</button>
+    <button type="submit" value="Submit"  class="btn btn-outline-dark btn-block" (click)="changeState()">Submit Changes</button>
     </div>
   </div>
 </div>
@@ -56,7 +56,7 @@
 
               <div class="form-group" >
                 <label class="btn btn-dark btn-dark"><i class="material-icons"></i> Add Sponsor Image</label>
-                <input type="file" style="display:none;" id="exampleInputImage">
+                <input type="file" accept="image/*" id="exampleInputImage" (change)="onImgUpdated($event)" formControlName = "sponsorLogo">
               </div>
 
               <button type="submit" value="Submit" [disabled]="!sponsorEditForm.valid" class="btn btn-outline-dark btn-block">Add New sponsor</button>

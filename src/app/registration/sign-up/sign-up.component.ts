@@ -36,6 +36,7 @@ export class SignUpComponent implements OnInit {
 
     signUpObs = this.registerService.signUp('', email, password);
     signUpObs.subscribe(responseData => {
+      console.log(responseData);
       this.isLoading = false;
       this.router.navigate(['/home']);
     }, errorMessage => {

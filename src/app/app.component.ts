@@ -15,11 +15,18 @@ import {RegistrationService} from './registration/registration.service';
 })
 export class AppComponent implements OnInit{
   title = 'ASURT20-FrontEnd';
-  isAdminMode = true;
+  isAdminMode = false;
   constructor(@Inject(DOCUMENT) document, private registrationService: RegistrationService) {
   }
   ngOnInit() {
     this.registrationService.autoSign();
+    this.registrationService.user.subscribe((user) => {
+      if (!user) {
+        this.isAdminMode = false;
+      } else {
+        this.isAdminMode = user.isAdmin === 1;
+      }
+    });
   }
 
 

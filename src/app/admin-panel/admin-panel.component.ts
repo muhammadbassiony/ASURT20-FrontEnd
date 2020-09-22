@@ -1,4 +1,4 @@
-import {Component, HostListener, Inject, OnInit} from '@angular/core';
+import {Component, HostListener, Inject, Input, OnInit} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
 
 @Component({
@@ -8,6 +8,7 @@ import {DOCUMENT} from "@angular/common";
 })
 export class AdminPanelComponent implements OnInit {
 
+  @Input() isAdminMode: boolean
   constructor(@Inject(DOCUMENT) document) { }
   ngOnInit(): void {
 

@@ -3,6 +3,7 @@ import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
 import {RegisterResponseData, RegistrationService} from '../registration.service';
 import {Observable} from 'rxjs';
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-sign-in',
@@ -30,6 +31,8 @@ export class SignInComponent implements OnInit {
     this.isLoading = true;
     signInObs = this.registerService.signIn(email, password);
     signInObs.subscribe(responseData => {
+      const helper = new JwtHelperService();
+      console.log(helper.decodeToken(responseData.token));
       this.isLoading = false;
       this.router.navigate(['/home']);
     }, errorMessage => {

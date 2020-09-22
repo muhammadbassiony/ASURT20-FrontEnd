@@ -12,11 +12,11 @@ export class RegistrationInterceptorService implements HttpInterceptor{
       take(1),
       exhaustMap((user) => {
         if (!user) {
+          console.log('signup handled');
           return next.handle(req);
         }
         const modReq = req.clone({
-          headers: new HttpHeaders({'Authorization': 'Bearer ' + user.token}),
-          params: new HttpParams().set('auth', user.token) // FOR TESTING ON FIREBASE ONLY
+          headers: new HttpHeaders({'Authorization': ' Bearer ' + user.token}),
         });
         return next.handle(modReq);
       })

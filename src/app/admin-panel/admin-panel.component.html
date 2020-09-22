@@ -1,4 +1,4 @@
-<nav class="menu-container" close>
+<nav class="menu-container" close *ngIf="isAdminMode">
   <a style="cursor: pointer" class="closeBtn" (click)="onCloseMenu()">
     <svg class="close-icon" viewBox="0 0 100 100">
       <use xlink:href="../../assets/img/times.svg#close-icon"></use>
