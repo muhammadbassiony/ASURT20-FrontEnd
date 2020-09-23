@@ -3,6 +3,7 @@ import {FormGroup, FormControl, Validators} from '@angular/forms'
 import {SponsorsService} from '../../services/sponsors.service'
 import {Sponsor} from '../../models/sponsor.model'
 import {Subscription} from 'rxjs';
+import {SponsorInitializationService} from '../../sponsor-initialization.service';
 
 @Component({
   selector: 'app-sponsors-edit',
@@ -17,9 +18,11 @@ export class SponsorsEditComponent implements OnInit, OnDestroy {
   selectedImg: File = null;
   isGettingSponsors: boolean = false;
   sub: Subscription;
-  constructor(private _SponsorsService:SponsorsService) {}
+  constructor(private sponsorInitializationService: SponsorInitializationService,
+              private _SponsorsService:SponsorsService) {}
 
   ngOnInit(): void {
+    this.sponsorInitializationService.Initialized++;
     this.sub = this._SponsorsService.isGettingSponsors.subscribe(
       (value) => {
         this.isGettingSponsors = value;

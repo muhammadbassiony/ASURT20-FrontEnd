@@ -3,6 +3,7 @@ import {SponsorsService} from '../services/sponsors.service';
 import {Sponsor} from '../models/sponsor.model'
 import {FadeInService} from "../fade-in.service";
 import {Subscription} from 'rxjs';
+import {SponsorInitializationService} from '../sponsor-initialization.service';
 
 @Component({
   selector: 'app-sponsors',
@@ -11,12 +12,15 @@ import {Subscription} from 'rxjs';
 })
 export class SponsorsComponent implements OnInit, OnDestroy {
 
-  constructor(private _SponsorsService:SponsorsService, private fadeInService: FadeInService) { }
+  constructor(private sponsorInitializationService: SponsorInitializationService,
+              private _SponsorsService:SponsorsService,
+              private fadeInService: FadeInService) { }
 
   sponsorsInfo :Sponsor[]=[];
   isGettingSponsors: boolean = false;
   private sub: Subscription;
   ngOnInit(): void {
+    this.sponsorInitializationService.Initialized++;
     this.sub = this._SponsorsService.isGettingSponsors.subscribe(
       (value) => {
         this.isGettingSponsors = value;

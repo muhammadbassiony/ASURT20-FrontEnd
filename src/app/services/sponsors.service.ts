@@ -3,6 +3,7 @@ import { Sponsor } from '../models/sponsor.model';
 import {Observable, Subject} from 'rxjs';
 import {BackEndURLService} from './back-end-url.service';
 import {HttpClient} from '@angular/common/http';
+import {SponsorInitializationService} from '../sponsor-initialization.service';
 
 interface SponsorPostResponse {
   desc: string,
@@ -26,8 +27,9 @@ interface SponsorGetResponse {
 })
 export class SponsorsService {
 
-  constructor(private http: HttpClient, private backEndURLService: BackEndURLService) {
-    // this.initialize();
+  constructor(private sponsorInitializationService: SponsorInitializationService,
+              private http: HttpClient,
+              private backEndURLService: BackEndURLService) {
   }
   private allSponsorsInfo : Sponsor[]=[
     new Sponsor("assets/img/kader.png", "Arab Organization for Industrialization",'KADER factory for developed industries was established in 1949 under the name of "HELIOPOLIS AIRCRAFT FACTORY" to produce the primary training Aircraft ..', true, '1'),
@@ -75,9 +77,11 @@ export class SponsorsService {
 
   async getAllSponsorsInfo()
   {
-    this.isGettingSponsors.next(true);
-    await this.initialize();
-    this.isGettingSponsors.next(false);
+    if (this.sponsorInitializationService.Initialized == 1) {
+      this.isGettingSponsors.next(true);
+      await this.initialize();
+      this.isGettingSponsors.next(false);
+    }
     return this.allSponsorsInfo.slice();
   }
 
@@ -126,9 +130,11 @@ export class SponsorsService {
 
   async getTrueCheckedSponsors()
   {
-    this.isGettingSponsors.next(true);
-    await this.initialize();
-    this.isGettingSponsors.next(false);
+    if (this.sponsorInitializationService.Initialized == 1) {
+      this.isGettingSponsors.next(true);
+      await this.initialize();
+      this.isGettingSponsors.next(false);
+    }
     this.trueCheckedSponsors = [];
     for (let i = 0; i < this.allSponsorsInfo.length; i++) {
       if (this.allSponsorsInfo[i].isChecked == true) {
