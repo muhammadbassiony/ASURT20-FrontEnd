@@ -5,6 +5,6 @@ export class Sponsor
         public name : string,
         public desc : string,
         public isChecked : boolean = true,
-        public id : number
+        public id : string
     ){}
 }

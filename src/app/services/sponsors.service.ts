@@ -27,12 +27,12 @@ interface SponsorGetResponse {
 export class SponsorsService {
 
   constructor(private http: HttpClient, private backEndURLService: BackEndURLService) {
-    this.initialize();
+    // this.initialize();
   }
   private allSponsorsInfo : Sponsor[]=[
-    new Sponsor("assets/img/kader.png", "Arab Organization for Industrialization",'KADER factory for developed industries was established in 1949 under the name of "HELIOPOLIS AIRCRAFT FACTORY" to produce the primary training Aircraft ..', true, 1),
-    new Sponsor("assets/img/alumisr.png", "ALUMISR", "Alumisr company produces aluminum for the purposes of the various use with many finishes.It was established in 1977", true, 2),
-    new Sponsor("assets/img/emar.png", "EMAR", "Emaar Misr is one of the largest real estate companies in Egypt and the developer of iconic projects such as Uptown Cairo, Marassi, and Mivida", true, 3)
+    new Sponsor("assets/img/kader.png", "Arab Organization for Industrialization",'KADER factory for developed industries was established in 1949 under the name of "HELIOPOLIS AIRCRAFT FACTORY" to produce the primary training Aircraft ..', true, '1'),
+    new Sponsor("assets/img/alumisr.png", "ALUMISR", "Alumisr company produces aluminum for the purposes of the various use with many finishes.It was established in 1977", true, '2'),
+    new Sponsor("assets/img/emar.png", "EMAR", "Emaar Misr is one of the largest real estate companies in Egypt and the developer of iconic projects such as Uptown Cairo, Marassi, and Mivida", true, '3')
   ]
 
   private trueCheckedSponsors :Sponsor[]=[];
@@ -51,7 +51,7 @@ export class SponsorsService {
             sponsorsArray[i].name,
             sponsorsArray[i].desc,
             sponsorsArray[i].isChecked,
-            +sponsorsArray[i]._id));
+            sponsorsArray[i]._id));
         }
       }, (error) => {
         console.log(error);
@@ -88,7 +88,8 @@ export class SponsorsService {
       }
       if (value !== this.allSponsorsInfo[i].isChecked)
       {
-        const URL = this.backEndURLService.getURL() + "api/sponsors/activate/" + i.toString();
+        console.log(this.allSponsorsInfo[i].id)
+        const URL = this.backEndURLService.getURL() + "api/sponsors/activate/" + this.allSponsorsInfo[i].id;
         this.http.patch<any>(URL, {}).subscribe(
             (res) => {
               console.log(res);
