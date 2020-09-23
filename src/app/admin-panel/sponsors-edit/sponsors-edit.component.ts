@@ -1,24 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms'
 import {SponsorsService} from '../../services/sponsors.service'
 import {Sponsor} from '../../models/sponsor.model'
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-sponsors-edit',
   templateUrl: './sponsors-edit.component.html',
   styleUrls: ['./sponsors-edit.component.css']
 })
-export class SponsorsEditComponent implements OnInit {
+export class SponsorsEditComponent implements OnInit, OnDestroy {
 
   sponsorEditForm : FormGroup;
   sponsorsInfo : Sponsor[];
   isChecked :boolean[] =[];
   selectedImg: File = null;
+  isGettingSponsors: boolean = false;
+  sub: Subscription;
   constructor(private _SponsorsService:SponsorsService) {}
 
   ngOnInit(): void {
-    this._SponsorsService.initialize();
-    this.sponsorsInfo= this._SponsorsService.getAllSponsorsInfo();
+    this.sub = this._SponsorsService.isGettingSponsors.subscribe(
+      (value) => {
+        this.isGettingSponsors = value;
+      }
+    );
+    const promise = this._SponsorsService.getAllSponsorsInfo();
+    promise.then(value => {
+      this.sponsorsInfo = <Array<Sponsor>>value;
+    }, reason => {
+      console.log(reason);
+    });
+    // this.sponsorsInfo = this._SponsorsService.getAllSponsorsInfo();
     this._SponsorsService.allSponsors.subscribe(
     (sponsors:Sponsor[])=>{
       this.sponsorsInfo=sponsors;
@@ -35,7 +48,7 @@ export class SponsorsEditComponent implements OnInit {
     let logo = this.sponsorEditForm.value.sponsorLogo;
     let name = this.sponsorEditForm.value.sponsorName;
     let desc = this.sponsorEditForm.value.sponsorDesc;
-    let addedSponsor = new Sponsor (logo, name, desc,false, 2022);
+    let addedSponsor = new Sponsor (logo, name, desc,false, '2022');
     let fd = new FormData();
     fd.append('name', name);
     fd.append('desc', desc);
@@ -51,6 +64,10 @@ export class SponsorsEditComponent implements OnInit {
   onImgUpdated(event) {
     this.selectedImg = <File>event.target.files[0];
     console.log(this.selectedImg);
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }

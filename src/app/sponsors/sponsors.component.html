@@ -1,4 +1,8 @@
-<section id="explore-section" class="explore-section fade-in">
+<div class="container text-center min-vh-100" *ngIf="isGettingSponsors">
+  <app-loading-spinner></app-loading-spinner>
+  <p style="font-size: 4rem" class="text-center text-primary">Loading...</p>
+</div>
+<section id="explore-section" class="explore-section fade-in" [ngStyle]="{'display': !isGettingSponsors? 'block': 'none'}">
   <h2 class="text-center mt-3 partners" style="margin-top: 20px;"> OUR PARTNERS IN SUCCESS </h2>
    <div class="card my-5" *ngFor = "let sponsor of sponsorsInfo">
       <div class="row pt-5 pb-4 pl-5 pr-5">

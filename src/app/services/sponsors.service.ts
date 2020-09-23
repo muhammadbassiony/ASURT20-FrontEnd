@@ -1,6 +1,6 @@
-import {Injectable, OnInit} from '@angular/core';
+import {EventEmitter, Injectable, OnInit} from '@angular/core';
 import { Sponsor } from '../models/sponsor.model';
-import { Subject } from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {BackEndURLService} from './back-end-url.service';
 import {HttpClient} from '@angular/common/http';
 
@@ -39,36 +39,52 @@ export class SponsorsService {
 
   checkedSponsors = new Subject<Sponsor[]>();
   allSponsors = new Subject<Sponsor[]>();
+  isGettingSponsors = new Subject<boolean>();
 
-  initialize() {
-    this.http.get<{sponsors: SponsorGetResponse[]}>(this.backEndURLService.getURL() + "api/sponsors/get").subscribe(
-      (res) => {
-        this.allSponsorsInfo.splice(0, this.allSponsorsInfo.length);
-        console.log(res);
-        const sponsorsArray = <Array<SponsorGetResponse>> res.sponsors
-        for (let i = 0; i < sponsorsArray.length; i++) {
-          this.allSponsorsInfo.push(new Sponsor(this.backEndURLService.getURL() + sponsorsArray[i].logo,
-            sponsorsArray[i].name,
-            sponsorsArray[i].desc,
-            sponsorsArray[i].isChecked,
-            sponsorsArray[i]._id));
-        }
-      }, (error) => {
-        console.log(error);
-      }
-    );
+  async initialize() {
+    let res = await this.http.get<{sponsors: SponsorGetResponse[]}>(this.backEndURLService.getURL() + "api/sponsors/get").toPromise();
+    console.log(typeof res);
+    this.allSponsorsInfo.splice(0, this.allSponsorsInfo.length);
+    console.log(res);
+    const sponsorsArray = <Array<SponsorGetResponse>> res.sponsors
+    for (let i = 0; i < sponsorsArray.length; i++) {
+      this.allSponsorsInfo.push(new Sponsor(this.backEndURLService.getURL() + sponsorsArray[i].logo,
+        sponsorsArray[i].name,
+        sponsorsArray[i].desc,
+        sponsorsArray[i].isChecked,
+        sponsorsArray[i]._id));
+    }
+    // this.http.get<{sponsors: SponsorGetResponse[]}>(this.backEndURLService.getURL() + "api/sponsors/get").subscribe(
+    //   (res) => {
+    //     this.allSponsorsInfo.splice(0, this.allSponsorsInfo.length);
+    //     console.log(res);
+    //     const sponsorsArray = <Array<SponsorGetResponse>> res.sponsors
+    //     for (let i = 0; i < sponsorsArray.length; i++) {
+    //       this.allSponsorsInfo.push(new Sponsor(this.backEndURLService.getURL() + sponsorsArray[i].logo,
+    //         sponsorsArray[i].name,
+    //         sponsorsArray[i].desc,
+    //         sponsorsArray[i].isChecked,
+    //         sponsorsArray[i]._id));
+    //     }
+    //   }, (error) => {
+    //     console.log(error);
+    //   }
+    // );
     console.log(this.allSponsorsInfo);
   }
 
-  getAllSponsorsInfo()
+  async getAllSponsorsInfo()
   {
-    this.initialize();
+    this.isGettingSponsors.next(true);
+    await this.initialize();
+    this.isGettingSponsors.next(false);
     return this.allSponsorsInfo.slice();
   }
 
   addSponsor(sponsor: Sponsor, fd: FormData)
   {
-    this.http.post<SponsorPostResponse>(this.backEndURLService.getURL() + "api/sponsors/add", fd).subscribe((res) => {
+    this.http.post<SponsorPostResponse>(this.backEndURLService.getURL() + "api/sponsors/add", fd).subscribe(
+      (res) => {
       console.log(res);
     }, (error) => {
       console.log(error);
@@ -103,12 +119,16 @@ export class SponsorsService {
     }
     this.allSponsors.next(this.allSponsorsInfo.slice());
     let sponsors = this.getTrueCheckedSponsors();
-    this.checkedSponsors.next(sponsors);
+    sponsors.then(value1 => {
+      this.checkedSponsors.next(value1);
+    });
   }
 
-  getTrueCheckedSponsors()
+  async getTrueCheckedSponsors()
   {
-    this.initialize();
+    this.isGettingSponsors.next(true);
+    await this.initialize();
+    this.isGettingSponsors.next(false);
     this.trueCheckedSponsors = [];
     for (let i = 0; i < this.allSponsorsInfo.length; i++) {
       if (this.allSponsorsInfo[i].isChecked == true) {
