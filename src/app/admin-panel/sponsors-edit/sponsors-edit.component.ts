@@ -17,6 +17,7 @@ export class SponsorsEditComponent implements OnInit {
   constructor(private _SponsorsService:SponsorsService) {}
 
   ngOnInit(): void {
+    this._SponsorsService.initialize();
     this.sponsorsInfo= this._SponsorsService.getAllSponsorsInfo();
     this._SponsorsService.allSponsors.subscribe(
     (sponsors:Sponsor[])=>{
@@ -35,7 +36,11 @@ export class SponsorsEditComponent implements OnInit {
     let name = this.sponsorEditForm.value.sponsorName;
     let desc = this.sponsorEditForm.value.sponsorDesc;
     let addedSponsor = new Sponsor (logo, name, desc,false, 2022);
-    this._SponsorsService.addSponsor(addedSponsor, this.selectedImg);
+    let fd = new FormData();
+    fd.append('name', name);
+    fd.append('desc', desc);
+    fd.append('logo', this.selectedImg, this.selectedImg.name);
+    this._SponsorsService.addSponsor(addedSponsor, fd);
   }
 
   changeState()

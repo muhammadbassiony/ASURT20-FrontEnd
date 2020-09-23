@@ -25,21 +25,21 @@ export class SignUpComponent implements OnInit {
     if (signUpForm.invalid) {
       return;
     }
+    const name = signUpForm.value.name;
     const email = signUpForm.value.email;
-    if (signUpForm.value.confirmPassword !== signUpForm.value.password) {
-
-    }
     const password = signUpForm.value.password;
+
 
     let signUpObs: Observable<RegisterResponseData>;
     this.isLoading = true;
 
-    signUpObs = this.registerService.signUp('', email, password);
+    signUpObs = this.registerService.signUp(name, email, password);
     signUpObs.subscribe(responseData => {
       console.log(responseData);
       this.isLoading = false;
       this.router.navigate(['/home']);
     }, errorMessage => {
+      console.log(errorMessage);
       this.isLoading = false;
       this.error = errorMessage;
     });

@@ -41,6 +41,7 @@ export class RegistrationService {
   }
 
   signUp(name: string, email: string, password: string) {
+    console.log(name);
     return this.http.post<RegisterResponseData>(this.backEndURLService.getURL() + "api/users/signup", {
       name: name,
       email: email,
@@ -104,6 +105,7 @@ export class RegistrationService {
     localStorage.setItem('UserData', JSON.stringify(user));
   }
   private handleError(errorRes: HttpErrorResponse) {
+    console.log(errorRes);
     let errorMessage = 'An unknown error occurred!';
     if (!errorRes.error || !errorRes.error.error) {
       return throwError(errorMessage);
@@ -119,7 +121,7 @@ export class RegistrationService {
         errorMessage = 'This password is not correct.';
         break;
     }
-    return throwError(errorMessage);
+    return throwError(errorRes);
   }
 }
 

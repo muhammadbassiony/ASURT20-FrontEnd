@@ -1,9 +1,26 @@
-import { Injectable } from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import { Sponsor } from '../models/sponsor.model';
 import { Subject } from 'rxjs';
 import {BackEndURLService} from './back-end-url.service';
 import {HttpClient} from '@angular/common/http';
-import {JwtHelperService} from '@auth0/angular-jwt';
+
+interface SponsorPostResponse {
+  desc: string,
+  id: string,
+  logo: string,
+  message: string,
+  name: string
+}
+interface SponsorGetResponse {
+  createdAt: string,
+  desc: string,
+  isChecked: boolean,
+  logo: string,
+  name: string,
+  updatedAt: string,
+  _id: string
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -24,36 +41,34 @@ export class SponsorsService {
   allSponsors = new Subject<Sponsor[]>();
 
   initialize() {
-    this.http.get<Sponsor[]>(this.backEndURLService.getURL() + "api/sponsors/get").subscribe(
+    this.http.get<{sponsors: SponsorGetResponse[]}>(this.backEndURLService.getURL() + "api/sponsors/get").subscribe(
       (res) => {
-        // this.allSponsorsInfo = res;
+        this.allSponsorsInfo.splice(0, this.allSponsorsInfo.length);
         console.log(res);
+        const sponsorsArray = <Array<SponsorGetResponse>> res.sponsors
+        for (let i = 0; i < sponsorsArray.length; i++) {
+          this.allSponsorsInfo.push(new Sponsor(this.backEndURLService.getURL() + sponsorsArray[i].logo,
+            sponsorsArray[i].name,
+            sponsorsArray[i].desc,
+            sponsorsArray[i].isChecked,
+            +sponsorsArray[i]._id));
+        }
       }, (error) => {
         console.log(error);
       }
     );
+    console.log(this.allSponsorsInfo);
   }
 
   getAllSponsorsInfo()
   {
+    this.initialize();
     return this.allSponsorsInfo.slice();
   }
 
-  addSponsor(sponsor : Sponsor, sponsorImage: File)
+  addSponsor(sponsor: Sponsor, fd: FormData)
   {
-    // this.http.post<{message: string, token: string}>(this.backEndURLService.getURL() + "api/users/login", {
-    //   email: 'admin@rcteam.com',
-    //   password: 'Racing2020Team'
-    // }).subscribe((res) => {
-    //   const token = res.token;
-    //   const helper = new JwtHelperService();
-    //   console.log(helper.decodeToken(token));
-    // }, error => console.log(error));
-    this.http.post(this.backEndURLService.getURL() + "api/sponsors/add", {
-      name: sponsor.name,
-      desc: sponsor.desc,
-      logo: sponsorImage
-    }).subscribe((res) => {
+    this.http.post<SponsorPostResponse>(this.backEndURLService.getURL() + "api/sponsors/add", fd).subscribe((res) => {
       console.log(res);
     }, (error) => {
       console.log(error);
@@ -71,12 +86,10 @@ export class SponsorsService {
       {
         value = false;
       }
-      console.log('there')
       if (value !== this.allSponsorsInfo[i].isChecked)
       {
-        console.log('here')
-        const URL = this.backEndURLService.getURL() + "api/sponsors/activate/:" + i.toString();
-        this.http.patch<{sponsors: Sponsor[], message: string}>(URL,{}).subscribe(
+        const URL = this.backEndURLService.getURL() + "api/sponsors/activate/" + i.toString();
+        this.http.patch<any>(URL, {}).subscribe(
             (res) => {
               console.log(res);
             }, error => {
@@ -94,12 +107,11 @@ export class SponsorsService {
 
   getTrueCheckedSponsors()
   {
+    this.initialize();
     this.trueCheckedSponsors = [];
-    for(var value of this.allSponsorsInfo)
-    {
-      if(value.isChecked == true)
-      {
-        this.trueCheckedSponsors.push(value);
+    for (let i = 0; i < this.allSponsorsInfo.length; i++) {
+      if (this.allSponsorsInfo[i].isChecked == true) {
+        this.trueCheckedSponsors.push(this.allSponsorsInfo[i]);
       }
     }
     return this.trueCheckedSponsors;
