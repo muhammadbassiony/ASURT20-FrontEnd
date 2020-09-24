@@ -42,7 +42,6 @@ import { SignInComponent } from './registration/sign-in/sign-in.component';
 import {RegistrationService} from './registration/registration.service';
 import {RegistrationInterceptorService} from './registration/registration-interceptor.service';
 import {PhotoRollFetcherService} from './services/photo-roll-fetcher.service';
-import {BackEndURLService} from '../app/services/back-end-url.service';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import {AboutUsComponent} from './about-us/about-us.component';
 
@@ -93,8 +92,17 @@ import {AboutUsComponent} from './about-us/about-us.component';
     FormsModule
 
   ],
-  providers: [PrizeService, FadeInService, RegistrationService,PhotoRollFetcherService,BackEndURLService,
-    {provide: HTTP_INTERCEPTORS, useClass: RegistrationInterceptorService, multi: true}],
+  providers: [
+    PrizeService, 
+    FadeInService, 
+    RegistrationService,
+    PhotoRollFetcherService,
+    {
+      provide: HTTP_INTERCEPTORS, 
+      useClass: RegistrationInterceptorService, 
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule{ }

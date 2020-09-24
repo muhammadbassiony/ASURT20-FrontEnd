@@ -4,7 +4,9 @@ import {SponsorsService} from '../../services/sponsors.service'
 import {Sponsor} from '../../models/sponsor.model'
 import {Subscription} from 'rxjs';
 import {SponsorInitializationService} from '../../sponsor-initialization.service';
-import {BackEndURLService} from '../../services/back-end-url.service';
+
+import { environment } from '../../../environments/environment';
+const backend_uri = environment.backend_uri;
 
 @Component({
   selector: 'app-sponsors-edit',
@@ -20,8 +22,7 @@ export class SponsorsEditComponent implements OnInit, OnDestroy {
   isGettingSponsors: boolean = false;
   sub: Subscription;
   constructor(private sponsorInitializationService: SponsorInitializationService,
-              private _SponsorsService:SponsorsService,
-              public backEndURLService: BackEndURLService) {}
+              private _SponsorsService:SponsorsService) {}
 
   ngOnInit(): void {
     this.sponsorInitializationService.Initialized++;

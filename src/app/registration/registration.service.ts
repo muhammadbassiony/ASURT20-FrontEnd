@@ -5,7 +5,9 @@ import {BehaviorSubject, throwError} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import {User} from './user.model';
-import {BackEndURLService} from '../services/back-end-url.service';
+
+import { environment } from '../../environments/environment';
+const backend_uri = environment.backend_uri;
 
 export interface RegisterResponseData {
   message: string;
@@ -21,8 +23,11 @@ interface DecryptedToken {
 
 @Injectable()
 export class RegistrationService {
-  constructor(private http: HttpClient, private backEndURLService: BackEndURLService, private router: Router) {
+
+  constructor(private http: HttpClient, 
+    private router: Router) {
   }
+
   user = new BehaviorSubject<User>(null);
   private decryptedToken: DecryptedToken;
   private tokenExpirationTimer: number;
@@ -42,7 +47,7 @@ export class RegistrationService {
 
   signUp(name: string, email: string, password: string) {
     console.log(name);
-    return this.http.post<RegisterResponseData>(this.backEndURLService.getURL() + "api/users/signup", {
+    return this.http.post<RegisterResponseData>(backend_uri + "api/users/signup", {
       name: name,
       email: email,
       password: password,
@@ -52,7 +57,7 @@ export class RegistrationService {
       }));
   }
   signIn(email: string, password: string) {
-    return this.http.post<RegisterResponseData>(this.backEndURLService.getURL() + "api/users/login", {
+    return this.http.post<RegisterResponseData>(backend_uri + "api/users/login", {
       email: email,
       password: password,
     }).pipe(catchError(this.handleError),

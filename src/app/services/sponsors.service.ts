@@ -1,9 +1,12 @@
 import {EventEmitter, Injectable, OnInit} from '@angular/core';
 import { Sponsor } from '../models/sponsor.model';
 import {Observable, Subject} from 'rxjs';
-import {BackEndURLService} from './back-end-url.service';
+
 import {HttpClient} from '@angular/common/http';
 import {SponsorInitializationService} from '../sponsor-initialization.service';
+
+import { environment } from '../../environments/environment';
+const backend_uri = environment.backend_uri;
 
 interface SponsorPostResponse {
   desc: string,
@@ -28,8 +31,7 @@ interface SponsorGetResponse {
 export class SponsorsService {
 
   constructor(private sponsorInitializationService: SponsorInitializationService,
-              private http: HttpClient,
-              private backEndURLService: BackEndURLService) {
+              private http: HttpClient) {
   }
   private allSponsorsInfo : Sponsor[]=[
     new Sponsor("assets/img/kader.png", "Arab Organization for Industrialization",'KADER factory for developed industries was established in 1949 under the name of "HELIOPOLIS AIRCRAFT FACTORY" to produce the primary training Aircraft ..', true, '1'),
@@ -44,13 +46,13 @@ export class SponsorsService {
   isGettingSponsors = new Subject<boolean>();
 
   async initialize() {
-    let res = await this.http.get<{sponsors: SponsorGetResponse[]}>(this.backEndURLService.getURL() + "api/sponsors/get").toPromise();
+    let res = await this.http.get<{sponsors: SponsorGetResponse[]}>(backend_uri + "api/sponsors/get").toPromise();
     console.log(typeof res);
     this.allSponsorsInfo.splice(0, this.allSponsorsInfo.length);
     console.log(res);
     const sponsorsArray = <Array<SponsorGetResponse>> res.sponsors
     for (let i = 0; i < sponsorsArray.length; i++) {
-      this.allSponsorsInfo.push(new Sponsor(this.backEndURLService.getURL() + sponsorsArray[i].logo,
+      this.allSponsorsInfo.push(new Sponsor(backend_uri + sponsorsArray[i].logo,
         sponsorsArray[i].name,
         sponsorsArray[i].desc,
         sponsorsArray[i].isChecked,
@@ -87,7 +89,7 @@ export class SponsorsService {
 
   addSponsor(sponsor: Sponsor, fd: FormData)
   {
-    this.http.post<SponsorPostResponse>(this.backEndURLService.getURL() + "api/sponsors/add", fd).subscribe(
+    this.http.post<SponsorPostResponse>(backend_uri + "api/sponsors/add", fd).subscribe(
       (res) => {
       console.log(res);
     }, (error) => {
@@ -113,7 +115,7 @@ export class SponsorsService {
       if (value !== this.allSponsorsInfo[i].isChecked)
       {
         console.log(this.allSponsorsInfo[i].id)
-        const URL = this.backEndURLService.getURL() + "api/sponsors/activate/" + this.allSponsorsInfo[i].id;
+        const URL = backend_uri + "api/sponsors/activate/" + this.allSponsorsInfo[i].id;
         this.http.patch<any>(URL, {}).subscribe(
             (res) => {
               console.log(res);
