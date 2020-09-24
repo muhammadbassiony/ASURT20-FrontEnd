@@ -5,6 +5,17 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import { mimeType } from './mime-type.validator';
 import {Photoroll} from '../../landing-page/photoroll.model';
 import {PhotorollService} from '../../landing-page/photoroll.service';
+import {ImageService} from "../../services/image.service";
+
+class ImageSnippet {
+  pending: boolean = false;
+  status: string = 'init';
+
+  constructor(public src: string, public file: File) {}
+}
+
+
+
 
 @Component({
   selector: 'app-photoroll-edit',
@@ -12,17 +23,20 @@ import {PhotorollService} from '../../landing-page/photoroll.service';
   styleUrls: ['./photoroll-edit.component.css']
 })
 export class PhotorollEditComponent implements OnInit {
+  selectedFile: ImageSnippet;
   private selectedPhotorollName: string;
+  uploadPaths : string[];
   photoroll: Photoroll[] = [
     new Photoroll(1, 'prize', 4, ['https://placeimg.com/1080/500/nat','https://placeimg.com/1080/500/nature','https://placeimg.com/1080/500/arch','https://placeimg.com/1080/500/history']),
     new Photoroll(1, 'landing-page', 4, ['https://placeimg.com/1080/500/nat','https://placeimg.com/1080/500/nature','https://placeimg.com/1080/500/arch','https://placeimg.com/1080/500/history'])
   ];
-  form: FormGroup;
+
+  form: FormGroup; // for edit by path
   // imagePreview: string[];
   private mode = 'edit/photo-roll';
   currentPhotoroll: Photoroll; // stores all needed to edit photoroll properties
 
-  constructor( public route: ActivatedRoute,
+  constructor( private imageService: ImageService, public route: ActivatedRoute,
                public photorollService: PhotorollService) { }
 
   // filename = 'robert fermino';
@@ -89,12 +103,13 @@ export class PhotorollEditComponent implements OnInit {
    this.initForm();
   }
 
+  // 1) edit by url
   private initForm() {
     let photorollName = '';
     let photorollIndex = null;
     let photorollPaths = new FormArray([]);
 
-    let files = new FormArray([new FormGroup({'file':new FormControl(null, Validators.required)})]) ;
+    //let files = new FormArray([new FormGroup({'file':new FormControl(null, Validators.required)})]) ;
     const photoroll: Photoroll = this.currentPhotoroll;
     photorollName = photoroll.photorollName;
     photorollIndex = photoroll.index;
@@ -107,7 +122,7 @@ export class PhotorollEditComponent implements OnInit {
       'name': new FormControl(photorollName, Validators.required),
       'index': new FormControl(photorollIndex, Validators.required),
       'paths' : photorollPaths,
-      'files' : files
+      // 'files' : files
     });
   }
 
@@ -137,61 +152,60 @@ export class PhotorollEditComponent implements OnInit {
   // }
 
 
-  onActiveImagePicked(event: Event) {
-    // let noFiles = (event.target as HTMLInputElement).files.length;
+  // onActiveImagePicked(event: Event) {
+  //   // let noFiles = (event.target as HTMLInputElement).files.length;
+  //
+  //   const file = (event.target as HTMLInputElement).files[0];
+  //   this.form.patchValue({activeImage: file});
+  //   this.form.get('activeImage').updateValueAndValidity({onlySelf: true});
+  //   const reader = new FileReader();
+  //   // this.photoroll.imagePaths.push((reader.result as string));
+  //   reader.onload = () => {
+  //     // this.photoroll.imagePaths.push((reader.result as string));
+  //     // this.imagePreview.push((reader.result as string));
+  //   };
+  //   reader.readAsDataURL(file);
+  //   // this.photoroll.imagePaths.push(reader.result as string );
+  //   // console.log(this.imagePreview)
+  // }
 
-    const file = (event.target as HTMLInputElement).files[0];
-    this.form.patchValue({activeImage: file});
-    this.form.get('activeImage').updateValueAndValidity({onlySelf: true});
-    const reader = new FileReader();
-    // this.photoroll.imagePaths.push((reader.result as string));
-    reader.onload = () => {
-      // this.photoroll.imagePaths.push((reader.result as string));
-      // this.imagePreview.push((reader.result as string));
-    };
-    reader.readAsDataURL(file);
-    // this.photoroll.imagePaths.push(reader.result as string );
-    // console.log(this.imagePreview)
-  }
 
-
-  onOtherImagePicked(event: Event) {
-    const noFiles = (event.target as HTMLInputElement).files.length;
-    console.log(noFiles);
-    console.log((event.target as HTMLInputElement).files);
-    // for (let i=0; i<noFiles; i++) {
-    const files = (event.target as HTMLInputElement).files;
-    this.form.patchValue({otherImages: files});
-    this.form.get('otherImages').updateValueAndValidity({onlySelf: true});
-    for (let i = 0; i < noFiles; i++) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        // this.photoroll.imagePaths.push((reader.result as string));
-        // this.imagePreview.push((reader.result as string));
-      };
-      const file = files[i];
-      console.log(file);
-      reader.readAsDataURL(file);
-    }
-  }
+  // onOtherImagePicked(event: Event) {
+  //   const noFiles = (event.target as HTMLInputElement).files.length;
+  //   console.log(noFiles);
+  //   console.log((event.target as HTMLInputElement).files);
+  //   // for (let i=0; i<noFiles; i++) {
+  //   const files = (event.target as HTMLInputElement).files;
+  //   this.form.patchValue({otherImages: files});
+  //   this.form.get('otherImages').updateValueAndValidity({onlySelf: true});
+  //   for (let i = 0; i < noFiles; i++) {
+  //     const reader = new FileReader();
+  //     reader.onload = () => {
+  //       // this.photoroll.imagePaths.push((reader.result as string));
+  //       // this.imagePreview.push((reader.result as string));
+  //     };
+  //     const file = files[i];
+  //     console.log(file);
+  //     reader.readAsDataURL(file);
+  //   }
+  // }
 
   onSubmit() {
 
-    this.photorollService.updatePhotoroll (this.form.value);
-
+    //this.photorollService.updatePhotoroll (this.form.value , this.currentPhotoroll);
+    this.currentPhotoroll = this.form.value;
+    for (let path of this.uploadPaths){
+      this.currentPhotoroll.imagePaths.push(path);
+    }
+    console.log(this.currentPhotoroll);
+    this.photorollService.updatePhotoroll (this.form.value , this.currentPhotoroll);
   }
 
   onCancel() {
-
+this.form.reset();
   }
 
-  onDeleteIngredient(i: number) {
 
-  }
-
-  onAddIngredient() {
-
-  }
 
   onChange(value: any) {
     this.selectedPhotorollName = value.value;
@@ -209,19 +223,59 @@ export class PhotorollEditComponent implements OnInit {
     );
   }
 
-  onImagePicked(event: Event) {
+  // onImagePicked(event: Event) {
+  //
+  //   const reader = new FileReader();
+  //   const file = (event.target as HTMLInputElement).files[0];
+  //     reader.readAsDataURL(file);
+  //
+  //     reader.onload = () => {
+  //       // this.form.patchValue({
+  //         // file: reader.result;
+  //         // console.log(this.form.get('file'));});
+  //       (<FormArray>this.form.get('files')).push(new FormGroup({
+  //         'file': new FormControl(file, Validators.required)}));
+  //     };
+  //   }
 
+    // upload photo new
+  noPhotoToBeAdded: number = 1;
+
+  private onSuccess() {
+    this.selectedFile.pending = false;
+    this.selectedFile.status = 'ok';
+  }
+
+  private onError() {
+    this.selectedFile.pending = false;
+    this.selectedFile.status = 'fail';
+    this.selectedFile.src = '';
+  }
+
+  processFile(imageInput: any) {
+    const file: File = imageInput.files[0];
     const reader = new FileReader();
-    const file = (event.target as HTMLInputElement).files[0];
-      reader.readAsDataURL(file);
 
-      reader.onload = () => {
-        // this.form.patchValue({
-          // file: reader.result;
-          // console.log(this.form.get('file'));});
-        (<FormArray>this.form.get('files')).push(new FormGroup({
-          'file': new FormControl(file, Validators.required)}));
-      };
-    }
+    reader.addEventListener('load', (event: any) => {
 
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+
+      this.selectedFile.pending = true;
+      this.imageService.uploadImage(this.selectedFile.file).subscribe(
+        (res) => {
+          this.onSuccess();
+          //this.currentPhotoroll.imagePaths.push( res.value.imagePath );
+          this.uploadPaths.push(res.value.imagePath);
+        },
+        (err) => {
+          this.onError();
+        })
+    });
+
+    reader.readAsDataURL(file);
+  }
+//utility functions
+  arrayOne(number: number) {
+    return Array(number);
+  }
 }

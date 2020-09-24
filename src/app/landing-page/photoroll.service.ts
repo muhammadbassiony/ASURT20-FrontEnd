@@ -84,9 +84,9 @@ export class PhotorollService {
   // }
 
 
-  updatePhotoroll(value: any) {
-    this.photoroll[value.index] = value;
-    this.photoroll[value.index].noPhotos =  value.paths.length;
+  updatePhotoroll(value: any , newPhotoroll: Photoroll) {
+    this.photoroll[value.index] = newPhotoroll;
+    this.photoroll[value.index].noPhotos =  newPhotoroll.imagePaths.length;
     console.log(this.photoroll[value.index]);
     let pr = this.photoroll[value.index];
     this.photorollChanged.next(pr);
