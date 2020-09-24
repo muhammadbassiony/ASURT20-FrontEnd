@@ -95,6 +95,10 @@ export class SponsorsService {
     });
     this.allSponsorsInfo.push(sponsor);
     this.allSponsors.next(this.allSponsorsInfo.slice());
+    let sponsors = this.getTrueCheckedSponsors();
+    sponsors.then(value => {
+      this.checkedSponsors.next(value);
+    });
   }
 
   editSponsorsState(checkedState:boolean[])
