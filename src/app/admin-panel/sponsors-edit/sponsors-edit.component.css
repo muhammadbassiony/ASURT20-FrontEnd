@@ -32,3 +32,6 @@
 .card-title {
   margin: 1rem;
 }
+.alert {
+  z-index: 1000;
+}

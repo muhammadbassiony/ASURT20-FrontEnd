@@ -47,9 +47,7 @@ export class SponsorsService {
 
   async initialize() {
     let res = await this.http.get<{sponsors: SponsorGetResponse[]}>(backend_uri + "/main/sponsors/get").toPromise();
-    console.log(typeof res);
     this.allSponsorsInfo.splice(0, this.allSponsorsInfo.length);
-    console.log(res);
     const sponsorsArray = <Array<SponsorGetResponse>> res.sponsors
     for (let i = 0; i < sponsorsArray.length; i++) {
       this.allSponsorsInfo.push(new Sponsor(backend_uri + sponsorsArray[i].logo,
@@ -58,23 +56,7 @@ export class SponsorsService {
         sponsorsArray[i].isChecked,
         sponsorsArray[i]._id));
     }
-    // this.http.get<{sponsors: SponsorGetResponse[]}>(this.backEndURLService.getURL() + "api/main/sponsors/get").subscribe(
-    //   (res) => {
-    //     this.allSponsorsInfo.splice(0, this.allSponsorsInfo.length);
-    //     console.log(res);
-    //     const sponsorsArray = <Array<SponsorGetResponse>> res.sponsors
-    //     for (let i = 0; i < sponsorsArray.length; i++) {
-    //       this.allSponsorsInfo.push(new Sponsor(this.backEndURLService.getURL() + sponsorsArray[i].logo,
-    //         sponsorsArray[i].name,
-    //         sponsorsArray[i].desc,
-    //         sponsorsArray[i].isChecked,
-    //         sponsorsArray[i]._id));
-    //     }
-    //   }, (error) => {
-    //     console.log(error);
-    //   }
-    // );
-    console.log(this.allSponsorsInfo);
+
   }
 
   async getAllSponsorsInfo()
@@ -87,19 +69,31 @@ export class SponsorsService {
     return this.allSponsorsInfo.slice();
   }
 
-  addSponsor(sponsor: Sponsor, fd: FormData)
+  async addSponsor(fd: FormData)
   {
-    this.http.post<SponsorPostResponse>(backend_uri + "/main/sponsors/add", fd).subscribe(
-      (res) => {
-      console.log(res);
-    }, (error) => {
-      console.log(error);
-    });
-    this.allSponsorsInfo.push(sponsor);
-    this.allSponsors.next(this.allSponsorsInfo.slice());
-    let sponsors = this.getTrueCheckedSponsors();
-    sponsors.then(value => {
-      this.checkedSponsors.next(value);
+    return new Promise((resolve, reject) => {
+      this.http.post<{sponsor: SponsorPostResponse}>(backend_uri + "/main/sponsors/add", fd).subscribe(
+        (correctRes) => {
+          this.isGettingSponsors.next(true);
+          const promise = this.initialize();
+          promise.then(value => {
+            this.isGettingSponsors.next(false);
+            this.sponsorInitializationService.Initialized = 0;
+            this.allSponsors.next(this.allSponsorsInfo.slice());
+            let sponsors = this.getTrueCheckedSponsors();
+            sponsors.then(value => {
+              this.checkedSponsors.next(value);
+            }, reason => {
+              reject(reason);
+            });
+          }, reason => {
+            reject(reason);
+          });
+          resolve(correctRes);
+        }, (error) => {
+          reject(error);
+        }
+      );
     });
   }
 

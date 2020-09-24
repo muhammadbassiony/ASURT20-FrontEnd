@@ -6,6 +6,7 @@ import {Subscription} from 'rxjs';
 import {SponsorInitializationService} from '../../sponsor-initialization.service';
 
 import { environment } from '../../../environments/environment';
+import {HttpErrorResponse} from '@angular/common/http';
 const backend_uri = environment.backend_uri;
 
 //  TODO
@@ -24,6 +25,7 @@ export class SponsorsEditComponent implements OnInit, OnDestroy {
   selectedImg: File = null;
   isGettingSponsors: boolean = false;
   sub: Subscription;
+  message: string = null;
   constructor(private sponsorInitializationService: SponsorInitializationService,
               private _SponsorsService:SponsorsService) {}
 
@@ -61,15 +63,20 @@ export class SponsorsEditComponent implements OnInit, OnDestroy {
 
   onSubmit()
   {
-    let logo = this.sponsorEditForm.value.sponsorLogo;
     let name = this.sponsorEditForm.value.sponsorName;
     let desc = this.sponsorEditForm.value.sponsorDesc;
-    let addedSponsor = new Sponsor (logo, name, desc,false, '2022');
     let fd = new FormData();
     fd.append('name', name);
     fd.append('desc', desc);
     fd.append('logo', this.selectedImg, this.selectedImg.name);
-    this._SponsorsService.addSponsor(addedSponsor, fd);
+    const promise = this._SponsorsService.addSponsor(fd);
+    promise.then((value) => {
+      this.message = 'Sponsor created successfully!';
+      this.sponsorEditForm.reset();
+      }, (reason: HttpErrorResponse) => {
+      this.message = reason.message;
+      console.log(reason);
+    });
   }
 
   changeState()
