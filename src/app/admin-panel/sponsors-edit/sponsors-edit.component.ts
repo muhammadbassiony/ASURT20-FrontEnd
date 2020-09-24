@@ -8,6 +8,9 @@ import {SponsorInitializationService} from '../../sponsor-initialization.service
 import { environment } from '../../../environments/environment';
 const backend_uri = environment.backend_uri;
 
+//  TODO
+// 1- reset forms after new sponsor submit
+
 @Component({
   selector: 'app-sponsors-edit',
   templateUrl: './sponsors-edit.component.html',
