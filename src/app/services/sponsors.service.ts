@@ -46,7 +46,7 @@ export class SponsorsService {
   isGettingSponsors = new Subject<boolean>();
 
   async initialize() {
-    let res = await this.http.get<{sponsors: SponsorGetResponse[]}>(backend_uri + "api/sponsors/get").toPromise();
+    let res = await this.http.get<{sponsors: SponsorGetResponse[]}>(backend_uri + "/main/sponsors/get").toPromise();
     console.log(typeof res);
     this.allSponsorsInfo.splice(0, this.allSponsorsInfo.length);
     console.log(res);
@@ -58,7 +58,7 @@ export class SponsorsService {
         sponsorsArray[i].isChecked,
         sponsorsArray[i]._id));
     }
-    // this.http.get<{sponsors: SponsorGetResponse[]}>(this.backEndURLService.getURL() + "api/sponsors/get").subscribe(
+    // this.http.get<{sponsors: SponsorGetResponse[]}>(this.backEndURLService.getURL() + "api/main/sponsors/get").subscribe(
     //   (res) => {
     //     this.allSponsorsInfo.splice(0, this.allSponsorsInfo.length);
     //     console.log(res);
@@ -89,7 +89,7 @@ export class SponsorsService {
 
   addSponsor(sponsor: Sponsor, fd: FormData)
   {
-    this.http.post<SponsorPostResponse>(backend_uri + "api/sponsors/add", fd).subscribe(
+    this.http.post<SponsorPostResponse>(backend_uri + "/main/sponsors/add", fd).subscribe(
       (res) => {
       console.log(res);
     }, (error) => {
@@ -115,7 +115,7 @@ export class SponsorsService {
       if (value !== this.allSponsorsInfo[i].isChecked)
       {
         console.log(this.allSponsorsInfo[i].id)
-        const URL = backend_uri + "api/sponsors/activate/" + this.allSponsorsInfo[i].id;
+        const URL = backend_uri + "/main/sponsors/activate/" + this.allSponsorsInfo[i].id;
         this.http.patch<any>(URL, {}).subscribe(
             (res) => {
               console.log(res);

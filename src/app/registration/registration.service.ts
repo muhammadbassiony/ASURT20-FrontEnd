@@ -47,7 +47,7 @@ export class RegistrationService {
 
   signUp(name: string, email: string, password: string) {
     console.log(name);
-    return this.http.post<RegisterResponseData>(backend_uri + "api/users/signup", {
+    return this.http.post<RegisterResponseData>(backend_uri + "/auth/user/signup", {
       name: name,
       email: email,
       password: password,
@@ -57,7 +57,7 @@ export class RegistrationService {
       }));
   }
   signIn(email: string, password: string) {
-    return this.http.post<RegisterResponseData>(backend_uri + "api/users/login", {
+    return this.http.post<RegisterResponseData>(backend_uri + "/auth/user/login", {
       email: email,
       password: password,
     }).pipe(catchError(this.handleError),
