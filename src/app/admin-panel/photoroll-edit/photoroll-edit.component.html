@@ -121,18 +121,51 @@
       <hr>
       <div class="row">
         <div class="col-xs-12">
-          <button type="button" class="btn btn-success" (click)="onAddPhoto()">Add Photo</button>
+          <button type="button" class="btn btn-success" (click)="onAddPhoto()">Add Photo by Url</button>
         </div>
       </div>
     </div>
   </div>
 </form>
+<hr>
+<hr>
+
+
 
 <!--<div class="row" formArrayName="files">-->
 <!--  <div class="col-6">-->
 <!--    <input  type="file" formControlName="file" (change)="onImagePicked($event)">-->
 <!--  </div>-->
 <!--</div>-->
+<h3 class="text-center">Upload photo roll photos</h3>
+<div class="row">
+  <label>Select Number of Photos you want to add  </label>
+<input class="form-control" type="number" min="1" value="10" [(ngModel)]="noPhotoToBeAdded">
+</div>
+<div class="row" *ngFor="let item of arrayOne(noPhotoToBeAdded) ">
+<label class="image-upload-container btn btn-bwm">
+  <span>Select Image</span>
+  <input #imageInput
+         type="file"
+         accept="image/*"
+         (change)="processFile(imageInput)">
+</label>
+
+
+<div *ngIf="selectedFile" class="img-preview-container">
+
+  <div class="img-preview{{selectedFile.status === 'fail' ? '-error' : ''}}"
+       [ngStyle]="{'background-image': 'url('+ selectedFile.src + ')'}">
+  </div>
+
+  <div *ngIf="selectedFile.pending" class="img-loading-overlay">
+    <div class="img-spinning-circle"></div>
+  </div>
+
+  <div *ngIf="selectedFile.status === 'ok'" class="alert alert-success"> Image Uploaded Succesfuly!</div>
+  <div *ngIf="selectedFile.status === 'fail'" class="alert alert-danger"> Image Upload Failed!</div>
+</div>
+</div>
 
 
 <!--    <label *ngFor="let photos in photoroll" for="name">Choose Photo-roll {{photos.imagePaths[0]}}</label>-->
