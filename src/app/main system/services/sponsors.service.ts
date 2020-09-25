@@ -2,7 +2,7 @@ import {EventEmitter, Injectable, OnInit} from '@angular/core';
 import { Sponsor } from '../models/sponsor.model';
 import {Observable, Subject} from 'rxjs';
 
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {SponsorInitializationService} from '../../sponsor-initialization.service';
 
 import { environment } from '../../../environments/environment';
@@ -44,6 +44,8 @@ export class SponsorsService {
   checkedSponsors = new Subject<Sponsor[]>();
   allSponsors = new Subject<Sponsor[]>();
   isGettingSponsors = new Subject<boolean>();
+  editResponseSuccess = new Subject<any>();
+  editResponseError = new Subject<HttpErrorResponse>();
 
   async initialize() {
     let res = await this.http.get<{sponsors: SponsorGetResponse[]}>(backend_uri + "/main/sponsors/get").toPromise();
@@ -71,7 +73,7 @@ export class SponsorsService {
 
   async addSponsor(fd: FormData)
   {
-    return new Promise((resolve, reject) => {
+    return await new Promise((resolve, reject) => {
       this.http.post<{sponsor: SponsorPostResponse}>(backend_uri + "/main/sponsors/add", fd).subscribe(
         (correctRes) => {
           this.isGettingSponsors.next(true);
@@ -97,7 +99,7 @@ export class SponsorsService {
     });
   }
 
-  editSponsorsState(checkedState:boolean[])
+  async editSponsorsState(checkedState:boolean[])
   {
     let i=0;
     for(var value of checkedState)
@@ -108,14 +110,10 @@ export class SponsorsService {
       }
       if (value !== this.allSponsorsInfo[i].isChecked)
       {
-        console.log(this.allSponsorsInfo[i].id)
         const URL = backend_uri + "/main/sponsors/activate/" + this.allSponsorsInfo[i].id;
-        this.http.patch<any>(URL, {}).subscribe(
-            (res) => {
-              console.log(res);
-            }, error => {
-              console.log(error);
-            }
+        await this.http.patch<any>(URL, {}).toPromise().then(
+          res => this.editResponseSuccess.next(res),
+          reason => this.editResponseError.next(reason)
         );
         this.allSponsorsInfo[i].isChecked = value;
       }

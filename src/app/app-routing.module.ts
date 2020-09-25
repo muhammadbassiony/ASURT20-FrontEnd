@@ -17,6 +17,8 @@ import { RegistrationComponent } from './registration/registration.component';
 import { SignUpComponent } from './registration/sign-up/sign-up.component';
 import { SignInComponent } from './registration/sign-in/sign-in.component';
 
+import {AdminGuardService} from './main system/admin-panel/admin-guard.service';
+
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent, pathMatch: 'full' },
@@ -27,7 +29,7 @@ const routes: Routes = [
       {path: 'rov', component: RovComponent}
     ]},
   { path: 'sponsors', component: SponsorsComponent },
-  { path: 'edit', component: AdminPanelComponent, children:[
+  { path: 'edit', component: AdminPanelComponent, canActivate: [AdminGuardService], children:[
       { path: 'add-prize', component: AddPrizesComponent },
       { path: 'competition', component: CompetitionEditComponent },
       { path: 'photo-roll', component: PhotorollEditComponent },
