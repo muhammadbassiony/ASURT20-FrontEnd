@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from "@angular/forms";
-import {Prize} from "../../models/prize.model";
-import {PrizeService} from "../../services/prize.service";
+import { NgForm } from "@angular/forms";
+import { Prize } from "../../models/prize.model";
+import { PrizeService } from "../../services/prize.service";
 
 @Component({
   selector: 'app-add-prizes',
@@ -10,15 +10,20 @@ import {PrizeService} from "../../services/prize.service";
 })
 export class AddPrizesComponent implements OnInit {
 
-  constructor(private prizeService: PrizeService) { }
   selectedImg: File = null;
+
+  constructor(private prizeService: PrizeService) { }
+  
+
   ngOnInit(): void {
+    
   }
 
   onImgUploaded(event) {
     this.selectedImg = <File>event.target.files[0];
     console.log(this.selectedImg)
   }
+
   onPrizeSubmit(form: NgForm) {
     const formData = new FormData();
     formData.append('competitionName', form.control.value.competitionName);
@@ -30,4 +35,5 @@ export class AddPrizesComponent implements OnInit {
       console.log(result)
     });
   }
+
 }

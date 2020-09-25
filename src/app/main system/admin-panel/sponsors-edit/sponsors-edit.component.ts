@@ -3,9 +3,9 @@ import {FormGroup, FormControl, Validators} from '@angular/forms'
 import {SponsorsService} from '../../services/sponsors.service'
 import {Sponsor} from '../../models/sponsor.model'
 import {Subscription} from 'rxjs';
-import {SponsorInitializationService} from '../../sponsor-initialization.service';
+import {SponsorInitializationService} from '../../../sponsor-initialization.service';
 
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 import {HttpErrorResponse} from '@angular/common/http';
 const backend_uri = environment.backend_uri;
 

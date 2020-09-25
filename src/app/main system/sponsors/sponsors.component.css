@@ -1,5 +1,5 @@
 /*FADE-IN EFFECT. PLEASE DO NOT REMOVE SO THE COMPONENT IS FADED IN WHEN IT IS LOADED*/
-@import "../fade-in.css";
+@import "../../fade-in.css";
 /*Margin to push the section away from the header*/
 .explore-section {
   margin-top: 11rem;
@@ -16,6 +16,10 @@
 .transform
 {
     transform: skewX(10deg);
+    -webkit-transform: skewX(10deg);
+    -moz-transform: skewX(10deg);
+    -ms-transform: skewX(10deg);
+    -o-transform: skewX(10deg);
 }
 
 .card
