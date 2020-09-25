@@ -5,7 +5,7 @@ import { map } from "rxjs/operators";
 import { Router } from "@angular/router";
 import {Photoroll} from "./photoroll.model";
 
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 const backend_uri = environment.backend_uri;
 
 @Injectable({ providedIn: 'root' })

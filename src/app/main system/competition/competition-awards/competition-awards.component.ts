@@ -1,6 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
-import { Prize } from 'src/app/models/prize.model';
-import { PrizeService } from 'src/app/services/prize.service';
+import { Prize } from '../../models/prize.model';
+import { PrizeService } from '../../services/prize.service';
 
 @Component({
   selector: 'app-competition-awards',

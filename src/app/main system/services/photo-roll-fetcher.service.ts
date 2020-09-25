@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 // import{ BackEndURLService} from './back-end-url.service';
-import {Photoroll} from "src/app/landing-page/photoroll.model";
+import {Photoroll} from "../landing-page/photoroll.model";
 
 //import { Observable, throwError } from 'rxjs';
 //import { catchError, retry } from 'rxjs/operators';
 
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 const backend_uri = environment.backend_uri;
 
  interface PhotoRollBackEndModel {

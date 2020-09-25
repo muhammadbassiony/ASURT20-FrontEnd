@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Prize } from 'src/app/models/prize.model';
+import { Prize } from 'src/app/main system/models/prize.model';
 
 @Component({
   selector: 'app-cards-roll',

@@ -3,9 +3,9 @@ import { Sponsor } from '../models/sponsor.model';
 import {Observable, Subject} from 'rxjs';
 
 import {HttpClient} from '@angular/common/http';
-import {SponsorInitializationService} from '../sponsor-initialization.service';
+import {SponsorInitializationService} from '../../sponsor-initialization.service';
 
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 const backend_uri = environment.backend_uri;
 
 interface SponsorPostResponse {
