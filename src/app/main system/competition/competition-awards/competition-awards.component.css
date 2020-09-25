@@ -1,4 +1,4 @@
-@import "../../../fade-in.css";
+@import "../../../shared/fade-in.css";
 .card{
     width: 18rem;
 }

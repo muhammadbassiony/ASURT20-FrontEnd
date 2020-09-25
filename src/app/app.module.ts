@@ -44,10 +44,10 @@ import { SignInComponent } from './registration/sign-in/sign-in.component';
 import { RegistrationService } from './registration/registration.service';
 import { RegistrationInterceptorService } from './registration/registration-interceptor.service';
 import { PhotoRollFetcherService } from './main system/services/photo-roll-fetcher.service';
-import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { AboutUsComponent } from './main system/about-us/about-us.component';
 
-import { FadeInService } from "./fade-in.service";
+import { FadeInService } from "./shared/fade-in.service";
 import { PrizeService } from "./main system/services/prize.service";
 import {AdminGuardService} from './main system/admin-panel/admin-guard.service';
 

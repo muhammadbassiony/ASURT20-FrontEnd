@@ -5,7 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 import {DOCUMENT} from "@angular/common";
-import {FadeInService} from "./fade-in.service";
+import {FadeInService} from "./shared/fade-in.service";
 import {RegistrationService} from './registration/registration.service';
 
 @Component({
