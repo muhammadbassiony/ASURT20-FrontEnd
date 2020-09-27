@@ -21,11 +21,11 @@ export class SignUpComponent implements OnInit {
   password: string;
   confirmPassword: string;
   onSignUpSubmit(signUpForm: NgForm) {
-    // console.log(signUpForm.value);
+    console.log(signUpForm);
     if (signUpForm.invalid) {
       return;
     }
-    const name = signUpForm.value.name;
+    // const name = signUpForm.value.name;
     const email = signUpForm.value.email;
     const password = signUpForm.value.password;
 
@@ -33,7 +33,7 @@ export class SignUpComponent implements OnInit {
     let signUpObs: Observable<RegisterResponseData>;
     this.isLoading = true;
 
-    signUpObs = this.registerService.signUp(name, email, password);
+    signUpObs = this.registerService.signUp(email, password);
     signUpObs.subscribe(responseData => {
       console.log(responseData);
       this.isLoading = false;

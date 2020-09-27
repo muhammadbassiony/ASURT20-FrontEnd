@@ -91,12 +91,12 @@ export class RegistrationService {
     console.log('HANDLE REG HERE!!');
   }
 
-  signUp(name: string, email: string, password: string) {
+  signUp(email: string, password: string) {
     // console.log(name);
     return this.http.post<RegisterResponseData>(
       backend_uri + "/auth/user/signup", 
       {
-        name: name,
+        // name: name,
         email: email,
         password: password,
       }
