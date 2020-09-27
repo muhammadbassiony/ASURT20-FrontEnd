@@ -31,15 +31,16 @@ export class SignInComponent implements OnInit {
     let signInObs: Observable<RegisterResponseData>;
     this.isLoading = true;
 
-   this.registerService.signIn(email, password)
-  .subscribe(responseData => {
-      this.isLoading = false;
-      this.router.navigate(['/home']);
-  }, errorMessage => {
-      this.isLoading = false;
-      this.error = errorMessage;
-      alert('login insuccesful!');
-  });
-  signInForm.reset();
+    this.registerService.signIn(email, password)
+    .subscribe(responseData => {
+        this.isLoading = false;
+        this.router.navigate(['/dashboard']);
+        
+    }, errorMessage => {
+        this.isLoading = false;
+        this.error = errorMessage;
+        alert('login insuccesful!');
+    });
+    signInForm.reset();
   }
 }

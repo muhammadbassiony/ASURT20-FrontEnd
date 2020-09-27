@@ -22,6 +22,7 @@ import { SignInComponent } from './registration/sign-in/sign-in.component';
 
 import {AdminGuardService} from './registration/admin-guard.service';
 
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent, pathMatch: 'full' },
@@ -41,7 +42,9 @@ const routes: Routes = [
   { path: 'about-us', component: AboutUsComponent },
   
   { path: 'sign-up', component: SignUpComponent },
-  { path: 'sign-in', component: SignInComponent }
+  { path: 'sign-in', component: SignInComponent },
+  // { path: 'dashboard/:userId', component: DashboardComponent }
+  { path: 'dashboard', component: DashboardComponent }
 ];
 
 @NgModule({

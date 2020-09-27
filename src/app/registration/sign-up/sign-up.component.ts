@@ -33,11 +33,12 @@ export class SignUpComponent implements OnInit {
     let signUpObs: Observable<RegisterResponseData>;
     this.isLoading = true;
 
-    signUpObs = this.registerService.signUp(email, password);
-    signUpObs.subscribe(responseData => {
+    this.registerService.signUp(email, password)
+    .subscribe(responseData => {
       console.log(responseData);
       this.isLoading = false;
-      this.router.navigate(['/home']);
+      this.router.navigate(['/dashboard']);
+      
     }, errorMessage => {
       console.log(errorMessage);
       this.isLoading = false;

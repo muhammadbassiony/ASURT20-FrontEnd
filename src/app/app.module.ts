@@ -50,6 +50,8 @@ import { FadeInService } from "./shared/fade-in.service";
 import { PrizeService } from "./main system/services/prize.service";
 import {AdminGuardService} from './registration/admin-guard.service';
 
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 
 @NgModule({
   declarations: [
@@ -80,6 +82,7 @@ import {AdminGuardService} from './registration/admin-guard.service';
     SignUpComponent,
     SignInComponent,
     LoadingSpinnerComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
