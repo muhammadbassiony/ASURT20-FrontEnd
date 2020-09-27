@@ -6,7 +6,7 @@ import {
   UrlTree} from '@angular/router';
 
 import {Observable} from "rxjs"; 
-import {RegistrationService} from '../../registration/registration.service';
+import {RegistrationService} from './registration.service';
 import {map, take} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
 
@@ -19,17 +19,17 @@ export class AdminGuardService implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      return this.registrationService.user.pipe(
+      return this.registrationService.authUser.pipe(
         take(1),
         map(user => {
           if (!user) {
-            return this.router.createUrlTree(['/register/sign-in']);
+            return this.router.createUrlTree(['/sign-in']);
           }
-          const isAdmin = user.isAdmin == 1;
-          if (isAdmin) {
+          // const isAdmin = user.level == 1;
+          if (user.level >= 1) {
             return true;
           }
-          return this.router.createUrlTree(['/register/sign-in']);
+          return this.router.createUrlTree(['/sign-in']);
         })
       );
   }

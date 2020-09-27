@@ -5,19 +5,22 @@ import { CompetitionComponent } from './main system/competition/competition.comp
 import { FormulaComponent } from './main system/competition/formula/formula.component';
 import { RovComponent } from './main system/competition/rov/rov.component';
 import { ShellComponent } from './main system/competition/shell/shell.component';
+
 import { LandingPageComponent } from './main system/landing-page/landing-page.component';
 import { PhotorollEditComponent } from './main system/admin-panel/photoroll-edit/photoroll-edit.component';
 import { SponsorsComponent } from "./main system/sponsors/sponsors.component";
+
 import { AdminPanelComponent } from "./main system/admin-panel/admin-panel.component";
 import { AddPrizesComponent } from "./main system/admin-panel/add-prizes/add-prizes.component";
 import { CompetitionEditComponent } from "./main system/admin-panel/competition-edit/competition-edit.component";
 import { SponsorsEditComponent } from "./main system/admin-panel/sponsors-edit/sponsors-edit.component";
+
 import { AboutUsComponent } from "./main system/about-us/about-us.component";
-import { RegistrationComponent } from './registration/registration.component';
+
 import { SignUpComponent } from './registration/sign-up/sign-up.component';
 import { SignInComponent } from './registration/sign-in/sign-in.component';
 
-import {AdminGuardService} from './main system/admin-panel/admin-guard.service';
+import {AdminGuardService} from './registration/admin-guard.service';
 
 
 const routes: Routes = [
@@ -36,10 +39,9 @@ const routes: Routes = [
       { path: 'sponsors', component: SponsorsEditComponent }
     ]},
   { path: 'about-us', component: AboutUsComponent },
-  { path: 'register', component: RegistrationComponent, children:[
-      { path: 'sign-up', component: SignUpComponent },
-      { path: 'sign-in', component: SignInComponent }
-    ]}
+  
+  { path: 'sign-up', component: SignUpComponent },
+  { path: 'sign-in', component: SignInComponent }
 ];
 
 @NgModule({

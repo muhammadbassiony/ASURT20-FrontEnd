@@ -19,12 +19,12 @@ export class AppComponent implements OnInit{
   constructor(@Inject(DOCUMENT) document, private registrationService: RegistrationService) {
   }
   ngOnInit() {
-    this.registrationService.autoSign();
-    this.registrationService.user.subscribe((user) => {
+    this.registrationService.autoSignin();
+    this.registrationService.authUser.subscribe((user) => {
       if (!user) {
         this.isAdminMode = false;
       } else {
-        this.isAdminMode = user.isAdmin === 1;
+        this.isAdminMode = user.level >= 1;
       }
     });
   }

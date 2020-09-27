@@ -38,7 +38,6 @@ import { CompetitionParagraphComponent } from './main system/competition/competi
 
 import { CloseDirective } from "./main system/admin-panel/close.directive";
 import { FooterComponent } from './footer/footer.component';
-import { RegistrationComponent } from './registration/registration.component';
 import { SignUpComponent } from './registration/sign-up/sign-up.component';
 import { SignInComponent } from './registration/sign-in/sign-in.component';
 import { RegistrationService } from './registration/registration.service';
@@ -49,7 +48,7 @@ import { AboutUsComponent } from './main system/about-us/about-us.component';
 
 import { FadeInService } from "./shared/fade-in.service";
 import { PrizeService } from "./main system/services/prize.service";
-import {AdminGuardService} from './main system/admin-panel/admin-guard.service';
+import {AdminGuardService} from './registration/admin-guard.service';
 
 
 @NgModule({
@@ -78,7 +77,6 @@ import {AdminGuardService} from './main system/admin-panel/admin-guard.service';
     CompetitionParagraphComponent,
     CloseDirective,
     FooterComponent,
-    RegistrationComponent,
     SignUpComponent,
     SignInComponent,
     LoadingSpinnerComponent,

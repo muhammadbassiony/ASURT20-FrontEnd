@@ -13,19 +13,19 @@ import {RegistrationService} from '../registration/registration.service';
 export class HeaderComponent implements OnInit, OnDestroy {
 
   isAuthorized: boolean = false;
-
   private userSubscription: Subscription;
-  @Input()isAdminMode: boolean;
-  constructor(@Inject(DOCUMENT) document, private registrationService: RegistrationService) {
 
-  }
+  @Input()isAdminMode: boolean;
+  constructor(
+    @Inject(DOCUMENT) document, 
+    private registrationService: RegistrationService) { }
 
   ngOnInit(): void {
     const header = document.getElementById('header');
     if (this.applyMql('900px')) {
       header.classList.add('header-closed');
     }
-    this.userSubscription = this.registrationService.user.subscribe(user => {
+    this.userSubscription = this.registrationService.authUser.subscribe(user => {
       this.isAuthorized = !!user;
     });
   }

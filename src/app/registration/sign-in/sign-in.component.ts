@@ -32,7 +32,7 @@ export class SignInComponent implements OnInit {
     signInObs = this.registerService.signIn(email, password);
     signInObs.subscribe(responseData => {
       const helper = new JwtHelperService();
-      console.log(helper.decodeToken(responseData.token));
+      console.log(helper.decodeToken(responseData.user.token));
       this.isLoading = false;
       this.router.navigate(['/home']);
     }, errorMessage => {
