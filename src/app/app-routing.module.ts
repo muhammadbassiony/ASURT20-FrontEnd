@@ -43,8 +43,8 @@ const routes: Routes = [
   
   { path: 'sign-up', component: SignUpComponent },
   { path: 'sign-in', component: SignInComponent },
-  // { path: 'dashboard/:userId', component: DashboardComponent }
-  { path: 'dashboard', component: DashboardComponent }
+  { path: 'dashboard/:userId', component: DashboardComponent }
+  // { path: 'dashboard', component: DashboardComponent }
 ];
 
 @NgModule({

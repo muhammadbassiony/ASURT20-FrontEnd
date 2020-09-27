@@ -37,7 +37,7 @@ export class SignUpComponent implements OnInit {
     .subscribe(responseData => {
       console.log(responseData);
       this.isLoading = false;
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/dashboard', responseData.user._id]);
       
     }, errorMessage => {
       console.log(errorMessage);
