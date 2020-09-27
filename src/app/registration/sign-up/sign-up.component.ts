@@ -38,7 +38,7 @@ export class SignUpComponent implements OnInit {
       console.log(responseData);
       this.isLoading = false;
       this.router.navigate(['/dashboard', responseData.user._id]);
-      
+      //navigate to edit profile component here instead of dashboard
     }, errorMessage => {
       console.log(errorMessage);
       this.isLoading = false;

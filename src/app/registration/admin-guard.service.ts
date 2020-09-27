@@ -22,15 +22,31 @@ export class AdminGuardService implements CanActivate {
       return this.registrationService.authUser.pipe(
         take(1),
         map(user => {
-          if (!user) {
+          if(!user){
+            //no user logged in
             return this.router.createUrlTree(['/sign-in']);
           }
-          // const isAdmin = user.level == 1;
-          if (user.level >= 1) {
+          let userLevel = user.level;
+          if(route.data.accessLevel && route.data.accessLevel == userLevel){
+            //users access level is equal to that of allowed by this route
             return true;
           }
-          return this.router.createUrlTree(['/sign-in']);
+
+          return this.router.createUrlTree(['/']);
         })
       );
+      // return this.registrationService.authUser.pipe(
+      //   take(1),
+      //   map(user => {
+      //     if (!user) {
+      //       return this.router.createUrlTree(['/sign-in']);
+      //     }
+      //     // const isAdmin = user.level == 1;
+      //     if (user.level >= 1) {
+      //       return true;
+      //     }
+      //     return this.router.createUrlTree(['/sign-in']);
+      //   })
+      // );
   }
 }

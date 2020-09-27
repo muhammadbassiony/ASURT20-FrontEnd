@@ -33,18 +33,22 @@ const routes: Routes = [
       {path: 'rov', component: RovComponent}
     ]},
   { path: 'sponsors', component: SponsorsComponent },
-  { path: 'edit', component: AdminPanelComponent, canActivate: [AdminGuardService], children:[
+  { path: 'edit', component: AdminPanelComponent, 
+    data: { accessLevel: 2}, canActivate: [AdminGuardService], 
+    children:[
       { path: 'add-prize', component: AddPrizesComponent },
       { path: 'competition', component: CompetitionEditComponent },
       { path: 'photo-roll', component: PhotorollEditComponent },
       { path: 'sponsors', component: SponsorsEditComponent }
-    ]},
+    ]
+  },
   { path: 'about-us', component: AboutUsComponent },
   
   { path: 'sign-up', component: SignUpComponent },
   { path: 'sign-in', component: SignInComponent },
-  { path: 'dashboard/:userId', component: DashboardComponent }
-  // { path: 'dashboard', component: DashboardComponent }
+  { path: 'dashboard/:userId', component: DashboardComponent , data: { accessLevel: 0} },
+  
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
