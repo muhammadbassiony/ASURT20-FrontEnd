@@ -58,6 +58,7 @@ export class RegistrationService {
   // }
 
   private handleRegistration(user: any) {
+    console.log('HANDLE REG HERE!!', user);
     // this.decryptedToken = this.decryptJWTToken(token);
     // const expirationDate = new Date(0);
     // const expirationDate = this.decodingHelper.getTokenExpirationDate(token).valueOf();
@@ -87,6 +88,7 @@ export class RegistrationService {
     this.autoLogout(expirationDate.valueOf() - Date.now().valueOf());
     // localStorage.setItem('UserData', JSON.stringify(user));
     localStorage.setItem('UserAuth', JSON.stringify(authUser));
+    console.log('HANDLE REG HERE!!');
   }
 
   signUp(name: string, email: string, password: string) {
@@ -119,7 +121,7 @@ export class RegistrationService {
     pipe(catchError(this.handleError),
       tap((responseData) => {
         // const expirationDate = this.decodingHelper.getTokenExpirationDate(responseData.token);
-        // console.log('LOGIN TAP -- EXP DATE JWTHELPER ::', expirationDate, typeof(expirationDate));
+        console.log('LOGIN TAP -- EXP DATE JWTHELPER ::', responseData);
         this.handleRegistration(responseData.user);
       }));
   }

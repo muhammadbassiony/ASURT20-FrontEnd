@@ -19,6 +19,7 @@ export class SignInComponent implements OnInit {
 
   @Output() isLoading: boolean = false;
   @Output() error: string = null;
+
   onSignInSubmit(signInForm: NgForm) {
     // console.log(signInForm.value);
     if (signInForm.invalid) {
@@ -29,16 +30,16 @@ export class SignInComponent implements OnInit {
 
     let signInObs: Observable<RegisterResponseData>;
     this.isLoading = true;
-    signInObs = this.registerService.signIn(email, password);
-    signInObs.subscribe(responseData => {
-      const helper = new JwtHelperService();
-      console.log(helper.decodeToken(responseData.user.token));
+
+   this.registerService.signIn(email, password)
+  .subscribe(responseData => {
       this.isLoading = false;
       this.router.navigate(['/home']);
-    }, errorMessage => {
+  }, errorMessage => {
       this.isLoading = false;
       this.error = errorMessage;
-    });
-    signInForm.reset();
+      alert('login insuccesful!');
+  });
+  signInForm.reset();
   }
 }
