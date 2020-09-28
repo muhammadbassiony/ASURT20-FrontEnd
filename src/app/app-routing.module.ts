@@ -46,7 +46,7 @@ const routes: Routes = [
   
   { path: 'sign-up', component: SignUpComponent },
   { path: 'sign-in', component: SignInComponent },
-  { path: 'dashboard/:userId', component: DashboardComponent , data: { accessLevel: 0} },
+  { path: 'dashboard', component: DashboardComponent , data: { accessLevel: 0} },
   
   { path: '**', redirectTo: '' }
 ];

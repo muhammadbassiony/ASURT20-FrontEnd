@@ -34,7 +34,7 @@ export class SignInComponent implements OnInit {
     this.registerService.signIn(email, password)
     .subscribe(responseData => {
         this.isLoading = false;
-        this.router.navigate(['/dashboard', responseData.user._id]);
+        this.router.navigate(['/dashboard']);
         
     }, errorMessage => {
         this.isLoading = false;
