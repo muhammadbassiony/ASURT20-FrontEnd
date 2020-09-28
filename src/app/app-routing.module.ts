@@ -33,8 +33,10 @@ const routes: Routes = [
       {path: 'rov', component: RovComponent}
     ]},
   { path: 'sponsors', component: SponsorsComponent },
-  { path: 'edit', component: AdminPanelComponent, 
-    data: { accessLevel: 2}, canActivate: [AdminGuardService], 
+  { 
+    path: 'edit', component: AdminPanelComponent, 
+    data: { accessLevel: 2}, 
+    canActivate: [AdminGuardService], 
     children:[
       { path: 'add-prize', component: AddPrizesComponent },
       { path: 'competition', component: CompetitionEditComponent },
