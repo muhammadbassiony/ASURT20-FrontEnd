@@ -17,7 +17,7 @@ import { ɵDomSanitizerImpl, DomSanitizer, SafeResourceUrl } from '@angular/plat
 })
 export class SponsorsComponent implements OnInit, OnDestroy {
 
-  backend_uri = environment.backend_uri;
+  backend_uri = 'http://localhost:3000/';
   reader = new FileReader();
   
   constructor(
@@ -35,21 +35,21 @@ export class SponsorsComponent implements OnInit, OnDestroy {
     this._SponsorsService.getActivated()
     .subscribe(res => {
       this.sponsorsInfo = res;
-      console.log('RES RECIEVED ACTIVATED', this.sponsorsInfo);
+      // console.log('RES RECIEVED ACTIVATED', this.sponsorsInfo);
       for(let sp of this.sponsorsInfo){
-        sp.logo = this.backend_uri + '/' + sp.logo;
+        sp.logo = this.backend_uri +  sp.logo; 
         // sp.logo = './' + sp.logo;
-        console.log(sp.logo);
-        
-        //working method - still facing corb error
+        // console.log(sp.logo);
         let safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(sp.logo);
         let sanitizedUrl = this._sanitizerImpl.sanitize(SecurityContext.RESOURCE_URL, safeUrl);
         sp.sani = sanitizedUrl;
       }
-      console.log('AFTER', this.sponsorsInfo);
+      
     }, error => {
       console.log('ERROR SPONSORS :: ',error);
     });
+
+    //re-add subscription?
 
 
     // this.sponsorInitializationService.Initialized++;

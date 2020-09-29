@@ -37,7 +37,7 @@ export class PhotoRollComponent implements OnInit, OnDestroy {
     this.subscription = this.photorollService.photorollChanged.subscribe(
       (photoRoll: Photoroll) => {
         this.photoroll = photoRoll;
-        console.log("hi"+ this.photoroll);
+        // console.log("hi"+ this.photoroll);
         // location.reload();
       }
     );
@@ -56,7 +56,7 @@ export class PhotoRollComponent implements OnInit, OnDestroy {
         this._loadedSubscription.unsubscribe();
       }
     });
-   console.log(this.photoroll);
+  //  console.log(this.photoroll);
   }
 
   arrayOne(number: number) {
@@ -71,9 +71,9 @@ export class PhotoRollComponent implements OnInit, OnDestroy {
   }
   allIsLoaded() {
     if (this.noLoaded < this.noPhotos) {
-      console.log('notLoaded');
+      // console.log('notLoaded');
     } else {
-      console.log('loaded');
+      // console.log('loaded');
     }
     return this.noLoaded == this.noPhotos;
   }

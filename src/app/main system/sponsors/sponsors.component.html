@@ -8,10 +8,11 @@
       <div class="row pt-5 pb-4 pl-5 pr-5">
           <div class="col-sm-4 transform">
               <div class="spons_img">
-                  <!-- <img src="{{ sponsor.image }}" alt="logo"> -->
+                  <img [src]=sponsor.sani alt="logo">
+                  <!-- <img [src]="'https://placeimg.com/1080/500/nat'" alt="logo"> -->
                   <!-- <img src="{{sponsor.image.changingThisBreaksApplicationSecurity}}" alt="soora"> -->
-                  <div class="example" 
-                        [ngStyle]="{backgroundImage: 'url(' + sponsor.sani + ')'}"></div>
+                  <!-- <div class="example" 
+                        [ngStyle]="{backgroundImage: 'url(' + sponsor.sani + ')'}"></div> -->
               </div>
           </div>
           <div class="col-sm-8 transform text-center">
