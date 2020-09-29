@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, SecurityContext} from '@angular/core';
 import {SponsorsService} from '../services/sponsors.service';
 import {Sponsor} from '../models/sponsor.model'
 import {FadeInService} from "../../shared/fade-in.service";
@@ -8,7 +8,7 @@ import { HttpBackend } from '@angular/common/http';
 
 import { environment } from '../../../environments/environment';
 // const backend_uri = environment.backend_uri;
-import { DomSanitizer } from '@angular/platform-browser';
+import { ɵDomSanitizerImpl, DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-sponsors',
@@ -24,7 +24,8 @@ export class SponsorsComponent implements OnInit, OnDestroy {
     // private sponsorInitializationService: SponsorInitializationService,
     private _SponsorsService:SponsorsService,
     private fadeInService: FadeInService,
-    private sanitizer:DomSanitizer) { }
+    private sanitizer:DomSanitizer,
+    protected _sanitizerImpl: ɵDomSanitizerImpl) { }
 
   // sponsorsInfo :Sponsor[]=[];
   sponsorsInfo: any;
@@ -37,12 +38,13 @@ export class SponsorsComponent implements OnInit, OnDestroy {
       console.log('RES RECIEVED ACTIVATED', this.sponsorsInfo);
       for(let sp of this.sponsorsInfo){
         sp.logo = this.backend_uri + '/' + sp.logo;
+        // sp.logo = './' + sp.logo;
         console.log(sp.logo);
-        let unsafeImageUrl = URL.createObjectURL(res);
-        sp.logo = this.sanitizer.bypassSecurityTrustUrl(unsafeImageUrl);
-        // let objectURL = 'data:image/jpeg;base64,' + res.image;
-        // const mediaSource = new MediaSource();
-
+        
+        //working method - still facing corb error
+        let safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(sp.logo);
+        let sanitizedUrl = this._sanitizerImpl.sanitize(SecurityContext.RESOURCE_URL, safeUrl);
+        sp.sani = sanitizedUrl;
       }
       console.log('AFTER', this.sponsorsInfo);
     }, error => {
@@ -74,4 +76,5 @@ export class SponsorsComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
+  
 }
