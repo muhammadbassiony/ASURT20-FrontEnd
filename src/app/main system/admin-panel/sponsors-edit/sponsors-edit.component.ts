@@ -100,17 +100,26 @@ export class SponsorsEditComponent implements OnInit, OnDestroy {
   onSubmit(sponsorsForm: FormGroup)
   {
     console.log('SPNSR FORM ::\n', sponsorsForm);
-    let name = this.sponsorEditForm.value.sponsorName;
-    let desc = this.sponsorEditForm.value.sponsorDesc;
-    let fd = new FormData();
-    fd.append('name', name);
-    fd.append('desc', desc);
-    fd.append('logo', this.selectedImg, this.selectedImg.name);
-    // const promise = this._SponsorsService.addSponsor(fd);
-    // promise.then((value) => {
+    // let name = sponsorsForm.value.sponsorName;
+    // let desc = sponsorsForm.value.sponsorDesc;
+    // console.log(sponsorsForm.value, name, desc);
+    // let fd = new FormData();
+    // fd.append('name', name);
+    // fd.append('desc', desc);
+    // fd.append('logo', this.sponsorEditForm.value.sponsorLogo);
+    // console.log('FORM DATA', fd);
+    let fd = {
+      name: this.sponsorEditForm.value.sponsorName,
+      desc: this.sponsorEditForm.value.sponsorDesc,
+      logo: this.sponsorEditForm.value.sponsorLogo
+    } 
+    console.log('OBJECT FD :: \n', fd);
+    this._SponsorsService.newSponsor(fd)
+    // .subscribe((value) => {
     //   this.message = 'Sponsor created successfully!';
     //   this.sponsorEditForm.reset();
-    //   }, (reason: HttpErrorResponse) => {
+    //   }, 
+    // (reason: HttpErrorResponse) => {
     //   this.message = reason.message;
     //   console.log(reason);
     // });
@@ -167,7 +176,7 @@ export class SponsorsEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.isGettingSub.unsubscribe();
+    // this.isGettingSub.unsubscribe();
   }
 
 }
