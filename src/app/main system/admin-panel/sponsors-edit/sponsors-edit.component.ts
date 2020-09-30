@@ -13,7 +13,7 @@ const backend_uri = environment.backend_uri;
 import { ImgMimeType } from '../../../shared/img-mime-type.validator';
 
 //  TODO
-// 1- reset forms after new sponsor submit
+// 1- edit already existing sponsor 
 
 @Component({
   selector: 'app-sponsors-edit',
@@ -128,6 +128,10 @@ export class SponsorsEditComponent implements OnInit, OnDestroy {
   changeState(){
     console.log('CHANGED STATE', this.sponsorsInfo);
     //update sponsors in backend here
+    this._SponsorsService.updateAllSponsors(this.sponsorsInfo)
+    .subscribe(res => {
+      console.log('UPDATED ALL SPONSORS RES :: \n', res);
+    });
   }
 
   // async changeState()

@@ -170,6 +170,22 @@ export class SponsorsService {
     console.log(fd, newSp.name);
   }
 
+  updateAllSponsors(allSpns: any){
+    return this.http.post(
+      backend_uri + '/main/sponsors/update-all',
+      { sponsors: allSpns },
+      { responseType: 'json'}
+    )
+    .pipe(
+      map(res => {
+        let body = res['sponsors'];    
+        return body || [];    
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
+  }
   // async editSponsorsState(checkedState:boolean[])
   // {
   //   let i=0;

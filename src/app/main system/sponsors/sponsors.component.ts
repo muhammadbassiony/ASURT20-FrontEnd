@@ -37,12 +37,13 @@ export class SponsorsComponent implements OnInit, OnDestroy {
       this.sponsorsInfo = res;
       // console.log('RES RECIEVED ACTIVATED', this.sponsorsInfo);
       for(let sp of this.sponsorsInfo){
-        sp.logo = this.backend_uri +  sp.logo; 
+        sp.logo =  sp.logo; 
         // sp.logo = './' + sp.logo;
         // console.log(sp.logo);
         let safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(sp.logo);
         let sanitizedUrl = this._sanitizerImpl.sanitize(SecurityContext.RESOURCE_URL, safeUrl);
         sp.sani = sanitizedUrl;
+        // console.log(sp.sani);
       }
       
     }, error => {
