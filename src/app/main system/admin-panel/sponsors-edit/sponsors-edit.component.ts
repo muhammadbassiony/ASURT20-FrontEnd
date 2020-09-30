@@ -16,6 +16,7 @@ import { ImgMimeType } from '../../../shared/img-mime-type.validator';
 // 1- edit already existing sponsor 
 // 2- floating alerts: position should be more obvious(add way more padding) & 
 //    leave space between message and button 
+// 3- loading not working
 
 @Component({
   selector: 'app-sponsors-edit',
@@ -48,13 +49,14 @@ export class SponsorsEditComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.isGettingSponsors = true;
     this._SponsorsService.getAllSponsors()
     .subscribe(res => {
       this.sponsorsInfo = res;
       for(let sp of this.sponsorsInfo){
         sp.logo = sp.logo; 
       }
-      this.isGettingSponsors = true;
+      this.isGettingSponsors = false;
     }, 
     error => {
       console.log('ERROR SPONSORS-EDIT :: ',error);
