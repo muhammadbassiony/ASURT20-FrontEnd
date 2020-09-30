@@ -18,7 +18,7 @@ import { ɵDomSanitizerImpl, DomSanitizer, SafeResourceUrl } from '@angular/plat
 export class SponsorsComponent implements OnInit, OnDestroy {
 
   backend_uri = 'http://localhost:3000/';
-  reader = new FileReader();
+  // reader = new FileReader();
   
   constructor(
     // private sponsorInitializationService: SponsorInitializationService,
@@ -73,7 +73,7 @@ export class SponsorsComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    // this.sub.unsubscribe();
   }
 
   

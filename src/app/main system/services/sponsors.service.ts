@@ -75,15 +75,11 @@ export class SponsorsService {
     );
   }
 
-  getLogo(url: string){
-    return this.http.get(
-      backend_uri + "main/sponsors/get-logo/" + url,
-      { responseType: 'blob' }
-    )
+  getAllSponsors(){
+    return this.http.get(backend_uri + "/main/sponsors/get-all")
     .pipe(
       map(res => {
-        // let body = res['csvPath'];
-        let body = res;
+        let body = res['sponsors'];    
         return body || [];    
       }),
       catchError(errorRes => {

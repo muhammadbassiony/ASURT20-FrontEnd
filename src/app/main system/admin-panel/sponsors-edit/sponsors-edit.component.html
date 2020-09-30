@@ -39,19 +39,19 @@
 
 <div class="container text-center min-vh-100" *ngIf="isGettingSponsors">
   <app-loading-spinner></app-loading-spinner>
-  <p style="font-size: 4rem" class="text-center text-primary">Loading...</p>
+  <!-- <p style="font-size: 4rem" class="text-center text-primary">Loading...</p> -->
 </div>
 <!--show of all sponsors -->
 <div [ngStyle]="{'display': !isGettingSponsors? 'block': 'none'}">
-<h4 class="m-3 text-center text-white"> Select the sponsors to website</h4>
+  <h4 class="m-3 text-center text-white"> Select the sponsors to display on the website</h4>
   <div class="row">
-    <div class="col-lg-4 col-sm-12" *ngFor="let sponsor of sponsorsInfo; let i=index ">
+    <div class="col-lg-4 col-sm-12 " *ngFor="let sponsor of sponsorsInfo; let i=index ">
         <div class="spons_img  mx-auto d-block">
-          <img [src] = sponsor.logo alt="logo" style="max-width : 100%" >
+          <img [src]=sponsor.logo alt="logo" style="max-width : 100%" >
         </div>
         <div class="checkboxMargin mb-3">
-        <input type="checkbox" [(ngModel)] = "isChecked[i]" class="custom-checkbox">
-        <h6 class="d-inline pt-4 text-white ml-3">{{sponsor.name}}</h6>
+          <input type="checkbox" class="custom-checkbox" [(ngModel)]="sponsor.isChecked">
+          <h6 class="d-inline pt-4 text-white ml-3">{{sponsor.name}}</h6>
 
         </div>
     </div>
@@ -61,7 +61,7 @@
 <div class="row mt-4">
   <div class="container">
     <div class="text center">
-    <button type="submit" value="Submit"  class="btn btn-primary btn-block" (click)="changeState()">Submit Changes</button>
+    <button type="submit" value="Submit"  class="btn btn-primary btn-block" style="width: 20%;" (click)="changeState()">Submit Changes</button>
     </div>
   </div>
 </div>
@@ -69,28 +69,35 @@
 <!-- the form of add new sponsor-->
 <div class=" dark-overlay mt-4">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
+    <div class="row" style="width: 70%;">
+      <div class="col-lg-12" >
         <div class="card  text-center card-form">
           <div class="card-body">
+
             <h3 class="text-white">Add New Sponsor</h3>
-            <form [formGroup] = "sponsorEditForm" (ngSubmit)="onSubmit()" class="mt-5">
+            <form [formGroup]="sponsorEditForm" (ngSubmit)="onSubmit(sponsorEditForm)" class="mt-5">
               <div class="form-group">
-                <input type="text" class="form-control form-control-lg" id="exampleInputName" formControlName = "sponsorName"  placeholder="Enter Sponsor Name">
+                <input type="text" class="form-control form-control-lg" id="exampleInputName" 
+                  formControlName="sponsorName"  placeholder="Enter Sponsor Name">
               </div>
 
               <div class="form-group">
-                <textarea class="form-control form-control-lg" id="exampleInputDesc" formControlName = "sponsorDesc"  placeholder="Enter Sponsor Description"></textarea>
+                <textarea class="form-control form-control-lg" id="exampleInputDesc" 
+                  formControlName="sponsorDesc"  placeholder="Enter Sponsor Description"></textarea>
               </div>
 
-              <div class="form-group" >
+              <!-- <div class="form-group" > -->
                 <label class="btn btn-success"><i class="material-icons"></i> Add Sponsor Image
-                  <input style="display: none" type="file" accept="image/*" id="exampleInputImage" (change)="onImgUpdated($event)" formControlName = "sponsorLogo">
+                  <input style="display: none" type="file" class="form-control-file" accept="image/*" 
+                    (input)="onImgUpdated($event.target.files)" formControlName = "sponsorLogo">
                 </label>
-              </div>
+              <!-- </div> -->
 
-              <button type="submit" value="Submit" [disabled]="!sponsorEditForm.valid" class="btn btn-primary btn-block">Add New sponsor</button>
+              <button type="submit" value="Submit" [disabled]="!sponsorEditForm.valid" 
+                style="width: 40%;" class="btn btn-primary btn-block">Add New sponsor</button>
             </form>
+
+
           </div>
         </div>
       </div>

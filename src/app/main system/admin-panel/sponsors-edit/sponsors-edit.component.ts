@@ -1,13 +1,16 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormGroup, FormControl, Validators} from '@angular/forms'
-import {SponsorsService} from '../../services/sponsors.service'
-import {Sponsor} from '../../models/sponsor.model'
+import { Component, OnDestroy, OnInit, SecurityContext} from '@angular/core';
+import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
+import {SponsorsService} from '../../services/sponsors.service';
+import {Sponsor} from '../../models/sponsor.model';
+
 import {Subscription} from 'rxjs';
 import {SponsorInitializationService} from '../../../sponsor-initialization.service';
 
 import { environment } from '../../../../environments/environment';
 import {HttpErrorResponse} from '@angular/common/http';
 const backend_uri = environment.backend_uri;
+
+import { ImgMimeType } from '../../../shared/img-mime-type.validator';
 
 //  TODO
 // 1- reset forms after new sponsor submit
@@ -19,8 +22,10 @@ const backend_uri = environment.backend_uri;
 })
 export class SponsorsEditComponent implements OnInit, OnDestroy {
 
+  backend_uri = 'http://localhost:3000/';
   sponsorEditForm : FormGroup;
-  sponsorsInfo : Sponsor[];
+  // sponsorsInfo : Sponsor[];
+  sponsorsInfo: any;
   isChecked :boolean[] =[];
   selectedImg: File = null;
   isGettingSponsors: boolean = false;
@@ -31,88 +36,134 @@ export class SponsorsEditComponent implements OnInit, OnDestroy {
   allRequests: number = 0;
   successRequests: number = 0;
   editMessage: string = null;
-  constructor(private sponsorInitializationService: SponsorInitializationService,
-              private _SponsorsService:SponsorsService) {}
+
+  constructor(
+    private sponsorInitializationService: SponsorInitializationService,
+    private _SponsorsService:SponsorsService,
+    private fb: FormBuilder,
+    // private sanitizer:DomSanitizer,
+    // protected _sanitizerImpl: ɵDomSanitizerImpl
+  ) {}
 
   ngOnInit(): void {
-    this.sponsorInitializationService.Initialized++;
-    this.isGettingSub = this._SponsorsService.isGettingSponsors.subscribe(
-      (value) => {
-        this.isGettingSponsors = value;
+    this._SponsorsService.getAllSponsors()
+    .subscribe(res => {
+      this.sponsorsInfo = res;
+      console.log('SPONSORSINFO :: \n', this.sponsorsInfo);
+      for(let sp of this.sponsorsInfo){
+        sp.logo = this.backend_uri +  sp.logo; 
       }
-    );
-    const promise = this._SponsorsService.getAllSponsorsInfo();
-    promise.then(value => {
-      this.sponsorsInfo = <Array<Sponsor>>value;
-      for (let i = 0; i < this.sponsorsInfo.length; i++) {
-        this.isChecked.push(this.sponsorsInfo[i].isChecked);
-      }
-    }, reason => {
-      console.log(reason);
+    }, 
+    error => {
+      console.log('ERROR SPONSORS-EDIT :: ',error);
     });
-    // this.sponsorsInfo = this._SponsorsService.getAllSponsorsInfo();
-    this._SponsorsService.allSponsors.subscribe(
-    (sponsors:Sponsor[])=>{
-      this.sponsorsInfo=sponsors;
-      this.isChecked.splice(0, this.isChecked.length);
-      for (let i = 0; i < this.sponsorsInfo.length; i++) {
-        this.isChecked.push(this.sponsorsInfo[i].isChecked);
-      }
-    })
-    this.sponsorEditForm = new FormGroup({
-      'sponsorLogo' : new FormControl('', Validators.required),
-      'sponsorName' : new FormControl('', Validators.required),
-      'sponsorDesc' : new FormControl('', Validators.required)
-    })
+
+    // this.sponsorInitializationService.Initialized++;
+    // this.isGettingSub = this._SponsorsService.isGettingSponsors.subscribe(
+    //   (value) => {
+    //     this.isGettingSponsors = value;
+    //   }
+    // );
+    // const promise = this._SponsorsService.getAllSponsorsInfo();
+    // promise.then(value => {
+    //   this.sponsorsInfo = <Array<Sponsor>>value;
+    //   for (let i = 0; i < this.sponsorsInfo.length; i++) {
+    //     this.isChecked.push(this.sponsorsInfo[i].isChecked);
+    //   }
+    // }, reason => {
+    //   console.log(reason);
+    // });
+    // // this.sponsorsInfo = this._SponsorsService.getAllSponsorsInfo();
+    // this._SponsorsService.allSponsors.subscribe(
+    // (sponsors:Sponsor[])=>{
+    //   this.sponsorsInfo=sponsors;
+    //   this.isChecked.splice(0, this.isChecked.length);
+    //   for (let i = 0; i < this.sponsorsInfo.length; i++) {
+    //     this.isChecked.push(this.sponsorsInfo[i].isChecked);
+    //   }
+    // })
+    // this.sponsorEditForm = new FormGroup({
+    //   'sponsorLogo' : new FormControl('', { 
+    //     validators:[Validators.required], 
+    //     asyncValidator: [ImgMimeType] 
+    //   }),
+    //   'sponsorName' : new FormControl('', Validators.required,),
+    //   'sponsorDesc' : new FormControl('', Validators.required)
+    // });
+    this.sponsorEditForm = this.fb.group({
+      'sponsorName': [ , [Validators.required, Validators.minLength(5)]],
+      'sponsorDesc': [ , [Validators.required, Validators.minLength(5)]],
+      'sponsorLogo': [ , [Validators.required], [ImgMimeType]]
+    });
   }
 
-  onSubmit()
+  onSubmit(sponsorsForm: FormGroup)
   {
+    console.log('SPNSR FORM ::\n', sponsorsForm);
     let name = this.sponsorEditForm.value.sponsorName;
     let desc = this.sponsorEditForm.value.sponsorDesc;
     let fd = new FormData();
     fd.append('name', name);
     fd.append('desc', desc);
     fd.append('logo', this.selectedImg, this.selectedImg.name);
-    const promise = this._SponsorsService.addSponsor(fd);
-    promise.then((value) => {
-      this.message = 'Sponsor created successfully!';
-      this.sponsorEditForm.reset();
-      }, (reason: HttpErrorResponse) => {
-      this.message = reason.message;
-      console.log(reason);
-    });
+    // const promise = this._SponsorsService.addSponsor(fd);
+    // promise.then((value) => {
+    //   this.message = 'Sponsor created successfully!';
+    //   this.sponsorEditForm.reset();
+    //   }, (reason: HttpErrorResponse) => {
+    //   this.message = reason.message;
+    //   console.log(reason);
+    // });
   }
 
-  async changeState()
-  {
-    this.successResSub = this._SponsorsService.editResponseSuccess.subscribe(success => {
-      this.successRequests++;
-      this.allRequests++;
-      // console.log(success);
-    });
-    this.errorResSub = this._SponsorsService.editResponseError.subscribe(error => {
-      this.allRequests++;
-      // console.log(error);
-    });
-    await this._SponsorsService.editSponsorsState(this.isChecked);
-    // console.log("All: " + this.allRequests.toString());
-    // console.log("Success: " + this.successRequests.toString());
-    if (this.allRequests != this.successRequests) {
-      const errors = this.allRequests - this.successRequests;
-      this.editMessage = `There were ${errors} errors while processing your edit request!`;
-    } else {
-      this.editMessage = 'All requests are a success!'
+  changeState(){
+    console.log('CHANGED STATE', this.sponsorsInfo);
+    //update sponsors in backend here
+  }
+
+  // async changeState()
+  // {
+  //   this.successResSub = this._SponsorsService.editResponseSuccess.subscribe(success => {
+  //     this.successRequests++;
+  //     this.allRequests++;
+  //     // console.log(success);
+  //   });
+  //   this.errorResSub = this._SponsorsService.editResponseError.subscribe(error => {
+  //     this.allRequests++;
+  //     // console.log(error);
+  //   });
+  //   await this._SponsorsService.editSponsorsState(this.isChecked);
+  //   // console.log("All: " + this.allRequests.toString());
+  //   // console.log("Success: " + this.successRequests.toString());
+  //   if (this.allRequests != this.successRequests) {
+  //     const errors = this.allRequests - this.successRequests;
+  //     this.editMessage = `There were ${errors} errors while processing your edit request!`;
+  //   } else {
+  //     this.editMessage = 'All requests are a success!'
+  //   }
+  //   this.successRequests = 0;
+  //   this.allRequests = 0;
+  //   this.successResSub.unsubscribe();
+  //   this.errorResSub.unsubscribe();
+  // }
+
+
+  img: File = null;
+  onImgUpdated(files: FileList) {
+    this.img = files.item(0);
+    console.log(this.img);
+
+    //crude validation - mime type async validator not working here
+    // console.log(!this.img.type.match(/^image\//));
+    if(!this.img.type.match(/^image\//)){
+      alert("Only image files are allowed");
+      this.sponsorEditForm.get('sponsorLogo').setErrors({ 'invalidFormat': true });
+      return;
     }
-    this.successRequests = 0;
-    this.allRequests = 0;
-    this.successResSub.unsubscribe();
-    this.errorResSub.unsubscribe();
-  }
 
-  onImgUpdated(event) {
-    this.selectedImg = <File>event.target.files[0];
-    console.log(this.selectedImg);
+    this.sponsorEditForm.patchValue({"sponsorLogo": this.img});
+    this.sponsorEditForm.get('sponsorLogo').updateValueAndValidity();
+    console.log(this.sponsorEditForm);
   }
 
   ngOnDestroy() {

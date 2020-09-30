@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators, FormArray} from '@angular/forms';
 import {NgForm} from '@angular/forms';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import { mimeType } from './mime-type.validator';
+// import { mimeType } from '../../../shared/img-mime-type.validator';
 import {Photoroll} from '../../landing-page/photoroll.model';
 import {PhotorollService} from '../../landing-page/photoroll.service';
 import {ImageService} from "../../services/image.service";
@@ -35,7 +35,7 @@ export class PhotorollEditComponent implements OnInit {
   // imagePreview: string[];
   private mode = 'edit/photo-roll';
   currentPhotoroll: Photoroll; // stores all needed to edit photoroll properties
-
+ 
   constructor( private imageService: ImageService, public route: ActivatedRoute,
                public photorollService: PhotorollService) { }
 
