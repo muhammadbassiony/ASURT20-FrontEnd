@@ -14,6 +14,8 @@ import { ImgMimeType } from '../../../shared/img-mime-type.validator';
 
 //  TODO
 // 1- edit already existing sponsor 
+// 2- floating alerts: position should be more obvious(add way more padding) & 
+//    leave space between message and button 
 
 @Component({
   selector: 'app-sponsors-edit',
@@ -26,15 +28,15 @@ export class SponsorsEditComponent implements OnInit, OnDestroy {
   sponsorEditForm : FormGroup;
   // sponsorsInfo : Sponsor[];
   sponsorsInfo: any;
-  isChecked :boolean[] =[];
-  selectedImg: File = null;
+  // isChecked :boolean[] =[];
+  // selectedImg: File = null;
   isGettingSponsors: boolean = false;
-  isGettingSub: Subscription;
+  // isGettingSub: Subscription;
   message: string = null;
-  successResSub: Subscription;
-  errorResSub: Subscription;
-  allRequests: number = 0;
-  successRequests: number = 0;
+  // successResSub: Subscription;
+  // errorResSub: Subscription;
+  // allRequests: number = 0;
+  // successRequests: number = 0;
   editMessage: string = null;
 
   constructor(
@@ -49,14 +51,19 @@ export class SponsorsEditComponent implements OnInit, OnDestroy {
     this._SponsorsService.getAllSponsors()
     .subscribe(res => {
       this.sponsorsInfo = res;
-      console.log('SPONSORSINFO :: \n', this.sponsorsInfo);
       for(let sp of this.sponsorsInfo){
-        // sp.logo = this.backend_uri +  sp.logo; 
         sp.logo = sp.logo; 
       }
+      this.isGettingSponsors = true;
     }, 
     error => {
       console.log('ERROR SPONSORS-EDIT :: ',error);
+    });
+
+    this.sponsorEditForm = this.fb.group({
+      'sponsorName': [ , [Validators.required, Validators.minLength(5)]],
+      'sponsorDesc': [ , [Validators.required, Validators.minLength(5)]],
+      'sponsorLogo': [ , [Validators.required], [ImgMimeType]]  //img mime NOT working??
     });
 
     // this.sponsorInitializationService.Initialized++;
@@ -91,11 +98,7 @@ export class SponsorsEditComponent implements OnInit, OnDestroy {
     //   'sponsorName' : new FormControl('', Validators.required,),
     //   'sponsorDesc' : new FormControl('', Validators.required)
     // });
-    this.sponsorEditForm = this.fb.group({
-      'sponsorName': [ , [Validators.required, Validators.minLength(5)]],
-      'sponsorDesc': [ , [Validators.required, Validators.minLength(5)]],
-      'sponsorLogo': [ , [Validators.required], [ImgMimeType]]
-    });
+    
   }
 
   onSubmit(sponsorsForm: FormGroup)
@@ -113,25 +116,26 @@ export class SponsorsEditComponent implements OnInit, OnDestroy {
       name: this.sponsorEditForm.value.sponsorName,
       desc: this.sponsorEditForm.value.sponsorDesc,
       logo: this.sponsorEditForm.value.sponsorLogo
-    } 
+    };
     console.log('OBJECT FD :: \n', fd);
     this._SponsorsService.newSponsor(fd)
-    // .subscribe((value) => {
+    // .subscribe((value) => {    //will work
     //   this.message = 'Sponsor created successfully!';
     //   this.sponsorEditForm.reset();
     //   }, 
-    // (reason: HttpErrorResponse) => {
+    // (reason: HttpErrorResponse) => {   //will NOT work
     //   this.message = reason.message;
     //   console.log(reason);
     // });
   }
 
   changeState(){
-    console.log('CHANGED STATE', this.sponsorsInfo);
-    //update sponsors in backend here
     this._SponsorsService.updateAllSponsors(this.sponsorsInfo)
     .subscribe(res => {
-      console.log('UPDATED ALL SPONSORS RES :: \n', res);
+      this.editMessage = 'All requests are a success!';
+    },
+    error => {
+      this.editMessage = error;
     });
   }
 
