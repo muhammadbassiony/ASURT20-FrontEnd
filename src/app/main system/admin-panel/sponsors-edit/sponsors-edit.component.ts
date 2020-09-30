@@ -51,7 +51,8 @@ export class SponsorsEditComponent implements OnInit, OnDestroy {
       this.sponsorsInfo = res;
       console.log('SPONSORSINFO :: \n', this.sponsorsInfo);
       for(let sp of this.sponsorsInfo){
-        sp.logo = this.backend_uri +  sp.logo; 
+        // sp.logo = this.backend_uri +  sp.logo; 
+        sp.logo = sp.logo; 
       }
     }, 
     error => {
