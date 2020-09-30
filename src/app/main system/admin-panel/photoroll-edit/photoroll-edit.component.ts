@@ -26,10 +26,11 @@ export class PhotorollEditComponent implements OnInit {
   selectedFile: ImageSnippet;
   private selectedPhotorollName: string;
   uploadPaths : string[];
-  photoroll: Photoroll[] = [
-    new Photoroll(1, 'prize', 4, ['https://placeimg.com/1080/500/nat','https://placeimg.com/1080/500/nature','https://placeimg.com/1080/500/arch','https://placeimg.com/1080/500/history']),
-    new Photoroll(1, 'landing-page', 4, ['https://placeimg.com/1080/500/nat','https://placeimg.com/1080/500/nature','https://placeimg.com/1080/500/arch','https://placeimg.com/1080/500/history'])
-  ];
+  // photoroll: Photoroll[] = [
+  //   new Photoroll(1, 'prize', 4, ['https://placeimg.com/1080/500/nat','https://placeimg.com/1080/500/nature','https://placeimg.com/1080/500/arch','https://placeimg.com/1080/500/history']),
+  //   new Photoroll(1, 'landing-page', 4, ['https://placeimg.com/1080/500/nat','https://placeimg.com/1080/500/nature','https://placeimg.com/1080/500/arch','https://placeimg.com/1080/500/history'])
+  // ];
+  photoroll: Photoroll[];
 
   form: FormGroup; // for edit by path
   // imagePreview: string[];
@@ -115,7 +116,7 @@ export class PhotorollEditComponent implements OnInit {
     //let files = new FormArray([new FormGroup({'file':new FormControl(null, Validators.required)})]) ;
     const photoroll: Photoroll = this.currentPhotoroll;
     photorollName = photoroll.photorollName;
-    photorollIndex = photoroll.index;
+    // photorollIndex = photoroll.index;
     for (let imagePath of photoroll.imagePaths) {
       photorollPaths.push(new FormGroup({
         'imagePath': new FormControl(imagePath, Validators.required)
@@ -201,7 +202,7 @@ export class PhotorollEditComponent implements OnInit {
       this.currentPhotoroll.imagePaths.push(path);
     }
     console.log(this.currentPhotoroll);
-    this.photorollService.updatePhotoroll (this.form.value , this.currentPhotoroll);
+    // this.photorollService.updatePhotoroll (this.form.value , this.currentPhotoroll);
   }
 
   onCancel() {
@@ -213,7 +214,7 @@ this.form.reset();
   onChange(value: any) {
     this.selectedPhotorollName = value.value;
     console.log(this.selectedPhotorollName);
-    this.currentPhotoroll = this.photorollService.getPhotorollByName(this.selectedPhotorollName);
+    // this.currentPhotoroll = this.photorollService.getPhotorollByName(this.selectedPhotorollName);
     console.log(this.currentPhotoroll);
     this.initForm();
   }

@@ -15,7 +15,7 @@ export class PhotoRollComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   loadedSubject = new Subject<boolean>();
   noPhotos: number = 0;
-  noLoaded: number = 0;
+  // noLoaded: number = 0;
   _loadedSubscription: Subscription;
   _subscription: Subscription;
   naturalHeight: any;
@@ -33,7 +33,7 @@ export class PhotoRollComponent implements OnInit, OnDestroy {
     // this.photoroll = this.photorollService.photoroll;
     // console.log(this.photoroll);
     //this.photoroll = this.photorollService.initialize()[1];
-    this.photoroll = this.photorollService.getPhotorollByName('landing-page');
+    // this.photoroll = this.photorollService.getPhotorollByName('landing-page');
     this.subscription = this.photorollService.photorollChanged.subscribe(
       (photoRoll: Photoroll) => {
         this.photoroll = photoRoll;
@@ -43,18 +43,18 @@ export class PhotoRollComponent implements OnInit, OnDestroy {
     );
     //this.photorollService.initialize();
 
-    console.log(this.photoroll.noPhotos);
+    // console.log(this.photoroll.noPhotos);
     // this._subscription = this.photorollService.photorollUpdated.subscribe((photoRoll: Photoroll) => {
     //   this.photoroll = photoRoll;
     // });
-    this.noPhotos = this.photoroll.noPhotos;
+    // this.noPhotos = this.photoroll.noPhotos;
     this._loadedSubscription = this.loadedSubject.subscribe((loaded) => {
-      if (loaded) {
-        this.noLoaded++;
-      }
-      if (this.noLoaded == this.noPhotos) {
-        this._loadedSubscription.unsubscribe();
-      }
+      // if (loaded) {
+      //   this.noLoaded++;
+      // }
+      // if (this.noLoaded == this.noPhotos) {
+      //   this._loadedSubscription.unsubscribe();
+      // }
     });
   //  console.log(this.photoroll);
   }
@@ -69,12 +69,12 @@ export class PhotoRollComponent implements OnInit, OnDestroy {
      this._loadedSubscription.unsubscribe();
     this.subscription.unsubscribe();
   }
-  allIsLoaded() {
-    if (this.noLoaded < this.noPhotos) {
-      // console.log('notLoaded');
-    } else {
-      // console.log('loaded');
-    }
-    return this.noLoaded == this.noPhotos;
-  }
+  // allIsLoaded() {
+  //   if (this.noLoaded < this.noPhotos) {
+  //     // console.log('notLoaded');
+  //   } else {
+  //     // console.log('loaded');
+  //   }
+  //   return this.noLoaded == this.noPhotos;
+  // }
 }

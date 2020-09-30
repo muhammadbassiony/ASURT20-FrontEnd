@@ -22,15 +22,15 @@ export class PhotoRollFetcherService {
   p: Photoroll;
   constructor(private http:HttpClient) { }
 
-  getPhotoRoll(id): Photoroll{
-     var reqURL = backend_uri  + "/main/photorolls/get/:" + id;
-     this.http.get<PhotoRollBackEndModel>(reqURL).subscribe(( photo:PhotoRollBackEndModel) => {
-       this.p.imagePaths=photo.images;
-       this.p.noPhotos=photo.images.length;
-       this.p.photorollName=photo.title;
+  // getPhotoRoll(id): Photoroll{
+  //    var reqURL = backend_uri  + "/main/photorolls/get/:" + id;
+  //    this.http.get<PhotoRollBackEndModel>(reqURL).subscribe(( photo:PhotoRollBackEndModel) => {
+  //      this.p.imagePaths=photo.images;
+  //      this.p.noPhotos=photo.images.length;
+  //      this.p.photorollName=photo.title;
 
-     });
-     return this.p;
-  }
+  //    });
+  //    return this.p;
+  // }
 
 }

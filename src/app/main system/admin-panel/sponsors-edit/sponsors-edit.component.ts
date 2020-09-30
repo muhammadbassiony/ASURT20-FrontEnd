@@ -17,6 +17,7 @@ import { ImgMimeType } from '../../../shared/img-mime-type.validator';
 // 2- floating alerts: position should be more obvious(add way more padding) & 
 //    leave space between message and button 
 // 3- loading not working
+//
 
 @Component({
   selector: 'app-sponsors-edit',
