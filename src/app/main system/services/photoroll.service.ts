@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import {BehaviorSubject, Subject} from "rxjs";
+import { BehaviorSubject, Subject } from "rxjs";
 import { map } from "rxjs/operators";
 import { Router } from "@angular/router";
-import {Photoroll} from "./photoroll.model";
+import { Photoroll } from "../models/photoroll.model";
 
 import { environment } from '../../../environments/environment';
 const backend_uri = environment.backend_uri;
@@ -18,9 +18,10 @@ export class PhotorollService {
   // photorollUpdated = new Subject<Photoroll>();
   public photorollChanged = new Subject<Photoroll>();
   //public photorollChanged = new BehaviorSubject<Photoroll>(this.photoroll[1]);
-  constructor(private http: HttpClient, private router: Router) {
-
-  }
+  constructor(
+    private http: HttpClient, 
+    private router: Router
+  ) {  }
 
   initialize () {
     const photoroll: Photoroll = new Photoroll(1, 'landing-page', 4, ['https://placeimg.com/1080/500/nat','https://placeimg.com/1080/500/nature','https://placeimg.com/1080/500/arch','https://placeimg.com/1080/500/history']);

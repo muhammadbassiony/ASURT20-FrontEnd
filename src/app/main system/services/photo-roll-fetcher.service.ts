@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 // import{ BackEndURLService} from './back-end-url.service';
-import {Photoroll} from "../landing-page/photoroll.model";
+import {Photoroll} from "../models/photoroll.model";
 
 //import { Observable, throwError } from 'rxjs';
 //import { catchError, retry } from 'rxjs/operators';

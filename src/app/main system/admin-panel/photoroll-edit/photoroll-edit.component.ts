@@ -3,8 +3,8 @@ import {FormGroup, FormControl, Validators, FormArray} from '@angular/forms';
 import {NgForm} from '@angular/forms';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 // import { mimeType } from '../../../shared/img-mime-type.validator';
-import {Photoroll} from '../../landing-page/photoroll.model';
-import {PhotorollService} from '../../landing-page/photoroll.service';
+import {Photoroll} from '../../models/photoroll.model';
+import {PhotorollService} from '../../services/photoroll.service';
 import {ImageService} from "../../services/image.service";
 
 class ImageSnippet {
@@ -36,8 +36,11 @@ export class PhotorollEditComponent implements OnInit {
   private mode = 'edit/photo-roll';
   currentPhotoroll: Photoroll; // stores all needed to edit photoroll properties
  
-  constructor( private imageService: ImageService, public route: ActivatedRoute,
-               public photorollService: PhotorollService) { }
+  constructor( 
+    private imageService: ImageService, 
+    public route: ActivatedRoute,
+    public photorollService: PhotorollService
+  ) { }
 
   // filename = 'robert fermino';
 

@@ -1,6 +1,6 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
-import {Photoroll} from "../photoroll.model";
-import {PhotorollService} from "../photoroll.service";
+import {Photoroll} from "../../models/photoroll.model";
+import {PhotorollService} from "../../services/photoroll.service";
 import {Subject, Subscription} from 'rxjs';
 import {DOCUMENT} from "@angular/common";
 
