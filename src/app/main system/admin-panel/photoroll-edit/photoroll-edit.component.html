@@ -66,16 +66,18 @@
 <!--    <div *ngFor="let photos of photoroll">-->
 <!--    <p > {{photos.photorollName}} </p>-->
 <!--    </div>-->
-<div class="row">
-  <div class="col-12">
-    <label for="name"> <h3 class="text-center">Select Photoroll you want to edit :</h3></label>
-    <select name="phname" id="phname" class="form-control" multiple (change)="onChange($event.target)">
-      <option *ngFor="let Photoroll of photoroll"  value="{{Photoroll.photorollName}}">{{Photoroll.photorollName}}</option>
+<div class="row" >
+  <!-- re-align paragraph on top of dropdown? -->
+  <div class="col-8 d-flex justify-content-center text-center align-items-center" style="margin: 3rem 6rem;">
+    <h3 class="text-center" style="margin: 20px;">Select Photoroll you want to edit :</h3>
+    <select class="form-control" (change)="onPhotorollSelect()" [(ngModel)]="currentPhotoroll">
+      <option *ngFor="let ph of allPhotorolls"  [ngValue]="ph">
+          {{ph.title}}</option>
     </select>
   </div>
 </div>
-
-<form [formGroup] = "form" (ngSubmit)="onSubmit()">
+<!-- 
+<form [formGroup]="form" (ngSubmit)="onSubmit(form)" *ngIf="currentPhotoroll">
 
   <div *ngIf="currentPhotoroll!==null">
     <div class="row">
@@ -126,7 +128,7 @@
       </div>
     </div>
   </div>
-</form>
+</form> -->
 <hr>
 <hr>
 
@@ -137,7 +139,7 @@
 <!--    <input  type="file" formControlName="file" (change)="onImagePicked($event)">-->
 <!--  </div>-->
 <!--</div>-->
-<h3 class="text-center">Upload photo roll photos</h3>
+<!-- <h3 class="text-center">Upload photo roll photos</h3>
 <div class="row">
   <label>Select Number of Photos you want to add  </label>
 <input class="form-control" type="number" min="1" value="10" [(ngModel)]="noPhotoToBeAdded">
@@ -165,8 +167,11 @@
   <div *ngIf="selectedFile.status === 'ok'" class="alert alert-success"> Image Uploaded Succesfuly!</div>
   <div *ngIf="selectedFile.status === 'fail'" class="alert alert-danger"> Image Upload Failed!</div>
 </div>
-</div>
+</div> -->
 
+<hr>
+<hr>
+<hr>
 
 <!--    <label *ngFor="let photos in photoroll" for="name">Choose Photo-roll {{photos.imagePaths[0]}}</label>-->
 <!--    &lt;!&ndash;            <input type="text" id="name" formControlName="name" class="form-control">&ndash;&gt;-->

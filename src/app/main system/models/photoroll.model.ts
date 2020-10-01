@@ -18,5 +18,5 @@
 export interface Photoroll {
   _id: string;
   imagePaths: string[];
-  photorollName: string;
+  title: string;
 }
