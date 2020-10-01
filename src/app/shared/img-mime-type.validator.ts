@@ -4,9 +4,9 @@ import { Observable, Observer, of } from "rxjs";
 export const ImgMimeType = (
   control: AbstractControl
 ): Promise<{ [key: string]: any }> | Observable<{ [key: string]: any }> => {
-  // console.log('ENTERED MIME TYPE VALIDATOR\nCONTROL?? :: ', control);
+  console.log('ENTERED MIME TYPE VALIDATOR\nCONTROL?? :: ', control);
   if (typeof(control.value) === 'string') {
-    // console.log('MIME TYPE - NULL IF??\nCONTROL.VALUE ::', control.value);
+    console.log('MIME TYPE - NULL IF??\nCONTROL.VALUE ::', control.value);
     return of(null);
   }
   const file = control.value as File;

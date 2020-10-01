@@ -1,5 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import {FormBuilder, 
+  FormControl, 
+  FormGroup, 
+  Validators, 
+  ReactiveFormsModule, 
+  RequiredValidator, 
+  FormArray} from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ImgMimeType } from '../../../shared/img-mime-type.validator';
@@ -40,6 +46,7 @@ export class PhotorollEditComponent implements OnInit {
   currentPhotoroll: any; // stores all needed to edit photoroll properties
 
   constructor( 
+    private fb: FormBuilder,
     private imageService: ImageService, 
     public route: ActivatedRoute,
     public photorollService: PhotorollService
@@ -97,6 +104,9 @@ export class PhotorollEditComponent implements OnInit {
       console.log('RECEIVED ALL PHS ::\n', this.allPhotorolls);
     });
 
+    this.photorollForm = this.fb.group({
+      'images': this.fb.array([])
+    });
 
 
     // this.photoroll = [
@@ -117,8 +127,51 @@ export class PhotorollEditComponent implements OnInit {
   //  this.initForm();
   }
 
+  
   onPhotorollSelect(){
     console.log('CHANGE ::', this.currentPhotoroll);
+    
+    // this.photorollForm.reset();
+    this.photorollForm = this.fb.group({    // restting to a new form without saving
+      'images': this.fb.array([])
+    });
+    
+    //patching values to photorollForm from already available data
+    if(!this.currentPhotoroll.imagePaths) return ;
+    this.currentPhotoroll.imagePaths.forEach(ip => {
+      // const control = new FormControl(ip, [],[ImgMimeType]); // cant mime check on image *PATHS*
+      const control = new FormControl(ip);
+      (<FormArray>this.photorollForm.get('images')).push(control);
+    });
+    
+  }
+
+
+  newImg: File = null;
+  onImgAdded(files: FileList) {
+    this.newImg = files.item(0);
+    // console.log(this.newImg);
+
+    //here can mime check on a *FILE*
+    const control = new FormControl(this.newImg, [], [ImgMimeType]); 
+    (<FormArray>this.photorollForm.get('images')).push(control);
+    // //number of currently existing images
+    // let numImgs = this.photorollForm.get('images')['controls'].length; 
+    
+    (<FormArray>this.photorollForm.get('images')).updateValueAndValidity();
+    
+    //crude validation technique - mime check is better ------- DELETE LATER!!
+    // console.log(!this.img.type.match(/^image\//));
+    // if(!this.newImg.type.match(/^image\//)){
+    //   alert("Only image files are allowed");
+    //   console.log('IMGUPDATE END ::\n', this.photorollForm);
+    //   // (<FormArray>this.photorollForm.get('images')).at(numImgs).setErrors({ 'invalidFormat': true });
+    //   return;
+    // }
+  }
+
+  onSubmit(PhotorollForm: FormGroup) {
+    console.log('SUBMIT FORM  :: \n', this.photorollForm);
   }
 
   // // 1) edit by url
@@ -208,20 +261,20 @@ export class PhotorollEditComponent implements OnInit {
   //   }
   // }
 
-  onSubmit(PhotorollForm: FormGroup) {
+  // onSubmit(PhotorollForm: FormGroup) {
 
-    //this.photorollService.updatePhotoroll (this.form.value , this.currentPhotoroll);
-    // this.currentPhotoroll = this.form.value;
-    // for (let path of this.uploadPaths){
-    //   this.currentPhotoroll.imagePaths.push(path);
-    // }
-    // console.log(this.currentPhotoroll);
-    // // this.photorollService.updatePhotoroll (this.form.value , this.currentPhotoroll);
-  }
+  //   //this.photorollService.updatePhotoroll (this.form.value , this.currentPhotoroll);
+  //   // this.currentPhotoroll = this.form.value;
+  //   // for (let path of this.uploadPaths){
+  //   //   this.currentPhotoroll.imagePaths.push(path);
+  //   // }
+  //   // console.log(this.currentPhotoroll);
+  //   // // this.photorollService.updatePhotoroll (this.form.value , this.currentPhotoroll);
+  // }
 
-  onCancel() {
-    // this.form.reset();
-  }
+  // onCancel() {
+  //   // this.form.reset();
+  // }
 
 
 
