@@ -137,13 +137,13 @@ export class PhotorollEditComponent implements OnInit {
     });
     
     //patching values to photorollForm from already available data
-    if(!this.currentPhotoroll.imagePaths) return ;
-    this.currentPhotoroll.imagePaths.forEach(ip => {
+    if(!this.currentPhotoroll.images) return ;
+    this.currentPhotoroll.images.forEach(ip => {
       // const control = new FormControl(ip, [],[ImgMimeType]); // cant mime check on image *PATHS*
       const control = new FormControl(ip);
       (<FormArray>this.photorollForm.get('images')).push(control);
     });
-    
+    console.log('CHANGE AFTER ::  \N', this.photorollForm);
   }
 
 
@@ -152,7 +152,7 @@ export class PhotorollEditComponent implements OnInit {
     this.newImg = files.item(0);
     // console.log(this.newImg);
 
-    //here can mime check on a *FILE*
+    //here can mime check on a **FILE**
     const control = new FormControl(this.newImg, [], [ImgMimeType]); 
     (<FormArray>this.photorollForm.get('images')).push(control);
     // //number of currently existing images
