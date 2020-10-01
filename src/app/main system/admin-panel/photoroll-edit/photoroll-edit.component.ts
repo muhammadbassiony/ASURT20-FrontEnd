@@ -147,6 +147,7 @@ export class PhotorollEditComponent implements OnInit {
   }
 
 
+  test_im = [];
   newImg: File = null;
   onImgAdded(files: FileList) {
     this.newImg = files.item(0);
@@ -156,18 +157,30 @@ export class PhotorollEditComponent implements OnInit {
     const control = new FormControl(this.newImg, [], [ImgMimeType]); 
     (<FormArray>this.photorollForm.get('images')).push(control);
     // //number of currently existing images
-    // let numImgs = this.photorollForm.get('images')['controls'].length; 
+    let numImgs = this.photorollForm.get('images')['controls'].length; 
     
     (<FormArray>this.photorollForm.get('images')).updateValueAndValidity();
     
-    //crude validation technique - mime check is better ------- DELETE LATER!!
-    // console.log(!this.img.type.match(/^image\//));
+    //crude validation technique - mime check is better ------- DELETE LATER!! ---------------
     // if(!this.newImg.type.match(/^image\//)){
     //   alert("Only image files are allowed");
-    //   console.log('IMGUPDATE END ::\n', this.photorollForm);
-    //   // (<FormArray>this.photorollForm.get('images')).at(numImgs).setErrors({ 'invalidFormat': true });
     //   return;
     // }
+    console.log('PHFORM VALUE ::\n', this.photorollForm.value.images[numImgs-1]);
+    let imageURL;
+    const reader = new FileReader();
+    reader.onload = () => {
+      // imageURL = reader.result as string;
+      (<HTMLImageElement>document.getElementById((numImgs-1).toString())).src = reader.result as string;
+    }
+    reader.readAsDataURL(this.newImg);
+    // console.log('CREATED URL :: \n', typeof(imageURL));
+    // let img2 = this.photorollForm.value.images[numImgs-1];
+    // img2['url'] = imageURL;
+    // console.log('TRIAL :: ', img2);
+    // this.photorollForm.value.images[numImgs-1] = img2;
+    // console.log('TRTIAL SUX??\n', this.photorollForm.value);
+
   }
 
   onSubmit(PhotorollForm: FormGroup) {
