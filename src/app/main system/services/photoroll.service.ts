@@ -58,6 +58,22 @@ export class PhotorollService {
     );
   }
 
+  getPhotoroll(phId: string){
+    return this.http.get(
+      backend_uri + '/main/photorolls/get/' + phId,
+      { responseType: 'json' }
+    )
+    .pipe(
+      map(res => {
+        let body = res['photoroll'];    
+        return body || [];    
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
+  }
+
   // initialize () {
   //   const photoroll: Photoroll = new Photoroll(1, 'landing-page', 4, ['https://placeimg.com/1080/500/nat','https://placeimg.com/1080/500/nature','https://placeimg.com/1080/500/arch','https://placeimg.com/1080/500/history']);
   //   this.photoroll.push(photoroll) ;

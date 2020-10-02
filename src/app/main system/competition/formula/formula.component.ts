@@ -12,7 +12,7 @@ import { filter, map } from 'rxjs/operators';
 export class FormulaComponent implements OnInit {
 
   backgroundColor:string='#B21212';
-  appstate$: Observable<object>;
+  photorollId = "";
 
   constructor(
     private route: ActivatedRoute,

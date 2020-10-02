@@ -1,4 +1,4 @@
-import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnDestroy, OnInit} from '@angular/core';
 import {Photoroll} from "../../models/photoroll.model";
 import {PhotorollService} from "../../services/photoroll.service";
 import {Subject, Subscription} from 'rxjs';
@@ -12,6 +12,7 @@ import { switchMap } from 'rxjs/operators';
 })
 export class PhotoRollComponent implements OnInit {
   
+  @Input('photorollId') photorollId: string = ' ';
   photoroll: any;
   
   constructor(
@@ -19,14 +20,11 @@ export class PhotoRollComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.photorollService.getAllPhotorolls()
+    this.photorollService.getPhotoroll(this.photorollId? this.photorollId : "fakeId")
     .subscribe(res => {
-      let indx = res.findIndex(ph => ph.title == 'landing page'); //will be replaced
-      this.photoroll = res[indx];
-    });
+      this.photoroll = res;
+      console.log('RECEIVED NULL PH :: ', this.photoroll);
+    })
   }
 
-  
-
-  
 }

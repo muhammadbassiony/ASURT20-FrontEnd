@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RovComponent implements OnInit {
 
-  backgroundColor:string='#177EE5'
+  backgroundColor:string='#177EE5';
+  photorollId = "";
 
   constructor() { }
 
