@@ -23,8 +23,7 @@ export class PhotoRollComponent implements OnInit {
     this.photorollService.getPhotoroll(this.photorollId? this.photorollId : "fakeId")
     .subscribe(res => {
       this.photoroll = res;
-      console.log('RECEIVED NULL PH :: ', this.photoroll);
-    })
+    });
   }
 
 }
