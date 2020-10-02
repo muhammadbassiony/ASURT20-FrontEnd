@@ -29,18 +29,7 @@ import { ImageService } from "../../services/image.service";
   styleUrls: ['./photoroll-edit.component.css']
 })
 export class PhotorollEditComponent implements OnInit {
-  // selectedFile: ImageSnippet;
-  // private selectedPhotorollName: string;
-  // uploadPaths : string[];
-  // photoroll: Photoroll[] = [
-  //   new Photoroll(1, 'prize', 4, ['https://placeimg.com/1080/500/nat','https://placeimg.com/1080/500/nature','https://placeimg.com/1080/500/arch','https://placeimg.com/1080/500/history']),
-  //   new Photoroll(1, 'landing-page', 4, ['https://placeimg.com/1080/500/nat','https://placeimg.com/1080/500/nature','https://placeimg.com/1080/500/arch','https://placeimg.com/1080/500/history'])
-  // ];
-
  
-  // imagePreview: string[];
-  // private mode = 'edit/photo-roll';
-
   allPhotorolls: any;
   photorollForm: FormGroup; // for edit by path
   currentPhotoroll: any; // stores all needed to edit photoroll properties
@@ -51,50 +40,6 @@ export class PhotorollEditComponent implements OnInit {
     public route: ActivatedRoute,
     public photorollService: PhotorollService
   ) { }
-
-  // filename = 'robert fermino';
-
-  /*= this.photorollService.getPhotorollByName(this.selectedPhotoroll);*/
-
-  // onImagePicked2(event: Event) {
-  //   const file = (event.target as HTMLInputElement).files[0];
-  //   this.form.patchValue({ image2: file });
-  //   this.form.get('image2').updateValueAndValidity();
-  //   const reader = new FileReader();
-  //   reader.onload = () => {
-  //     this.imagePreview2 = reader.result as string;
-  //   };
-  //   reader.readAsDataURL(file);
-  // }
-  //
-  // onImagePicked3(event: Event) {
-  //   const file = (event.target as HTMLInputElement).files[0];
-  //   this.form.patchValue({ image3: file });
-  //   this.form.get('image3').updateValueAndValidity();
-  //   // console.log(this.form);
-  //   // console.log(file);
-  //   const reader = new FileReader();
-  //   reader.onload = () => {
-  //     this.imagePreview3 = reader.result as string;
-  //   };
-  //   reader.readAsDataURL(file);
-  // }
-
-  // onSavePhotos() {
-  //   if (this.form.invalid) {
-  //     return;
-  //   }
-  //   console.log(this.form);
-  //   this.photorollService.addPhotoroll(
-  //     this.form.value.activeImage,
-  //     this.form.value.otherImages
-  //   );
-  //   // console.log(this.form);
-  //   // setTimeout(() => {
-  //   //   this.form.reset();
-  //   // }, 4000);
-  // }
-  
 
 
   ngOnInit(){
@@ -107,24 +52,6 @@ export class PhotorollEditComponent implements OnInit {
     this.photorollForm = this.fb.group({
       'images': this.fb.array([])
     });
-
-
-    // this.photoroll = [
-    //   new Photoroll(1,'prize', 4, ['dsfdfdf'] )
-    // ];
-    // this.photoroll = this.photorollService.initialize();
-    // console.log(this.photoroll);
-    // this.form = new FormGroup({
-    //   activeImage: new FormControl(null, {
-    //   validators: [Validators.required],
-    //     asyncValidators: [mimeType]
-    // }),
-    // otherImages: new FormControl(null, {
-    //   validators: [Validators.required],
-    //   asyncValidators: [mimeType]
-    // })
-    // });
-  //  this.initForm();
   }
 
   
@@ -150,18 +77,17 @@ export class PhotorollEditComponent implements OnInit {
   newImg: File = null;
   onImgAdded(files: FileList) {
     this.newImg = files.item(0);
-    // console.log(this.newImg);
-
+   
     //here can mime check on a **FILE**
     const control = new FormControl(this.newImg, [], [ImgMimeType]); 
     (<FormArray>this.photorollForm.get('images')).push(control);
-    // //number of currently existing images
+    // //number of currently existing images --> get index of last added image
     let numImgs = this.photorollForm.get('images')['controls'].length; 
     numImgs = numImgs==0 ? 0 : numImgs-1;
     
     (<FormArray>this.photorollForm.get('images')).updateValueAndValidity();
     
-    //crude validation technique - mime check is better ------- DELETE LATER!! ---------------
+    //crude validation technique - mime check is better !------- DELETE LATER!! -------------!
     // if(!this.newImg.type.match(/^image\//)){
     //   alert("Only image files are allowed");
     //   return;
@@ -181,6 +107,11 @@ export class PhotorollEditComponent implements OnInit {
 
   onSubmit(PhotorollForm: FormGroup) {
     console.log('SUBMIT FORM  :: \n', this.photorollForm);
+  }
+
+  onCancel(){
+    this.currentPhotoroll = null;
+    this.photorollForm.reset();
   }
 
   // // 1) edit by url
