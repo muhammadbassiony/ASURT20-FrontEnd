@@ -176,7 +176,7 @@ export class PhotorollEditComponent implements OnInit {
   }
 
   deleteImg(indx: number){
-    console.log('DELETE ::: INDX :: ', indx);
+    (<FormArray>this.photorollForm.get('images')).removeAt(indx);
   }
 
   onSubmit(PhotorollForm: FormGroup) {
