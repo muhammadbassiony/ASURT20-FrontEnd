@@ -101,9 +101,9 @@
       <div class="card-group" *ngFor="let im of photorollForm.value.images; let i = index">
         <div class="col-md-4 rounded">
           <div class="img-wrap">
-            <span class="close">&times;</span>
+            <span class="close" (click)="deleteImg(i)">&times;</span>
             <!-- if it hs name then it is a file object / typeof() can NOT be used in DOM -->
-            <img id="{{i}}" [src]=test_im[i] alt=im style="height: 150px; width:250px;" *ngIf="im.name">
+            <img id="{{i}}"  alt=im style="height: 150px; width:250px;" *ngIf="im.name">
             <img id="{{i}}" [src]="im" alt=im style="height: 150px; width:250px;" *ngIf="!im.name">
           </div>
         </div>      

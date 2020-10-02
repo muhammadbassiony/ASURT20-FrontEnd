@@ -147,7 +147,6 @@ export class PhotorollEditComponent implements OnInit {
   }
 
 
-  test_im = [];
   newImg: File = null;
   onImgAdded(files: FileList) {
     this.newImg = files.item(0);
@@ -158,6 +157,7 @@ export class PhotorollEditComponent implements OnInit {
     (<FormArray>this.photorollForm.get('images')).push(control);
     // //number of currently existing images
     let numImgs = this.photorollForm.get('images')['controls'].length; 
+    numImgs = numImgs==0 ? 0 : numImgs-1;
     
     (<FormArray>this.photorollForm.get('images')).updateValueAndValidity();
     
@@ -166,21 +166,17 @@ export class PhotorollEditComponent implements OnInit {
     //   alert("Only image files are allowed");
     //   return;
     // }
-    console.log('PHFORM VALUE ::\n', this.photorollForm.value.images[numImgs-1]);
-    let imageURL;
+    
     const reader = new FileReader();
     reader.onload = () => {
-      // imageURL = reader.result as string;
-      (<HTMLImageElement>document.getElementById((numImgs-1).toString())).src = reader.result as string;
+      (<HTMLImageElement>document.getElementById((numImgs).toString())).src = reader.result as string;
     }
     reader.readAsDataURL(this.newImg);
-    // console.log('CREATED URL :: \n', typeof(imageURL));
-    // let img2 = this.photorollForm.value.images[numImgs-1];
-    // img2['url'] = imageURL;
-    // console.log('TRIAL :: ', img2);
-    // this.photorollForm.value.images[numImgs-1] = img2;
-    // console.log('TRTIAL SUX??\n', this.photorollForm.value);
+    
+  }
 
+  deleteImg(indx: number){
+    console.log('DELETE ::: INDX :: ', indx);
   }
 
   onSubmit(PhotorollForm: FormGroup) {
