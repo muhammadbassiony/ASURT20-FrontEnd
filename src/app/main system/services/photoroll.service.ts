@@ -47,7 +47,7 @@ export class PhotorollService {
 
     return this.http.post(
       backend_uri + '/main/photorolls/update',
-      {},
+      { phForm },
       { responseType: 'json'}
     )
     .pipe(
@@ -60,7 +60,7 @@ export class PhotorollService {
       })
     );
   }
-  
+
   // initialize () {
   //   const photoroll: Photoroll = new Photoroll(1, 'landing-page', 4, ['https://placeimg.com/1080/500/nat','https://placeimg.com/1080/500/nature','https://placeimg.com/1080/500/arch','https://placeimg.com/1080/500/history']);
   //   this.photoroll.push(photoroll) ;
