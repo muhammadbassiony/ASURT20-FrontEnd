@@ -121,15 +121,15 @@ export class SponsorsEditComponent implements OnInit, OnDestroy {
       logo: this.sponsorEditForm.value.sponsorLogo
     };
     console.log('OBJECT FD :: \n', fd);
-    this._SponsorsService.newSponsor(fd)
-    // .subscribe((value) => {    //will work
-    //   this.message = 'Sponsor created successfully!';
-    //   this.sponsorEditForm.reset();
-    //   }, 
-    // (reason: HttpErrorResponse) => {   //will NOT work
-    //   this.message = reason.message;
-    //   console.log(reason);
-    // });
+    this._SponsorsService.addNewSponsor(fd)
+    .subscribe((value) => {    //will work
+      this.message = 'Sponsor created successfully!';
+      this.sponsorEditForm.reset();
+    }, 
+    error => {   
+      this.message = error;
+      console.log(error);
+    });
   }
 
   changeState(){

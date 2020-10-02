@@ -156,19 +156,6 @@ export class SponsorsService {
     );
   }
 
-  newSponsor(newSp: any){
-    console.log(newSp);
-    const fd: FormData = new FormData();
-    try {
-      fd.set('name', newSp.name);
-      fd.append('name', newSp.name);
-      console.log(fd.get('name'));
-    } catch(err){
-      console.log(err);
-    }
-    
-    console.log(fd, newSp.name);
-  }
 
   updateAllSponsors(allSpns: any){
     return this.http.post(
