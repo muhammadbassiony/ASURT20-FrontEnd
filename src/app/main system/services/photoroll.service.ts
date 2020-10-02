@@ -38,6 +38,29 @@ export class PhotorollService {
     );
   }
 
+  updatePhotoroll(newPh: Photoroll){
+    let phForm = new FormData;
+    phForm.append('_id', newPh._id);
+    phForm.append('title', newPh.title);
+    phForm.append('images', JSON.stringify(newPh.images));
+    console.log('PH SERVICE UPDATE FORMDATA ::\n', phForm);
+
+    return this.http.post(
+      backend_uri + '/main/photorolls/update',
+      {},
+      { responseType: 'json'}
+    )
+    .pipe(
+      map(res => {
+        let body = res['photoroll'];    
+        return body || [];    
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
+  }
+  
   // initialize () {
   //   const photoroll: Photoroll = new Photoroll(1, 'landing-page', 4, ['https://placeimg.com/1080/500/nat','https://placeimg.com/1080/500/nature','https://placeimg.com/1080/500/arch','https://placeimg.com/1080/500/history']);
   //   this.photoroll.push(photoroll) ;
