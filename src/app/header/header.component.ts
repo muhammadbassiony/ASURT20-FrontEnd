@@ -4,6 +4,8 @@ import {DOCUMENT} from "@angular/common";
 import {Subscription} from 'rxjs';
 import {RegistrationService} from '../registration/registration.service';
 
+import { ActivatedRoute, Params, Router, Data, NavigationStart, NavigationExtras } from '@angular/router';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -18,7 +20,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @Input()isAdminMode: boolean;
   constructor(
     @Inject(DOCUMENT) document, 
-    private registrationService: RegistrationService) { }
+    private registrationService: RegistrationService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     const header = document.getElementById('header');
@@ -49,6 +54,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
   onLogout() {
     this.registrationService.logout();
   }
+
+  // PLACEHOLDER - THIS FUNCTION WILL BE CHANGED LATER WHEN COMP SERVICE IS CREATED - BAD CODE
+  goToCompetition(compName: string){
+    let url = '/competition/'+compName.toString().toLowerCase();
+    console.log('URL COMP :: ', url);
+    this.router.navigate(['/competition/formula', { state: { photorollId: 'compName here' }}]);
+    
+  }
+
   ngOnDestroy() {
     this.userSubscription.unsubscribe();
   }

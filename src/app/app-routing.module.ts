@@ -27,11 +27,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 const routes: Routes = [
   { path: '', component: LandingPageComponent, pathMatch: 'full' },
   { path: 'home', component: LandingPageComponent},
-  { path: 'competition', component: CompetitionComponent, children:[
-      {path: 'formula', component: FormulaComponent},
-      {path: 'shell', component: ShellComponent},
-      {path: 'rov', component: RovComponent}
-    ]},
+  { path: 'competition', component: CompetitionComponent,
+     children:[
+
+        {path: 'formula', component: FormulaComponent},
+        {path: 'shell', component: ShellComponent},
+        {path: 'rov', component: RovComponent}
+    ]
+  },
   { path: 'sponsors', component: SponsorsComponent },
   { 
     path: 'edit', component: AdminPanelComponent, 

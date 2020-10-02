@@ -72,9 +72,12 @@
               Competitions
             </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" (click)="onToggleHeader()" [routerLink]="['/competition','formula']">Formula</a>
+                            <a class="dropdown-item"  [routerLink]="['/competition','formula']" [state]="{ photorollId:'formula'}">Formula</a>
+                            <a class="dropdown-item"  [routerLink]="['/competition','shell']" [state]="{ photorollId:'shell'}">Shell</a>
+                            <a class="dropdown-item"  [routerLink]="['/competition','rov']" [state]="{ photorollId:'rov'}">ROV</a>
+                            <!-- <a class="dropdown-item" (click)="onToggleHeader()" [routerLink]="['/competition','formula']" [state]="{ photorollId:'formula'}>Formula</a>
                             <a class="dropdown-item" (click)="onToggleHeader()" [routerLink]="['/competition','shell']">Shell</a>
-                            <a class="dropdown-item" (click)="onToggleHeader()" [routerLink]="['/competition','rov']">ROV</a>
+                            <a class="dropdown-item" (click)="onToggleHeader()" [routerLink]="['/competition','rov']">ROV</a> -->
                         </div>
                     </div>
                 </li>
