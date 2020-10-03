@@ -18,7 +18,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { Observable, pipe, Subscription } from 'rxjs';
 
 
-import { UsersService } from '../../services/users.service';
+import { UserService } from '../../../authorization/user.service';
 import { TeamsService } from '../../services/teams.service';
 import { Member } from '../../../authorization/member.model';
 import { User } from '../../../authorization/user.model';
@@ -49,7 +49,7 @@ export class ViewSingleUserComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private usersService: UsersService,
+    private usersService: UserService,
     private teamsService: TeamsService,
     private http: HttpClient,
     private route: ActivatedRoute,

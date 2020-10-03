@@ -8,9 +8,9 @@ import { Observable, pipe, Subscription } from 'rxjs';
 
 import { EventsService } from '../../services/events.service';
 import { Event } from '../../models/event.model';
-import { ApplicationsService } from 'src/app/services/applications.service';
-import { UsersService } from 'src/app/services/users.service';
-import { Application } from 'src/app/models/application.model';
+import { ApplicationsService } from '../../services/applications.service';
+import { UserService } from '../../../authorization/user.service';
+import { Application } from '../../models/application.model';
 
 @Component({
   selector: 'app-user-events',
@@ -30,7 +30,7 @@ export class UserEventsComponent implements OnInit {
   constructor(
     private eventsService: EventsService,
     private applicationsService: ApplicationsService, 
-    private usersService: UsersService,
+    private usersService: UserService,
     private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router) { }

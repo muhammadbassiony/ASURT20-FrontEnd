@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Application } from 'src/app/models/application.model';
-import { ApplicationsService } from 'src/app/services/applications.service';
-import { UsersService } from 'src/app/services/users.service';
-import { EventsService } from 'src/app/services/events.service';
+import { Application } from '../../../models/application.model';
+import { ApplicationsService } from '../../../services/applications.service';
+import { UserService } from '../../../../authorization/user.service';
+import { EventsService } from '../../../services/events.service';
 import {ViewSingleAppComponent}  from '../view-single-app/view-single-app.component'
-import { User } from 'src/app/models/user.model';
-import { Event } from 'src/app/models/event.model';
+
 
 import { ActivatedRoute, Params, Router, Data } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -32,7 +31,7 @@ export class ViewAllAppsComponent implements OnInit {
 
   constructor(
     private applicationsService: ApplicationsService, 
-    private usersService: UsersService,
+    private usersService: UserService,
     private eventsService: EventsService,
     private http: HttpClient,
     private route: ActivatedRoute,
@@ -54,27 +53,19 @@ export class ViewAllAppsComponent implements OnInit {
       console.log("the filtered Items", this.filteredItems);
     });
 
-    // this.allApplications = this.applicationsService
-    //   .getAllApplications()
-    //   .filter(app => app.eventId === this.eventId);
-    
-    // for(let i=0; i<this.allApplications.length; i++){
-    //   this.appUsers.push({
-    //     ...this.allApplications[i],
-    //     ...(this.usersService.getUser(this.allApplications[i].userId))
-    //   });
-    // }
-    // console.log("merged",this.appUsers);
   }
+
   update():void{
     
   }
   // getUser(userId: string){
   //   return this.usersService.getUser(userId);
   // }
+
   assignCopy(){
     this.filteredItems = Object.assign([], this.allApps);
   }
+
   filterItem(value){
     if(value===""){
       this.assignCopy();
@@ -86,5 +77,5 @@ export class ViewAllAppsComponent implements OnInit {
       
       )
     } 
-    }
   }
+}

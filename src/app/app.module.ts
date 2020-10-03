@@ -70,8 +70,6 @@ import listPlugin from '@fullcalendar/list';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
-import { SearchPipe } from './recruitment system/pipes/search.pipe';
-
 import { UserApplicationComponent } from './recruitment system/applications/user-application/user-application.component';
 import { NewEventComponent } from './recruitment system/applications/start-application/new-event/new-event.component';
 import { SetQuestionsComponent } from './recruitment system/applications/start-application/set-questions/set-questions.component';
@@ -134,7 +132,6 @@ FullCalendarModule.registerPlugins([
     SetQuestionsComponent,
     ViewSingleAppComponent,
     ViewAllAppsComponent,
-    SearchPipe,
     ViewAllUsersComponent,
     UserEventsComponent,
     AdminEventsComponent,

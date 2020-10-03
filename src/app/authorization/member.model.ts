@@ -6,5 +6,5 @@ export interface Member {
     teamId: string;
     subteamId: string;
     head: boolean;
-    season: Seasons;
+    season?: Seasons;
 }

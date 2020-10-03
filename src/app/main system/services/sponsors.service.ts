@@ -5,7 +5,6 @@ import { map, catchError, tap } from 'rxjs/operators';
 import { Subject, throwError, Observable} from 'rxjs';
 
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {SponsorInitializationService} from '../../sponsor-initialization.service';
 
 import { environment } from '../../../environments/environment';
 const backend_uri = environment.backend_uri;
@@ -32,8 +31,7 @@ const backend_uri = environment.backend_uri;
 })
 export class SponsorsService {
 
-  constructor(private sponsorInitializationService: SponsorInitializationService,
-              private http: HttpClient) {
+  constructor(private http: HttpClient) {
   }
   // private allSponsorsInfo : Sponsor[]=[
   //   new Sponsor("assets/img/kader.png", "Arab Organization for Industrialization",'KADER factory for developed industries was established in 1949 under the name of "HELIOPOLIS AIRCRAFT FACTORY" to produce the primary training Aircraft ..', true, '1'),

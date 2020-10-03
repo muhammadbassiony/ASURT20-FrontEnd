@@ -24,7 +24,7 @@ import { User } from '../../../../authorization/user.model';
 import { Application } from '../../../models/application.model';
 import { Event } from '../../../models/event.model';
 
-import { UsersService } from '../../../services/users.service';
+import { UserService } from '../../../../authorization/user.service';
 import { ApplicationsService } from '../../../services/applications.service';
 import { EventsService } from '../../../services/events.service';
 import { Team } from '../../../models/team.model';
@@ -49,7 +49,7 @@ export class ViewSingleAppComponent implements OnInit {
   @ViewChild('viewSingleAppForm') singleAppFormDirective;
   constructor(
     private applicationsService: ApplicationsService,
-    private usersService: UsersService,
+    private usersService: UserService,
     private eventsService: EventsService,
     private http: HttpClient,
     private route: ActivatedRoute,

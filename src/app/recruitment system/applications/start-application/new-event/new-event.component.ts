@@ -13,11 +13,11 @@ import { Subscription } from 'rxjs';
 
 import { ActivatedRoute, Params, Router, Data } from '@angular/router';
 
-import {Event} from '../../../models/event.model'
-import {Team} from '../../../models/team.model';
-import {Seasons} from '../../../models/seasons.model';
+import { Event } from '../../../models/event.model'
+import { Team } from '../../../models/team.model';
+import { Seasons } from '../../../models/seasons.model';
 
-import {EventsService} from '../../../services/events.service';
+import { EventsService } from '../../../services/events.service';
 import { TeamsService } from '../../../services/teams.service';
 
 @Component({

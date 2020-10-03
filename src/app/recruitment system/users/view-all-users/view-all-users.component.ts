@@ -14,7 +14,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { Observable, pipe, Subscription } from 'rxjs';
 
 import { User } from '../../../authorization/user.model';
-import { UsersService } from '../../services/users.service';
+import { UserService } from '../../../authorization/user.service';
 
 @Component({
   selector: 'app-view-all-users',
@@ -27,7 +27,7 @@ export class ViewAllUsersComponent implements OnInit {
   allUsers: User[];
 
   constructor(
-    private usersService: UsersService,
+    private usersService: UserService,
     private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router) { }
