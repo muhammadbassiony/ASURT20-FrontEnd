@@ -106,7 +106,7 @@ export class UserService {
 
   logout() {
     this.authUser.next(null);
-    this.router.navigate(['/sign-up']);
+    this.router.navigate(['/sign-in']);
     localStorage.removeItem('UserAuth');
 
     if (this.tokenExpirationTimer) {

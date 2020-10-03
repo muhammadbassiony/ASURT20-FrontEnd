@@ -38,10 +38,7 @@ export class UserEventsComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    // this should be passed to the dashboard component as a param after login using next line
-    // this.userId = this.route.snapshot.queryParamMap.get('userId');
-    // this.userId = "5f5b7283b4adb51dec72e8ed"; // for testing 
-
+     
     this.applicationsService.getUserEvents(this.userId)
     .pipe(switchMap(res => {
       this.appliedTo = res['appliedTo'];
