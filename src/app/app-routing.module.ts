@@ -69,21 +69,21 @@ const routes: Routes = [
   
   { path: 'sign-up', component: SignUpComponent },
   { path: 'sign-in', component: SignInComponent },
-  { path: 'dashboard', component: DashboardComponent , data: { accessLevel: 0} },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuardService], data: { accessLevel: 0} },
   
-  {path: 'view-all-users', component: ViewAllUsersComponent , data: { accessLevel: 3} },
-  {path: 'view-user', component: ViewSingleUserComponent , data: { accessLevel: 3} },
+  {path: 'view-all-users', component: ViewAllUsersComponent, canActivate: [AdminGuardService], data: { accessLevel: 3} },
+  {path: 'view-user', component: ViewSingleUserComponent, canActivate: [AdminGuardService], data: { accessLevel: 3} },
 
   {path: 'event/new', component: NewEventComponent , data: { accessLevel: 3} },
-  {path: 'application/set-questions', component: SetQuestionsComponent , data: { accessLevel: 2} },
-  {path: 'view-applications/:eventId', component: ViewAllAppsComponent , data: { accessLevel: 2} },
-  {path: 'view-application/:appId', component: ViewSingleAppComponent , data: { accessLevel: 2} },
+  {path: 'application/set-questions', component: SetQuestionsComponent, canActivate: [AdminGuardService], data: { accessLevel: 2} },
+  {path: 'view-applications/:eventId', component: ViewAllAppsComponent, canActivate: [AdminGuardService] , data: { accessLevel: 2} },
+  {path: 'view-application/:appId', component: ViewSingleAppComponent , canActivate: [AdminGuardService], data: { accessLevel: 2} },
 
-  {path: 'manage-interviews', component: AdminInterviewsComponent , data: { accessLevel: 2} },
-  {path: 'interview/:ivId', component: ViewInterviewComponent , data: { accessLevel: 2} },
+  {path: 'manage-interviews', component: AdminInterviewsComponent , canActivate: [AdminGuardService], data: { accessLevel: 2} },
+  {path: 'interview/:ivId', component: ViewInterviewComponent , canActivate: [AdminGuardService], data: { accessLevel: 2} },
 
-  {path: 'application/:userId', component: UserApplicationComponent , data: { accessLevel: 0} },
-  {path: 'book-interview/:appId', component: UserInterviewsComponent , data: { accessLevel: 0} },
+  {path: 'application/:userId', component: UserApplicationComponent , canActivate: [AdminGuardService], data: { accessLevel: 0} },
+  {path: 'book-interview/:appId', component: UserInterviewsComponent , canActivate: [AdminGuardService], data: { accessLevel: 0} },
 
 
   { path: '**', redirectTo: '' }
