@@ -27,6 +27,8 @@ export class AdminGuardService implements CanActivate {
             return this.router.createUrlTree(['/sign-in']);
           }
           let userLevel = user.level;
+          // console.log('AUTH GUARD HERE :: ROUTEDATA, USERLEVEL ::  ', 
+          //   route.data.accessLevel, userLevel, route.data.accessLevel <= userLevel);
           if(route.data.accessLevel && route.data.accessLevel <= userLevel){
             //users access level is equal to that of allowed by this route
             return true;

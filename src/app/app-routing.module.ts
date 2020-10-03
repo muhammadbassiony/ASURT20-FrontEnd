@@ -54,6 +54,8 @@ const routes: Routes = [
     ]
   },
   { path: 'sponsors', component: SponsorsComponent },
+  { path: 'about-us', component: AboutUsComponent },
+
   { 
     path: 'edit', component: AdminPanelComponent, 
     data: { accessLevel: 2}, 
@@ -65,16 +67,17 @@ const routes: Routes = [
       { path: 'sponsors', component: SponsorsEditComponent }
     ]
   },
-  { path: 'about-us', component: AboutUsComponent },
   
   { path: 'sign-up', component: SignUpComponent },
   { path: 'sign-in', component: SignInComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuardService], data: { accessLevel: 0} },
+
+  { path: 'dashboard', component: DashboardComponent }, //weird bug here
+  // { path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuardService], data: { accessLevel: 0} },
   
   {path: 'view-all-users', component: ViewAllUsersComponent, canActivate: [AdminGuardService], data: { accessLevel: 3} },
   {path: 'view-user', component: ViewSingleUserComponent, canActivate: [AdminGuardService], data: { accessLevel: 3} },
-
-  {path: 'event/new', component: NewEventComponent , data: { accessLevel: 3} },
+ 
+  {path: 'event/new', component: NewEventComponent, data: { accessLevel: 3} },
   {path: 'application/set-questions', component: SetQuestionsComponent, canActivate: [AdminGuardService], data: { accessLevel: 2} },
   {path: 'view-applications/:eventId', component: ViewAllAppsComponent, canActivate: [AdminGuardService] , data: { accessLevel: 2} },
   {path: 'view-application/:appId', component: ViewSingleAppComponent , canActivate: [AdminGuardService], data: { accessLevel: 2} },
