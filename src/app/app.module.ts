@@ -1,3 +1,4 @@
+import "@angular/compiler";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -42,7 +43,9 @@ import { FooterComponent } from './footer/footer.component';
 import { SignUpComponent } from './authorization/sign-up/sign-up.component';
 import { SignInComponent } from './authorization/sign-in/sign-in.component';
 import { UserService } from './authorization/user.service';
+import { EditProfileComponent } from './authorization/edit-profile/edit-profile.component';
 import { AuthInterceptorService } from './authorization/auth-interceptor.service';
+
 import { PhotoRollFetcherService } from './main system/services/photo-roll-fetcher.service';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { AboutUsComponent } from './main system/about-us/about-us.component';
@@ -83,7 +86,7 @@ import { ViewSingleUserComponent } from './recruitment system/users/view-single-
 import { UserInterviewsComponent } from './recruitment system/interviews/user-interviews/user-interviews.component';
 import { AdminInterviewsComponent } from './recruitment system/interviews/admin-interviews/admin-interviews.component';
 import { ViewInterviewComponent } from './recruitment system/interviews/admin-interviews/view-interview/view-interview.component';
-import { EditProfileComponent } from './authorization/edit-profile/edit-profile.component';
+
 
 
 
@@ -185,7 +188,6 @@ FullCalendarModule.registerPlugins([
     PrizeService,
     FadeInService,
     UserService,
-    PhotoRollFetcherService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

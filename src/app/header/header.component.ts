@@ -13,10 +13,11 @@ import { ActivatedRoute, Params, Router, Data, NavigationStart, NavigationExtras
   styleUrls: ['./header.component.css']
 }) 
 
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit {
 
   isAuthorized: boolean = false;
-  private userSubscription: Subscription;
+  // private userSubscription: Subscription;
+  userId: string;
 
   @Input()isAdminMode: boolean;
   // @Input()isAuthorized: boolean;
@@ -34,6 +35,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
     this.usersService.authUser.subscribe(user => {
       this.isAuthorized = !!user;
+      this.userId = user._id;
     });
   }
 
@@ -57,7 +59,5 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.usersService.logout();
   }
 
-  ngOnDestroy() {
-    this.userSubscription.unsubscribe();
-  }
+  
 }

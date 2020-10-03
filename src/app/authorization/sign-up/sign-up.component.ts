@@ -29,16 +29,13 @@ export class SignUpComponent implements OnInit {
     const email = signUpForm.value.email;
     const password = signUpForm.value.password;
 
-
-    let signUpObs: Observable<RegisterResponseData>;
     this.isLoading = true;
 
     this.usersService.signUp(email, password)
     .subscribe(responseData => {
       console.log(responseData);
       this.isLoading = false;
-      this.router.navigate(['/dashboard', responseData.user._id]);
-      //navigate to edit profile component here instead of dashboard
+      this.router.navigate(['/edit-profile', responseData.user._id]);
     }, errorMessage => {
       console.log(errorMessage);
       this.isLoading = false;

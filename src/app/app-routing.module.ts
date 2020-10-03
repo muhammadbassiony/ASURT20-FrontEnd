@@ -19,6 +19,7 @@ import { AboutUsComponent } from "./main system/about-us/about-us.component";
 
 import { SignUpComponent } from './authorization/sign-up/sign-up.component';
 import { SignInComponent } from './authorization/sign-in/sign-in.component';
+import { EditProfileComponent } from './authorization/edit-profile/edit-profile.component';
 
 import {AdminGuardService} from './authorization/admin-guard.service';
 
@@ -70,6 +71,7 @@ const routes: Routes = [
   
   { path: 'sign-up', component: SignUpComponent },
   { path: 'sign-in', component: SignInComponent },
+  { path: 'edit-profile/:userId', component: EditProfileComponent, canActivate: [AdminGuardService], data: { accessLevel: 0} },
 
   
   { path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuardService], data: { accessLevel: 0} },
