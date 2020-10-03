@@ -2,7 +2,7 @@
 import {AfterViewChecked, Component, Inject, Input, OnDestroy, OnInit} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
 import {Subscription} from 'rxjs';
-import {RegistrationService} from '../registration/registration.service';
+import { UserService } from '../authorization/user.service';
 
 import { ActivatedRoute, Params, Router, Data, NavigationStart, NavigationExtras } from '@angular/router';
 
@@ -19,8 +19,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   @Input()isAdminMode: boolean;
   constructor(
-    @Inject(DOCUMENT) document, 
-    private registrationService: RegistrationService,
+    private usersService: UserService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -30,7 +29,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (this.applyMql('900px')) {
       header.classList.add('header-closed');
     }
-    this.userSubscription = this.registrationService.authUser.subscribe(user => {
+    this.userSubscription = this.usersService.authUser.subscribe(user => {
       this.isAuthorized = !!user;
     });
   }
@@ -52,15 +51,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onLogout() {
-    this.registrationService.logout();
-  }
-
-  // PLACEHOLDER - THIS FUNCTION WILL BE CHANGED LATER WHEN COMP SERVICE IS CREATED - BAD CODE
-  goToCompetition(compName: string){
-    let url = '/competition/'+compName.toString().toLowerCase();
-    console.log('URL COMP :: ', url);
-    this.router.navigate(['/competition/formula', { state: { photorollId: 'compName here' }}]);
-    
+    this.usersService.logout();
   }
 
   ngOnDestroy() {

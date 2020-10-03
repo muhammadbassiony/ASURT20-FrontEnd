@@ -11,14 +11,6 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ImgMimeType } from '../../../shared/img-mime-type.validator';
 import { Photoroll } from '../../models/photoroll.model';
 import { PhotorollService } from '../../services/photoroll.service';
-import { ImageService } from "../../services/image.service";
-
-// class ImageSnippet {
-//   pending: boolean = false;
-//   status: string = 'init';
-
-//   constructor(public src: string, public file: File) {}
-// }
 
 
 
@@ -36,7 +28,6 @@ export class PhotorollEditComponent implements OnInit {
 
   constructor( 
     private fb: FormBuilder,
-    private imageService: ImageService, 
     public route: ActivatedRoute,
     public photorollService: PhotorollService
   ) { }

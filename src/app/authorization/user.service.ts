@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-import { BehaviorSubject, throwError, Subject} from 'rxjs';
+import { BehaviorSubject, throwError, Subject, from} from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 
 import { JwtHelperService } from "@auth0/angular-jwt";
 
 import { User } from './user.model';
 import { AuthUser } from './authUser.model';
+import { Member } from './member.model';
 
 import { environment } from '../../environments/environment';
 const backend_uri = environment.backend_uri;
@@ -19,12 +20,6 @@ export interface RegisterResponseData {
   // token: string;
 }
 
-// interface DecryptedToken {
-//   userId: string,
-//   permissions: number,
-//   iat: number,
-//   exp: number
-// }
 
 @Injectable()
 export class UserService {
@@ -45,22 +40,9 @@ export class UserService {
 
 
   private handleRegistration(user: any) {
-    console.log('HANDLE REG HERE!!', user);
-    // this.decryptedToken = this.decryptJWTToken(token);
-    // const expirationDate = new Date(0);
-    // const expirationDate = this.decodingHelper.getTokenExpirationDate(token).valueOf();
+    // console.log('HANDLE REG HERE!!', user);
     const expirationDate = this.decodingHelper.getTokenExpirationDate(user.token);
-    // console.log('EXP DATE JWTHELPER ::', expirationDate, typeof(expirationDate));
-    // console.log('EXP DATE DIFFERENCE ::', expirationDate.valueOf() - Date.now().valueOf());
-    // expirationDate.setUTCSeconds(this.decryptedToken.exp);
-    // console.log('EXP DATE EDIT ??', expirationDate.valueOf(), Date.now().valueOf());
-
-    // const user = new User(
-    //   this.decryptedToken.permissions, 
-    //   this.decryptedToken.userId, 
-    //   token, 
-    //   expirationDate);
-
+    
     let authUser: AuthUser = {
       _id: user._id,
       level: user.level,
@@ -68,14 +50,11 @@ export class UserService {
       exp: expirationDate.valueOf()
     }
 
-    // this.user.next(user);
     this.authUser.next(authUser);
 
-    // this.autoLogout((this.decryptedToken.exp - this.decryptedToken.iat) * 1000);
     this.autoLogout(expirationDate.valueOf() - Date.now().valueOf());
-    // localStorage.setItem('UserData', JSON.stringify(user));
     localStorage.setItem('UserAuth', JSON.stringify(authUser));
-    console.log('HANDLE REG HERE!!');
+    // console.log('HANDLE REG HERE!!');
   }
 
   signUp(email: string, password: string) {
@@ -105,10 +84,10 @@ export class UserService {
         password: password,
       }
     ).
-    pipe(catchError(this.handleError),
+    pipe(
+      catchError(this.handleError),
       tap((responseData) => {
-        // const expirationDate = this.decodingHelper.getTokenExpirationDate(responseData.token);
-        console.log('LOGIN TAP -- EXP DATE JWTHELPER ::', responseData);
+        // console.log('LOGIN TAP -- EXP DATE JWTHELPER ::', responseData);
         this.handleRegistration(responseData.user);
       }));
   }
@@ -164,6 +143,8 @@ export class UserService {
     return throwError(errorRes);
   }
 
+
+  
   
   getAllUsers(){
     return this.http.get( backend_uri + '/auth/user/all-users', { responseType: 'json' })

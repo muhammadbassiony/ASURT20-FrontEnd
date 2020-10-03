@@ -3,10 +3,10 @@ import {
   CanActivate, 
   Router, 
   RouterStateSnapshot, 
-  UrlTree} from '@angular/router';
+  UrlTree } from '@angular/router';
 
 import { Observable } from "rxjs"; 
-import { UserService } from './registration.service';
+import { UserService } from './user.service';
 import { map, take } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 

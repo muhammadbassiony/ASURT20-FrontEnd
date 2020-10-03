@@ -4,7 +4,6 @@ import {SponsorsService} from '../../services/sponsors.service';
 import {Sponsor} from '../../models/sponsor.model';
 
 import {Subscription} from 'rxjs';
-import {SponsorInitializationService} from '../../../sponsor-initialization.service';
 
 import { environment } from '../../../../environments/environment';
 import {HttpErrorResponse} from '@angular/common/http';
@@ -12,12 +11,7 @@ const backend_uri = environment.backend_uri;
 
 import { ImgMimeType } from '../../../shared/img-mime-type.validator';
 
-//  TODO
-// 1- edit already existing sponsor 
-// 2- floating alerts: position should be more obvious(add way more padding) & 
-//    leave space between message and button 
-// 3- loading not working
-//
+
 
 @Component({
   selector: 'app-sponsors-edit',
@@ -26,7 +20,6 @@ import { ImgMimeType } from '../../../shared/img-mime-type.validator';
 })
 export class SponsorsEditComponent implements OnInit, OnDestroy {
 
-  backend_uri = 'http://localhost:3000/';
   sponsorEditForm : FormGroup;
   // sponsorsInfo : Sponsor[];
   sponsorsInfo: any;
@@ -42,11 +35,8 @@ export class SponsorsEditComponent implements OnInit, OnDestroy {
   editMessage: string = null;
 
   constructor(
-    private sponsorInitializationService: SponsorInitializationService,
     private _SponsorsService:SponsorsService,
-    private fb: FormBuilder,
-    // private sanitizer:DomSanitizer,
-    // protected _sanitizerImpl: ɵDomSanitizerImpl
+    private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -68,39 +58,6 @@ export class SponsorsEditComponent implements OnInit, OnDestroy {
       'sponsorDesc': [ , [Validators.required, Validators.minLength(5)]],
       'sponsorLogo': [ , [Validators.required], [ImgMimeType]]  //img mime NOT working??
     });
-
-    // this.sponsorInitializationService.Initialized++;
-    // this.isGettingSub = this._SponsorsService.isGettingSponsors.subscribe(
-    //   (value) => {
-    //     this.isGettingSponsors = value;
-    //   }
-    // );
-    // const promise = this._SponsorsService.getAllSponsorsInfo();
-    // promise.then(value => {
-    //   this.sponsorsInfo = <Array<Sponsor>>value;
-    //   for (let i = 0; i < this.sponsorsInfo.length; i++) {
-    //     this.isChecked.push(this.sponsorsInfo[i].isChecked);
-    //   }
-    // }, reason => {
-    //   console.log(reason);
-    // });
-    // // this.sponsorsInfo = this._SponsorsService.getAllSponsorsInfo();
-    // this._SponsorsService.allSponsors.subscribe(
-    // (sponsors:Sponsor[])=>{
-    //   this.sponsorsInfo=sponsors;
-    //   this.isChecked.splice(0, this.isChecked.length);
-    //   for (let i = 0; i < this.sponsorsInfo.length; i++) {
-    //     this.isChecked.push(this.sponsorsInfo[i].isChecked);
-    //   }
-    // })
-    // this.sponsorEditForm = new FormGroup({
-    //   'sponsorLogo' : new FormControl('', { 
-    //     validators:[Validators.required], 
-    //     asyncValidator: [ImgMimeType] 
-    //   }),
-    //   'sponsorName' : new FormControl('', Validators.required,),
-    //   'sponsorDesc' : new FormControl('', Validators.required)
-    // });
     
   }
 
