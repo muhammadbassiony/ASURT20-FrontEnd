@@ -28,7 +28,6 @@ export class SignInComponent implements OnInit {
     const email = signInForm.value.email;
     const password = signInForm.value.password;
 
-    let signInObs: Observable<RegisterResponseData>;
     this.isLoading = true;
 
     this.usersService.signIn(email, password)

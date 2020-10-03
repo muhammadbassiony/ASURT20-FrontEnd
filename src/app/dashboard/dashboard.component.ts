@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit {
     .pipe(take(1))
     .subscribe(res => {
       this.user = res;
-      console.log('AHOOYY :: ', this.user)
+      console.log('AHOOYY DASHBOARD:: ', this.user);
     });
     
   }

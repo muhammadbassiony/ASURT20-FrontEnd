@@ -19,6 +19,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private userSubscription: Subscription;
 
   @Input()isAdminMode: boolean;
+  // @Input()isAuthorized: boolean;
+
   constructor(
     private usersService: UserService,
     private route: ActivatedRoute,
@@ -30,7 +32,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (this.applyMql('900px')) {
       header.classList.add('header-closed');
     }
-    this.userSubscription = this.usersService.authUser.subscribe(user => {
+    this.usersService.authUser.subscribe(user => {
       this.isAuthorized = !!user;
     });
   }

@@ -24,7 +24,7 @@ export interface RegisterResponseData {
 @Injectable()
 export class UserService {
 
-  user = new BehaviorSubject<User>(null);
+  // user = new BehaviorSubject<User>(null);
 
   authUser = new BehaviorSubject<AuthUser>(null);
 
