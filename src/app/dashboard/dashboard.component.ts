@@ -9,8 +9,9 @@ import { Observable, pipe, Subscription } from 'rxjs';
 import { UserService } from '../authorization/user.service';
 import { AuthUser } from '../authorization/authUser.model';
 
-import  { AdminEventsComponent } from '../recruitment system/dashboard/admin-events/admin-events.component';
-import  { UserEventsComponent } from '../recruitment system/dashboard/user-events/user-events.component';
+import { AdminEventsComponent } from '../recruitment system/dashboard/admin-events/admin-events.component';
+import { UserEventsComponent } from '../recruitment system/dashboard/user-events/user-events.component';
+import { User } from '../authorization/user.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,11 +20,12 @@ import  { UserEventsComponent } from '../recruitment system/dashboard/user-event
 })
 export class DashboardComponent implements OnInit {
 
-  user: AuthUser;
+  authUser: AuthUser;
+  user: User;
 
 
   constructor(
-    private authService: UserService,
+    private usersService: UserService,
     private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router
@@ -31,11 +33,17 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.route);
-    this.authService.authUser
-    .pipe(take(1))
+    this.usersService.authUser
+    .pipe(
+      take(1),
+      switchMap(res => {
+        this.authUser = res;
+        return this.usersService.getUser(this.authUser._id);
+      })
+    )
     .subscribe(res => {
       this.user = res;
-      console.log('AHOOYY DASHBOARD:: ', this.user);
+      // console.log('AHOOYY DASHBOARD RECEIVED ALL USER:: ', this.user);
     });
     
   }
