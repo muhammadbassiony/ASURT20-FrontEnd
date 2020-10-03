@@ -20,7 +20,7 @@ import { ApplicationStatus } from '../../models/app-status-enum.model';
 
 import { ApplicationsService } from "../../services/applications.service";
 import { EventsService } from "../../services/events.service";
-import { UsersService } from '../../services/users.service';
+import { UserService } from '../../../authorization/user.service';
 
 import { pdfMimeType } from './pdf-mime-type.validator';
 
@@ -31,10 +31,6 @@ import { pdfMimeType } from './pdf-mime-type.validator';
 })
 export class UserApplicationComponent implements OnInit {
   
-  // selectedSubteam1: Subteam;    //must check both subteams are not the same
-  // selectedSubteam2: Subteam;
-  // userCV: File = null;
-
   newApp: Application;
 
   appForm: FormGroup;
@@ -51,7 +47,7 @@ export class UserApplicationComponent implements OnInit {
     private fb: FormBuilder, 
     private applicationsService: ApplicationsService,
     private eventsService: EventsService,
-    private usersService: UsersService,
+    private usersService: UserService,
     private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router) { }

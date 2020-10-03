@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import {DOCUMENT} from "@angular/common";
 import {FadeInService} from "./shared/fade-in.service";
-import {RegistrationService} from './registration/registration.service';
+import { UserService } from './authorization/user.service';
 
 @Component({
   selector: 'app-root',
@@ -16,11 +16,11 @@ import {RegistrationService} from './registration/registration.service';
 export class AppComponent implements OnInit{
   title = 'ASURT20-FrontEnd';
   isAdminMode = false;
-  constructor(@Inject(DOCUMENT) document, private registrationService: RegistrationService) {
+  constructor(@Inject(DOCUMENT) document, private usersService: UserService) {
   }
   ngOnInit() {
-    this.registrationService.autoSignin();
-    this.registrationService.authUser.subscribe((user) => {
+    this.usersService.autoSignin();
+    this.usersService.authUser.subscribe((user) => {
       if (!user) {
         this.isAdminMode = false;
       } else {

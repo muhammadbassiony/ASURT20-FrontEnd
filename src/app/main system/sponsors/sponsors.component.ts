@@ -3,7 +3,6 @@ import {SponsorsService} from '../services/sponsors.service';
 import {Sponsor} from '../models/sponsor.model'
 import {FadeInService} from "../../shared/fade-in.service";
 import {Subscription} from 'rxjs';
-import {SponsorInitializationService} from '../../sponsor-initialization.service';
 import { HttpBackend } from '@angular/common/http';
 
 import { environment } from '../../../environments/environment';

@@ -17,8 +17,8 @@ import { Observable, pipe, Subscription } from 'rxjs';
 import { Interview } from '../../models/interview.model';
 import { InterviewStatus } from '../../models/interview-status-enum.model';
 import { InterviewsService } from '../../services/interviews.service';
-import { ApplicationsService } from 'src/app/services/applications.service';
-import { UsersService } from '../../services/users.service';
+import { ApplicationsService } from '../../services/applications.service';
+import { UserService } from '../../../authorization/user.service';
 
 @Component({
   selector: 'app-user-interviews',
@@ -45,7 +45,7 @@ export class UserInterviewsComponent implements OnInit {
 
   constructor(
     private interviewsService: InterviewsService, 
-    private usersService: UsersService,
+    private usersService: UserService,
     private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router) { }
