@@ -24,6 +24,24 @@ import {AdminGuardService} from './registration/admin-guard.service';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 
+
+import { UserApplicationComponent } from './recruitment system/applications/user-application/user-application.component';
+import { NewEventComponent } from './recruitment system/applications/start-application/new-event/new-event.component';
+import { SetQuestionsComponent } from './recruitment system/applications/start-application/set-questions/set-questions.component';
+import { ViewSingleAppComponent } from './recruitment system/applications/view-applications/view-single-app/view-single-app.component';
+import { ViewAllAppsComponent } from './recruitment system/applications/view-applications/view-all-apps/view-all-apps.component';
+import { ViewAllUsersComponent } from './recruitment system/users/view-all-users/view-all-users.component';
+import { UserEventsComponent } from './recruitment system/dashboard/user-events/user-events.component';
+import { AdminEventsComponent } from './recruitment system/dashboard/admin-events/admin-events.component';
+import { ViewSingleUserComponent } from './recruitment system/users/view-single-user/view-single-user.component';
+
+import { UserInterviewsComponent } from './recruitment system/interviews/user-interviews/user-interviews.component';
+import { AdminInterviewsComponent } from './recruitment system/interviews/admin-interviews/admin-interviews.component';
+import { ViewInterviewComponent } from './recruitment system/interviews/admin-interviews/view-interview/view-interview.component';
+
+
+
+
 const routes: Routes = [
   { path: '', component: LandingPageComponent, pathMatch: 'full' },
   { path: 'home', component: LandingPageComponent},
@@ -52,6 +70,21 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent },
   { path: 'sign-in', component: SignInComponent },
   { path: 'dashboard', component: DashboardComponent , data: { accessLevel: 0} },
+  
+  {path: 'view-all-users', component: ViewAllUsersComponent},
+  {path: 'view-user', component: ViewSingleUserComponent},
+
+  {path: 'event/new', component: NewEventComponent},
+  {path: 'application/set-questions', component: SetQuestionsComponent},
+  {path: 'view-applications/:eventId', component: ViewAllAppsComponent},
+  {path: 'view-application/:appId', component: ViewSingleAppComponent},
+
+  {path: 'manage-interviews', component: AdminInterviewsComponent},
+  {path: 'interview/:ivId', component: ViewInterviewComponent},
+
+  {path: 'application/:userId', component: UserApplicationComponent},
+  {path: 'book-interview/:appId', component: UserInterviewsComponent},
+
   
   { path: '**', redirectTo: '' }
 ];

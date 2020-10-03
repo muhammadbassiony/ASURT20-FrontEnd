@@ -1,0 +1,16 @@
+<div class="card border shadow-lg container" style="width: 60%; align-self: center;" name="main-card">
+    <h1 class="card-title">View all {{event.team.name}} Applicants</h1>
+
+    <div class="card rounded">
+        <input type="text" class="form-control form-control-lg" style="height: 50px;" [(ngModel)]="query" #mySearch (input)="filterItem(mySearch.value)" placeholder="Search applicant name">
+    </div>
+
+    <div class="card rounded row container">
+        <div *ngFor="let app of filteredItems" class="card col-sm-12" name="user-card">
+            {{app.user.name}}
+            <p style="font-size:80%; margin-top:10px;">{{app.user.email}}</p>
+            <button type="button" class="btn-success bottom-right" style="font-size: 70%;" [routerLink]="['/view-application', app._id]">View application</button>
+        </div>
+
+    </div>
+</div>

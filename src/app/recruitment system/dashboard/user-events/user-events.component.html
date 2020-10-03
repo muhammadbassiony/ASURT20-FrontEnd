@@ -1,0 +1,59 @@
+<div class="card border container" style="width: 60%; align-self: center;" name="main-card">
+    <h1 class="card-title">Users Events Comp.</h1>
+    <hr>
+
+    <h2>My applications</h2>
+    <div class="alert alert-warning" role="alert" *ngIf="appliedTo.length == 0">
+        <strong>You have no current applications!</strong> Check the available positions section for any open positions!
+    </div>
+
+    <div *ngIf="appliedTo.length > 0">
+        <div *ngFor="let app of userApps">
+            <div *ngIf="app.event.eventActive" class="card col-sm-12 shadow" name="event-card">
+
+                <h2 class="card-title">{{app.event.team.name}} recruitment</h2>
+                <!-- <p>hailo - {{ app.currentPhase == 'DR_IV' }}</p> -->
+                <div *ngIf="app.currentPhaseStatus == 'ACCEPTED' && app.currentPhase != 'DR_IV'" class="row">
+                    <p style="font-size:80%"  class="text-success col-sm-4">
+                        <strong>Congratulations! You have passed this phase!</strong></p>
+
+                        <button class="btn-success bottom-right" 
+                            [routerLink]="['/book-interview', app._id]">Book Interview</button>
+                </div>
+
+                <div *ngIf="app.currentPhaseStatus != 'ACCEPTED' && app.currentPhase != 'DR_IV'" class="row">
+                    <p style="font-size:80%;" class="text-info col-sm-2"><strong>Pending...</strong></p> 
+                    <button disabled class="btn-secondary bottom-right">Book Interview</button>
+                </div>
+
+                <div *ngIf="app.currentPhaseStatus == 'ACCEPTED' && app.currentPhase == 'DR_IV'" class="row">
+                    <p style="font-size:80%"  class="alert alert-success">
+                        <strong>Congratulations! You are now a member of the ASU Racing Team!
+                            Welcome to the Family!!
+                        </strong></p>
+                </div>
+                 
+            </div>
+        </div>
+    </div>
+    
+    <hr>
+
+    <h2>Available positions</h2>
+    <div class="alert alert-warning" role="alert" *ngIf="didntApply.length == 0">
+        <strong>We are Sorry!</strong> There are no available events at the moment! 
+        please check later and follow our official pages for more information about upcoming events
+    </div>
+
+    <div *ngIf="didntApply.length > 0">
+        <div *ngFor="let ev of didntApply">
+            <div *ngIf="ev.eventActive" class="card col-sm-12 shadow" name="event-card">
+
+                <h2 class="card-title">{{ev.team.name}} recruitment</h2>
+                <button class="btn-primary bottom-right" 
+                            [routerLink]="['/application', userId, { eventId: ev._id}]">Apply!</button>
+                                
+            </div>
+        </div>
+    </div>
+</div>

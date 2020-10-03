@@ -1,0 +1,31 @@
+<div class="card border shadow-lg container" style="width: 60%; align-self: center;" name="main-card">
+    <div class="row">
+        <div class="col-sm-8"><h1 class="card-title">Manage individual interviews</h1></div>
+        <div class="col-sm-4"><button class="btn-danger std-btn float-right" (click)="deleteInterview()">Delete Interview!</button></div>
+    </div>
+    <hr>
+    <h3>Set event status</h3>
+    <div class="btn-group btn-group-toggle col-sm-8" ngbRadioGroup name="radioBasic" [(ngModel)]="model">
+        <label ngbButtonLabel class="btn-primary"  *ngFor="let st of statuses">
+            <input ngbButton type="radio" [value]="st">{{st}}
+        </label>
+    </div>
+    <hr style="margin-bottom:5%">
+    <div class="row">
+        <div class="col-sm-2">
+            <h4>Go to application: </h4>
+        </div>
+        <div class="col-sm-4" *ngIf="interview.extendedProps.application != null">
+            <button class="btn btn-info std-btn" [disabled]="interview.extendedProps.application == null"
+                [routerLink]="['/view-application', interview.extendedProps.application._id]">
+                    View Application</button>
+        </div>
+        <div class="col-sm-6" *ngIf="interview.extendedProps.application == null" style="margin-right: 12px;">
+            <p class="alert alert-warning">No Application associated with this interview yet!</p>
+        </div>
+        <div class="col-sm-2">
+            <button class="btn btn-success std-btn float-right" style="margin-right: 5%;" (click)="onSubmit()">Confirm</button>
+        </div>
+    </div>
+    
+</div>

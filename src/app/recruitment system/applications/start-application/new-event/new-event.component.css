@@ -1,0 +1,20 @@
+.card {
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 2em; /* Added */
+    margin-top: 2em;
+    padding: 30px;
+}
+
+.std-btn {
+    /* margin-left: 60%; */
+    margin: 10px;
+    border: none;
+    padding: 10px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    text-align: center;
+}

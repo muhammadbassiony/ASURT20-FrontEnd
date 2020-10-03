@@ -6,6 +6,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule,  FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RouterModule } from '@angular/router';
 
 import { HeaderComponent } from './header/header.component';
 
@@ -48,9 +49,52 @@ import { AboutUsComponent } from './main system/about-us/about-us.component';
 
 import { FadeInService } from "./shared/fade-in.service";
 import { PrizeService } from "./main system/services/prize.service";
-import {AdminGuardService} from './registration/admin-guard.service';
+import { AdminGuardService } from './registration/admin-guard.service';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { PdfViewerModule }  from  'ng2-pdf-viewer';
+import { MatListModule } from'@angular/material/list'
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
+
+import { FullCalendarModule } from '@fullcalendar/angular'; // the main connector. must go first
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+
+import { SearchPipe } from './recruitment system/pipes/search.pipe';
+
+import { UserApplicationComponent } from './recruitment system/applications/user-application/user-application.component';
+import { NewEventComponent } from './recruitment system/applications/start-application/new-event/new-event.component';
+import { SetQuestionsComponent } from './recruitment system/applications/start-application/set-questions/set-questions.component';
+import { ViewSingleAppComponent } from './recruitment system/applications/view-applications/view-single-app/view-single-app.component';
+import { ViewAllAppsComponent } from './recruitment system/applications/view-applications/view-all-apps/view-all-apps.component';
+import { ViewAllUsersComponent } from './recruitment system/users/view-all-users/view-all-users.component';
+import { UserEventsComponent } from './recruitment system/dashboard/user-events/user-events.component';
+import { AdminEventsComponent } from './recruitment system/dashboard/admin-events/admin-events.component';
+import { ViewSingleUserComponent } from './recruitment system/users/view-single-user/view-single-user.component';
+
+import { UserInterviewsComponent } from './recruitment system/interviews/user-interviews/user-interviews.component';
+import { AdminInterviewsComponent } from './recruitment system/interviews/admin-interviews/admin-interviews.component';
+import { ViewInterviewComponent } from './recruitment system/interviews/admin-interviews/view-interview/view-interview.component';
+
+
+
+
+FullCalendarModule.registerPlugins([
+  dayGridPlugin,
+  timeGridPlugin,
+  listPlugin,
+  interactionPlugin
+]);
 
 
 @NgModule({
@@ -64,7 +108,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     PhotoRollComponent,
     LandingPageComponent,
     PhotorollEditComponent,
-
 
     AdminPanelComponent,
     CompetitionEditComponent,
@@ -82,7 +125,23 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     SignUpComponent,
     SignInComponent,
     LoadingSpinnerComponent,
+
     DashboardComponent,
+
+    UserApplicationComponent,
+    HeaderComponent,
+    NewEventComponent,
+    SetQuestionsComponent,
+    ViewSingleAppComponent,
+    ViewAllAppsComponent,
+    SearchPipe,
+    ViewAllUsersComponent,
+    UserEventsComponent,
+    AdminEventsComponent,
+    ViewSingleUserComponent,
+    UserInterviewsComponent,
+    AdminInterviewsComponent,
+    ViewInterviewComponent
   ],
   imports: [
     BrowserModule,
@@ -96,8 +155,32 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     NgbModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserModule,
+    MatInputModule,
+    MatListModule,
+    MatSlideToggleModule,
+    AppRoutingModule,
+    PdfViewerModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FontAwesomeModule,
+    FullCalendarModule,
+    NgbModule,
+    HttpClientModule,
+    RouterModule
 
+  ],
+  exports: [
+    MatToolbarModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   providers: [
     PrizeService,

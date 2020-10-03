@@ -1,0 +1,26 @@
+<div class="card shadow-lg container" style="width: 70%; align-self: center;">
+    <h1 class="card-title">Start new recruitment event</h1>
+    <form [formGroup]="newEventForm" (ngSubmit)="onSubmit(newEventForm)">
+
+        <div class="row" style="margin: 2rem;">
+            <label>Choose Event Team</label>
+            <select class="form-control" formControlName="eventTeam" >
+                <option selected disabled>Choose Event Team...</option>
+                <option *ngFor="let t of teams" [ngValue]="t">{{ t.name }}</option>
+            </select>
+        </div>
+        <div class="row" style="margin: 2rem; margin-bottom: 2rem;">
+            <label>Choose Event Season</label>
+            <select class="form-control" formControlName="season" >
+                <option selected disabled>Choose Season...</option>
+                <option *ngFor="let st of seasons">{{ st }}</option>
+            </select>
+        </div>
+        
+
+        <!-- <button type="submit" class="btn btn-primary std-btn" (click)="onClick('setQs')">Set Application Questions</button>
+        <button type="submit" class="btn btn-success std-btn" (click)="onClick('save')">Save and Exit</button> -->
+        <button type="submit" class="btn btn-success std-btn">Save</button>
+        <button type="button" class="btn btn-danger std-btn" (click)="cancel()">Cancel</button>
+    </form>
+</div>

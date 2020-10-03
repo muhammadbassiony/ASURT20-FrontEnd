@@ -1,0 +1,14 @@
+.card[name="main-card"]{
+    margin: 0 auto; 
+    float: none; 
+    margin-bottom: 2em;
+    margin-top: 2em;
+    padding: 30px;
+}
+
+.card{
+    float: none; 
+    margin-bottom: 2em;
+    /* margin-top: 2em; */
+    padding: 30px;
+}

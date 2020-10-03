@@ -1,0 +1,41 @@
+.card[name="main-card"]{
+    margin: 0 auto; 
+    float: none; 
+    margin-bottom: 2em;
+    margin-top: 2em;
+    padding: 30px;
+}
+
+.card{
+    float: none; 
+    margin-bottom: 2em;
+    /* margin-top: 2em; */
+    padding: 30px;
+}
+
+.card[name="user-card"]{
+    margin: 0 0;
+    background-color: #f2f3f7;
+    color: red;
+    font-size: large;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+}
+
+.bottom-right {
+    position: absolute;
+    bottom: 30%;
+    right: 6%;
+    border: none;
+    padding: 10px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+
+button{
+    size: 50%;
+}

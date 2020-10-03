@@ -1,0 +1,62 @@
+<div class="card shadow-lg container" style="width: 60%; align-self: center;">
+    <h1 class="card-title">Edit {{team.name}} Application Questions</h1>
+
+    
+
+    <h2>Update Event Phase</h2>
+    <div class="btn-group btn-group-toggle col-sm-8" ngbRadioGroup name="radioBasic" 
+        [(ngModel)]="model">
+        <!--   -->
+        <label ngbButtonLabel class="btn-warning" *ngFor="let ph of phases" style="color: white;">
+            <input ngbButton type="radio" [value]="ph" >{{ph}}
+        </label>
+
+    </div>
+
+    <form [formGroup]="questionsForm" (ngSubmit)="onSubmit(questionsForm)">
+
+        <hr>
+        <h2>Edit included Subteams </h2>
+        <div  style="margin: 2rem;" class="form-group" formGroupName="activeSubs">
+            <div class="row" style="margin: 10px;" *ngFor="let sub of team.subteams; let j = index">
+                <label>
+                    <input type="checkbox" [value]="sub._id" [formControlName]="sub._id">
+                    {{ sub.name }}
+                </label>
+            </div>
+        </div>
+        
+        <hr>
+
+        <div formArrayName="questions">
+            <h2>Your Questions</h2>
+
+            <div class="form-group" 
+                *ngFor="let question of questionsForm.get('questions')['controls']; let i = index">
+                <div class="row" style="width: 150%;">
+                    <div class="col"> 
+                        <textarea type="text" class="form-control" [formControlName]="i"
+                            rows="2" cols="80" style="resize: none;"></textarea>
+                    </div>
+                    <div class="col" style="width: 20%;">
+                        <button
+                        class="btn btn-outline-danger"
+                        type="button"
+                        (click)="onRemoveQuestion(i)"
+                        style="size: 50%;">Remove Question</button>
+                    </div>
+                </div>
+            </div>
+
+            <button
+                class="btn btn-outline-info"
+                type="button"
+                (click)="onAddQuestion()"
+                style="margin-left: 300px; margin-right: 200px;">Add Question</button>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="margin: 10px;">Save</button>
+        <button type="button" class="btn btn-danger" style="margin: 10px;">Cancel</button>
+    </form>
+    
+</div>

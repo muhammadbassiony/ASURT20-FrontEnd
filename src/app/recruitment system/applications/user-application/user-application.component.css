@@ -1,0 +1,11 @@
+.card {
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 2em; /* Added */
+    margin-top: 2em;
+    padding: 30px;
+}
+
+textarea {
+    resize: none;
+}
