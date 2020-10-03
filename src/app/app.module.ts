@@ -39,17 +39,17 @@ import { CompetitionParagraphComponent } from './main system/competition/competi
 
 import { CloseDirective } from "./main system/admin-panel/close.directive";
 import { FooterComponent } from './footer/footer.component';
-import { SignUpComponent } from './registration/sign-up/sign-up.component';
-import { SignInComponent } from './registration/sign-in/sign-in.component';
-import { RegistrationService } from './registration/registration.service';
-import { RegistrationInterceptorService } from './registration/registration-interceptor.service';
+import { SignUpComponent } from './authorization/sign-up/sign-up.component';
+import { SignInComponent } from './authorization/sign-in/sign-in.component';
+import { UserService } from './authorization/user.service';
+import { AuthInterceptorService } from './authorization/auth-interceptor.service';
 import { PhotoRollFetcherService } from './main system/services/photo-roll-fetcher.service';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { AboutUsComponent } from './main system/about-us/about-us.component';
 
 import { FadeInService } from "./shared/fade-in.service";
 import { PrizeService } from "./main system/services/prize.service";
-import { AdminGuardService } from './registration/admin-guard.service';
+import { AdminGuardService } from './authorization/admin-guard.service';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 
@@ -185,11 +185,11 @@ FullCalendarModule.registerPlugins([
   providers: [
     PrizeService,
     FadeInService,
-    RegistrationService,
+    UserService,
     PhotoRollFetcherService,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: RegistrationInterceptorService,
+      useClass: AuthInterceptorService,
       multi: true
     }
   ],

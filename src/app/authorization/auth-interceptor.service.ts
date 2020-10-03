@@ -6,18 +6,18 @@ import {
   HttpParams, 
   HttpRequest} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { RegistrationService } from './registration.service';
+import { UserService } from './user.service';
 import { exhaustMap, take } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class RegistrationInterceptorService implements HttpInterceptor{
+export class AuthInterceptorService implements HttpInterceptor{
 
-  constructor(private registrationService: RegistrationService) {}
+  constructor(private usersService: UserService) {}
   
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // return this.registrationService.user.pipe(
-    return this.registrationService.authUser.pipe(
+    return this.usersService.authUser.pipe(
       take(1),
       exhaustMap((user) => {
         if (!user) {

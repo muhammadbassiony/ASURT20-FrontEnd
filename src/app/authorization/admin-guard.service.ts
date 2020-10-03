@@ -5,21 +5,21 @@ import {
   RouterStateSnapshot, 
   UrlTree} from '@angular/router';
 
-import {Observable} from "rxjs"; 
-import {RegistrationService} from './registration.service';
-import {map, take} from 'rxjs/operators';
-import {Injectable} from '@angular/core';
+import { Observable } from "rxjs"; 
+import { UserService } from './registration.service';
+import { map, take } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
 
 
 @Injectable({providedIn: 'root'})
 export class AdminGuardService implements CanActivate {
 
 
-  constructor(private registrationService: RegistrationService, private router: Router) {}
+  constructor(private usersService: UserService, private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      return this.registrationService.authUser.pipe(
+      return this.usersService.authUser.pipe(
         take(1),
         map(user => {
           if(!user){

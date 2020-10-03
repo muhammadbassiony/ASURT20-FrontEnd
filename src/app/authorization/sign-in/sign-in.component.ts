@@ -1,7 +1,7 @@
 import {Component, OnInit, Output} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
-import {RegisterResponseData, RegistrationService} from '../registration.service';
+import {RegisterResponseData, UserService} from '../user.service';
 import {Observable} from 'rxjs';
 import {JwtHelperService} from '@auth0/angular-jwt';
 
@@ -12,7 +12,7 @@ import {JwtHelperService} from '@auth0/angular-jwt';
 })
 export class SignInComponent implements OnInit {
 
-  constructor(private registerService: RegistrationService, private router: Router) { }
+  constructor(private usersService: UserService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -31,7 +31,7 @@ export class SignInComponent implements OnInit {
     let signInObs: Observable<RegisterResponseData>;
     this.isLoading = true;
 
-    this.registerService.signIn(email, password)
+    this.usersService.signIn(email, password)
     .subscribe(responseData => {
         this.isLoading = false;
         this.router.navigate(['/dashboard']);

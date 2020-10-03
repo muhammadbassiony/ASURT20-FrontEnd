@@ -1,8 +1,8 @@
-import {Component, OnInit, Output} from '@angular/core';
-import {NgForm} from '@angular/forms';
-import {RegisterResponseData, RegistrationService} from '../registration.service';
-import {Router} from '@angular/router';
-import {Observable} from 'rxjs';
+import { Component, OnInit, Output } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { RegisterResponseData, UserService } from '../user.service';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-sign-up',
@@ -11,7 +11,7 @@ import {Observable} from 'rxjs';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor(private registerService: RegistrationService, private router: Router) { }
+  constructor(private usersService: UserService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -33,7 +33,7 @@ export class SignUpComponent implements OnInit {
     let signUpObs: Observable<RegisterResponseData>;
     this.isLoading = true;
 
-    this.registerService.signUp(email, password)
+    this.usersService.signUp(email, password)
     .subscribe(responseData => {
       console.log(responseData);
       this.isLoading = false;

@@ -17,10 +17,10 @@ import { SponsorsEditComponent } from "./main system/admin-panel/sponsors-edit/s
 
 import { AboutUsComponent } from "./main system/about-us/about-us.component";
 
-import { SignUpComponent } from './registration/sign-up/sign-up.component';
-import { SignInComponent } from './registration/sign-in/sign-in.component';
+import { SignUpComponent } from './authorization/sign-up/sign-up.component';
+import { SignInComponent } from './authorization/sign-in/sign-in.component';
 
-import {AdminGuardService} from './registration/admin-guard.service';
+import {AdminGuardService} from './authorization/admin-guard.service';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 
