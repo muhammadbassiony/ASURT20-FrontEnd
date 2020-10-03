@@ -20,14 +20,14 @@ import { HttpClient } from '@angular/common/http';
 import { map, switchMap } from 'rxjs/operators';
 import { Observable, pipe, Subscription } from 'rxjs';
 
-import { User } from '../../../models/user.model';
+import { User } from '../../../../authorization/user.model';
 import { Application } from '../../../models/application.model';
 import { Event } from '../../../models/event.model';
 
 import { UsersService } from '../../../services/users.service';
 import { ApplicationsService } from '../../../services/applications.service';
 import { EventsService } from '../../../services/events.service';
-import { Team } from 'src/app/models/team.model';
+import { Team } from '../../../models/team.model';
 
 @Component({
   selector: 'app-view-single-app',

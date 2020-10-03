@@ -12,7 +12,7 @@ import { Event } from '../models/event.model';
 import { Team } from '../models/team.model'; 
 
 
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 const backend_uri = environment.backend_uri;
 
 @Injectable({

@@ -8,12 +8,12 @@ import {
 import { map, catchError, tap } from 'rxjs/operators';
 import { Subject, throwError } from 'rxjs';
 
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 const backend_uri = environment.backend_uri;
 
-import { User } from '../models/user.model';
+import { User } from '../../authorization/user.model';
 import { Team } from '../models/team.model';
-import { Member } from '../models/member.model';
+import { Member } from '../../authorization/member.model';
 
 @Injectable({
   providedIn: 'root'

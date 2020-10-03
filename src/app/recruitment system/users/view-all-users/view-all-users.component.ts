@@ -13,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
 import { map, switchMap } from 'rxjs/operators';
 import { Observable, pipe, Subscription } from 'rxjs';
 
-import { User } from '../../models/user.model';
+import { User } from '../../../authorization/user.model';
 import { UsersService } from '../../services/users.service';
 
 @Component({

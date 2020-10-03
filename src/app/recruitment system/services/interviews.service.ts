@@ -8,7 +8,7 @@ import {
 import { map, catchError, tap } from 'rxjs/operators';
 import { Subject, throwError } from 'rxjs';
 
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 const backend_uri = environment.backend_uri;
 
 import { InterviewStatus } from '../models/interview-status-enum.model';

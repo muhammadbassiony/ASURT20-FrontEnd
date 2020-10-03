@@ -20,8 +20,8 @@ import { Observable, pipe, Subscription } from 'rxjs';
 
 import { UsersService } from '../../services/users.service';
 import { TeamsService } from '../../services/teams.service';
-import { Member } from '../../models/member.model';
-import { User } from '../../models/user.model';
+import { Member } from '../../../authorization/member.model';
+import { User } from '../../../authorization/user.model';
 import { Team } from '../../models/team.model';
 import { Subteam } from '../../models/subteam.model';
 

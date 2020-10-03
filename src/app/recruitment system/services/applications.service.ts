@@ -8,14 +8,14 @@ import {
 import { map, catchError, tap } from 'rxjs/operators';
 import { Subject, throwError } from 'rxjs';
 
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 const backend_uri = environment.backend_uri;
 
 import { Application } from '../models/application.model';
 import { ApplicationStatus } from '../models/app-status-enum.model';
 import { ApplicationPhase } from '../models/app-phases-enum.model';
 import { Team } from '../models/team.model';
-import { User } from '../models/user.model';
+import { User } from '../../authorization/user.model';
 import { Event } from '../models/event.model';
 
 import { EventsService } from './events.service';

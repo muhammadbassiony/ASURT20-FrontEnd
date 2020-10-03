@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-import { BehaviorSubject, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { BehaviorSubject, throwError, Subject} from 'rxjs';
+import { catchError, tap, map } from 'rxjs/operators';
 
 import { JwtHelperService } from "@auth0/angular-jwt";
 
@@ -43,19 +43,6 @@ export class UserService {
     private http: HttpClient, 
     private router: Router) { }
 
-  
-
-  // ONLY FOR FIREBASE. WILL BE REPLACED WITH OUR BACKEND LOGIC
-  // apiKey: string = 'AIzaSyBJ5KcC8Z4SsZDF5f57d_UWG4yWf4gYjsk';
-
-
-  // private decryptJWTToken(JWTToken: string): DecryptedToken {
-  //   try {
-  //     return this.decodingHelper.decodeToken(JWTToken);
-  //   } catch (error) {
-  //     return null;
-  //   }
-  // }
 
   private handleRegistration(user: any) {
     console.log('HANDLE REG HERE!!', user);
@@ -128,13 +115,6 @@ export class UserService {
 
 
   autoSignin() {
-    // const UserData: {
-    //   isAdmin: number
-    //   id: string;
-    //   _token: string;
-    //   _tokenExpirationDate: string;
-    // } = JSON.parse(localStorage.getItem('UserData'));
-
     let user: AuthUser = JSON.parse(localStorage.getItem('UserAuth'));
 
     if(!user){
@@ -143,26 +123,11 @@ export class UserService {
       this.authUser.next(user);
       this.autoLogout(user.exp - Date.now().valueOf());
     }
-
-
-    // if (!UserData) {
-    //   return;
-    // }
-    // const loadedUser = new User(UserData.isAdmin, UserData.id, UserData._token, new Date(UserData._tokenExpirationDate));
-    // if (loadedUser.token) {
-    //   this.user.next(loadedUser);
-    //   const UTCExpirationDate = new Date(UserData._tokenExpirationDate);
-    //   const currentDate = new Date();
-    //   currentDate.setUTCSeconds(0);
-    //   this.autoLogout(UTCExpirationDate.getTime() - currentDate.getTime());
-    // }
   }
 
   logout() {
-    // this.user.next(null);
     this.authUser.next(null);
     this.router.navigate(['/sign-up']);
-    // localStorage.removeItem('UserData');
     localStorage.removeItem('UserAuth');
 
     if (this.tokenExpirationTimer) {
@@ -197,6 +162,251 @@ export class UserService {
         break;
     }
     return throwError(errorRes);
+  }
+
+  
+  getAllUsers(){
+    return this.http.get( backend_uri + '/auth/user/all-users', { responseType: 'json' })
+    .pipe(
+      map(res => {
+        let body = <User[]>res['allUsers'];    
+        return body || [];    
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
+  }
+
+  getUser(userId: string){
+    return this.http.get( 
+      backend_uri + '/auth/user/get-user/' + userId, 
+      { responseType: 'json' }
+    )
+    .pipe(
+      map(res => {
+        let body = res['user'];    
+        return body || [];    
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
+  }
+
+  getAllMembers(){
+    return this.http.get( 
+      backend_uri + '/auth/user/all-members', 
+      { responseType: 'json' }
+    )
+    .pipe(
+      map(res => {
+        let body = res['members'];    
+        return body || [];    
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
+  }
+
+  // addNewUser(newUser: User){
+
+  //   let user = {
+  //     email: newUser.email,
+  //     name: newUser.name,
+  //     password: newUser.password
+  //   };
+
+  //   return this.http.post( 
+  //     backend_uri + '/auth/user/add-user', 
+  //     user,
+  //     { responseType: 'json' }
+  //   )
+  //   .pipe(
+  //     map(res => {
+  //       let body = <User>res['user'];    
+  //       return body || [];    
+  //     }),
+  //     catchError(errorRes => {
+  //       return throwError(errorRes);
+  //     })
+  //   );
+  // }
+
+  addMember(newMember: Member){
+
+    let member = {
+      userId: newMember.userId,
+      teamId: newMember.teamId,
+      subteamId: newMember.subteamId,
+      head: newMember.head
+    };
+
+    return this.http.post( 
+      backend_uri + '/auth/user/add-member', 
+      member,
+      { responseType: 'json' }
+    )
+    .pipe(
+      map(res => {
+        let body = <Member>res['member'];    
+        return body || [];    
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
+  }
+  
+  getMember(memberId: string){
+    return this.http.get( 
+      backend_uri + '/auth/user/get-member/' + memberId, 
+      { responseType: 'json' }
+    )
+    .pipe(
+      map(res => {
+        let body = res['member'];
+        return body || [];    
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
+  }
+
+  getTeamMembers(teamId: string){
+    return this.http.get( 
+      backend_uri + '/auth/user/get-team-members/' + teamId, 
+      { responseType: 'json' }
+    )
+    .pipe(
+      map(res => {
+        let body = res['members'];
+        return body || [];    
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
+  }
+
+  updateUser(userId: string, newUser: User){
+
+    let user = {
+      userId: newUser._id,
+      email: newUser.email,
+      name: newUser.name,
+      password: newUser.password
+    };
+
+
+    return this.http.put( 
+      backend_uri + '/auth/user/edit-user/' + userId, 
+      user,
+      { responseType: 'json' }
+    )
+    .pipe(
+      map(res => {
+        let body = <User>res['user'];    
+        return body || [];    
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
+  }
+
+  updateMember(memberId: string, newMember: Member){
+    
+    let member = {
+      memberId: newMember._id,
+      userId: newMember.userId,
+      teamId: newMember.teamId,
+      subteamId: newMember.subteamId,
+      head: newMember.head
+    };
+
+    return this.http.put( 
+      backend_uri + '/auth/user/edit-member/' + memberId, 
+      member,
+      { responseType: 'json' }
+    )
+    .pipe(
+      map(res => {
+        let body = <Member>res['member'];    
+        return body || [];    
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
+  }
+
+  addUserInfo(userId: string, newUser: User){
+
+    let user = {
+      email: newUser.email,
+      userName: newUser.name,
+      password: newUser.password,
+      university: newUser.university,
+      mobile: newUser.mobile,
+      gender: newUser.gender,
+      birthdate: newUser.birthDate,
+      department: newUser.department,
+      faculty: newUser.faculty,
+      credit: newUser.credit,
+      graduationYear: newUser.graduationYear,
+      collegeId: newUser.collegeId,
+      emergencyContact_name: newUser.emergencyContact_name,
+      emergencyContact_relation: newUser.emergencyContact_relation,
+      emergencyContact_mobile: newUser.emergencyContact_mobile
+    };
+
+    return this.http.put( 
+      backend_uri + '/auth/user/sumbit-user-info/' + userId, 
+      user,
+      { responseType: 'json' }
+    )
+    .pipe(
+      map(res => {
+        let body = <User>res['user'];    
+        return body || [];    
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
+  }
+
+  deleteUser(userId: string){
+    return this.http.delete(
+      backend_uri + '/auth/user/delete-user/' + userId,
+      { responseType: 'json' }
+    )
+    .pipe(
+      map(res => {   
+        return null;    
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
+  }
+ 
+  deleteMember(memberId: string){
+    return this.http.delete(
+      backend_uri + '/auth/user/delete-member/' + memberId,
+      { responseType: 'json' }
+    )
+    .pipe(
+      map(res => {   
+        return null;    
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
   }
 
 }

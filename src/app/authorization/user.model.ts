@@ -18,9 +18,8 @@ export interface User {
     email: string;
     password: string; 
 
-    // teamMember: boolean;
-    // teamHead: boolean;
-    // team: Team;
+    member?: string;
+    level: string;
 
     mobile?: string;
     birthDate?: Date;
