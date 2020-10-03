@@ -85,7 +85,7 @@ const routes: Routes = [
   {path: 'manage-interviews', component: AdminInterviewsComponent , canActivate: [AdminGuardService], data: { accessLevel: 2} },
   {path: 'interview/:ivId', component: ViewInterviewComponent , canActivate: [AdminGuardService], data: { accessLevel: 2} },
 
-  {path: 'application/:userId', component: UserApplicationComponent , canActivate: [AdminGuardService], data: { accessLevel: 0} },
+  {path: 'application', component: UserApplicationComponent , canActivate: [AdminGuardService], data: { accessLevel: 0} },
   {path: 'book-interview/:appId', component: UserInterviewsComponent , canActivate: [AdminGuardService], data: { accessLevel: 0} },
 
 

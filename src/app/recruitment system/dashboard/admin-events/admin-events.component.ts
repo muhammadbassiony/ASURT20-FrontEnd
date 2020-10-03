@@ -36,7 +36,7 @@ export class AdminEventsComponent implements OnInit {
   ngOnInit(): void {
     this.eventsService.getAllEvents()
     .subscribe(res => {
-      // console.log('admin evs ::\n', res);
+      console.log('admin evs ::\n', res);
       this.allEvents = res;
     })
   }
@@ -54,17 +54,8 @@ export class AdminEventsComponent implements OnInit {
     // console.log('get excel here');
     this.applicationsService.getEventExcel(eventId)
     .subscribe(res => {
-      // console.log('recieved file :: \n', res);
       let fileName = team + '.csv';
       saveAs(res, fileName);
-
-      // const link = document.createElement('a');
-      // link.setAttribute('target', '_self');
-      // link.setAttribute('href', 'file://///'+res);
-      // // link.setAttribute('download', `products.csv`);
-      // document.body.appendChild(link);
-      // link.click();
-      // link.remove();
     })
   }
 
@@ -76,6 +67,9 @@ export class AdminEventsComponent implements OnInit {
       .subscribe(res => {
         console.log('acceptance emails sent!\n', res);
         alert("acceptance emails sent!");
+      },
+      error => {
+        alert("error sending emails!");
       });
     }
   }
@@ -84,11 +78,15 @@ export class AdminEventsComponent implements OnInit {
     let conStr = "Are you sure to send rejected emails for " + team + " recruitment applicants?" 
       + "\nWARNING! all applications whose status is anything other than accepted will receive\n" 
       + "a rejection email.\n THIS ACTION CAN NOT BE UNDONE";
+    // console.log('SEND REJ :: ', eventId, team, phase);
     if(confirm(conStr)) {
       this.applicationsService.sendRejectedEmails(eventId, phase)
       .subscribe(res => {
         console.log('rejection emails sent!\n', res);
         alert("rejection emails sent!");
+      },
+      error => {
+        alert("error sending emails!");
       });
     }
   }

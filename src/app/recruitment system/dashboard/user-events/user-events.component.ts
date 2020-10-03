@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { ActivatedRoute, Params, Router, Data } from '@angular/router';
 
@@ -21,11 +21,13 @@ export class UserEventsComponent implements OnInit {
 
   allEvents: Event[];
 
-  userId: string; 
+  // userId: string; 
   userApps: any;
   // modEvents = [];
   appliedTo: any;
   didntApply: any;
+
+  @Input('userId') userId: string;
 
   constructor(
     private eventsService: EventsService,
@@ -38,7 +40,7 @@ export class UserEventsComponent implements OnInit {
   ngOnInit(): void {
     // this should be passed to the dashboard component as a param after login using next line
     // this.userId = this.route.snapshot.queryParamMap.get('userId');
-    this.userId = "5f5b7283b4adb51dec72e8ed"; // for testing 
+    // this.userId = "5f5b7283b4adb51dec72e8ed"; // for testing 
 
     this.applicationsService.getUserEvents(this.userId)
     .pipe(switchMap(res => {
