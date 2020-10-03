@@ -36,7 +36,7 @@ export class AdminEventsComponent implements OnInit {
   ngOnInit(): void {
     this.eventsService.getAllEvents()
     .subscribe(res => {
-      console.log('admin evs ::\n', res);
+      // console.log('admin evs ::\n', res);
       this.allEvents = res;
     })
   }

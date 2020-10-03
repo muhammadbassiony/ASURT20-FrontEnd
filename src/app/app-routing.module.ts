@@ -71,8 +71,8 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent },
   { path: 'sign-in', component: SignInComponent },
 
-  { path: 'dashboard', component: DashboardComponent }, //weird bug here
-  // { path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuardService], data: { accessLevel: 0} },
+  // { path: 'dashboard', component: DashboardComponent }, //weird bug here
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuardService], data: { accessLevel: 0} },
   
   {path: 'view-all-users', component: ViewAllUsersComponent, canActivate: [AdminGuardService], data: { accessLevel: 3} },
   {path: 'view-user', component: ViewSingleUserComponent, canActivate: [AdminGuardService], data: { accessLevel: 3} },
@@ -85,7 +85,7 @@ const routes: Routes = [
   {path: 'manage-interviews', component: AdminInterviewsComponent , canActivate: [AdminGuardService], data: { accessLevel: 2} },
   {path: 'interview/:ivId', component: ViewInterviewComponent , canActivate: [AdminGuardService], data: { accessLevel: 2} },
 
-  {path: 'application', component: UserApplicationComponent , canActivate: [AdminGuardService], data: { accessLevel: 0} },
+  {path: 'application/:userId', component: UserApplicationComponent , canActivate: [AdminGuardService], data: { accessLevel: 0} },
   {path: 'book-interview/:appId', component: UserInterviewsComponent , canActivate: [AdminGuardService], data: { accessLevel: 0} },
 
 

@@ -27,28 +27,19 @@ export class AdminGuardService implements CanActivate {
             return this.router.createUrlTree(['/sign-in']);
           }
           let userLevel = user.level;
-          // console.log('AUTH GUARD HERE :: ROUTEDATA, USERLEVEL ::  ', 
-          //   route.data.accessLevel, userLevel, route.data.accessLevel <= userLevel);
-          if(route.data.accessLevel && route.data.accessLevel <= userLevel){
+          // console.log('AUTH GUARD HERE :: ROUTEDATA, USERLEVEL ::  ', route, 
+          //   route.data.accessLevel, userLevel, route.data.accessLevel <= userLevel, <Boolean>route.data.accessLevel,
+          //   route.data.accessLevel && route.data.accessLevel <= userLevel);
+          
+          if(route.data.accessLevel!= null && route.data.accessLevel <= userLevel){
             //users access level is equal to that of allowed by this route
+            console.log('AUTH GUARD RETURNING TRUE HERE\n');
             return true;
           }
 
           return this.router.createUrlTree(['/']);
         })
       );
-      // return this.registrationService.authUser.pipe(
-      //   take(1),
-      //   map(user => {
-      //     if (!user) {
-      //       return this.router.createUrlTree(['/sign-in']);
-      //     }
-      //     // const isAdmin = user.level == 1;
-      //     if (user.level >= 1) {
-      //       return true;
-      //     }
-      //     return this.router.createUrlTree(['/sign-in']);
-      //   })
-      // );
+      
   }
 }
