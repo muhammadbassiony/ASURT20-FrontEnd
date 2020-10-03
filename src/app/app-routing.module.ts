@@ -71,21 +71,21 @@ const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'dashboard', component: DashboardComponent , data: { accessLevel: 0} },
   
-  {path: 'view-all-users', component: ViewAllUsersComponent},
-  {path: 'view-user', component: ViewSingleUserComponent},
+  {path: 'view-all-users', component: ViewAllUsersComponent , data: { accessLevel: 3} },
+  {path: 'view-user', component: ViewSingleUserComponent , data: { accessLevel: 3} },
 
-  {path: 'event/new', component: NewEventComponent},
-  {path: 'application/set-questions', component: SetQuestionsComponent},
-  {path: 'view-applications/:eventId', component: ViewAllAppsComponent},
-  {path: 'view-application/:appId', component: ViewSingleAppComponent},
+  {path: 'event/new', component: NewEventComponent , data: { accessLevel: 3} },
+  {path: 'application/set-questions', component: SetQuestionsComponent , data: { accessLevel: 2} },
+  {path: 'view-applications/:eventId', component: ViewAllAppsComponent , data: { accessLevel: 2} },
+  {path: 'view-application/:appId', component: ViewSingleAppComponent , data: { accessLevel: 2} },
 
-  {path: 'manage-interviews', component: AdminInterviewsComponent},
-  {path: 'interview/:ivId', component: ViewInterviewComponent},
+  {path: 'manage-interviews', component: AdminInterviewsComponent , data: { accessLevel: 2} },
+  {path: 'interview/:ivId', component: ViewInterviewComponent , data: { accessLevel: 2} },
 
-  {path: 'application/:userId', component: UserApplicationComponent},
-  {path: 'book-interview/:appId', component: UserInterviewsComponent},
+  {path: 'application/:userId', component: UserApplicationComponent , data: { accessLevel: 0} },
+  {path: 'book-interview/:appId', component: UserInterviewsComponent , data: { accessLevel: 0} },
 
-  
+
   { path: '**', redirectTo: '' }
 ];
 
