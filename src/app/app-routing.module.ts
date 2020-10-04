@@ -71,7 +71,7 @@ const routes: Routes = [
   
   { path: 'sign-up', component: SignUpComponent },
   { path: 'sign-in', component: SignInComponent },
-  { path: 'edit-profile/:userId', component: EditProfileComponent, canActivate: [AdminGuardService], data: { accessLevel: 0} },
+  { path: 'edit-profile', component: EditProfileComponent, canActivate: [AdminGuardService], data: { accessLevel: 0} },
 
   
   { path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuardService], data: { accessLevel: 0} },

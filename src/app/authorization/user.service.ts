@@ -50,7 +50,7 @@ export class UserService {
       exp: expirationDate.valueOf()
     }
 
-    this.authUser.next(authUser);
+    this.authUser.next(authUser);    //move to edit-profile
 
     this.autoLogout(expirationDate.valueOf() - Date.now().valueOf());
     localStorage.setItem('UserAuth', JSON.stringify(authUser));
@@ -58,7 +58,7 @@ export class UserService {
   }
 
   signUp(email: string, password: string) {
-    // console.log(name);
+    console.log('USERSEVICE SIGNUP :: \n', name);
     return this.http.post<RegisterResponseData>(
       backend_uri + "/auth/user/signup", 
       {
@@ -324,6 +324,9 @@ export class UserService {
     );
   }
 
+
+  //edit-profile -- to be changed later!
+  // addUserInfo(userId: string, newUser: User, authUser: AuthUser){
   addUserInfo(userId: string, newUser: User){
 
     let user = {
@@ -352,6 +355,7 @@ export class UserService {
     .pipe(
       map(res => {
         let body = <User>res['user'];    
+        // this.authUser.next(authUser);
         return body || [];    
       }),
       catchError(errorRes => {

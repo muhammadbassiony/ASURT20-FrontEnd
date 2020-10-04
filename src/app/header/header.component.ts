@@ -34,6 +34,7 @@ export class HeaderComponent implements OnInit {
       header.classList.add('header-closed');
     }
     this.usersService.authUser.subscribe(user => {
+      // console.log('HEADER AUTHUSER SUBS :: ', user);
       this.isAuthorized = !!user;
       this.userId = user._id;
     });

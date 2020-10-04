@@ -98,7 +98,7 @@
                 </li>
                 <li class="navigation__item" *ngIf="isAuthorized">
                     <a style="cursor: pointer" (click)="onToggleHeader()" class="navigation__link"
-                        [routerLink]="['/edit-profile', userId]">Edit Profile</a>
+                        [routerLink]="['/edit-profile']">Edit Profile</a>
                 </li>
                 <li class="navigation__item" *ngIf="isAuthorized">
                    <a style="cursor: pointer" (click)="onLogout();onToggleHeader()" class="navigation__link">Logout</a>

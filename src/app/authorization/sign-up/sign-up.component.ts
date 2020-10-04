@@ -21,7 +21,7 @@ export class SignUpComponent implements OnInit {
   password: string;
   confirmPassword: string;
   onSignUpSubmit(signUpForm: NgForm) {
-    console.log(signUpForm);
+    
     if (signUpForm.invalid) {
       return;
     }
@@ -33,12 +33,14 @@ export class SignUpComponent implements OnInit {
 
     this.usersService.signUp(email, password)
     .subscribe(responseData => {
-      console.log(responseData);
+      // console.log('signup succes res :: \n', responseData);
       this.isLoading = false;
-      this.router.navigate(['/edit-profile', responseData.user._id]);
+      // this.router.navigate(['edit-profile', responseData.user._id]);
+      this.router.navigate(['edit-profile']);
     }, errorMessage => {
       console.log(errorMessage);
       this.isLoading = false;
+      alert(errorMessage);
       this.error = errorMessage;
     });
     signUpForm.reset();
