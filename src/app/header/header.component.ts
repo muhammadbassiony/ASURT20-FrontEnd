@@ -15,12 +15,12 @@ import { ActivatedRoute, Params, Router, Data, NavigationStart, NavigationExtras
 
 export class HeaderComponent implements OnInit {
 
-  isAuthorized: boolean = false;
+  // isAuthorized: boolean = false;
   // private userSubscription: Subscription;
   userId: string;
 
   @Input()isAdminMode: boolean;
-  // @Input()isAuthorized: boolean;
+  @Input()isAuthorized: boolean;
 
   constructor(
     private usersService: UserService,

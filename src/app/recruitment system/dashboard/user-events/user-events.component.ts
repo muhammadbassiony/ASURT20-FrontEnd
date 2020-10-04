@@ -49,7 +49,7 @@ export class UserEventsComponent implements OnInit {
     .subscribe(res => {
       this.userApps = res; //getting the user apps as appliedTo contains events only
       // didntApply := user doesnt have apps to those duh!
-      // console.log('resss ::\n', this.userApps);
+      // console.log('resss ::\n', this.userApps); 
     });
 
     

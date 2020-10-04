@@ -16,14 +16,17 @@ import { UserService } from './authorization/user.service';
 export class AppComponent implements OnInit{
   title = 'ASURT20-FrontEnd';
   isAdminMode = false;
+  isAuthorized = false;
   constructor(@Inject(DOCUMENT) document, private usersService: UserService) {
   }
   ngOnInit() {
     this.usersService.autoSignin();
     this.usersService.authUser.subscribe((user) => {
       if (!user) {
+        this.isAuthorized = false;
         this.isAdminMode = false;
       } else {
+        this.isAuthorized = true;
         this.isAdminMode = user.level >= 1;
       }
     });
