@@ -11,7 +11,6 @@ import { RouterModule } from '@angular/router';
 
 import { HeaderComponent } from './header/header.component';
 
-import { CompetitionComponent } from './main system/competition/competition.component';
 import { CompetitionAwardsComponent } from './main system/competition/competition-awards/competition-awards.component';
 import { CompetitionsComponent } from './main system/landing-page/competitions/competitions.component';
 import { PhotoRollComponent } from './main system/landing-page/photo-roll/photo-roll.component';
@@ -100,7 +99,6 @@ FullCalendarModule.registerPlugins([
 @NgModule({
   declarations: [
     AppComponent,
-    CompetitionComponent,
     CompetitionAwardsComponent,
     HeaderComponent,
 

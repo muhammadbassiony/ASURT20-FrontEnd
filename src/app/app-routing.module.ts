@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { CompetitionComponent } from './main system/competition/competition.component';
 import { FormulaComponent } from './main system/competition/formula/formula.component';
 import { RovComponent } from './main system/competition/rov/rov.component';
 import { ShellComponent } from './main system/competition/shell/shell.component';
@@ -46,7 +45,7 @@ import { ViewInterviewComponent } from './recruitment system/interviews/admin-in
 const routes: Routes = [
   { path: '', component: LandingPageComponent, pathMatch: 'full' },
   { path: 'home', component: LandingPageComponent},
-  { path: 'competition', component: CompetitionComponent,
+  { path: 'competition',// component: CompetitionComponent,
      children:[
 
         {path: 'formula', component: FormulaComponent},
