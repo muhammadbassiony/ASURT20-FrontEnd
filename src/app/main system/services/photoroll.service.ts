@@ -13,7 +13,7 @@ const backend_uri = environment.backend_uri;
 @Injectable({ providedIn: 'root' })
 export class PhotorollService {
     
-  public photorollUpdated = new Subject<Photoroll>();
+  // public photorollUpdated = new Subject<Photoroll>();
   // public photorollChanged = new Subject<Photoroll>();
   
 

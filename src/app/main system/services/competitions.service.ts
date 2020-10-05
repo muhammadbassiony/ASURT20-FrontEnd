@@ -1,30 +1,81 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import { map, catchError, tap } from 'rxjs/operators';
+import { Subject, throwError } from 'rxjs';
+
 import {environment} from '../../../environments/environment';
-import {Competition} from '../models/competition.model';
 const backend_uri = environment.backend_uri;
 
-interface GetResponse {
-  name: string;
-  visible: boolean;
-  prizes: any;
-  photoroll: any
-}
+import {Competition} from '../models/competition.model';
+
+// interface GetResponse {
+//   name: string;
+//   visible: boolean;
+//   prizes: any;
+//   photoroll: any
+// }
 
 @Injectable({providedIn: 'root'})
 export class CompetitionsService {
 
-  allCompetitions: Competition[];
+  // allCompetitions: Competition[];
   constructor(private http: HttpClient) {}
-  getAllCompetitions () {
-    const url = backend_uri + '/main/competitions/getAll';
-    return this.http.get<{competitions: GetResponse[]}>(url);
+
+  getAllCompetitions(){
+    return this.http.get(
+      backend_uri + '/main/competitions/get-all-comps',
+      { responseType: 'json'}
+    )
+    .pipe(
+      map(res => {
+        let body = res['competitions'];    
+        return body || [];    
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
   }
-  changeCompetitionVisibility(isChecked: boolean[]) {
-    this.getAllCompetitions().subscribe((successResponse) => {
-      console.log(successResponse);
-    }, error => {
-      console.log(error);
-    });
+
+  getCompetition(compId: string){
+    return this.http.get(
+      backend_uri + '/main/competitions/get-comp/' + compId,
+      { responseType: 'json'}
+    )
+    .pipe(
+      map(res => {
+        let body = res['competition'];    
+        return body || [];    
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
   }
+
+  updateCompetition(compId: string, comp: Competition){
+    let competition = {
+      name: comp.name,
+      visible: comp.visible,
+      awards: comp.awards,
+      photoroll: comp.photoroll
+    };
+
+    return this.http.put(
+      backend_uri + '/main/competitions/update-comp/' + compId,
+      { competition },
+      { responseType: 'json'}
+    )
+    .pipe(
+      map(res => {
+        let body = res['competition'];    
+        return body || [];    
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
+  }
+
+
 }
