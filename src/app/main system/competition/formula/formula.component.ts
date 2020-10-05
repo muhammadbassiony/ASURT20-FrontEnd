@@ -11,7 +11,8 @@ import { filter, map } from 'rxjs/operators';
 })
 export class FormulaComponent implements OnInit {
 
-  backgroundColor:string='#B21212';
+  // backgroundColor:string=' #fa6666';
+  backgroundColor:string="#c2c2c2";
   photorollId = "";
 
   constructor(

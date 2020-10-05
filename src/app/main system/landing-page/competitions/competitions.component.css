@@ -13,6 +13,7 @@
 
  .Competition {
   font-size: 62.5% ;
+  background-image: '../../../../assets/img/abstract-checkered-curve-white-gradient-sport-champion_33869-73.png';
   /* set precentage of the browser default is better 10 px = 62.5% of 16 */ }
 @media only screen and (max-width: 75em) {
    .Competition {
@@ -46,9 +47,6 @@
 @media only screen and (max-width: 37.5em) {
   .heading-secondary {
     font-size: 2.5em; } }
-.heading-secondary:hover {
-  transform: skewY(2deg) skewX(15deg) scale(1.1);
-  text-shadow: 0.5em 1em 2em rgba(0, 0, 0, 0.2); }
 
 .heading-tertiary {
   /*font-size: 3rem;*/
@@ -76,7 +74,8 @@
 }
 
 .paragraph {
-  font-size: 2em; }
+  font-size: 2em; 
+}
 .paragraph:not(:last-child) {
   margin-bottom: 3em; }
 
@@ -93,6 +92,8 @@
 
 .Competition{
   padding: 8em;
+  background-image: '../../../../assets/img/abstract-checkered-curve-white-gradient-sport-champion_33869-73.png';
+  /* background-o */
 }
 
 
@@ -103,12 +104,20 @@
 
 .competition-photo-1 {
   width: inherit;
-  transform: scale(0.7);
+  transform: scale(0.5);
+  -webkit-transform: scale(0.5);
+  -moz-transform: scale(0.5);
+  -ms-transform: scale(0.5);
+  -o-transform: scale(0.5);
 }
 
 .competition-photo-3 {
   width: inherit;
-  transform: scale(0.95);
+  transform: scale(0.7);
+  -webkit-transform: scale(0.7);
+  -moz-transform: scale(0.7);
+  -ms-transform: scale(0.7);
+  -o-transform: scale(0.7);
 }
 
 
