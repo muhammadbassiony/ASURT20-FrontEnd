@@ -11,26 +11,26 @@ import { Subject, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 const backend_uri = environment.backend_uri;
 
-import { Prize } from '../models/prize.model';
+import { Award } from '../models/award.model';
 
 @Injectable()
-export class PrizeService {
+export class AwardsService {
 
-  dummyPrizes:Prize[]=[
+  dummyPrizes:Award[]=[
     {
-      competitionName:'shell',
+      
       title:'prize1',
       description:'we winnnnn!!!!',
       imagePrize:'assets/img/image1.jpg'
     },
     {
-      competitionName:'shell',
+      
       title:'prize11',
       description:'we winnnnnnnn!!!!',
       imagePrize:'assets/img/image2.jpg'
     },
     {
-      competitionName:'shell',
+      
       title:'prize111',
       description:'we winnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn!!!!',
       imagePrize:'assets/img/image3.jpg'

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
-import { Prize } from "../../models/prize.model";
-import { PrizeService } from "../../services/prize.service";
+import { Award } from "../../models/award.model";
+import { AwardsService } from "../../services/award.service";
 
 @Component({
   selector: 'app-add-prizes',
@@ -12,7 +12,7 @@ export class AddPrizesComponent implements OnInit {
 
   selectedImg: File = null;
 
-  constructor(private prizeService: PrizeService) { }
+  constructor(private awardsService: AwardsService) { }
   
 
   ngOnInit(): void {
@@ -30,7 +30,7 @@ export class AddPrizesComponent implements OnInit {
     formData.append('title', form.control.value.prizeTitle);
     formData.append('description', form.control.value.prizeDescription);
     formData.append('imagePrize', this.selectedImg, this.selectedImg.name);
-    this.prizeService.storePrize(formData).toPromise()
+    this.awardsService.storePrize(formData).toPromise()
     .then(result=>{
       console.log(result)
     });

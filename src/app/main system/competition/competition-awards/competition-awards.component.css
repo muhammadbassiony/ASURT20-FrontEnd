@@ -38,19 +38,33 @@ img {
     z-index: 600;
 }
 
-
-/*.fixHightInSmall{
-  //height: 100% !important;
+.heading{
+    color: compColor;
 }
-*/
+
+.ph{
+    margin: 0 0;
+    margin-left: 0; 
+    margin-right: 0;
+}
+/* .carousel-caption{
+    position: absolute;
+    margin-top: 500px;
+} */
 
 
 /*At Large Screens*/
 
-@media only screen and (min-width: 550px) {
+@media only screen and (min-width: 500px) {
     .ph{
-        margin-left: 20%; 
+        margin-left: 18%; 
         margin-right: 20%;
+    }
+    .carousel-caption{
+
+    }
+    .heading{
+        font-size: 3.2rem;
     }
     /* .ng-template{
         margin-left: 2rem;

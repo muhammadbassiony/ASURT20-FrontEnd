@@ -9,6 +9,7 @@ import { ActivatedRoute, Params, Router, Data, NavigationStart, NavigationExtras
 export class ShellComponent implements OnInit {
   backgroundColor:string='#E5AC00';
   photorollId = "";
+  competitionColor = '#800000';
 
   constructor(
     private route: ActivatedRoute,
