@@ -72,16 +72,13 @@
                 <li class="navigation__item">
                     <div class="dropdown">
                         <a class="navigation__link dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Competitions
-            </a>
+                            Competitions</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item"  [routerLink]="['/competition','formula']" [state]="{ photorollId:'formula'}">Formula</a>
-                            <a class="dropdown-item"  [routerLink]="['/competition','shell']" [state]="{ photorollId:'shell'}">Shell</a>
-                            <a class="dropdown-item"  [routerLink]="['/competition','rov']" [state]="{ photorollId:'rov'}">ROV</a>
-                            <!-- <a class="dropdown-item" (click)="onToggleHeader()" [routerLink]="['/competition','formula']" [state]="{ photorollId:'formula'}>Formula</a>
-                            <a class="dropdown-item" (click)="onToggleHeader()" [routerLink]="['/competition','shell']">Shell</a>
-                            <a class="dropdown-item" (click)="onToggleHeader()" [routerLink]="['/competition','rov']">ROV</a> -->
+                            <div  *ngFor="let comp of allComps; let i = index">
+                                <a class="dropdown-item"  [routerLink]="['/competition', comp.name | lowercase]" [state]="{ compId: comp._id}">{{ comp.name }}</a>
+                            </div>
                         </div>
+                        
                     </div>
                 </li>
                 <li class="navigation__item">

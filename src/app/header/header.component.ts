@@ -1,10 +1,14 @@
-
 import {AfterViewChecked, Component, Inject, Input, OnDestroy, OnInit} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
-import {Subscription} from 'rxjs';
+
+import { map, catchError, tap, switchMap } from 'rxjs/operators';
+import { Subject, throwError } from 'rxjs';
+
 import { UserService } from '../authorization/user.service';
+import { CompetitionsService } from '../main system/services/competitions.service';
 
 import { ActivatedRoute, Params, Router, Data, NavigationStart, NavigationExtras } from '@angular/router';
+import { Competition } from '../main system/models/competition.model';
 
 
 @Component({
@@ -18,12 +22,14 @@ export class HeaderComponent implements OnInit {
   // isAuthorized: boolean = false;
   // private userSubscription: Subscription;
   userId: string;
+  allComps: Competition[];
 
   @Input()isAdminMode: boolean;
   @Input()isAuthorized: boolean;
 
   constructor(
     private usersService: UserService,
+    private competitionsService: CompetitionsService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -33,11 +39,21 @@ export class HeaderComponent implements OnInit {
     if (this.applyMql('900px')) {
       header.classList.add('header-closed');
     }
-    this.usersService.authUser.subscribe(user => {
+
+    this.competitionsService.getAllCompetitions()
+    .pipe(switchMap(comps => {
+      this.allComps= comps;
+      // console.log('HEADER GOT ALL COMPS :: \n', this.allComps);
+      return this.usersService.authUser;
+    }))
+    .subscribe(user => {
       // console.log('HEADER AUTHUSER SUBS :: ', user);
       this.isAuthorized = !!user;
       this.userId = user._id;
-    });
+    })
+
+    
+    
   }
 
   onToggleHeader() {
