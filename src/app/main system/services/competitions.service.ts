@@ -82,15 +82,16 @@ export class CompetitionsService {
     awardData.append('title', newAward.title);
     awardData.append('description', newAward.description);
     awardData.append('awardImg', newAward.awardImg);
+    console.log('COMPSERVICE - ADD NEW AWARD FD :: \n', awardData);
 
     return this.http.post(
       backend_uri + '/main/competitions/add-award/' + compId,
-      { newAward },
+      { awardData },
       { responseType: 'json'}
     )
     .pipe(
       map(res => {
-        let body = res['competition'];    
+        let body = res['award'];    
         return body || [];    
       }),
       catchError(errorRes => {
@@ -100,9 +101,43 @@ export class CompetitionsService {
   }
 
 
-  updateAward(awardId: string, updatedAward: Award){}
+  updateAward(awardId: string, updatedAward: Award){
+    let awardData = new FormData();
+    awardData.append('title', updatedAward.title);
+    awardData.append('description', updatedAward.description);
+    awardData.append('awardImg', updatedAward.awardImg);
+    console.log('COMPSERVICE - UPDATE AWARD FD :: \n', awardData);
+    
+    return this.http.put(
+      backend_uri + '/main/competitions/update-award/' + awardId,
+      { awardData },
+      { responseType: 'json'}
+    )
+    .pipe(
+      map(res => {
+        let body = res['award'];    
+        return body || [];    
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
+  }
 
 
-  deleteAward(awardId: string){}
+  deleteAward(awardId: string, compId: string){
+    return this.http.delete(
+      backend_uri + '/main/competitions/delete-award/' + awardId + '/' + compId,
+      { responseType: 'json'}
+    )
+    .pipe(
+      map(res => {
+        return null;    
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
+  }
 
 }
