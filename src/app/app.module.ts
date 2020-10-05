@@ -29,7 +29,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 import { AddPrizesComponent } from './main system/admin-panel/add-prizes/add-prizes.component';
-import { CardsRollComponent } from './main system/competition/cards-roll/cards-roll.component';
 import { SponsorsComponent } from './main system/sponsors/sponsors.component';
 import { SponsorsEditComponent } from './main system/admin-panel/sponsors-edit/sponsors-edit.component';
 import { ShellComponent } from './main system/competition/shell/shell.component';
@@ -115,7 +114,6 @@ FullCalendarModule.registerPlugins([
     CompetitionEditComponent,
     AddPrizesComponent,
     AboutUsComponent,
-    CardsRollComponent,
     SponsorsComponent,
     SponsorsEditComponent,
     ShellComponent,

@@ -4,17 +4,72 @@
         <hr>
     </div>
 </div>
-
+<!-- 
 <div class="row py-2">
-    <!-- <div *ngFor="let award of awards" class="col-md-4 mb-3">
-        <div class="card p-2 mx-auto">
-            <img class="card-img-top rounded" src="../../../assets/img/download.png" alt="Award">
-            <div class="card-body">
-                <h5 class="card-title text-center">Card title</h5>
-            </div>
-        </div>
-    </div> -->
     <div class="col-12 py-2">
-        <app-cards-roll [prizesPhotos]="prizes"></app-cards-roll>
+        
+        <div id="carouselExampleCaptions" class="carousel  slide text-dark" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li *ngFor="let item of prizes;let i=index" data-target="#carouselExampleCaptions" [attr.data-slide-to]="i" [ngClass]="i==0? 'active':''"></li>
+            </ol>
+
+            <div class="carousel-inner">
+                <div [ngClass]="i==0? 'active':''" *ngFor="let item of prizes;let i=index" class="carousel-item position-relative awardsPhoto">
+                    <img src="{{item.imagePrize}}" class="d-block vertical-center" alt="award" style="z-index: 1;">
+                    <div class="carousel-caption rounded  d-none d-md-block">
+                        <div class="mx-auto customWidth award-text" style="background-color: rgba(0, 0, 0, 0.445);">
+                            <h5>{{item.title}}</h5>
+                            <p class="text-wrap text-break">{{item.description}}</p>
+                        </div>
+                    </div>
+                </div>
+        
+            </div>
+
+
+            <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
     </div>
+</div> -->
+
+<div class="d-flex justify-content-between ph">
+
+
+<ngb-carousel *ngIf="images">
+    <ng-template ngbSlide >
+      <div class="picsum-img-wrapper">
+        <img [src]="images[0]" alt="Random first slide">
+      </div>
+      <div class="carousel-caption">
+        <h3>First slide label</h3>
+        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="images[1]" alt="Random second slide">
+      </div>
+      <div class="carousel-caption">
+        <h3>Second slide label</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="images[2]" alt="Random third slide">
+      </div>
+      <div class="carousel-caption">
+        <h3>Third slide label</h3>
+        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+
 </div>

@@ -9,3 +9,65 @@ hr{
     border-top: 3px solid rgba(255,255,255,.1);
     margin-bottom: 20px;
 }
+
+.vertical-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/*small Screens*/
+
+img {
+    height: auto;
+    width: 100%;
+}
+
+.customWidth {
+    width: 100%;
+}
+
+.awardsPhoto {
+    height: 30vh;
+}
+
+.award-text{
+    position: absolute;
+    z-index: 600;
+}
+
+
+/*.fixHightInSmall{
+  //height: 100% !important;
+}
+*/
+
+
+/*At Large Screens*/
+
+@media only screen and (min-width: 550px) {
+    .ph{
+        margin-left: 20%; 
+        margin-right: 20%;
+    }
+    /* .ng-template{
+        margin-left: 2rem;
+        margin-right: 2rem;
+    } */
+    /* img {
+        
+        width: 80%;
+        align-self: center;
+    } */
+    /* .awardsPhoto {
+        height: 100vh;
+    }
+    .customWidth {
+        width: 75%;
+    }
+    .award-text{
+        z-index: 600;
+    } */
+}

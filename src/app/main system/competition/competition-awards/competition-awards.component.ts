@@ -11,7 +11,7 @@ export class CompetitionAwardsComponent implements OnInit{
 
   prizes:Prize[];
   @Input('competitionName') competitionName:string; //for the back end
-
+  images: any;
 
   constructor(private prizeService:PrizeService) { }
   
@@ -22,6 +22,7 @@ export class CompetitionAwardsComponent implements OnInit{
     // })
     // .catch()
     this.prizes=this.prizeService.dummyPrizes;
+    this.images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
   
   }
 
