@@ -6,8 +6,12 @@
 // }
 
 export interface Award {
+
   _id?: string;
   title: string;
   description: string;
-  imagePrize: string;
+
+  awardImg?: File;
+  imagePath?: string;
+  
 }

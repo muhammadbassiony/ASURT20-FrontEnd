@@ -1,6 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { Award } from '../../models/award.model';
-import { AwardsService } from '../../services/award.service';
+// import { AwardsService } from '../../services/award.service';
 
 @Component({
   selector: 'app-competition-awards',
@@ -14,7 +14,7 @@ export class CompetitionAwardsComponent implements OnInit{
   // compColor = '#800000';
   @Input('compColor') compColor: string;
 
-  constructor(private awardsService: AwardsService) { }
+  constructor() { }
   
   ngOnInit(): void {
     // this.prizeService.getPrize(this.competitionName).toPromise()
@@ -22,7 +22,7 @@ export class CompetitionAwardsComponent implements OnInit{
     //   this.prizes=prizes;
     // })
     // .catch()
-    this.awards = this.awardsService.dummyPrizes;
+    // this.awards = this.awardsService.dummyPrizes;
     this.images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
   
   }

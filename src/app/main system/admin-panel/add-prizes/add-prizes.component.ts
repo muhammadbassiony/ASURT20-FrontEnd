@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { Award } from "../../models/award.model";
-import { AwardsService } from "../../services/award.service";
+// import { AwardsService } from "../../services/award.service";
 
 @Component({
   selector: 'app-add-prizes',
@@ -12,7 +12,7 @@ export class AddPrizesComponent implements OnInit {
 
   selectedImg: File = null;
 
-  constructor(private awardsService: AwardsService) { }
+  constructor() { }
   
 
   ngOnInit(): void {
@@ -25,15 +25,15 @@ export class AddPrizesComponent implements OnInit {
   }
 
   onPrizeSubmit(form: NgForm) {
-    const formData = new FormData();
-    formData.append('competitionName', form.control.value.competitionName);
-    formData.append('title', form.control.value.prizeTitle);
-    formData.append('description', form.control.value.prizeDescription);
-    formData.append('imagePrize', this.selectedImg, this.selectedImg.name);
-    this.awardsService.storePrize(formData).toPromise()
-    .then(result=>{
-      console.log(result)
-    });
+    // const formData = new FormData();
+    // formData.append('competitionName', form.control.value.competitionName);
+    // formData.append('title', form.control.value.prizeTitle);
+    // formData.append('description', form.control.value.prizeDescription);
+    // formData.append('imagePrize', this.selectedImg, this.selectedImg.name);
+    // this.awardsService.storePrize(formData).toPromise()
+    // .then(result=>{
+    //   console.log(result)
+    // });
   }
 
 }

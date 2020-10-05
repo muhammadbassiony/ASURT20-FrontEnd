@@ -7,13 +7,10 @@ import {environment} from '../../../environments/environment';
 const backend_uri = environment.backend_uri;
 
 import {Competition} from '../models/competition.model';
+import { Award } from '../models/award.model';
 
-// interface GetResponse {
-//   name: string;
-//   visible: boolean;
-//   prizes: any;
-//   photoroll: any
-// }
+
+
 
 @Injectable({providedIn: 'root'})
 export class CompetitionsService {
@@ -37,6 +34,7 @@ export class CompetitionsService {
     );
   }
 
+
   getCompetition(compId: string){
     return this.http.get(
       backend_uri + '/main/competitions/get-comp/' + compId,
@@ -52,6 +50,7 @@ export class CompetitionsService {
       })
     );
   }
+
 
   updateCompetition(compId: string, comp: Competition){
     let competition = {
@@ -77,5 +76,33 @@ export class CompetitionsService {
     );
   }
 
+
+  addNewAward(compId: string, newAward: Award){
+    let awardData = new FormData();
+    awardData.append('title', newAward.title);
+    awardData.append('description', newAward.description);
+    awardData.append('awardImg', newAward.awardImg);
+
+    return this.http.post(
+      backend_uri + '/main/competitions/add-award/' + compId,
+      { newAward },
+      { responseType: 'json'}
+    )
+    .pipe(
+      map(res => {
+        let body = res['competition'];    
+        return body || [];    
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
+  }
+
+
+  updateAward(awardId: string, updatedAward: Award){}
+
+
+  deleteAward(awardId: string){}
 
 }

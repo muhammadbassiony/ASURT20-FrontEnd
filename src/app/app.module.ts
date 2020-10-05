@@ -50,7 +50,6 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
 import { AboutUsComponent } from './main system/about-us/about-us.component';
 
 import { FadeInService } from "./shared/fade-in.service";
-import { AwardsService } from "./main system/services/award.service";
 import { AdminGuardService } from './authorization/admin-guard.service';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -183,7 +182,6 @@ FullCalendarModule.registerPlugins([
     MatSelectModule
   ],
   providers: [
-    AwardsService,
     FadeInService,
     UserService,
     {

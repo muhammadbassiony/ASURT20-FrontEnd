@@ -32,7 +32,7 @@ export class CompetitionEditComponent implements OnInit {
   competitions: string[] = ['Formula', 'Shell', 'ROV'];
   isChecked: boolean[] = [];
   onSubmit(form: NgForm) {
-    this.competitionsService.changeCompetitionVisibility(this.isChecked);
+    // this.competitionsService.changeCompetitionVisibility(this.isChecked);
     console.log(form.value.Formula);
   }
 }
