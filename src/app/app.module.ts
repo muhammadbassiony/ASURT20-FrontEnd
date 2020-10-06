@@ -33,7 +33,6 @@ import { SponsorsEditComponent } from './main system/admin-panel/sponsors-edit/s
 import { ShellComponent } from './main system/competition/shell/shell.component';
 import { RovComponent } from './main system/competition/rov/rov.component';
 import { FormulaComponent } from './main system/competition/formula/formula.component';
-import { CompetitionParagraphComponent } from './main system/competition/competition-paragraph/competition-paragraph.component';
 
 
 import { CloseDirective } from "./main system/admin-panel/close.directive";
@@ -116,7 +115,6 @@ FullCalendarModule.registerPlugins([
     ShellComponent,
     RovComponent,
     FormulaComponent,
-    CompetitionParagraphComponent,
     CloseDirective,
     FooterComponent,
     SignUpComponent,
