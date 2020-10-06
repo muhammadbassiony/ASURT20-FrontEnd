@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormulaComponent } from './main system/competition/formula/formula.component';
 import { RovComponent } from './main system/competition/rov/rov.component';
 import { ShellComponent } from './main system/competition/shell/shell.component';
+import { EverComponent } from './main system/competition/ever/ever.component';
 
 import { LandingPageComponent } from './main system/landing-page/landing-page.component';
 import { PhotorollEditComponent } from './main system/admin-panel/photoroll-edit/photoroll-edit.component';
@@ -50,6 +51,7 @@ const routes: Routes = [
 
         {path: 'formula', component: FormulaComponent},
         {path: 'shell', component: ShellComponent},
+        {path: 'ever', component: EverComponent},
         {path: 'rov', component: RovComponent}
     ]
   },
