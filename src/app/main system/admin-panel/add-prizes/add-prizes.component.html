@@ -20,9 +20,6 @@
         
         <div *ngFor="let award of currentComp.awards; ;let i = index">
             <div class="col-md-8 rounded" style="color: white;">
-                <!-- <div>
-                    
-                </div> -->
                 <div class="img-wrap row">
                     <span class="close" (click)="deleteAward(i)">&times;</span>                      
                     <img id="{{i}}" [src]="award.path" alt="award image" style="height: 150px; width:250px;">

@@ -79,17 +79,19 @@ export class AddPrizesComponent implements OnInit {
   }
 
   onSubmit(awardsForm: FormGroup) {
-    // const formData = new FormData();
-    // formData.append('competitionName', form.control.value.competitionName);
-    // formData.append('title', form.control.value.prizeTitle);
-    // formData.append('description', form.control.value.prizeDescription);
-    // formData.append('imagePrize', this.selectedImg, this.selectedImg.name);
+    let newAward: Award = {
+      title: this.awardsForm.value.title,
+      description: this.awardsForm.value.description,
+      awardImg: this.awardsForm.value.image
+    };
 
     console.log('AWARD EDIT : FROM :: \n', this.awardsForm);
-    // this.awardsService.storePrize(formData).toPromise()
-    // .then(result=>{
-    //   console.log(result)
-    // }); 
+    this.competitionsService.addNewAward(this.currentComp._id, newAward)
+    .subscribe(res => {
+      alert('Award added succesfully!');
+      this.awardsForm.reset();
+    });
+    //add error handling here
   }
 
 }
