@@ -65,9 +65,11 @@ export class AddPrizesComponent implements OnInit {
   }
 
   deleteAward(indx: number){
-    console.log('DELETE AWARD :: INDX :: ', indx, this.currentComp);
-    this.currentComp.awards.splice(indx);
-    console.log('DELETE AWARD :: AFTER :: ', this.currentComp);
+    console.log('DELETE AWARD :: INDX :: ', indx, this.currentComp, '\n',this.allComps);
+    if(confirm('Are you sure you want to delete this award?')){
+      this.currentComp.awards.splice(indx, 1);
+    }
+    console.log('DELETE AWARD :: AFTER :: ', this.currentComp, '\n',this.allComps);
   }
 
   onSubmit(awardsForm: FormGroup) {

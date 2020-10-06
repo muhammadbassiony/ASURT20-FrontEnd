@@ -8,7 +8,7 @@
         <div class="col-sm-8">
             <h3 class="text-center" style="margin: 20px;">Select Competition you want to edit :</h3>
             <select class="form-control" (change)="onCompSelect()" [(ngModel)]="currentComp">
-                <option *ngFor="let cmp of allComps"  [ngValue]="cmp">
+                <option *ngFor="let cmp of allComps; let i = index"  [ngValue]="cmp">
                     {{cmp.name}}</option>
             </select>
         </div>
