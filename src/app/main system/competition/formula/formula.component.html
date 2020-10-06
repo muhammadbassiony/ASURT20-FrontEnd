@@ -1,13 +1,13 @@
-<main style="background-color: #EEEEEE;">
+<main style="background-color: #f0f0f0;">
 
     <!-- Competition Name and the Logo -->
     <div class="container">
 
-        <div class="row py-2" style="margin-top: 150px;"> 
+        <div class="row py-2" style="margin-top: 220px;"> 
             <div class="col-12 py-2">
-                <img class="bg-light p-1 rounded" src="assets/img/FormulaStudentUK.png" 
-                    height="160px" width="160px" alt="Competion Logo" style="background: rgba(255, 255, 255, 0);">
-                <h3 class="d-inline-block ml-5 formula align-middle fade-in" style="font-size: 3.5rem;">Formula</h3>
+                <img class="bg-light p-1 rounded" src="assets/img/FormulaStudentUK.png" height="160px" 
+                    width="160px" alt="Competion Logo" style="background: rgba(255, 255, 255, 0);" #logo>
+                <h3 class="d-inline-block ml-5 formula align-middle" style="font-size: 3.5rem;">Formula</h3>
                 <hr>
             </div>
         </div>
@@ -15,56 +15,53 @@
     </div>
 
     <div class="container">
-        <div class="row py-5">
+        <div class="row py-5 ">
             <div class="col-sm-6 col-12">
-                <p class="text-break text-justify fade-in">W3Schools is optimized for learning, testing, and training. Examples might be simplified to improve reading and basic understanding. Tutorials, references, and examples are constantly reviewed to avoid errors, but we cannot warrant full correctness of all content. While using this site, you agree to have read and accepted our terms of use, cookie and privacy policy. Copyright 1999-2020 by Refsnes Data. All Rights Reserved.</p>
+                <p class="text-break text-justify">W3Schools is optimized for learning, testing, and training. Examples might be simplified to improve reading and basic understanding. Tutorials, references, and examples are constantly reviewed to avoid errors, but we cannot warrant full correctness of all content. While using this site, you agree to have read and accepted our terms of use, cookie and privacy policy. Copyright 1999-2020 by Refsnes Data. All Rights Reserved.</p>
             </div>
             <div class="col-sm-6 col-12 ">
-                <img class="w-100" src="assets/img/image1.jpg" alt="Competition Photo">
+                <img class="w-100" src="assets/img/image1.jpg" alt="Competition Photo" style="border: #800000;">
             </div>
         </div>
     </div>
 
-    <!-- <div class="row py-5" style="margin-left: 13%;">
-        <div class="col-sm-6 col-12">
-            <p class="text-break text-justify fade-in"></p>
-        </div>
-        <div  class="col-sm-6 col-12 fade-in">
-            <img  alt="image 1"  class="w-100 col-sm-6 col-12">
-        </div>
-    </div> -->
-    <!-- awards -->
+    
     <app-competition-awards [compColor]=competitionColor></app-competition-awards>
 
-    <div class="col-sm-6 col-12  fade-in">
-        <p>W3Schools is optimized for learning, testing, and training. Examples might be simplified to improve reading and basic understanding. Tutorials, references, and examples are constantly reviewed to avoid errors, but we cannot warrant full correctness of all content. While using this site, you agree to have read and accepted our terms of use, cookie and privacy policy. Copyright 1999-2020 by Refsnes Data. All Rights Reserved.</p>
-        <img src="assets/img/image1.jpg" alt="image 1"  class="w-100 img-thumbnail">
+    
+    <div class="container">
+        <div class="row py-5">
+            <div class="col-sm-6 col-12 ">
+                <img class="w-100" src="assets/img/image1.jpg" alt="Competition Photo" style="border: #800000;">
+            </div>
+            <div class="col-sm-6 col-12">
+                <p class="text-break text-justify">W3Schools is optimized for learning, testing, and training. Examples might be simplified to improve reading and basic understanding. Tutorials, references, and examples are constantly reviewed to avoid errors, but we cannot warrant full correctness of all content. While using this site, you agree to have read and accepted our terms of use, cookie and privacy policy. Copyright 1999-2020 by Refsnes Data. All Rights Reserved.</p>
+            </div> 
+        </div>
     </div>
 
-    <!-- Paragraphs -->
-    <!-- <app-competition-paragraph [paragraph]="
-    {
-        info:'W3Schools is optimized for learning, testing, and training. Examples might be simplified to improve reading and basic understanding. Tutorials, references, and examples are constantly reviewed to avoid errors, but we cannot warrant full correctness of all content. While using this site, you agree to have read and accepted our terms of use, cookie and privacy policy. Copyright 1999-2020 by Refsnes Data. All Rights Reserved.',
-        image:'assets/img/image1.jpg'
-    }"></app-competition-paragraph> -->
-    <app-competition-paragraph [inverted]="true" [paragraph]="
-    {
-        info:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer semper ligula in quam iaculis, vel euismod nulla elementum. Nunc vitae arcu pellentesque, tincidunt ex vitae, lacinia justo. Fusce eu dolor nisl. Mauris ac fermentum est. Mauris et tellus dapibus, dictum arcu quis, pellentesque quam. Sed quis lorem in diam sollicitudin fringilla. Aenean efficitur cursus elit in hendrerit. Duis vel odio pellentesque, molestie lectus ut, porta elit. Pellentesque mi lorem, condimentum quis porta nec, malesuada in nibh. Maecenas sed ornare ipsum, vel mattis risus. Donec sollicitudin, metus quis consequat porttitor, ante massa volutpat turpis, ac commodo dui diam sit amet justo. Etiam aliquet vulputate aliquet.',
-        image:'assets/img/image2.jpg'
-    }"></app-competition-paragraph>
-    <app-competition-paragraph [paragraph]="
-    {
-        info:'W3Schools is optimized for learning, testing, and training. Examples might be simplified to improve reading and basic understanding. Tutorials, references, and examples are constantly reviewed to avoid errors, but we cannot warrant full correctness of all content. While using this site, you agree to have read and accepted our terms of use, cookie and privacy policy. Copyright 1999-2020 by Refsnes Data. All Rights Reserved.',
-        image:'assets/img/image1.jpg'
-    }"></app-competition-paragraph>
-    <app-competition-paragraph [inverted]="true" [paragraph]="
-    {
-        info:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer semper ligula in quam iaculis, vel euismod nulla elementum. Nunc vitae arcu pellentesque, tincidunt ex vitae, lacinia justo. Fusce eu dolor nisl. Mauris ac fermentum est. Mauris et tellus dapibus, dictum arcu quis, pellentesque quam. Sed quis lorem in diam sollicitudin fringilla. Aenean efficitur cursus elit in hendrerit. Duis vel odio pellentesque, molestie lectus ut, porta elit. Pellentesque mi lorem, condimentum quis porta nec, malesuada in nibh. Maecenas sed ornare ipsum, vel mattis risus. Donec sollicitudin, metus quis consequat porttitor, ante massa volutpat turpis, ac commodo dui diam sit amet justo. Etiam aliquet vulputate aliquet.',
-        image:'assets/img/image2.jpg'
-    }"></app-competition-paragraph>
+    <div class="container">
+        <div class="row py-5">
+            <div class="col-sm-6 col-12">
+                <p class="text-break text-justify">W3Schools is optimized for learning, testing, and training. Examples might be simplified to improve reading and basic understanding. Tutorials, references, and examples are constantly reviewed to avoid errors, but we cannot warrant full correctness of all content. While using this site, you agree to have read and accepted our terms of use, cookie and privacy policy. Copyright 1999-2020 by Refsnes Data. All Rights Reserved.</p>
+            </div>
+            <div class="col-sm-6 col-12 ">
+                <img class="w-100" src="assets/img/image1.jpg" alt="Competition Photo" style="border: #800000;">
+            </div>
+        </div>
+    </div>
 
-    <!-- photo Roll -->
+    <div class="container">
+        <div class="row py-5">
+            <div class="col-sm-6 col-12 ">
+                <img class="w-100" src="assets/img/image1.jpg" alt="Competition Photo" style="border: #800000;">
+            </div>
+            <div class="col-sm-6 col-12">
+                <p class="text-break text-justify">W3Schools is optimized for learning, testing, and training. Examples might be simplified to improve reading and basic understanding. Tutorials, references, and examples are constantly reviewed to avoid errors, but we cannot warrant full correctness of all content. While using this site, you agree to have read and accepted our terms of use, cookie and privacy policy. Copyright 1999-2020 by Refsnes Data. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+
     <app-photo-roll [photorollId]=photorollId></app-photo-roll>
-
 
 </main>

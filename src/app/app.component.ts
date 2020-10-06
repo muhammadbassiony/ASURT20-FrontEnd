@@ -44,7 +44,7 @@ export class AppComponent implements OnInit{
   }
 
   toggleLoading(val){
-    console.log('APP COMP TS - LOADING VAL ::: ', val);
+    // console.log('APP COMP TS - LOADING VAL ::: ', val);
     this.isLoading = val;
     this.router.navigate(['/']);
   }
