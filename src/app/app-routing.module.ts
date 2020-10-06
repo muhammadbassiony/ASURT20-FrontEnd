@@ -21,7 +21,7 @@ import { SignUpComponent } from './authorization/sign-up/sign-up.component';
 import { SignInComponent } from './authorization/sign-in/sign-in.component';
 import { EditProfileComponent } from './authorization/edit-profile/edit-profile.component';
 
-import {AdminGuardService} from './authorization/admin-guard.service';
+import { AdminGuardService } from './authorization/admin-guard.service';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 
@@ -46,7 +46,7 @@ import { ViewInterviewComponent } from './recruitment system/interviews/admin-in
 const routes: Routes = [
   { path: '', component: LandingPageComponent, pathMatch: 'full' },
   { path: 'home', component: LandingPageComponent},
-  { path: 'competition',// component: CompetitionComponent,
+  { path: 'competition',
      children:[
 
         {path: 'formula', component: FormulaComponent},
@@ -60,7 +60,7 @@ const routes: Routes = [
 
   { 
     path: 'edit', component: AdminPanelComponent, 
-    data: { accessLevel: 2}, 
+    data: { accessLevel: 2 }, 
     canActivate: [AdminGuardService], 
     children:[
       { path: 'add-prize', component: AddPrizesComponent },

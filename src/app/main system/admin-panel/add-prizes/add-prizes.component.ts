@@ -44,32 +44,33 @@ export class AddPrizesComponent implements OnInit {
     });
 
     this.awardsForm = this.fb.group({
-      'title': [],
-      'description': [],
-      'image': []
+      'title': [ , [Validators.required, Validators.minLength(3)]],
+      'description': [ , [Validators.required, Validators.minLength(5)]],
+      'image': [ , [Validators.required, Validators.minLength(3)], ImgMimeType]
     });
   }
 
   onCompSelect(){
     console.log('COMP CHANGE :: CURRENT COMP :: \n', this.currentComp);
     this.currentComp.awards.forEach(aw => {
-      console.log('AW BACKEND BEFORE :: \n', aw);
       let im = this.backend_uri + aw['imagePath'];
       aw['path'] = im;
-      console.log('AW BACKEND AFTER :: \n', aw);
     })
   }
 
-  onImgUploaded(event) {
-    this.selectedImg = <File>event.target.files[0];
-    console.log(this.selectedImg)
+  newImg: File = null;
+  onImgUploaded(files: FileList) {
+    this.newImg = files.item(0);
+    console.log(this.newImg);
   }
 
   deleteAward(indx: number){
-
+    console.log('DELETE AWARD :: INDX :: ', indx, this.currentComp);
+    this.currentComp.awards.splice(indx);
+    console.log('DELETE AWARD :: AFTER :: ', this.currentComp);
   }
 
-  onPrizeSubmit(awardsForm: FormGroup) {
+  onSubmit(awardsForm: FormGroup) {
     // const formData = new FormData();
     // formData.append('competitionName', form.control.value.competitionName);
     // formData.append('title', form.control.value.prizeTitle);
