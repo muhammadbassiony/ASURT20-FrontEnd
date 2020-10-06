@@ -5,12 +5,20 @@
     </svg>
   </a>
   <ul class="menu">
-    <li class="menu__item"><a [routerLink]="'/'">Home</a></li>
-    <li class="menu__item"><a [routerLink]="['view-all-users']">View all users</a></li>
-    <li class="menu__item"><a [routerLink]="['edit', 'add-prize']">Add Prizes</a></li>
-    <li class="menu__item"><a [routerLink]="['edit', 'competition']">Edit Competitions</a></li>
-    <li class="menu__item"><a [routerLink]="['edit', 'photo-roll']">Edit Photo Roll</a></li>
-    <li class="menu__item"><a [routerLink]="['edit', 'sponsors']">Edit Sponsors</a></li>
+    <li class="menu__item"><a [routerLink]="'/'" 
+      style="text-decoration: none; color: white;">Home</a></li>
+    <li class="menu__item"><a [routerLink]="'/dashboard'" 
+      style="text-decoration: none; color: white;">Dashboard</a></li>
+    <li class="menu__item"><a [routerLink]="['view-all-users']" 
+      style="text-decoration: none; color: white;">View all users</a></li>
+    <li class="menu__item"><a [routerLink]="['edit', 'add-prize']" 
+      style="text-decoration: none; color: white;">Add Prizes</a></li>
+    <li class="menu__item"><a [routerLink]="['edit', 'competition']" 
+      style="text-decoration: none; color: white;">Edit Competitions</a></li>
+    <li class="menu__item"><a [routerLink]="['edit', 'photo-roll']" 
+      style="text-decoration: none; color: white;">Edit Photo Roll</a></li>
+    <li class="menu__item"><a [routerLink]="['edit', 'sponsors']" 
+      style="text-decoration: none; color: white;">Edit Sponsors</a></li>
   </ul>
 </nav>
 <router-outlet></router-outlet>

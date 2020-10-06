@@ -33,7 +33,7 @@ export class AdminGuardService implements CanActivate {
           
           if(route.data.accessLevel!= null && route.data.accessLevel <= userLevel){
             //users access level is equal to that of allowed by this route
-            console.log('AUTH GUARD RETURNING TRUE HERE\n');
+            // console.log('AUTH GUARD RETURNING TRUE HERE\n');
             return true;
           }
 
