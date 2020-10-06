@@ -1,4 +1,4 @@
-import {AfterViewChecked, Component, Inject, Input, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewChecked, Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
 
 import { map, catchError, tap, switchMap } from 'rxjs/operators';
@@ -23,10 +23,12 @@ export class HeaderComponent implements OnInit {
   // private userSubscription: Subscription;
   userId: string;
   allComps: Competition[];
-  isLoading = true;
+  // isLoading = true;
 
   @Input()isAdminMode: boolean;
   @Input()isAuthorized: boolean;
+
+  @Output() isLoading = new EventEmitter<boolean>(true);
 
   constructor(
     private usersService: UserService,
@@ -43,7 +45,8 @@ export class HeaderComponent implements OnInit {
 
     this.competitionsService.getAllCompetitions()
     .pipe(switchMap(comps => {
-      this.isLoading = false;
+      // this.isLoading = false;
+      this.isLoading.emit(false);
       this.allComps= comps;
       // console.log('HEADER GOT ALL COMPS :: \n', this.allComps);
       return this.usersService.authUser;

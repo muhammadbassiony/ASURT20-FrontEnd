@@ -1,8 +1,14 @@
+<app-loading-spinner  *ngIf="isLoading"></app-loading-spinner>
 
-<app-header [isAdminMode]="isAdminMode" [isAuthorized]="isAuthorized"></app-header>
 
-<router-outlet></router-outlet>
-<!--PLEASE DO NOT COMMENT OUT THE ADMIN PANEL. IF YOU WANT TO HIDE IT, GO TO THE ts FILE AND SET isAdminMode TO FALSE-->
-<app-admin-panel [isAdminMode]="isAdminMode"></app-admin-panel>
+<div [hidden]="isLoading">
+    <app-header [isAdminMode]="isAdminMode" [isAuthorized]="isAuthorized"
+        (isLoading)="toggleLoading($event)"></app-header>
 
-<app-footer></app-footer>
+    <router-outlet></router-outlet>
+    <!--PLEASE DO NOT COMMENT OUT THE ADMIN PANEL. IF YOU WANT TO HIDE IT, GO TO THE ts FILE AND SET isAdminMode TO FALSE-->
+    <app-admin-panel [isAdminMode]="isAdminMode"></app-admin-panel>
+
+    <app-footer></app-footer>
+</div>
+
