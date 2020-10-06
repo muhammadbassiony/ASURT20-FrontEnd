@@ -1,12 +1,15 @@
-<div class="row py-2 ph">
+<main [style.background-color]=compColor style="padding-top: 35px; padding-bottom: 60px;">
+
+<div class="row py-2 ph" style="margin-top: 30px;">
     <div class="col-12">
         
-        <h3 class="text-center heading" [style.color]=compColor> OUR AWARDS</h3>
+        <!-- <h3 class="text-center heading" [style.color]=compColor> OUR AWARDS</h3> -->
+        <h3 class="text-center text-light heading"> OUR AWARDS</h3>
     </div>
 </div>
 
 
-<div class="d-flex justify-content-between ph">
+<div class="d-flex justify-content-between ph" style="margin-bottom: 35px;">
 
 
 <ngb-carousel *ngIf="images">
@@ -53,3 +56,5 @@
   </ngb-carousel>
 
 </div>
+
+</main>

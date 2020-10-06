@@ -82,6 +82,7 @@ import { ViewSingleUserComponent } from './recruitment system/users/view-single-
 import { UserInterviewsComponent } from './recruitment system/interviews/user-interviews/user-interviews.component';
 import { AdminInterviewsComponent } from './recruitment system/interviews/admin-interviews/admin-interviews.component';
 import { ViewInterviewComponent } from './recruitment system/interviews/admin-interviews/view-interview/view-interview.component';
+import { EverComponent } from './main system/competition/ever/ever.component';
 
 
 
@@ -136,7 +137,8 @@ FullCalendarModule.registerPlugins([
     UserInterviewsComponent,
     AdminInterviewsComponent,
     ViewInterviewComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    EverComponent
   ],
   imports: [
     BrowserModule,
