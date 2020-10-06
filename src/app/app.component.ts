@@ -9,6 +9,7 @@ import {FadeInService} from "./shared/fade-in.service";
 import { UserService } from './authorization/user.service';
 
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { ActivatedRoute, Params, Router, Data, NavigationStart, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,9 @@ export class AppComponent implements OnInit{
 
 
   constructor(
-    private usersService: UserService) { }
+    private usersService: UserService,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
 
   ngOnInit() {
@@ -43,6 +46,7 @@ export class AppComponent implements OnInit{
   toggleLoading(val){
     console.log('APP COMP TS - LOADING VAL ::: ', val);
     this.isLoading = val;
+    this.router.navigate(['/']);
   }
 
 
