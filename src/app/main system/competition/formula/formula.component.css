@@ -1,2 +1,24 @@
 /*FADE-IN EFFECT. PLEASE DO NOT REMOVE SO THE COMPONENT IS FADED IN WHEN IT IS LOADED*/
 @import "../../../shared/fade-in.css";
+
+.formula{
+    color: #800000;
+}
+
+.main{
+    position: absolute;
+    margin-top: 0px;
+}
+
+p{
+    font-size: 16px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+@media only screen and (min-width: 500px) {
+    p{
+        font-size: 1.25rem;
+        
+    }
+}

@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit {
   // private userSubscription: Subscription;
   userId: string;
   allComps: Competition[];
+  isLoading = true;
 
   @Input()isAdminMode: boolean;
   @Input()isAuthorized: boolean;
@@ -42,6 +43,7 @@ export class HeaderComponent implements OnInit {
 
     this.competitionsService.getAllCompetitions()
     .pipe(switchMap(comps => {
+      this.isLoading = false;
       this.allComps= comps;
       // console.log('HEADER GOT ALL COMPS :: \n', this.allComps);
       return this.usersService.authUser;

@@ -11,18 +11,18 @@ import { filter, map } from 'rxjs/operators';
 })
 export class FormulaComponent implements OnInit {
 
-  // backgroundColor:string=' #fa6666';
-  backgroundColor:string="#EEEEEE";
-  competitionColor = '#800000';
+  competitionColor = '#800000'; //formula accent color
   photorollId = "";
+  compId: string;
+
 
   constructor(
     private route: ActivatedRoute,
     private router: Router
   ) {
-    // let x = this.router.getCurrentNavigation().extras.state;
-    // console.log('FORMULA COMP PHiD::', x.photorollId);
-
+    let x = this.router.getCurrentNavigation().extras.state;
+    this.compId = x.compId;
+    console.log('FORMULA COMP PHiD::', this.compId);
   }
 
   ngOnInit(): void {
