@@ -35,6 +35,23 @@ export class CompetitionsService {
   }
 
 
+  getAllCompetitionsPopulated(){
+    return this.http.get(
+      backend_uri + '/main/competitions/get-all-comps-populated',
+      { responseType: 'json'}
+    )
+    .pipe(
+      map(res => {
+        let body = res['competitions'];    
+        return body || [];    
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
+  }
+
+
   getCompetition(compId: string){
     return this.http.get(
       backend_uri + '/main/competitions/get-comp/' + compId,
