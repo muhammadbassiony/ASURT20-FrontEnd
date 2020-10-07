@@ -44,18 +44,18 @@
 <!--show of all sponsors -->
 <div [ngStyle]="{'display': !isGettingSponsors? 'block': 'none'}">
   <h4 class="m-3 text-center text-white"> Select the sponsors to display on the website</h4>
-  <div class="row justify-content-center align-items-center">
+  <div class="row justify-content-center align-items-center"  style="margin-top: 40px;">
     <div class="col-lg-4 col-sm-12 " *ngFor="let sponsor of sponsorsInfo; let i=index ">
         <div class="spons_img  mx-auto d-block">
           <img [src]=sponsor.logo alt="logo" style="max-width : 100%" >
         </div>
-        <div class="checkboxMargin mb-3 ">
+        <div class="checkboxMargin mb-3 " style="margin-top: 15px;">
           <input type="checkbox" class="custom-checkbox" [(ngModel)]="sponsor.isChecked">
           <h6 class="d-inline pt-4 text-white ml-3 ">{{sponsor.name}}</h6>
-          <button    class="btn btn-success btn-block" style="width: 40%;" (click)="onEditSponsor(sponsor)">edit</button>
+          <button class="btn btn-success btn-block" style="width: 40%;" (click)="onEditSponsor(sponsor)">edit</button>
 
         </div>
-    </div>
+    </div> 
   </div>
 </div>
 
@@ -71,7 +71,7 @@
 <div class=" dark-overlay mt-4">
   <div class="container">
     <div class="row justify-content-center align-items-center" style="width: 100%;">
-      <div class="col-lg-12" >
+      <div class="col-lg-8">
         <div class="card  text-center card-form">
           <div class="card-body">
 

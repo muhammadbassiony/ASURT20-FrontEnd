@@ -99,40 +99,18 @@ export class SponsorsEditComponent implements OnInit, OnDestroy {
     });
   }
   
-   onEditSponsor(sponsor){
-    console.log(sponsor);
-    this.sponsorEditForm = this.fb.group({
-      'sponsorName': [sponsor.name , [Validators.required, Validators.minLength(5)]],
-      'sponsorDesc': [sponsor.desc , [Validators.required, Validators.minLength(5)]],
-      'sponsorLogo': [ , [Validators.required], [ImgMimeType]]  //img mime NOT working??
-    });
+   onEditSponsor(sponsor) {
+    // console.log('SPNSR FORM BEFORE EDIT :: \n', this.sponsorEditForm);
+    // this.sponsorEditForm = this.fb.group({
+    //   'sponsorName': [sponsor.name , [Validators.required, Validators.minLength(5)]],
+    //   'sponsorDesc': [sponsor.desc , [Validators.required, Validators.minLength(5)]],
+    //   'sponsorLogo': [ , [Validators.required], [ImgMimeType]]  //img mime NOT working??
+    // });
+    this.sponsorEditForm.patchValue({'sponsorName': sponsor.name});
+    this.sponsorEditForm.patchValue({'sponsorDesc': sponsor.desc});
+    // console.log('SPNSR FORM AFTER EDIT :: \n', this.sponsorEditForm);
+    // TODO - add update sponsor fnc here later
   }
-
-  // async changeState()
-  // {
-  //   this.successResSub = this._SponsorsService.editResponseSuccess.subscribe(success => {
-  //     this.successRequests++;
-  //     this.allRequests++;
-  //     // console.log(success);
-  //   });
-  //   this.errorResSub = this._SponsorsService.editResponseError.subscribe(error => {
-  //     this.allRequests++;
-  //     // console.log(error);
-  //   });
-  //   await this._SponsorsService.editSponsorsState(this.isChecked);
-  //   // console.log("All: " + this.allRequests.toString());
-  //   // console.log("Success: " + this.successRequests.toString());
-  //   if (this.allRequests != this.successRequests) {
-  //     const errors = this.allRequests - this.successRequests;
-  //     this.editMessage = `There were ${errors} errors while processing your edit request!`;
-  //   } else {
-  //     this.editMessage = 'All requests are a success!'
-  //   }
-  //   this.successRequests = 0;
-  //   this.allRequests = 0;
-  //   this.successResSub.unsubscribe();
-  //   this.errorResSub.unsubscribe();
-  // }
 
 
   img: File = null;
