@@ -98,6 +98,15 @@ export class SponsorsEditComponent implements OnInit, OnDestroy {
       this.editMessage = error;
     });
   }
+  
+   onEditSponsor(sponsor){
+    console.log(sponsor);
+    this.sponsorEditForm = this.fb.group({
+      'sponsorName': [sponsor.name , [Validators.required, Validators.minLength(5)]],
+      'sponsorDesc': [sponsor.desc , [Validators.required, Validators.minLength(5)]],
+      'sponsorLogo': [ , [Validators.required], [ImgMimeType]]  //img mime NOT working??
+    });
+  }
 
   // async changeState()
   // {
