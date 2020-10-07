@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { catchError } from 'rxjs/operators';
+import { Competition } from '../../models/competition.model';
 import {CompetitionsService} from '../../services/competitions.service';
 
 @Component({
@@ -11,6 +13,7 @@ import {CompetitionsService} from '../../services/competitions.service';
 export class CompetitionEditComponent implements OnInit {
 
   
+  // allComps: Competition[];
   allComps: any;
 
   constructor(
@@ -26,6 +29,15 @@ export class CompetitionEditComponent implements OnInit {
 
   updateComps(){
     console.log('MANAGE COMPS  ::\n', this.allComps);
+    for(let cmp of this.allComps){
+      this.competitionsService.updateCompetition(cmp._id, cmp)
+      .subscribe(res => {
+        console.log('SUCCESS COMP UPDATED :: ', cmp.name);
+      },
+      (err => {
+        return null; // use error handling functionality
+      }));
+    }
   }
   
 }

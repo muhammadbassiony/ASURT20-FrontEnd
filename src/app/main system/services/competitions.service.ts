@@ -76,10 +76,10 @@ export class CompetitionsService {
       awards: comp.awards,
       photoroll: comp.photoroll
     };
-
+    console.log('CMP SRVC - UPDATE CMP :: \n', competition);
     return this.http.put(
       backend_uri + '/main/competitions/update-comp/' + compId,
-      { competition },
+      { ...competition },
       { responseType: 'json'}
     )
     .pipe(
