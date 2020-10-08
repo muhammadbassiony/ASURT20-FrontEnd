@@ -15,6 +15,8 @@
   background-image: "../../../../assets/img/abstract-checkered-curve-white-gradient-sport-champion_33869-73.png";
   /* set precentage of the browser default is better 10 px = 62.5% of 16 */
 }
+
+
 @media only screen and (max-width: 75em) {
   .Competition {
     font-size: 56.25%;

@@ -18,20 +18,12 @@ import { ImgMimeType } from '../../../shared/img-mime-type.validator';
   templateUrl: './sponsors-edit.component.html',
   styleUrls: ['./sponsors-edit.component.css']
 })
-export class SponsorsEditComponent implements OnInit, OnDestroy {
+export class SponsorsEditComponent implements OnInit {
 
   sponsorEditForm : FormGroup;
-  // sponsorsInfo : Sponsor[];
   sponsorsInfo: any;
-  // isChecked :boolean[] =[];
-  // selectedImg: File = null;
   isGettingSponsors: boolean = false;
-  // isGettingSub: Subscription;
   message: string = null;
-  // successResSub: Subscription;
-  // errorResSub: Subscription;
-  // allRequests: number = 0;
-  // successRequests: number = 0;
   editMessage: string = null;
 
   constructor(
@@ -100,16 +92,8 @@ export class SponsorsEditComponent implements OnInit, OnDestroy {
   }
   
    onEditSponsor(sponsor) {
-    // console.log('SPNSR FORM BEFORE EDIT :: \n', this.sponsorEditForm);
-    // this.sponsorEditForm = this.fb.group({
-    //   'sponsorName': [sponsor.name , [Validators.required, Validators.minLength(5)]],
-    //   'sponsorDesc': [sponsor.desc , [Validators.required, Validators.minLength(5)]],
-    //   'sponsorLogo': [ , [Validators.required], [ImgMimeType]]  //img mime NOT working??
-    // });
     this.sponsorEditForm.patchValue({'sponsorName': sponsor.name});
     this.sponsorEditForm.patchValue({'sponsorDesc': sponsor.desc});
-    // console.log('SPNSR FORM AFTER EDIT :: \n', this.sponsorEditForm);
-    // TODO - add update sponsor fnc here later
   }
 
 
@@ -131,8 +115,5 @@ export class SponsorsEditComponent implements OnInit, OnDestroy {
     console.log(this.sponsorEditForm);
   }
 
-  ngOnDestroy() {
-    // this.isGettingSub.unsubscribe();
-  }
 
 }
