@@ -1,10 +1,10 @@
-import "@angular/compiler";
+import '@angular/compiler';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
-import { ReactiveFormsModule,  FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
@@ -26,7 +26,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-
 import { AddPrizesComponent } from './main system/admin-panel/add-prizes/add-prizes.component';
 import { SponsorsComponent } from './main system/sponsors/sponsors.component';
 import { SponsorsEditComponent } from './main system/admin-panel/sponsors-edit/sponsors-edit.component';
@@ -34,8 +33,7 @@ import { ShellComponent } from './main system/competition/shell/shell.component'
 import { RovComponent } from './main system/competition/rov/rov.component';
 import { FormulaComponent } from './main system/competition/formula/formula.component';
 
-
-import { CloseDirective } from "./main system/admin-panel/close.directive";
+import { CloseDirective } from './main system/admin-panel/close.directive';
 import { FooterComponent } from './footer/footer.component';
 import { SignUpComponent } from './authorization/sign-up/sign-up.component';
 import { SignInComponent } from './authorization/sign-in/sign-in.component';
@@ -47,7 +45,7 @@ import { PhotoRollFetcherService } from './main system/services/photo-roll-fetch
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { AboutUsComponent } from './main system/about-us/about-us.component';
 
-import { FadeInService } from "./shared/fade-in.service";
+import { FadeInService } from './shared/fade-in.service';
 import { AdminGuardService } from './authorization/admin-guard.service';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -55,10 +53,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { PdfViewerModule }  from  'ng2-pdf-viewer';
-import { MatListModule } from'@angular/material/list'
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { MatListModule } from '@angular/material/list';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
 
 import { FullCalendarModule } from '@fullcalendar/angular'; // the main connector. must go first
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
@@ -67,7 +64,6 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
 
 import { UserApplicationComponent } from './recruitment system/applications/user-application/user-application.component';
 import { NewEventComponent } from './recruitment system/applications/start-application/new-event/new-event.component';
@@ -84,17 +80,15 @@ import { AdminInterviewsComponent } from './recruitment system/interviews/admin-
 import { ViewInterviewComponent } from './recruitment system/interviews/admin-interviews/view-interview/view-interview.component';
 import { EverComponent } from './main system/competition/ever/ever.component';
 
-
-
-
+import { ErrorModalComponent } from './errorModal/error-modal.component';
+// import { ErrorService } from './errorModal/error.service';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
   timeGridPlugin,
   listPlugin,
-  interactionPlugin
+  interactionPlugin,
 ]);
-
 
 @NgModule({
   declarations: [
@@ -138,7 +132,8 @@ FullCalendarModule.registerPlugins([
     AdminInterviewsComponent,
     ViewInterviewComponent,
     EditProfileComponent,
-    EverComponent
+    EverComponent,
+    ErrorModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -170,14 +165,13 @@ FullCalendarModule.registerPlugins([
     FullCalendarModule,
     NgbModule,
     HttpClientModule,
-    RouterModule
-
+    RouterModule,
   ],
   exports: [
     MatToolbarModule,
     MatCardModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
   ],
   providers: [
     FadeInService,
@@ -185,9 +179,9 @@ FullCalendarModule.registerPlugins([
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule{ }
+export class AppModule {}

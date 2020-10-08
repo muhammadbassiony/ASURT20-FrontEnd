@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {RegisterResponseData, UserService} from '../user.service';
 import {Observable} from 'rxjs';
 import {JwtHelperService} from '@auth0/angular-jwt';
+import { ErrorService } from 'src/app/errorModal/error.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -12,7 +13,7 @@ import {JwtHelperService} from '@auth0/angular-jwt';
 })
 export class SignInComponent implements OnInit {
 
-  constructor(private usersService: UserService, private router: Router) { }
+  constructor(private usersService: UserService, private router: Router, private ErrService:ErrorService) { }
 
   ngOnInit(): void {
   }

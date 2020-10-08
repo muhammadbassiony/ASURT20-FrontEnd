@@ -1,0 +1,14 @@
+<!--modal template to show errors -->
+<ng-template #content let-modal>
+  <div class="modal-header justify-content-center">
+    <h4 class="modal-title " id="modal-basic-title">Error</h4>
+  </div>
+  <div class="modal-body">
+    {{ErrorMsg}}
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-danger" (click)='closeModal()'>Close</button>
+  </div>
+</ng-template>
+
+<!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button> -->

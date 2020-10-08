@@ -10,6 +10,7 @@ import { UserService } from './authorization/user.service';
 
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { ActivatedRoute, Params, Router, Data, NavigationStart, NavigationExtras } from '@angular/router';
+import { ErrorService } from './errorModal/error.service';
 
 @Component({
   selector: 'app-root',
@@ -17,17 +18,19 @@ import { ActivatedRoute, Params, Router, Data, NavigationStart, NavigationExtras
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-
+  
   title = 'ASURT20-FrontEnd';
   isAdminMode = false;
   isAuthorized = false;
   isLoading = true;
-
-
+  err = "this is error";
+  
+  
   constructor(
     private usersService: UserService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private ErrService:ErrorService ) { }
 
 
   ngOnInit() {
@@ -42,14 +45,14 @@ export class AppComponent implements OnInit{
       }
     });
   }
-
+  
   toggleLoading(val){
     // console.log('APP COMP TS - LOADING VAL ::: ', this.route);
     this.isLoading = val;
     this.router.navigate(['/']);
   }
-
-
+  
+  
   @HostListener('window:scroll', ['$event'])
   onWindowScroll(event) {
     let mql = window.matchMedia("screen and (max-width: 900px)");
@@ -64,5 +67,6 @@ export class AppComponent implements OnInit{
     }
 
   }
+
 
 }
