@@ -103,7 +103,7 @@ export class CompetitionsService {
 
     return this.http.post(
       backend_uri + '/main/competitions/add-award/' + compId,
-      { awardData },
+       awardData ,
       { responseType: 'json'}
     )
     .pipe(

@@ -56,10 +56,18 @@ export class SponsorsEditComponent implements OnInit, OnDestroy {
     this.sponsorEditForm = this.fb.group({
       'sponsorName': [ , [Validators.required, Validators.minLength(5)]],
       'sponsorDesc': [ , [Validators.required, Validators.minLength(5)]],
-      'sponsorLogo': [ , [Validators.required], [ImgMimeType]]  //img mime NOT working??
+      'sponsorsLogo': [ , [Validators.required]]  //img mime NOT working??
     });
     
   }
+
+  onFileChanged(event) {
+    if (event.target.files.length > 0) {
+
+    const file = event.target.files[0]
+    this.sponsorEditForm.value.sponsorsLogo = file;
+    console.log("The Form",this.sponsorEditForm)
+  }}
 
   onSubmit(sponsorsForm: FormGroup)
   {
@@ -72,11 +80,7 @@ export class SponsorsEditComponent implements OnInit, OnDestroy {
     // fd.append('desc', desc);
     // fd.append('logo', this.sponsorEditForm.value.sponsorLogo);
     // console.log('FORM DATA', fd);
-    let fd = {
-      name: this.sponsorEditForm.value.sponsorName,
-      desc: this.sponsorEditForm.value.sponsorDesc,
-      logo: this.sponsorEditForm.value.sponsorLogo
-    };
+    let fd = this.sponsorEditForm.value;
     console.log('OBJECT FD :: \n', fd);
     this._SponsorsService.addNewSponsor(fd)
     .subscribe((value) => {    //will work

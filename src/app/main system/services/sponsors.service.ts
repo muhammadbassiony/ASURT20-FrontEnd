@@ -125,22 +125,26 @@ export class SponsorsService {
   // }
 
   addNewSponsor(fd: any){
-    var formData = new FormData();
-    console.log('sponsors service received :: ', fd.name, fd.desc, fd.logo);
-    let str = 'fff';
-    let b = true;
-    formData.append('name', 'ew3a');
-    formData.append('b', JSON.stringify(b));
-    formData.append('esm', str);
-    formData.append('desc', JSON.stringify(fd.desc));
-    formData.append('logo', JSON.stringify(fd.logo));
-    console.log('FD SPONSORS SERVICE ADD SPNSR :: ', formData); 
+    let formData = new FormData();
+    console.log('sponsors service received :: ', fd.sponsorName, fd.sponsorDesc, fd.sponsorsLogo);
     
+    formData.append('name', fd.sponsorName);
+    //formData.append('b', JSON.stringify(b));
+    //formData.append('esm', str);
+    formData.append('desc', fd.sponsorDesc);
+    //console.log('FD SPONSORS SERVICE ADD SPNSR :: ', formData.); 
+
+    formData.append('logo', fd.sponsorsLogo);
+    //console.log('FD SPONSORS SERVICE ADD SPNSR :: ', formData); 
+      console.log("logo::",formData.get('logo'));
+      console.log("name::",formData.get('name'));
+
+  
 
 
     return this.http.post(
       backend_uri + "/main/sponsors/add",
-      { fd: formData },
+      formData,
       { responseType: 'json'}
     )
     .pipe(

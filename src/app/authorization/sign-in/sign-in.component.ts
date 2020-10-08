@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 import {RegisterResponseData, UserService} from '../user.service';
 import {Observable} from 'rxjs';
 import {JwtHelperService} from '@auth0/angular-jwt';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
@@ -12,7 +12,7 @@ import {JwtHelperService} from '@auth0/angular-jwt';
 })
 export class SignInComponent implements OnInit {
 
-  constructor(private usersService: UserService, private router: Router) { }
+  constructor(private usersService: UserService, private router: Router, private location:Location) { }
 
   ngOnInit(): void {
   }
@@ -34,7 +34,6 @@ export class SignInComponent implements OnInit {
     .subscribe(responseData => {
         this.isLoading = false;
         this.router.navigate(['/dashboard']);
-        
     }, errorMessage => {
         this.isLoading = false;
         this.error = errorMessage;
