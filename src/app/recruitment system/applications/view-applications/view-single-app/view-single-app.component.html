@@ -87,13 +87,13 @@
 
         <hr>
         <h2>Applicant's CV</h2>
-        <object data="https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf" type="application/pdf" style="width:100%; height: 700px;">
-         <p>Your browser does not support PDFs.
-        <a href="https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf">Download the PDF</a>.</p>
-        </object>
-        <!-- <pdf-viewer [src]="pdfSRC" [render-text]="true" style="display: block;"></pdf-viewer> -->
-
-        <hr>
+        <br>
+        
+        <pdf-viewer [src]="pdfSRC" [render-text]="true" style="display: block; height: 100vh;"
+            [zoom-scale]="page-width"></pdf-viewer>
+        <br>
+        <button class="st-btn btn-outline-primary bottom-right" (click)="downloadCV()">Download CV</button>
+        <br>
         <hr>
         
         <h2>Update Application status </h2>

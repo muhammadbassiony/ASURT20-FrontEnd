@@ -106,7 +106,7 @@ export class UserApplicationComponent implements OnInit {
 
     this.appForm.patchValue({ 'userCV' : this.fileToUpload });
     this.appForm.get("userCV").updateValueAndValidity();
-    // console.log(this.appForm);
+    // console.log('USER APP FORM ::\n', this.appForm);
   }
 
   checkSubValidity(){
@@ -118,11 +118,11 @@ export class UserApplicationComponent implements OnInit {
 
 
   onSubmit(appForm: FormGroup){
-    console.log(appForm.value);
+    // console.log(appForm.value);
 
     let answers: any = [];
     for(let i in this.appForm.value.userAnswers){
-      console.log(i, this.appForm.value.userAnswers[i]);
+      // console.log(i, this.appForm.value.userAnswers[i]);
       // answers.push({
       //   question: i,
       //   answer: this.appForm.value.userAnswers[i]
@@ -144,7 +144,7 @@ export class UserApplicationComponent implements OnInit {
       currentPhaseStatus: ApplicationStatus.pending
     };
 
-    console.log('NEW APP BEFORE SUBMIT::\n', this.newApp);
+    // console.log('NEW APP BEFORE SUBMIT::\n', this.newApp);
 
     this.applicationsService.addNewApplication(this.newApp)
     .pipe(switchMap(res => {

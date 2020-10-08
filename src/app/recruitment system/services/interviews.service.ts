@@ -60,12 +60,10 @@ export class InterviewsService {
     )
     .pipe(
       map(res => {
-        console.log('IV SRVC - GET IV body :: \n', res);
         let body = res['interview'];    
         return body || [];    
       }),
       catchError(errorRes => {
-        console.log('IV SRVC - GET IV ERROR :: \n', errorRes);
         return throwError(errorRes);
       })
     );

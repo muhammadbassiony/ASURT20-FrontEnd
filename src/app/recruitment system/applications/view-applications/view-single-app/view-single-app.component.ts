@@ -29,6 +29,9 @@ import { ApplicationsService } from '../../../services/applications.service';
 import { EventsService } from '../../../services/events.service';
 import { Team } from '../../../models/team.model';
 
+import { environment } from '../../../../../environments/environment';
+// const backend_uri = environment.backend_uri;
+
 @Component({
   selector: 'app-view-single-app',
   templateUrl: './view-single-app.component.html',
@@ -36,6 +39,7 @@ import { Team } from '../../../models/team.model';
 })
 export class ViewSingleAppComponent implements OnInit {
 
+  backend_uri = environment.backend_uri_static;
   appId: string;
   viewAppForm: FormGroup;
   questions: any[];
@@ -73,44 +77,30 @@ export class ViewSingleAppComponent implements OnInit {
   ngOnInit(): void {
     this.phases = this.keysPhases();
     this.statuses = this.keysStatus();
-    this.pdfSRC='https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf';
-    this.change();
-    // console.log("called on init")
-    //you can grab cv directly from backend from localhost:3000/cvs/ + user.cvPath  
-    // static folder - not tried tho
-
-  }
-
-  change(): void {
     this.appId = this.route.snapshot.paramMap.get('appId');
 
     this.applicationsService.getApplication(this.appId)
       .subscribe(res => {
         // this.singleAppFormDirective.resetForm();
-        console.log('fetched user\'s app! ::\n', res);
+        // console.log('fetched user\'s app! ::\n', res);
         this.app = res;
         this.user = this.app.user;
         this.questions = this.app.userAnswers;
-        console.log(this.user);
-        //this.createForm();
+        this.pdfSRC = this.backend_uri + this.app.cvPath;
+        // console.log('PDF SRC :: ', this.pdfSRC);
+        
         this.viewAppForm = new FormGroup({
-
           applicationPhase: new FormControl(this.app.currentPhase),
           applicationStatus:new FormControl(this.app.currentPhaseStatus)
         })
-        var quesNo = this.app.userAnswers.length;
-
-
-
-
-        console.log('VIEW SINGLE USER FORM :: ', this.viewAppForm);
+       
       });
-
-    //you can grab cv directly from backend from localhost:8000/cvs/ + user.cvPath  
-    // static folder - not tried tho
 
   }
 
+  downloadCV(){
+    window.open(this.pdfSRC);
+  }
 
   updateStatus() {
     this.statuses = this.keysStatus();
@@ -118,24 +108,27 @@ export class ViewSingleAppComponent implements OnInit {
 
 
   save():void{
-    var newApp : Application = {
-      userId:this.user._id,
-      eventId: this.app.event._id,
-      selectedSubteam1: this.app.selectedSubteam1?this.app.selectedSubteam1.name:"",
-      selectedSubteam2: this.app.selectedSubteam2?this.app.selectedSubteam2.name:"",
-      userCV:this.app.cvPath,
-      userAnswers:this.app.userAnswers,
-      season: this.app.season,
-      currentPhase:this.viewAppForm.value.applicationPhase,
-      currentPhaseStatus:this.viewAppForm.value.applicationStatus,
-    }
-    this.applicationsService.updateApp(this.app._id,newApp)
-      .subscribe(res=> console.log("ely rg3 mn el server",res));
   }
 
   onSubmit(){
     console.log('SUBMITT :: \n', this.app);
+    var newApp : Application = {
+      userId:this.user._id,
+      eventId: this.app.event._id,
+      selectedSubteam1: this.app.selSubteam1._id,
+      selectedSubteam2: this.app.selSubteam2._id,
+      userCV:this.app.cvPath,
+      userAnswers:this.app.userAnswers,
+      season: this.app.season,
+      currentPhase:this.app.applicationPhase,
+      currentPhaseStatus:this.app.applicationStatus,
+      cvPath: this.app.cvPath
+    }
+    console.log('NEW APPPP ::\n', newApp);
+    this.applicationsService.updateApp(this.app._id, newApp)
+      .subscribe(res=> console.log("ely rg3 mn el server",res));
   }
+
   goBack(): void {
     this.location.back();
   }
