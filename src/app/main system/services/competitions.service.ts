@@ -76,10 +76,10 @@ export class CompetitionsService {
       awards: comp.awards,
       photoroll: comp.photoroll
     };
-
+    
     return this.http.put(
       backend_uri + '/main/competitions/update-comp/' + compId,
-      { competition },
+      { ...competition },
       { responseType: 'json'}
     )
     .pipe(
@@ -103,7 +103,7 @@ export class CompetitionsService {
 
     return this.http.post(
       backend_uri + '/main/competitions/add-award/' + compId,
-      { awardData },
+       awardData ,
       { responseType: 'json'}
     )
     .pipe(

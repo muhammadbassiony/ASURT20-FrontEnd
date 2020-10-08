@@ -5,6 +5,7 @@ import {RegisterResponseData, UserService} from '../user.service';
 import {Observable} from 'rxjs';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import { ErrorService } from 'src/app/errorModal/error.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-sign-in',
@@ -13,7 +14,9 @@ import { ErrorService } from 'src/app/errorModal/error.service';
 })
 export class SignInComponent implements OnInit {
 
-  constructor(private usersService: UserService, private router: Router, private ErrService:ErrorService) { }
+
+  
+  constructor(private usersService: UserService, private router: Router, private location:Location, private ErrService:ErrorService) { }
 
   ngOnInit(): void {
   }
@@ -35,7 +38,6 @@ export class SignInComponent implements OnInit {
     .subscribe(responseData => {
         this.isLoading = false;
         this.router.navigate(['/dashboard']);
-        
     }, errorMessage => {
         this.isLoading = false;
         this.error = errorMessage;

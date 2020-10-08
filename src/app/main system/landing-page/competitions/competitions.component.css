@@ -1,4 +1,3 @@
-
 @import "../../../shared/fade-in.css";
 
 /* overwrite browser defaults using the universal selector */
@@ -8,45 +7,60 @@
   margin: 0;
   padding: 0;
   box-sizing: inherit;
-  /*force this parameter to be inherited from parent because by default this property is not inherited*/ }
+  /*force this parameter to be inherited from parent because by default this property is not inherited*/
+}
+
+.Competition {
+  font-size: 62.5%;
+  background-image: "../../../../assets/img/abstract-checkered-curve-white-gradient-sport-champion_33869-73.png";
+  /* set precentage of the browser default is better 10 px = 62.5% of 16 */
+}
 
 
- .Competition {
-  font-size: 62.5% ;
-  background-image: '../../../../assets/img/abstract-checkered-curve-white-gradient-sport-champion_33869-73.png';
-  /* set precentage of the browser default is better 10 px = 62.5% of 16 */ }
 @media only screen and (max-width: 75em) {
-   .Competition {
-    font-size: 56.25%; } }
+  .Competition {
+    font-size: 56.25%;
+  }
+}
 @media only screen and (max-width: 56.25em) {
   .Competition {
-    font-size: 50%; } }
+    font-size: 50%;
+  }
+}
 @media only screen and (max-width: 37.5em) {
-   .Competition {
-    font-size: 46%; } }
+  .Competition {
+    font-size: 46%;
+  }
+}
 @media only screen and (min-width: 112.5em) {
   .Competition {
-    font-size: 75%; } }
+    font-size: 75%;
+  }
+}
 
 /*headings*/
-
 
 .heading-secondary {
   font-size: 3.5em;
   text-transform: uppercase;
   font-weight: 700;
   display: inline-block;
-  background-image: linear-gradient(to right, #B21212, #c70039);
+  background-image: linear-gradient(to right, #b21212, #c70039);
   -webkit-background-clip: text;
   color: transparent;
-  letter-spacing: .2em;
-  transition: all .2s; }
+  letter-spacing: 0.2em;
+  transition: all 0.2s;
+}
 @media only screen and (max-width: 56.25em) {
   .heading-secondary {
-    font-size: 3em; } }
+    font-size: 3em;
+  }
+}
 @media only screen and (max-width: 37.5em) {
   .heading-secondary {
-    font-size: 2.5em; } }
+    font-size: 2.5em;
+  }
+}
 
 .heading-tertiary {
   /*font-size: 3rem;*/
@@ -58,26 +72,27 @@
   .heading-tertiary {
     /*font-size: 2rem;*/
     font-size: 2em;
-     } }
-
+  }
+}
 
 .competition-heading-1 {
-  color: #B21212;
+  color: #b21212;
 }
 
 .competition-heading-2 {
-  color: #E5AC00;
+  color: #e5ac00;
 }
 
 .competition-heading-3 {
-  color: #177EE5;
+  color: #177ee5;
 }
 
 .paragraph {
-  font-size: 2em; 
+  font-size: 2em;
 }
 .paragraph:not(:last-child) {
-  margin-bottom: 3em; }
+  margin-bottom: 3em;
+}
 
 @media only screen and (max-width: 37.5em) {
   .paragraph {
@@ -85,25 +100,25 @@
   }
 }
 
-
-
-
 /* competition component */
 
-.Competition{
+.Competition {
   padding: 8em;
-  background-image: '../../../../assets/img/abstract-checkered-curve-white-gradient-sport-champion_33869-73.png';
+  background-image: url(../../../../assets/img/abstract-checkered-curve-white-gradient-sport-champion_33869-73.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: relative;
   /* background-o */
 }
 
-
 @media only screen and (max-width: 35em) {
-  .Competition{
-    padding: 4em !important; } }
-
+  .Competition {
+    padding: 4em !important;
+  }
+}
 
 .competition-photo-1 {
-  width: inherit;
+  width: 70%;
   transform: scale(0.5);
   -webkit-transform: scale(0.5);
   -moz-transform: scale(0.5);
@@ -112,7 +127,7 @@
 }
 
 .competition-photo-3 {
-  width: inherit;
+  width: 70%;
   transform: scale(0.7);
   -webkit-transform: scale(0.7);
   -moz-transform: scale(0.7);
@@ -120,42 +135,57 @@
   -o-transform: scale(0.7);
 }
 
-
-
 /* utility classes */
 
 .u-center-text {
-  text-align: center !important; }
+  text-align: center !important;
+}
 
 .u-margin-bottom-small {
-  margin-bottom: 0.5em !important; }
+  margin-bottom: 0.5em !important;
+}
 
 .u-margin-bottom-medium {
-  margin-bottom: 4em !important; }
+  margin-bottom: 4em !important;
+}
 @media only screen and (max-width: 56.25em) {
   .u-margin-bottom-medium {
-    margin-bottom: 2em; } }
+    margin-bottom: 2em;
+  }
+}
 
 .u-margin-bottom-big {
-  margin-bottom: 8em !important; }
+  margin-bottom: 8em !important;
+}
 @media only screen and (max-width: 56.25em) {
   .u-margin-bottom-big {
-    margin-bottom: 5em; } }
+    margin-bottom: 5em;
+  }
+}
 
 .u-margin-top-big {
-  margin-top: 0em !important; }
+  margin-top: 0em !important;
+}
 
 .u-margin-top-huge {
-  margin-top: 10em !important; }
+  margin-top: 10em !important;
+}
 
 .u-padding-top-big {
-  padding-top: 6em !important; }
+  padding-top: 6em !important;
+  margin-left: 9em !important;
+  margin-top: 3em !important;
+}
 @media only screen and (max-width: 49em) {
   .u-padding-top-big {
-    padding-top: 4em !important; } }
+    padding-top: 4em !important;
+    margin-left: 2em !important;
+  }
+}
 
 @media only screen and (max-width: 30em) {
   .u-padding-top-big {
-    padding-top: 0em !important; } }
-
-
+    padding-top: 0em !important;
+    margin-left: 2em !important;
+  }
+}

@@ -44,7 +44,7 @@ export class PhotorollService {
 
     return this.http.post(
       backend_uri + '/main/photorolls/update',
-      { phForm },
+       phForm ,
       { responseType: 'json'}
     )
     .pipe(

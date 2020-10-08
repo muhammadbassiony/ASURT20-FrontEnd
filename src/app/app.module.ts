@@ -80,8 +80,13 @@ import { AdminInterviewsComponent } from './recruitment system/interviews/admin-
 import { ViewInterviewComponent } from './recruitment system/interviews/admin-interviews/view-interview/view-interview.component';
 import { EverComponent } from './main system/competition/ever/ever.component';
 
+
 import { ErrorModalComponent } from './errorModal/error-modal.component';
-// import { ErrorService } from './errorModal/error.service';
+import { ErrorService } from './errorModal/error.service';
+
+
+
+
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -181,6 +186,7 @@ FullCalendarModule.registerPlugins([
       useClass: AuthInterceptorService,
       multi: true,
     },
+    ErrorService
   ],
   bootstrap: [AppComponent],
 })

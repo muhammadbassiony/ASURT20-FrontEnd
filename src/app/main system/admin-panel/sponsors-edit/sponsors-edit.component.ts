@@ -18,20 +18,12 @@ import { ImgMimeType } from '../../../shared/img-mime-type.validator';
   templateUrl: './sponsors-edit.component.html',
   styleUrls: ['./sponsors-edit.component.css']
 })
-export class SponsorsEditComponent implements OnInit, OnDestroy {
+export class SponsorsEditComponent implements OnInit {
 
   sponsorEditForm : FormGroup;
-  // sponsorsInfo : Sponsor[];
   sponsorsInfo: any;
-  // isChecked :boolean[] =[];
-  // selectedImg: File = null;
   isGettingSponsors: boolean = false;
-  // isGettingSub: Subscription;
   message: string = null;
-  // successResSub: Subscription;
-  // errorResSub: Subscription;
-  // allRequests: number = 0;
-  // successRequests: number = 0;
   editMessage: string = null;
 
   constructor(
@@ -56,10 +48,18 @@ export class SponsorsEditComponent implements OnInit, OnDestroy {
     this.sponsorEditForm = this.fb.group({
       'sponsorName': [ , [Validators.required, Validators.minLength(5)]],
       'sponsorDesc': [ , [Validators.required, Validators.minLength(5)]],
-      'sponsorLogo': [ , [Validators.required], [ImgMimeType]]  //img mime NOT working??
+      'sponsorsLogo': [ , [Validators.required]]  //img mime NOT working??
     });
     
   }
+
+  onFileChanged(event) {
+    if (event.target.files.length > 0) {
+
+    const file = event.target.files[0]
+    this.sponsorEditForm.value.sponsorsLogo = file;
+    console.log("The Form",this.sponsorEditForm)
+  }}
 
   onSubmit(sponsorsForm: FormGroup)
   {
@@ -72,11 +72,7 @@ export class SponsorsEditComponent implements OnInit, OnDestroy {
     // fd.append('desc', desc);
     // fd.append('logo', this.sponsorEditForm.value.sponsorLogo);
     // console.log('FORM DATA', fd);
-    let fd = {
-      name: this.sponsorEditForm.value.sponsorName,
-      desc: this.sponsorEditForm.value.sponsorDesc,
-      logo: this.sponsorEditForm.value.sponsorLogo
-    };
+    let fd = this.sponsorEditForm.value;
     console.log('OBJECT FD :: \n', fd);
     this._SponsorsService.addNewSponsor(fd)
     .subscribe((value) => {    //will work
@@ -98,32 +94,11 @@ export class SponsorsEditComponent implements OnInit, OnDestroy {
       this.editMessage = error;
     });
   }
-
-  // async changeState()
-  // {
-  //   this.successResSub = this._SponsorsService.editResponseSuccess.subscribe(success => {
-  //     this.successRequests++;
-  //     this.allRequests++;
-  //     // console.log(success);
-  //   });
-  //   this.errorResSub = this._SponsorsService.editResponseError.subscribe(error => {
-  //     this.allRequests++;
-  //     // console.log(error);
-  //   });
-  //   await this._SponsorsService.editSponsorsState(this.isChecked);
-  //   // console.log("All: " + this.allRequests.toString());
-  //   // console.log("Success: " + this.successRequests.toString());
-  //   if (this.allRequests != this.successRequests) {
-  //     const errors = this.allRequests - this.successRequests;
-  //     this.editMessage = `There were ${errors} errors while processing your edit request!`;
-  //   } else {
-  //     this.editMessage = 'All requests are a success!'
-  //   }
-  //   this.successRequests = 0;
-  //   this.allRequests = 0;
-  //   this.successResSub.unsubscribe();
-  //   this.errorResSub.unsubscribe();
-  // }
+  
+   onEditSponsor(sponsor) {
+    this.sponsorEditForm.patchValue({'sponsorName': sponsor.name});
+    this.sponsorEditForm.patchValue({'sponsorDesc': sponsor.desc});
+  }
 
 
   img: File = null;
@@ -144,8 +119,5 @@ export class SponsorsEditComponent implements OnInit, OnDestroy {
     console.log(this.sponsorEditForm);
   }
 
-  ngOnDestroy() {
-    // this.isGettingSub.unsubscribe();
-  }
 
 }

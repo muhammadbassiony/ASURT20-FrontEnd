@@ -86,61 +86,26 @@ export class SponsorsService {
     );
   }
 
-  // async getAllSponsorsInfo()
-  // {
-  //   if (this.sponsorInitializationService.Initialized == 1) {
-  //     this.isGettingSponsors.next(true);
-  //     await this.initialize();
-  //     this.isGettingSponsors.next(false);
-  //   }
-  //   return this.allSponsorsInfo.slice();
-  // }
-
-  // async addSponsor(fd: FormData)
-  // {
-  //   return await new Promise((resolve, reject) => {
-  //     this.http.post<{sponsor: SponsorPostResponse}>(backend_uri + "/main/sponsors/add", fd).subscribe(
-  //       (correctRes) => {
-  //         this.isGettingSponsors.next(true);
-  //         const promise = this.initialize();
-  //         promise.then(value => {
-  //           this.isGettingSponsors.next(false);
-  //           this.sponsorInitializationService.Initialized = 0;
-  //           this.allSponsors.next(this.allSponsorsInfo.slice());
-  //           let sponsors = this.getTrueCheckedSponsors();
-  //           sponsors.then(value => {
-  //             this.checkedSponsors.next(value);
-  //           }, reason => {
-  //             reject(reason);
-  //           });
-  //         }, reason => {
-  //           reject(reason);
-  //         });
-  //         resolve(correctRes);
-  //       }, (error) => {
-  //         reject(error);
-  //       }
-  //     );
-  //   });
-  // }
-
   addNewSponsor(fd: any){
-    var formData = new FormData();
-    console.log('sponsors service received :: ', fd.name, fd.desc, fd.logo);
-    let str = 'fff';
-    let b = true;
-    formData.append('name', 'ew3a');
-    formData.append('b', JSON.stringify(b));
-    formData.append('esm', str);
-    formData.append('desc', JSON.stringify(fd.desc));
-    formData.append('logo', JSON.stringify(fd.logo));
-    console.log('FD SPONSORS SERVICE ADD SPNSR :: ', formData); 
+    let formData = new FormData();
     
+    formData.append('name', fd.sponsorName);
+    //formData.append('b', JSON.stringify(b));
+    //formData.append('esm', str);
+    formData.append('desc', fd.sponsorDesc);
+    //console.log('FD SPONSORS SERVICE ADD SPNSR :: ', formData.); 
+
+    formData.append('logo', fd.sponsorsLogo);
+    //console.log('FD SPONSORS SERVICE ADD SPNSR :: ', formData); 
+      console.log("logo::",formData.get('logo'));
+      console.log("name::",formData.get('name'));
+
+  
 
 
     return this.http.post(
       backend_uri + "/main/sponsors/add",
-      { fd: formData },
+      formData,
       { responseType: 'json'}
     )
     .pipe(
