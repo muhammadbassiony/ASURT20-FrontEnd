@@ -16,7 +16,6 @@ export class CloseDirective {
     if (event.screenY > offset) {
       const menu = <HTMLElement>document.querySelector('.menu-container');
       menu.style.left = '-23rem';
-      console.log('Tamam');
     }
   }
 

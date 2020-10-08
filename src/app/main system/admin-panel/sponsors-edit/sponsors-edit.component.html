@@ -42,53 +42,108 @@
                 <div class="checkboxMargin mb-3">
                     <input type="checkbox" class="custom-checkbox" [(ngModel)]="sponsor.isChecked">
                     <h6 class="d-inline pt-4 text-white ml-3">{{sponsor.name}}</h6>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row mt-4">
-        <div class="container">
-            <div class="text center">
-                <button type="submit" value="Submit" class="btn btn-primary btn-block" style="width: 20%;" (click)="changeState()">Submit Changes</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- the form of add new sponsor-->
-    <div class=" dark-overlay mt-4">
-        <div class="container">
-            <div class="row" style="width: 70%;">
-                <div class="col-lg-12">
-                    <div class="card  text-center card-form">
-                        <div class="card-body">
-
-                            <h3 class="text-white">Add New Sponsor</h3>
-                            <form [formGroup]="sponsorEditForm" (ngSubmit)="onSubmit(sponsorEditForm)" class="mt-5">
-                                <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="exampleInputName" formControlName="sponsorName" placeholder="Enter Sponsor Name">
+                    <div class="container text-center min-vh-100" *ngIf="isGettingSponsors">
+                        <app-loading-spinner></app-loading-spinner>
+                        <!-- <p style="font-size: 4rem" class="text-center text-primary">Loading...</p> -->
+                    </div>
+                    <!--show of all sponsors -->
+                    <div [ngStyle]="{'display': !isGettingSponsors? 'block': 'none'}">
+                        <h4 class="m-3 text-center text-white"> Select the sponsors to display on the website</h4>
+                        <div class="row justify-content-center align-items-center" style="margin-top: 40px;">
+                            <div class="col-lg-4 col-sm-12 " *ngFor="let sponsor of sponsorsInfo; let i=index ">
+                                <div class="spons_img  mx-auto d-block">
+                                    <img [src]=sponsor.logo alt="logo" style="max-width : 100%">
                                 </div>
+                                <div class="checkboxMargin mb-3 " style="margin-top: 15px;">
+                                    <input type="checkbox" class="custom-checkbox" [(ngModel)]="sponsor.isChecked">
+                                    <h6 class="d-inline pt-4 text-white ml-3 ">{{sponsor.name}}</h6>
+                                    <button class="btn btn-success btn-block" style="width: 40%;" (click)="onEditSponsor(sponsor)">edit</button>
 
-                                <div class="form-group">
-                                    <textarea class="form-control form-control-lg" id="exampleInputDesc" formControlName="sponsorDesc" placeholder="Enter Sponsor Description"></textarea>
                                 </div>
-
-                                <!-- <div class="form-group" > -->
-                                <label class="btn btn-success"><i class="material-icons"></i> Add Sponsor Image
-                  <input  style="display: none" type="file" class="form-control-file" accept="image/*" 
-                    (input)="onImgUpdated($event.target.files)" (change)="onFileChanged($event)" formControlName = "sponsorsLogo">
-                </label>
-                                <!-- </div> -->
-
-                                <button type="submit" value="Submit" [disabled]="!sponsorEditForm.valid" style="width: 40%;" class="btn btn-primary btn-block">Add New sponsor</button>
-                            </form>
-
-
+                            </div>
                         </div>
+                        <<<<<<< HEAD </div>
+
+                            <div class="row mt-4">
+                                <div class="container">
+                                    <div class="text center">
+                                        <button type="submit" value="Submit" class="btn btn-primary btn-block" style="width: 20%;" (click)="changeState()">Submit Changes</button>
+                                    </div>
+                                </div>
+                                =======
+                            </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
+
+                <div class="row mt-4 justify-content-center align-items-center">
+                    <div class="justify-content-center align-items-center">
+                        <div class="text center ">
+                            <button type="submit" value="Submit" class="btn btn-primary btn-block" style="width: 100%;" (click)="changeState()">Submit Changes</button> >>>>>>> 29ce2d01c8914a4c3d6b0a6c9615ff00512bfbfc
+                        </div>
+
+                        <<<<<<< HEAD <!-- the form of add new sponsor-->
+                            <div class=" dark-overlay mt-4">
+                                <div class="container">
+                                    <div class="row" style="width: 70%;">
+                                        <div class="col-lg-12">
+                                            <div class="card  text-center card-form">
+                                                <div class="card-body">
+
+                                                    <h3 class="text-white">Add New Sponsor</h3>
+                                                    <form [formGroup]="sponsorEditForm" (ngSubmit)="onSubmit(sponsorEditForm)" class="mt-5">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control form-control-lg" id="exampleInputName" formControlName="sponsorName" placeholder="Enter Sponsor Name">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <textarea class="form-control form-control-lg" id="exampleInputDesc" formControlName="sponsorDesc" placeholder="Enter Sponsor Description"></textarea>
+                                                        </div>
+
+                                                        <!-- <div class="form-group" > -->
+                                                        <label class="btn btn-success"><i class="material-icons"></i> Add Sponsor Image
+                  <input  style="display: none" type="file" class="form-control-file" accept="image/*" 
+                    (input)="onImgUpdated($event.target.files)" (change)="onFileChanged($event)" formControlName = "sponsorsLogo">
+=======
+<!-- the form of add new sponsor-->
+<div class=" dark-overlay mt-4">
+  <div class="container">
+    <div class="row justify-content-center align-items-center" style="width: 100%;">
+      <div class="col-lg-8">
+        <div class="card  text-center card-form">
+          <div class="card-body">
+
+            <h3 class="text-white">Add New Sponsor</h3>
+            <form [formGroup]="sponsorEditForm" (ngSubmit)="onSubmit(sponsorEditForm)" class="mt-5">
+              <div class="form-group">
+                <input type="text" class="form-control form-control-lg" id="exampleInputName"
+                  formControlName="sponsorName"  placeholder="Enter Sponsor Name">
+              </div>
+
+              <div class="form-group">
+                <textarea class="form-control form-control-lg" id="exampleInputDesc"
+                  formControlName="sponsorDesc"  placeholder="Enter Sponsor Description"></textarea>
+              </div>
+
+              <!-- <div class="form-group" > -->
+                <label class="btn btn-success"><i class="material-icons"></i> Add Sponsor Image
+                  <input style="display: none" type="file" class="form-control-file" accept="image/*"
+                    (input)="onImgUpdated($event.target.files)" formControlName = "sponsorLogo">
+>>>>>>> 29ce2d01c8914a4c3d6b0a6c9615ff00512bfbfc
+                </label>
+                                                        <!-- </div> -->
+
+                                                        <<<<<<< HEAD <button type="submit" value="Submit" [disabled]="!sponsorEditForm.valid" style="width: 40%;" class="btn btn-primary btn-block">Add New sponsor</button>
+                                                    </form>
+                                                    =======
+                                                    <button type="submit" value="Submit" [disabled]="!sponsorEditForm.valid" style="width: 40%;" class="btn btn-primary btn-block">Add New sponsor</button>
+                                                    </form>
+                                                    >>>>>>> 29ce2d01c8914a4c3d6b0a6c9615ff00512bfbfc
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>

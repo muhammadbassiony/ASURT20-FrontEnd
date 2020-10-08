@@ -58,18 +58,17 @@ export class ViewSingleAppComponent implements OnInit {
     private location: Location) {
 
   }
+
+
   keysPhases(): Array<string> {
     var keys = Object.values(ApplicationPhase);
-    // console.log(keys);
-    // return keys.slice(keys.length/2);
     return keys;
   }
   keysStatus(): Array<string> {
     var keys = Object.values(ApplicationStatus);
-    // console.log(keys);
-    // return keys.slice(keys.length/2);
     return keys;
   }
+
 
   ngOnInit(): void {
     this.phases = this.keysPhases();
@@ -104,7 +103,7 @@ export class ViewSingleAppComponent implements OnInit {
 
 
 
-        console.log(this.viewAppForm);
+        console.log('VIEW SINGLE USER FORM :: ', this.viewAppForm);
       });
 
     //you can grab cv directly from backend from localhost:8000/cvs/ + user.cvPath  
@@ -119,11 +118,11 @@ export class ViewSingleAppComponent implements OnInit {
 
 
   save():void{
-    var newApp : Application={
+    var newApp : Application = {
       userId:this.user._id,
       eventId: this.app.event._id,
-      selectedSubteam1:this.app.selectedSubteam1?this.app.selectedSubteam1.name:"",
-      selectedSubteam2:this.app.selectedSubteam2?this.app.selectedSubteam2.name:"",
+      selectedSubteam1: this.app.selectedSubteam1?this.app.selectedSubteam1.name:"",
+      selectedSubteam2: this.app.selectedSubteam2?this.app.selectedSubteam2.name:"",
       userCV:this.app.cvPath,
       userAnswers:this.app.userAnswers,
       season: this.app.season,
@@ -132,6 +131,10 @@ export class ViewSingleAppComponent implements OnInit {
     }
     this.applicationsService.updateApp(this.app._id,newApp)
       .subscribe(res=> console.log("ely rg3 mn el server",res));
+  }
+
+  onSubmit(){
+    console.log('SUBMITT :: \n', this.app);
   }
   goBack(): void {
     this.location.back();

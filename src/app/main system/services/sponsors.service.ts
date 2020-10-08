@@ -86,47 +86,8 @@ export class SponsorsService {
     );
   }
 
-  // async getAllSponsorsInfo()
-  // {
-  //   if (this.sponsorInitializationService.Initialized == 1) {
-  //     this.isGettingSponsors.next(true);
-  //     await this.initialize();
-  //     this.isGettingSponsors.next(false);
-  //   }
-  //   return this.allSponsorsInfo.slice();
-  // }
-
-  // async addSponsor(fd: FormData)
-  // {
-  //   return await new Promise((resolve, reject) => {
-  //     this.http.post<{sponsor: SponsorPostResponse}>(backend_uri + "/main/sponsors/add", fd).subscribe(
-  //       (correctRes) => {
-  //         this.isGettingSponsors.next(true);
-  //         const promise = this.initialize();
-  //         promise.then(value => {
-  //           this.isGettingSponsors.next(false);
-  //           this.sponsorInitializationService.Initialized = 0;
-  //           this.allSponsors.next(this.allSponsorsInfo.slice());
-  //           let sponsors = this.getTrueCheckedSponsors();
-  //           sponsors.then(value => {
-  //             this.checkedSponsors.next(value);
-  //           }, reason => {
-  //             reject(reason);
-  //           });
-  //         }, reason => {
-  //           reject(reason);
-  //         });
-  //         resolve(correctRes);
-  //       }, (error) => {
-  //         reject(error);
-  //       }
-  //     );
-  //   });
-  // }
-
   addNewSponsor(fd: any){
     let formData = new FormData();
-    console.log('sponsors service received :: ', fd.sponsorName, fd.sponsorDesc, fd.sponsorsLogo);
     
     formData.append('name', fd.sponsorName);
     //formData.append('b', JSON.stringify(b));

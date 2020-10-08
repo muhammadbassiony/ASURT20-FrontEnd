@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from "@angular/forms";
+
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { catchError } from 'rxjs/operators';
+import { Competition } from '../../models/competition.model';
 import {CompetitionsService} from '../../services/competitions.service';
 
 @Component({
@@ -9,30 +12,32 @@ import {CompetitionsService} from '../../services/competitions.service';
 })
 export class CompetitionEditComponent implements OnInit {
 
-  constructor(private competitionsService: CompetitionsService) { }
+  
+  // allComps: Competition[];
+  allComps: any;
+
+  constructor(
+    private competitionsService: CompetitionsService,
+    public route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // THE FOLLOWING CODE CAUSES ERROR AS THE BACKEND DOES NOT CONTAIN ANY COMPETITIONS
-    // this.competitionsService.getAllCompetitions().subscribe(
-    //   (successResponse) => {
-    //     this.competitions.splice(0, this.competitions.length);
-    //     this.isChecked.splice(0, this.isChecked.length);
-    //     const gottenCompetitions = successResponse.competitions;
-    //     for (let i = 0; i < gottenCompetitions.length; i++) {
-    //       this.competitions.push(gottenCompetitions[i].name);
-    //       this.isChecked[i] = gottenCompetitions[i].visible;
-    //     }
-    //   }, (error) => {
-    //     console.log(error);
-    //   }
-    // );
+    this.competitionsService.getAllCompetitions()
+    .subscribe(res => {
+      this.allComps = res;
+    });
   }
 
-  addCompetition = false;
-  competitions: string[] = ['Formula', 'Shell', 'ROV'];
-  isChecked: boolean[] = [];
-  onSubmit(form: NgForm) {
-    // this.competitionsService.changeCompetitionVisibility(this.isChecked);
-    console.log(form.value.Formula);
+  updateComps(){
+    console.log('MANAGE COMPS  ::\n', this.allComps);
+    for(let cmp of this.allComps){
+      this.competitionsService.updateCompetition(cmp._id, cmp)
+      .subscribe(res => {
+        console.log('SUCCESS COMP UPDATED :: ', cmp.name);
+      },
+      (err => {
+        return null; // use error handling functionality
+      }));
+    }
   }
+  
 }

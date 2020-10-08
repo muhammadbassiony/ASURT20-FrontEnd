@@ -87,7 +87,6 @@ import { EverComponent } from './main system/competition/ever/ever.component';
 
 
 
-
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
   timeGridPlugin,

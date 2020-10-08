@@ -27,7 +27,7 @@ export class AdminGuardService implements CanActivate {
             return this.router.createUrlTree(['/sign-in']);
           }
           let userLevel = user.level;
-          // console.log('AUTH GUARD HERE :: ROUTEDATA, USERLEVEL ::  ', route, 
+          // console.log('AUTH GUARD HERE :: ROUTEDATA, USERLEVEL ::  ', route,
           //   route.data.accessLevel, userLevel, route.data.accessLevel <= userLevel, <Boolean>route.data.accessLevel,
           //   route.data.accessLevel && route.data.accessLevel <= userLevel);
           
@@ -36,7 +36,7 @@ export class AdminGuardService implements CanActivate {
             // console.log('AUTH GUARD RETURNING TRUE HERE\n');
             return true;
           }
-
+          
           return this.router.createUrlTree(['/']);
         })
       );

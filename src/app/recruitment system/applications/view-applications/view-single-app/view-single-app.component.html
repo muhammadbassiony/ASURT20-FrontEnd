@@ -1,7 +1,7 @@
 <a class=" m-4" (click)="goBack()">&lt;&lt;Back</a>
-<div class="card border shadow-lg container" style="width: 60%; align-self: center; padding: 60px;" name="main-card">
-    <!-- <div class="col-sm-8"><h1 class="card-title">Admin Events Comp.</h1></div> -->
-    <!-- <div class="container"> -->
+<div class="card border shadow-lg container" 
+    style="width: 60%; align-self: center; padding: 60px;" name="main-card">
+    
     <div class="center" *ngIf="app">
 
         <h1 class=" my-4 card-title" style="font-size: 220%;">
@@ -12,38 +12,17 @@
         <!--p>{{ user | json }}</p>
             for debugging-->
 
-
-
         <h2 style="font-size:150%;">User Infrormation</h2>
         <label>Name </label>
         <p style="font-size: 140%;">
             {{user.name}}
         </p>
-
         <br>
-        
-            
         <label>Email </label>
         <p style="font-size: 140%;">
             {{user.email}}
         </p>
-
         <br>
-        <!-- <mat-error *ngIf="viewAppForm.get('name').hasError('required') && viewAppForm.get('name').touched">Name is required</mat-error> -->
-        <!-- <mat-form-field>
-                <input disabled matInput formControlName="name" type="text" class="input-field" />
-            </mat-form-field> -->
-
-        <!-- <mat-error *ngIf="viewAppForm.get('email').hasError('required') && viewAppForm.get('email').touched">Please Enter Valid Email</mat-error> -->
-        <!-- <mat-form-field>
-                <label>Email: </label>
-                <input disabled matInput formControlName="email" type="email" class="input-field" />
-                
-            </mat-form-field>
-            
-
-            <br> -->
-        
         <label>Mobile </label>
         <p style="font-size: 140%;">
             {{user.mobile}}
@@ -70,27 +49,37 @@
         <p style="font-size: 140%;">
             {{user.university}}
         </p>
-
         <br>
-
-           
         <label>Faculty</label>
         <p style="font-size: 140%;">
             {{user.faculty}}
         </p>
-
-        <br>
-        
-            
+        <br> 
         <label>Department</label>
         <p style="font-size: 140%;">
             {{user.department}}
         </p>
-
         <br>
 
         <hr>
         <h2 style="font-size:150%;">Application Answers</h2>
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <label style="color: rgb(158, 12, 41);">Selected Subteam: First Choice</label>
+                <h3 style="font-size: 140%; margin: 0px 25px;">
+                    {{app.selSubteam1.name}}
+                </h3>
+            </div>
+            <div class="col-md-4">
+                <label style="color: rgb(158, 12, 41);">Selected Subteam: Second Choice</label>
+                <h3 style="font-size: 140%; margin: 0px 25px;">
+                    {{app.selSubteam2.name}}
+                </h3>
+            </div>
+        </div>
+        
+
         <div *ngFor="let q of questions" style="margin: 30px 25px;">
             <label style="font-size:100%; color: rgb(158, 12, 41);">{{q.question}}</label>
             <h3 style="font-size:150%;">{{q.answer}}</h3>
@@ -102,41 +91,28 @@
          <p>Your browser does not support PDFs.
         <a href="https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf">Download the PDF</a>.</p>
         </object>
-        <pdf-viewer [src]="pdfSRC" [render-text]="true" style="display: block;"></pdf-viewer>
-
-        <!-- <hr> -->
-        <!-- <span class="flex-spacer "></span>
-                <button mat-button class="btn-danger m-3 text-floral-white bottom-right ">Reset</button> -->
+        <!-- <pdf-viewer [src]="pdfSRC" [render-text]="true" style="display: block;"></pdf-viewer> -->
 
         <hr>
-        <form novalidate *ngIf="viewAppForm " [formGroup]="viewAppForm " (ngSubmit)="save() ">
-            <div>
-                <h2>
-                    Update Application status
-                </h2>
+        <hr>
+        
+        <h2>Update Application status </h2>
+        <br>
+        <div class="col-md-6">
+            <select class="custom-select" [(ngModel)]="app.currentPhase" style="margin: 15px;">
+                <option *ngFor="let ph of phases " [value]="ph">{{ ph }}</option>
+            </select>
 
-                <mat-select formControlName="applicationPhase " (selectionChange)="updateStatus() ">
+            <select class="custom-select" [(ngModel)]="app.currentPhaseStatus" style="margin: 15px;">
+                <option *ngFor="let s of statuses " [value]="s">{{ s }}</option>
+            </select>
+        
+            <button type="submit " class="btn-success rounded m-3 text-floral-white bottom-right " 
+                (click)="onSubmit()">Save Changes</button>
+        </div>
 
-                    <mat-option *ngFor="let ph of phases " [value]="ph ">
-                        {{ ph }}
-                    </mat-option>
-                </mat-select>
-                <br>
-                <br>
-
-                <br>
-
-                <mat-select *ngIf="viewAppForm.value.applicationPhase " formControlName="applicationStatus ">
-
-                    <mat-option *ngFor="let s of statuses " [value]="s ">
-                        {{ s }}
-                    </mat-option>
-                </mat-select>
-
-            </div>
-
-            <button mat-button type="submit " mat-button class="btn-primary rounded m-3 text-floral-white bottom-right " [disabled]="viewAppForm.invalid ">Save Changes</button>
-        </form>
     </div>
-    <!-- </div> -->
+    
+    
+    
 </div>
