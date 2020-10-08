@@ -131,7 +131,7 @@ export class ApplicationsService {
   }
 
   updateApp(appId: string, newApp: Application){
-
+    
     let app = {
       userId: newApp.userId,
       eventId: newApp.eventId,
@@ -142,7 +142,7 @@ export class ApplicationsService {
       currentPhase: newApp.currentPhase,
       currentPhaseStatus: newApp.currentPhaseStatus
     };
-
+    
     return this.http.put( 
       backend_uri + '/rec/application/update-app/' + appId, 
       app, 

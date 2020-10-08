@@ -107,11 +107,9 @@ export class ViewSingleAppComponent implements OnInit {
   }
 
 
-  save():void{
-  }
 
   onSubmit(){
-    console.log('SUBMITT :: \n', this.app);
+    // console.log('SUBMITT :: \n', this.app);
     var newApp : Application = {
       userId:this.user._id,
       eventId: this.app.event._id,
@@ -120,13 +118,15 @@ export class ViewSingleAppComponent implements OnInit {
       userCV:this.app.cvPath,
       userAnswers:this.app.userAnswers,
       season: this.app.season,
-      currentPhase:this.app.applicationPhase,
-      currentPhaseStatus:this.app.applicationStatus,
+      currentPhase:this.app.currentPhase,
+      currentPhaseStatus:this.app.currentPhaseStatus,
       cvPath: this.app.cvPath
     }
-    console.log('NEW APPPP ::\n', newApp);
+    
     this.applicationsService.updateApp(this.app._id, newApp)
-      .subscribe(res=> console.log("ely rg3 mn el server",res));
+      .subscribe(res=> {
+        alert("Application successfully updated in Database!")
+      });
   }
 
   goBack(): void {
