@@ -9,6 +9,7 @@ import { Observable, pipe, Subscription } from 'rxjs';
 import { UserService } from '../authorization/user.service';
 import { AuthUser } from '../authorization/authUser.model';
 
+import { ViewInterviewComponent } from '../recruitment system/interviews/admin-interviews/view-interview/view-interview.component';
 import { AdminEventsComponent } from '../recruitment system/dashboard/admin-events/admin-events.component';
 import { UserEventsComponent } from '../recruitment system/dashboard/user-events/user-events.component';
 import { User } from '../authorization/user.model';

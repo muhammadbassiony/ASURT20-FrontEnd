@@ -86,7 +86,7 @@ export class UserInterviewsComponent implements OnInit {
   }
 
   onSubmit(){;
-    console.log(this.selectedDay, this.selId);
+    console.log('USER SUBMIT SEL IV :: \n', this.selectedDay, this.selId);
     
     let iv;
     this.interviewsService.getInterview(this.selId)
@@ -94,6 +94,8 @@ export class UserInterviewsComponent implements OnInit {
       iv = <Interview>res;
       iv.extendedProps.appId = this.appId;
       iv.extendedProps.ivStatus = InterviewStatus.booked;
+      // iv.title = this.
+      console.log('UPDATING IV :: ', iv);
       return this.interviewsService.updateInterview(iv._id, iv);
     }))
     .subscribe(res => {
