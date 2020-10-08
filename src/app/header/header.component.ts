@@ -15,7 +15,7 @@ import { Competition } from '../main system/models/competition.model';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
-}) 
+})
 
 export class HeaderComponent implements OnInit {
 
@@ -57,8 +57,8 @@ export class HeaderComponent implements OnInit {
       this.userId = user._id;
     })
 
-    
-    
+
+
   }
 
   onToggleHeader() {
@@ -73,13 +73,17 @@ export class HeaderComponent implements OnInit {
 
   // ADMIN MODE SPECIFIC
   onOpenMenu() {
-    let menu = <HTMLElement>document.querySelector('.menu-container');
-    menu.style.left = '0';
+    const menu = <HTMLElement>document.querySelector('.menu-container');
+    if (menu.style.left == '0px') {
+      menu.style.left = '-23rem';
+    } else {
+      menu.style.left = '0px';
+    }
   }
 
   onLogout() {
     this.usersService.logout();
   }
 
-  
+
 }
