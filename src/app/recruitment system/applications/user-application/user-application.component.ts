@@ -73,7 +73,7 @@ export class UserApplicationComponent implements OnInit {
 
       const userAnswers = <FormGroup>this.appForm.get('userAnswers');
       this.eventData.questions.forEach(qs => {
-        userAnswers.addControl(qs, new FormControl('', [Validators.required, Validators.minLength(20)]));
+        userAnswers.addControl(qs, new FormControl('', [Validators.required, Validators.minLength(15)]));
       });
       
       return this.usersService.getUser(this.userId);
@@ -122,11 +122,6 @@ export class UserApplicationComponent implements OnInit {
 
     let answers: any = [];
     for(let i in this.appForm.value.userAnswers){
-      // console.log(i, this.appForm.value.userAnswers[i]);
-      // answers.push({
-      //   question: i,
-      //   answer: this.appForm.value.userAnswers[i]
-      // });
       let question = i;
       let answer = this.appForm.value.userAnswers[i];
       answers.push({ question, answer });

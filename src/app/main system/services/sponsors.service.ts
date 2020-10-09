@@ -88,17 +88,13 @@ export class SponsorsService {
 
   addNewSponsor(fd: any){
     let formData = new FormData();
-    
-    formData.append('name', fd.sponsorName);
-    //formData.append('b', JSON.stringify(b));
-    //formData.append('esm', str);
-    formData.append('desc', fd.sponsorDesc);
-    //console.log('FD SPONSORS SERVICE ADD SPNSR :: ', formData.); 
-
-    formData.append('logo', fd.sponsorsLogo);
+    console.log('SPNSR SRVC FIRST RECEIVE :: \n', fd);
+    formData.append('name', fd.name);
+    formData.append('desc', fd.desc);
+    formData.append('logo', fd.logo);
     //console.log('FD SPONSORS SERVICE ADD SPNSR :: ', formData); 
-      console.log("logo::",formData.get('logo'));
-      console.log("name::",formData.get('name'));
+    console.log("SPNSR SRVC - logo::", formData.get('logo'));
+    console.log("SPNSR SRVC - name::", formData.get('name'));
 
   
 

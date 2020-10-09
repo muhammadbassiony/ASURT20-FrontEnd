@@ -46,9 +46,9 @@ export class SponsorsEditComponent implements OnInit {
     });
 
     this.sponsorEditForm = this.fb.group({
-      'sponsorName': [ , [Validators.required, Validators.minLength(5)]],
+      'sponsorName': [ , [Validators.required, Validators.minLength(3)]],
       'sponsorDesc': [ , [Validators.required, Validators.minLength(5)]],
-      'sponsorsLogo': [ , [Validators.required]]  //img mime NOT working??
+      'sponsorLogo': [ , [Validators.required]]  //img mime NOT working??
     });
     
   }
@@ -59,20 +59,19 @@ export class SponsorsEditComponent implements OnInit {
     const file = event.target.files[0]
     this.sponsorEditForm.value.sponsorsLogo = file;
     console.log("The Form",this.sponsorEditForm)
-  }}
+    }
+  }
 
-  onSubmit(sponsorsForm: FormGroup)
+  onSubmit(sponsorEditForm: FormGroup)
   {
-    console.log('SPNSR FORM ::\n', sponsorsForm);
-    // let name = sponsorsForm.value.sponsorName;
-    // let desc = sponsorsForm.value.sponsorDesc;
-    // console.log(sponsorsForm.value, name, desc);
-    // let fd = new FormData();
-    // fd.append('name', name);
-    // fd.append('desc', desc);
-    // fd.append('logo', this.sponsorEditForm.value.sponsorLogo);
-    // console.log('FORM DATA', fd);
-    let fd = this.sponsorEditForm.value;
+    console.log('SPNSR FORM ::\n', sponsorEditForm);
+    // let fd = this.sponsorEditForm.value;
+    let fd = {
+      logo: this.img,
+      // logo: this.sponsorEditForm.value.sponsorLogo,
+      name: this.sponsorEditForm.value.sponsorName,
+      desc: this.sponsorEditForm.value.sponsorDesc
+    };
     console.log('OBJECT FD :: \n', fd);
     this._SponsorsService.addNewSponsor(fd)
     .subscribe((value) => {    //will work
