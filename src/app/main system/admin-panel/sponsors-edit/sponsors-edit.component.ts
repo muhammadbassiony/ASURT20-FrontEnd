@@ -7,7 +7,6 @@ import {Subscription} from 'rxjs';
 
 import { environment } from '../../../../environments/environment';
 import {HttpErrorResponse} from '@angular/common/http';
-const backend_uri = environment.backend_uri;
 
 import { ImgMimeType } from '../../../shared/img-mime-type.validator';
 
@@ -20,6 +19,7 @@ import { ImgMimeType } from '../../../shared/img-mime-type.validator';
 })
 export class SponsorsEditComponent implements OnInit {
 
+  backend_uri = environment.backend_uri_static;
   sponsorEditForm : FormGroup;
   sponsorsInfo: any;
   isGettingSponsors: boolean = false;
@@ -29,7 +29,7 @@ export class SponsorsEditComponent implements OnInit {
   constructor(
     private _SponsorsService:SponsorsService,
     private fb: FormBuilder
-  ) {}
+  ){ }
 
   ngOnInit(): void {
     this.isGettingSponsors = true;
@@ -37,7 +37,7 @@ export class SponsorsEditComponent implements OnInit {
     .subscribe(res => {
       this.sponsorsInfo = res;
       for(let sp of this.sponsorsInfo){
-        sp.logo = sp.logo; 
+        sp.logoCopy = this.backend_uri +  sp.logo; 
       }
       this.isGettingSponsors = false;
     }, 
@@ -53,26 +53,16 @@ export class SponsorsEditComponent implements OnInit {
     
   }
 
-  onFileChanged(event) {
-    if (event.target.files.length > 0) {
-
-    const file = event.target.files[0]
-    this.sponsorEditForm.value.sponsorsLogo = file;
-    console.log("The Form",this.sponsorEditForm)
-    }
-  }
-
   onSubmit(sponsorEditForm: FormGroup)
   {
-    console.log('SPNSR FORM ::\n', sponsorEditForm);
-    // let fd = this.sponsorEditForm.value;
+    // console.log('SPNSR FORM ::\n', sponsorEditForm);
     let fd = {
       logo: this.img,
       // logo: this.sponsorEditForm.value.sponsorLogo,
       name: this.sponsorEditForm.value.sponsorName,
       desc: this.sponsorEditForm.value.sponsorDesc
     };
-    console.log('OBJECT FD :: \n', fd);
+    // console.log('OBJECT FD :: \n', fd);
     this._SponsorsService.addNewSponsor(fd)
     .subscribe((value) => {    //will work
       this.message = 'Sponsor created successfully!';
@@ -103,7 +93,7 @@ export class SponsorsEditComponent implements OnInit {
   img: File = null;
   onImgUpdated(files: FileList) {
     this.img = files.item(0);
-    console.log(this.img);
+    // console.log(this.img);
 
     //crude validation - mime type async validator not working here
     // console.log(!this.img.type.match(/^image\//));
@@ -115,7 +105,7 @@ export class SponsorsEditComponent implements OnInit {
 
     this.sponsorEditForm.patchValue({"sponsorLogo": this.img});
     this.sponsorEditForm.get('sponsorLogo').updateValueAndValidity();
-    console.log(this.sponsorEditForm);
+    // console.log(this.sponsorEditForm);
   }
 
 

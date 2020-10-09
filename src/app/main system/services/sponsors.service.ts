@@ -88,13 +88,13 @@ export class SponsorsService {
 
   addNewSponsor(fd: any){
     let formData = new FormData();
-    console.log('SPNSR SRVC FIRST RECEIVE :: \n', fd);
+    // console.log('SPNSR SRVC FIRST RECEIVE :: \n', fd);
     formData.append('name', fd.name);
     formData.append('desc', fd.desc);
     formData.append('logo', fd.logo);
     //console.log('FD SPONSORS SERVICE ADD SPNSR :: ', formData); 
-    console.log("SPNSR SRVC - logo::", formData.get('logo'));
-    console.log("SPNSR SRVC - name::", formData.get('name'));
+    // console.log("SPNSR SRVC - logo::", formData.get('logo'));
+    // console.log("SPNSR SRVC - name::", formData.get('name'));
 
   
 
@@ -132,46 +132,5 @@ export class SponsorsService {
       })
     );
   }
-  // async editSponsorsState(checkedState:boolean[])
-  // {
-  //   let i=0;
-  //   for(var value of checkedState)
-  //   {
-  //     if(value == undefined)
-  //     {
-  //       value = false;
-  //     }
-  //     if (value !== this.allSponsorsInfo[i].isChecked)
-  //     {
-  //       const URL = backend_uri + "/main/sponsors/activate/" + this.allSponsorsInfo[i].id;
-  //       await this.http.patch<any>(URL, {}).toPromise().then(
-  //         res => this.editResponseSuccess.next(res),
-  //         reason => this.editResponseError.next(reason)
-  //       );
-  //       this.allSponsorsInfo[i].isChecked = value;
-  //     }
-  //     i++;
-  //   }
-  //   this.allSponsors.next(this.allSponsorsInfo.slice());
-  //   let sponsors = this.getTrueCheckedSponsors();
-  //   sponsors.then(value1 => {
-  //     this.checkedSponsors.next(value1);
-  //   });
-  // }
-
-  // async getTrueCheckedSponsors()
-  // {
-  //   if (this.sponsorInitializationService.Initialized == 1) {
-  //     this.isGettingSponsors.next(true);
-  //     await this.initialize();
-  //     this.isGettingSponsors.next(false);
-  //   }
-  //   this.trueCheckedSponsors = [];
-  //   for (let i = 0; i < this.allSponsorsInfo.length; i++) {
-  //     if (this.allSponsorsInfo[i].isChecked == true) {
-  //       this.trueCheckedSponsors.push(this.allSponsorsInfo[i]);
-  //     }
-  //   }
-  //   return this.trueCheckedSponsors;
-  // }
+  
 }
