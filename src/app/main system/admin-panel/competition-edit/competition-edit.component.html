@@ -1,4 +1,4 @@
-<main class="row p-5" style="background-color: #b21212;">
+<main class="row p-5 utility-min-height" style="background-color: #b21212;">
 
 <div class="container justify-content-center align-items-center" style="margin-left: 30%; margin-right: 30%;">
 
@@ -6,11 +6,11 @@
   <hr>
 
   <div class="row form-group form-check" *ngFor="let cmp of allComps; let i = index">
-    <input type="checkbox" class="form-check-input"  name="{{cmp.name}}" [(ngModel)]="cmp.visible">
+    <input type="checkbox" class="form-check-input"  name="{{cmp.name}}" [(ngModel)]="cmp.visible" id="{{cmp.name}}">
     <label class="form-check-label text-light" for="{{cmp.name}}">{{cmp.name}}</label>
   </div>
 
-  <button type="submit" class=" row btn btn-success mb-3" (click)="updateComps()" 
+  <button type="submit" class=" row btn btn-success mb-3" (click)="updateComps()"
     style="margin-bottom: 50px;">Submit Changes</button>
 
 </div>

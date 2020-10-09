@@ -1,3 +1,5 @@
+
+<div *ngIf="!AltSponsor">
 <div class="container text-center min-vh-100" *ngIf="isGettingSponsors">
   <app-loading-spinner></app-loading-spinner>
   <p style="font-size: 4rem" class="text-center text-primary">Loading...</p>
@@ -11,7 +13,7 @@
                   <img [src]=sponsor.sani alt="logo">
                   <!-- <img [src]="'https://placeimg.com/1080/500/nat'" alt="logo"> -->
                   <!-- <img src="{{sponsor.image.changingThisBreaksApplicationSecurity}}" alt="soora"> -->
-                  <!-- <div class="example" 
+                  <!-- <div class="example"
                         [ngStyle]="{backgroundImage: 'url(' + sponsor.sani + ')'}"></div> -->
               </div>
           </div>
@@ -24,3 +26,104 @@
       </div>
    </div>
 </section>
+</div>
+
+
+<div *ngIf= "AltSponsor">
+<div  class="SponsorsAlt">
+
+
+  <div class="u-center-text ">
+    <h2 class="  heading-secondary  mt-3 u-margin-bottom-small">Our Sponsors</h2>
+  </div>
+
+
+
+  <div class="row u-margin-bottom-medium">
+    <div class="col">
+   <img class="logo u-margin-top-minus-2 " src="../../../../assets/img/TOYOTA.png" alt="TOYOTA">
+    </div>
+
+    <div class="col">
+      <img class="logo mt-3 " src="../../../../assets/img/ADES.png" alt="ADES">
+
+    </div>
+
+
+    <div class="col">
+      <img class="logo mt-5" src="../../../../assets/img/SIEMIENS.svg" alt="SIEMIENS">
+    </div>
+  </div>
+
+    <div class="row">
+    <div class="col">
+      <img class="logo" src="../../../../assets/img/Shell.png" alt="SHELL">
+    </div>
+
+    <div class="col">
+      <img class="logo mt-5" src="../../../../assets/img/GIZA.png" alt="GIZASYSTEMS">
+    </div>
+
+    <div class="col">
+      <img class="logo" src="../../../../assets/img/KIMA.png" alt="KIMA">
+    </div>
+
+    <div class="col">
+      <img class="logo" src="../../../../assets/img/emar.png" alt="EMAR">
+    </div>
+  </div>
+</div>
+
+<div class="SponsorsAlt__Mobile">
+
+
+  <div class="u-center-text ">
+    <h2 class="  heading-secondary  mt-3 u-margin-bottom-small">Our Sponsors</h2>
+  </div>
+
+
+
+  <div class="row ">
+    <div class="col">
+   <img class="logo mt-2" src="../../../../assets/img/TOYOTA.png" alt="TOYOTA">
+    </div>
+
+    <div class="col ">
+      <img class="logo__fullWidth mt-4" src="../../../../assets/img/ADES.png" alt="TOYOTA">
+
+    </div>
+  </div>
+
+
+
+    <div class="row mb-3">
+    <div class="col">
+      <img class="logo mt-5" src="../../../../assets/img/SIEMIENS.svg" alt="TOYOTA">
+    </div>
+    <div class="col">
+      <img class="logo" src="../../../../assets/img/Shell.png" alt="TOYOTA">
+    </div>
+  </div>
+
+    <div class="row ">
+
+
+    <div class="col">
+      <img class="logo" src="../../../../assets/img/KIMA.png" alt="TOYOTA">
+    </div>
+
+    <div class="col">
+      <img class="logo" src="../../../../assets/img/emar.png" alt="TOYOTA">
+    </div>
+  </div>
+
+  <div class="row ml-3 u-margin-top-minus-5 ">
+    <div class="col">
+      <img class="logo mt-5 img-fluid mx-auto" src="../../../../assets/img/GIZA.png" alt="TOYOTA">
+    </div>
+
+  </div>
+
+</div>
+
+</div>

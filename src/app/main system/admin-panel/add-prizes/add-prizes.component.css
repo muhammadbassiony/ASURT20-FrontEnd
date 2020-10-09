@@ -9,7 +9,7 @@
   .u-margin {
     margin: 5rem;
   }
-  
+
   .row {
     margin: 1rem;
   }
@@ -17,7 +17,7 @@
     width : 10rem;
     height : 5rem;
   }
-  
+
   .img-wrap {
     margin: 25px;
     position: relative;
@@ -47,7 +47,7 @@
   .img-wrap:hover .close {
     opacity: 1;
   }
-  
+
   .std-btn {
     /* margin-left: 60%; */
     margin: 10px;
@@ -59,4 +59,9 @@
     -ms-border-radius: 3px;
     -o-border-radius: 3px;
     text-align: center;
+  }
+
+  /*UTILITIES*/
+  .utility-min-height {
+    min-height: 56.5vh;
   }

@@ -11,6 +11,7 @@
 }
 .footer-email {
   font-size: 0.8em;
+  margin: 0;
 }
 .img-container {
   height: 5.4em;
@@ -24,7 +25,7 @@
   margin-right: 1em;
 }
 .footer-container {
-  margin: 0 3.35em;
+  margin: 0;
 }
 .social-links {
   height: 100%;
@@ -41,11 +42,11 @@
 }
 
 .social-links__link:not(:last-child) {
-  margin-right: 2em;
+  margin-right: 1em;
 }
 .social-links__icon {
-  height: 2em;
-  width: 2em;
+  height: 1.3em;
+  width: 1.3em;
   fill: #b21212;
 }
 
@@ -72,4 +73,8 @@
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
+}
+.quarter {
+  display: inline-block;
+  width: 25%;
 }

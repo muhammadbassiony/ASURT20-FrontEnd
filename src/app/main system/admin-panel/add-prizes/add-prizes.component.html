@@ -1,65 +1,67 @@
-<main class="row m-0 p-5" style="background-color: #b21212;">
-<!-- <body style="background-color: #b21212;"> -->
+<main class="row m-0 p-5 utility-min-height" style="background-color: #b21212;">
+  <!-- <body style="background-color: #b21212;"> -->
 
-<div class="col-sm-8 col-12 mx-auto ">
+  <div class="col-sm-8 col-12 mx-auto ">
 
     <div class="row d-flex justify-content-center text-center" style="margin: 20px 0px;">
-        <h1 style="margin: 20px 0px;"> Manage Competition Awards </h1>
-        <div class="col-sm-8">
-            <h3 class="text-center" style="margin: 20px;">Select Competition you want to edit :</h3>
-            <select class="form-control" (change)="onCompSelect()" [(ngModel)]="currentComp">
-                <option *ngFor="let cmp of allComps; let i = index"  [ngValue]="cmp">
-                    {{cmp.name}}</option>
-            </select>
-        </div>
+      <h1 style="margin: 20px 0px;"> Manage Competition Awards </h1>
+      <div class="col-sm-8">
+        <h3 class="text-center" style="margin: 20px;">Select Competition you want to edit :</h3>
+        <select class="form-control" (change)="onCompSelect()" [(ngModel)]="currentComp">
+          <option *ngFor="let cmp of allComps; let i = index"  [ngValue]="cmp">
+            {{cmp.name}}</option>
+        </select>
+      </div>
     </div>
     <hr>
 
     <h2 class="text-light row justify-content-center text-center">{{ currentComp.name }}'s awards</h2>
     <div class="row d-flex justify-content-center text-center" *ngIf="currentComp">
 
-        <div *ngFor="let award of currentComp.awards; ;let i = index">
-            <div class="col-md-8 rounded" style="color: white;">
-                <div class="img-wrap row">
-                    <span class="close" (click)="deleteAward(i)">&times;</span>
-                    <img id="{{i}}" [src]="award.path" alt="award image" style="height: 150px; width:250px;">
-                </div>
-                <h3 class="row justify-content-center text-center">{{ award.title }}</h3>
-                <p class="row justify-content-center text-center">{{ award.description }} </p>
-            </div>
+      <div *ngFor="let award of currentComp.awards; ;let i = index">
+        <div class="col-md-8 rounded" style="color: white;">
+          <div class="img-wrap row">
+            <span class="close" (click)="deleteAward(i)">&times;</span>
+            <img id="{{i}}" [src]="award.path" alt="award image" style="height: 150px; width:250px;">
+          </div>
+          <h3 class="row justify-content-center text-center">{{ award.title }}</h3>
+          <p class="row justify-content-center text-center">{{ award.description }} </p>
         </div>
+      </div>
     </div>
     <hr>
 
 
     <form [formGroup]="awardsForm" (ngSubmit)="onSubmit(awardsForm)" *ngIf="currentComp">
 
-        <h2 style="color: white; margin: 10px;">Add a new award!</h2>
+      <h2 style="color: white; margin: 10px;">Add a new award!</h2>
 
-        <div class="form-group">
-            <label for="prizeTitle" class="text-light">Prize Title</label>
-            <input type="text" class="form-control" id="prizeTitle" formControlName="title" required>
-        </div>
+      <div class="form-group">
+        <label for="prizeTitle" class="text-light">Prize Title</label>
+        <input type="text" class="form-control" id="prizeTitle" formControlName="title" required>
+      </div>
 
-        <div class="form-group">
-            <label for="prizeDescription" class="text-light">Prize Description</label>
-            <textarea class="form-control" id="prizeDescription"
-                formControlName="description" cols="4" rows="4" required></textarea>
-        </div>
+      <div class="form-group">
+        <label for="prizeDescription" class="text-light">Prize Description</label>
+        <textarea class="form-control" id="prizeDescription"
+                  formControlName="description" cols="4" rows="4" required></textarea>
+      </div>
 
-        <div class="form-group">
-            <label for="prizeImage" class="text-light">Prize Image</label>
-            <input type="file" accept="image/*" class="form-control-file text-light"
-                formControlName="image" id="prizeImage" (change)="onImgUploaded($event.target.files)"
-                required>
-        </div>
+      <div class="form-group">
+        <label for="prizeImage" class="text-light">Prize Image</label>
+        <input type="file" accept="image/*" class="form-control-file text-light"
+               formControlName="image" id="prizeImage" (change)="onImgUploaded($event.target.files)"
+               required>
+      </div>
 
-        <button class="btn btn-success std-btn" type="submit" [disabled]="!awardsForm.valid">Add Award</button>
+      <button class="btn btn-success std-btn" type="submit" [disabled]="!awardsForm.valid">Add Award</button>
     </form>
 
 
-</div>
+  </div>
 
 </main>
+
+
 <!-- </body> -->
 
