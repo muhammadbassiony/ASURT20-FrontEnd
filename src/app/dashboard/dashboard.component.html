@@ -1,5 +1,5 @@
-<body style="padding-top: 50px;">
-    
+<body style="padding-top: 50px;" class="utility-min-height">
+
 <app-admin-events *ngIf="authUser.level>1"></app-admin-events>
 <app-user-events *ngIf="authUser.level<1" [userId]=user._id></app-user-events>
 
