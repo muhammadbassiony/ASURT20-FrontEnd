@@ -8,13 +8,14 @@
   background-color: #383838;
   text-align: center;
   font-size: 0.8em;
+  margin-top: -30px;
 }
 .footer-email {
   font-size: 0.8em;
   margin: 0;
 }
 .img-container {
-  height: 5.4em;
+  height: 5.6em;
   padding: 1.3em 0;
   margin: 0 3.35em;
   display: flex;
@@ -48,6 +49,12 @@
   height: 1.3em;
   width: 1.3em;
   fill: #b21212;
+}
+.comp_logo {
+  height: 2.5em;
+  width: 2.5em;
+  margin-top: -20px;
+  margin-bottom: -40px;
 }
 
 .social-links__link:hover .social-links__icon.face-icon{

@@ -16,7 +16,7 @@ import { ɵDomSanitizerImpl, DomSanitizer, SafeResourceUrl } from '@angular/plat
 })
 export class SponsorsComponent implements OnInit, OnDestroy {
 
-  backend_uri = 'http://localhost:3000/';
+  backend_uri = environment.backend_uri_static;
   // reader = new FileReader();
   @Input() AltSponsor = true
 
@@ -50,25 +50,6 @@ export class SponsorsComponent implements OnInit, OnDestroy {
       console.log('ERROR SPONSORS :: ',error);
     });
 
-    //re-add subscription?
-
-
-    // this.sponsorInitializationService.Initialized++;
-    // this.sub = this._SponsorsService.isGettingSponsors.subscribe(
-    //   (value) => {
-    //     this.isGettingSponsors = value;
-    //   }
-    // );
-    // const promise = this._SponsorsService.getTrueCheckedSponsors();
-    // promise.then(value => {
-    //   this.sponsorsInfo = value;
-    // }, reason => {
-    //   console.log(reason);
-    // });
-    // this._SponsorsService.checkedSponsors.subscribe(
-    //   (sponsors:Sponsor[])=>{
-    //     this.sponsorsInfo=sponsors;
-    //   })
     this.fadeInService.fadeIn();
   }
 
