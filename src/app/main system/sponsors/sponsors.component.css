@@ -1,5 +1,6 @@
 /*FADE-IN EFFECT. PLEASE DO NOT REMOVE SO THE COMPONENT IS FADED IN WHEN IT IS LOADED*/
 @import "../../shared/fade-in.css";
+
 /*Margin to push the section away from the header*/
 .explore-section {
   margin-top: 11rem;
@@ -117,3 +118,197 @@
         font-size: 1.5em;
     }
 }
+
+/*headings*/
+
+.heading-secondary {
+  font-size: 3.5em;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
+  background-image: linear-gradient(to right, #b21212, #c70039);
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: 0.2em;
+  transition: all 0.2s;
+}
+@media only screen and (max-width: 56.25em) {
+  .heading-secondary {
+    font-size: 3em;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .heading-secondary {
+    font-size: 2.5em;
+  }
+}
+
+.heading-tertiary {
+  /*font-size: 3rem;*/
+  font-size: 3em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+@media only screen and (max-width: 37.5em) {
+  .heading-tertiary {
+    /*font-size: 2rem;*/
+    font-size: 2em;
+  }
+}
+
+/* utility classes */
+
+.u-margin-top-minus-1 {
+  margin-top: -2.5em;
+}
+
+.u-margin-top-minus-2 {
+  margin-top: -3.5em;
+}
+
+.u-margin-top-minus-3 {
+  margin-top: -8em;
+}
+
+.u-margin-top-minus-4 {
+  margin-top: -12em;
+}
+.u-margin-top-minus {
+  margin-top: -6em;
+}
+
+.u-margin-top-minus-5 {
+  margin-top: -2.8em;
+}
+
+@media only screen and (max-width: 60em) {
+  .u-margin-top-minus {
+    margin-top: -1em;
+  }
+  .u-margin-top-minus-2 {
+    margin-top: -1em;
+  }
+
+  .u-margin-top-minus-5 {
+    margin-top: -1em;
+  }
+
+}
+
+.u-center-text {
+  text-align: center !important;
+}
+
+.u-margin-bottom-small {
+  margin-bottom: 0.5em !important;
+}
+
+.u-margin-bottom-medium {
+  margin-bottom: 4em !important;
+}
+@media only screen and (max-width: 56.25em) {
+  .u-margin-bottom-medium {
+    margin-bottom: 2em;
+  }
+}
+
+.u-margin-bottom-big {
+  margin-bottom: 8em !important;
+}
+@media only screen and (max-width: 56.25em) {
+  .u-margin-bottom-big {
+    margin-bottom: 5em;
+  }
+}
+
+.u-margin-top-big {
+  margin-top: 0em !important;
+}
+
+.u-margin-top-huge {
+  margin-top: 10em !important;
+}
+
+.u-padding-top-big {
+  padding-top: 6em !important;
+  margin-left: 9em !important;
+  margin-top: 3em !important;
+}
+
+.u-center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media only screen and (max-width: 49em) {
+  .u-padding-top-big {
+    padding-top: 4em !important;
+    margin-left: 2em !important;
+  }
+}
+
+@media only screen and (max-width: 30em) {
+  .u-padding-top-big {
+    padding-top: 0em !important;
+    margin-left: 2em !important;
+  }
+}
+
+.paragraph {
+  font-size: 2em;
+}
+.paragraph:not(:last-child) {
+  margin-bottom: 3em;
+}
+
+@media only screen and (max-width: 37.5em) {
+  .paragraph {
+    font-size: 1.5em;
+  }
+}
+
+
+.SponsorsAlt {
+  margin-top: -2em;
+  padding: 2em;
+  padding-left: 6em;
+  background-color: rgb(238, 244, 247);
+}
+
+.SponsorsAlt__Mobile {
+  margin-top: -2em;
+  padding: 1.5em;
+  padding-left: 1.5em;
+
+  background-color: rgb(238, 244, 247);
+}
+
+@media only screen and (max-width: 35em) {
+  .SponsorsAlt {
+   /* padding: 2.5em !important;*/
+    display: none;
+
+  }
+
+}
+
+  @media only screen and (min-width: 35em) {
+    .SponsorsAlt__Mobile {
+      /*padding: 2.5em !important;*/
+      display: none;
+
+    }
+  }
+
+.logo__fullWidth {
+  width: 100%;
+}
+
+.logo__halfWidth {
+  width: 50%;
+}
+
+.logo {
+  width: 80%;
+}
+

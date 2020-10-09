@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, SecurityContext} from '@angular/core';
+import {Component, OnDestroy, OnInit, Input, SecurityContext} from '@angular/core';
 import {SponsorsService} from '../services/sponsors.service';
 import {Sponsor} from '../models/sponsor.model'
 import {FadeInService} from "../../shared/fade-in.service";
@@ -18,7 +18,8 @@ export class SponsorsComponent implements OnInit, OnDestroy {
 
   backend_uri = 'http://localhost:3000/';
   // reader = new FileReader();
-  
+  @Input() AltSponsor = true
+
   constructor(
     // private sponsorInitializationService: SponsorInitializationService,
     private _SponsorsService:SponsorsService,
@@ -36,7 +37,7 @@ export class SponsorsComponent implements OnInit, OnDestroy {
       this.sponsorsInfo = res;
       // console.log('RES RECIEVED ACTIVATED', this.sponsorsInfo);
       for(let sp of this.sponsorsInfo){
-        sp.logo =  sp.logo; 
+        sp.logo =  sp.logo;
         // sp.logo = './' + sp.logo;
         // console.log(sp.logo);
         let safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(sp.logo);
@@ -44,7 +45,7 @@ export class SponsorsComponent implements OnInit, OnDestroy {
         sp.sani = sanitizedUrl;
         // console.log(sp.sani);
       }
-      
+
     }, error => {
       console.log('ERROR SPONSORS :: ',error);
     });
@@ -76,5 +77,5 @@ export class SponsorsComponent implements OnInit, OnDestroy {
     // this.sub.unsubscribe();
   }
 
-  
+
 }
