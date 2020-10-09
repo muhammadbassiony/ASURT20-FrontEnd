@@ -282,6 +282,14 @@
 
   background-color: rgb(238, 244, 247);
 }
+@media only screen and (max-width: 75em) {
+  .SponsorsAlt {
+    padding: 2.5em !important;
+
+
+  }
+
+}
 
 @media only screen and (max-width: 35em) {
   .SponsorsAlt {
