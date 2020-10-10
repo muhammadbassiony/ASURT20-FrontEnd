@@ -291,19 +291,23 @@
 
 }
 
-@media only screen and (max-width: 35em) {
+@media only screen and (max-width: 30em) {
   .SponsorsAlt {
    /* padding: 2.5em !important;*/
     display: none;
 
   }
+  .SponsorsAlt__Mobile {
+    padding: 1em !important;
+  }
 
 }
 
-  @media only screen and (min-width: 35em) {
+  @media only screen and (min-width: 30em) {
     .SponsorsAlt__Mobile {
       /*padding: 2.5em !important;*/
       display: none;
+
 
     }
   }
@@ -313,7 +317,7 @@
 }
 
 .logo__halfWidth {
-  width: 50%;
+  width: 40%;
 }
 
 .logo {

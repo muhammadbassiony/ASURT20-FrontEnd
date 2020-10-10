@@ -103,7 +103,7 @@
 /* competition component */
 
 .Competition {
-  padding: 8em;
+  padding: 6em;
   background-image: url(../../../../assets/img/abstract-checkered-curve-white-gradient-sport-champion_33869-73.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -204,7 +204,7 @@
 
 @media only screen and (max-width: 60em) {
   .u-margin-top-minus {
-    margin-top: -1em;
+    margin-top: -3em;
   }
   .u-margin-top-minus-2 {
     margin-top: -1em;
@@ -212,6 +212,14 @@
 
   .u-margin-top-minus-5 {
     margin-top: -1em;
+  }
+
+  .u-margin-top-minus-4 {
+    margin-top: -2em !important;
+  }
+
+  .u-margin-top-minus-3 {
+    margin-top: -6em;
   }
 
 }
@@ -229,7 +237,7 @@
 }
 @media only screen and (max-width: 56.25em) {
   .u-margin-bottom-medium {
-    margin-bottom: 2em;
+    margin-bottom: 1em !important;
   }
 }
 
@@ -261,10 +269,19 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.u-margin-top-medium {
+  margin-top: 2.8em !important;
+}
+
 @media only screen and (max-width: 49em) {
   .u-padding-top-big {
     padding-top: 4em !important;
     margin-left: 2em !important;
+  }
+
+  .u-margin-top-medium {
+    margin-top: 2em !important;
   }
 }
 
@@ -276,31 +293,51 @@
 }
 
 
+
 .SponsorsAlt {
   margin-top: -2em;
   padding: 2em;
-  padding-left: 7em;
-  background-color: rgb(238, 244, 247);
+  /*background-color: rgb(238, 244, 247);*/
+  background-image: url(../../../../assets/img/abstract-checkered-curve-white-gradient-sport-champion_33869-73.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: relative;
 }
 
 .SponsorsAlt__Mobile {
-  margin-top: -2em;
+  margin-top: 0em;
   padding: 1.5em;
-  padding-left: 1.5em;
-
-  background-color: rgb(238, 244, 247);
+ /* background-color: rgb(238, 244, 247);*/
+ background-image: url(../../../../assets/img/abstract-checkered-curve-white-gradient-sport-champion_33869-73.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: relative;
 }
 
-@media only screen and (max-width: 35em) {
+@media only screen and (max-width: 75em) {
+  .SponsorsAlt {
+    padding: 2.5em !important;
+
+
+  }
+
+
+}
+
+@media only screen and (max-width: 30em) {
   .SponsorsAlt {
    /* padding: 2.5em !important;*/
     display: none;
 
   }
 
+  .SponsorsAlt__Mobile {
+    padding: 1em !important;
+  }
+
 }
 
-  @media only screen and (min-width: 35em) {
+  @media only screen and (min-width: 30em) {
     .SponsorsAlt__Mobile {
       /*padding: 2.5em !important;*/
       display: none;
