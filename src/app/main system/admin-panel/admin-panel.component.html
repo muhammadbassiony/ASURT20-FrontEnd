@@ -1,24 +1,33 @@
-<nav class="menu-container" close *ngIf="isAdminMode">
-  <a style="cursor: pointer" class="closeBtn" (click)="onCloseMenu()">
+<nav class="menu-container" id="menu-container" close *ngIf="isAdminMode">
+  <a style="cursor: pointer" class="closeBtn pl-4" (click)="onCloseMenu()">
     <svg class="close-icon" viewBox="0 0 100 100">
       <use xlink:href="../../assets/img/times.svg#close-icon"></use>
     </svg>
   </a>
   <ul class="menu">
-    <li class="menu__item"><a [routerLink]="'/'" 
-      style="text-decoration: none; color: white;">Home</a></li>
-    <li class="menu__item"><a [routerLink]="'/dashboard'" 
-      style="text-decoration: none; color: white;">Dashboard</a></li>
-    <li class="menu__item"><a [routerLink]="['view-all-users']" 
-      style="text-decoration: none; color: white;">View all users</a></li>
-    <li class="menu__item"><a [routerLink]="['edit', 'add-prize']" 
-      style="text-decoration: none; color: white;">Manage Awards</a></li>
-    <li class="menu__item"><a [routerLink]="['edit', 'competition']" 
-      style="text-decoration: none; color: white;">Manage Header Competitions</a></li>
-    <li class="menu__item"><a [routerLink]="['edit', 'photo-roll']" 
-      style="text-decoration: none; color: white;">Manage Photorolls</a></li>
-    <li class="menu__item"><a [routerLink]="['edit', 'sponsors']" 
-      style="text-decoration: none; color: white;">Manage Sponsors</a></li>
+    <li class="menu__item pl-4 pr-4"><a [routerLink]="'/'">Home</a></li>
+    <li class="menu__item pl-4 pr-4"><a [routerLink]="'/dashboard'">Dashboard</a></li>
+    <li class="menu__item pl-4 pr-4"><a [routerLink]="['view-all-users']">View all users</a></li>
+    <li class="menu__item">
+      <div class="panel-group" role="tablist">
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="collapseListGroupHeading1">
+              <a class="collapsed pl-4" id="manage-ui-btn" data-toggle="collapse" href="#collapseListGroup1" aria-expanded="false" aria-controls="collapseListGroup1">
+                Manage Website UI
+              </a>
+          </div>
+          <div id="collapseListGroup1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="collapseListGroupHeading1">
+            <ul class="list-group">
+              <li class="list-group-item pr-0 pl-0"><a class="color-red pl-4 pr-4" [routerLink]="['edit', 'add-prize']">Manage Awards</a></li>
+              <li class="list-group-item pr-0 pl-0"><a class="color-red pl-4 pr-4" [routerLink]="['edit', 'competition']">Manage Header Competitions</a></li>
+              <li class="list-group-item pr-0 pl-0"><a class="color-red pl-4 pr-4" [routerLink]="['edit', 'photo-roll']">Manage Photorolls</a></li>
+              <li class="list-group-item pr-0 pl-0"><a class="color-red pl-4 pr-4" [routerLink]="['edit', 'sponsors']">Manage Sponsors</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </li>
   </ul>
+
 </nav>
 <router-outlet></router-outlet>

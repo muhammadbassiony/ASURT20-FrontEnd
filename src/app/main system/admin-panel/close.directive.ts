@@ -8,7 +8,7 @@ export class CloseDirective {
   }
   @HostListener('window:click', ['$event'])
   onWindowClick (event: any) {
-    if (!(event.target.id == 'menu-btn')){
+    if ((!(event.target.id == 'menu-btn')) && (!(event.target.id == 'manage-ui-btn')) && (!(event.target.id == 'menu-container'))){
       const menu = <HTMLElement>document.querySelector('.menu-container');
       menu.style.left = '-23rem';
     }

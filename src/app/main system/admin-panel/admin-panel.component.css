@@ -1,3 +1,13 @@
+/*RESET*/
+a {
+  text-decoration: none;
+  color: white;
+}
+a:hover {
+  text-decoration: none;
+  color: lightgray;
+}
+/*STYLES*/
 .menu-container {
   position: fixed;
   top: 0;
@@ -30,7 +40,6 @@
 .closeBtn {
   display: flex;
   width: 3rem;
-  margin-left: 2rem;
 }
 .menu {
   width: 100%;
@@ -42,8 +51,10 @@
   margin-top: 2rem;
 }
 .menu__item {
+  color: white;
+  text-decoration: none;
   list-style: none;
-  width: 80%;
+  width: 100%;
   padding: 1.2rem 0;
   border-bottom: 1px solid rgba(245, 245, 245, 0.65);
 }
@@ -60,4 +71,13 @@
 .margin-bottom-big {
   margin-bottom: 3rem;
 }
-
+.color-red {
+  color: #b21212;
+}
+.color-red:hover {
+  color: red;
+}
+/*BOOTSTRAP OVERWRITE*/
+.panel-heading {
+  margin-bottom: 0.75rem;
+}
