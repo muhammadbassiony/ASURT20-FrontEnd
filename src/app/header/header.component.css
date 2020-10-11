@@ -128,6 +128,7 @@ header, h1, p, svg, div, nav, ul, li, img {
 }
 @media only screen and (max-width: 900px)  {
   .navigation {
+    width: 100%;
     margin: 0;
   }
 }
@@ -144,6 +145,14 @@ header, h1, p, svg, div, nav, ul, li, img {
 .navigation__item {
   padding: 2.5em;
   transition: all .3s;
+}
+@media only screen and (max-width: 900px) {
+  .navigation__item {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 .navigation__item:nth-child(1) {
 }
