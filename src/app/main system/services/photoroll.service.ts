@@ -15,7 +15,6 @@ export class PhotorollService {
     
   // public photorollUpdated = new Subject<Photoroll>();
   // public photorollChanged = new Subject<Photoroll>();
-  
 
   constructor(
     private http: HttpClient, 
@@ -36,11 +35,19 @@ export class PhotorollService {
   }
 
   updatePhotoroll(newPh: Photoroll){
+    console.log('PH SERVICE UPDATE FORMDATA   newwwwww ::\n', newPh);
     let phForm = new FormData;
     phForm.append('_id', newPh._id);
     phForm.append('title', newPh.title);
     phForm.append('images', JSON.stringify(newPh.images));
     console.log('PH SERVICE UPDATE FORMDATA ::\n', phForm);
+
+    // let formData = new FormData();
+    // formData.append('_id', newPh._id);
+    // formData.append('title', newPh.title);
+    // formData.append('images', JSON.stringify(newPh.images));
+    // console.log('PH SERVICE UPDATE FORMDATA 2222 ::\n', phForm);
+
 
     return this.http.post(
       backend_uri + '/main/photorolls/update',

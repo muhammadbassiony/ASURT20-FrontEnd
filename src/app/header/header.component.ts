@@ -9,7 +9,7 @@ import { CompetitionsService } from '../main system/services/competitions.servic
 
 import { ActivatedRoute, Params, Router, Data, NavigationStart, NavigationExtras } from '@angular/router';
 import { Competition } from '../main system/models/competition.model';
-
+import { ErrorService } from '../errorModal/error.service';
 
 @Component({
   selector: 'app-header',
@@ -31,6 +31,7 @@ export class HeaderComponent implements OnInit {
   @Output() isLoading = new EventEmitter<boolean>(true);
 
   constructor(
+    private errorService: ErrorService,
     private usersService: UserService,
     private competitionsService: CompetitionsService,
     private route: ActivatedRoute,
@@ -55,7 +56,7 @@ export class HeaderComponent implements OnInit {
       // console.log('HEADER AUTHUSER SUBS :: ', user);
       this.isAuthorized = !!user;
       this.userId = user._id;
-    })
+    });
 
 
 

@@ -92,13 +92,8 @@ export class SponsorsService {
     formData.append('name', fd.name);
     formData.append('desc', fd.desc);
     formData.append('logo', fd.logo);
-    //console.log('FD SPONSORS SERVICE ADD SPNSR :: ', formData); 
-    // console.log("SPNSR SRVC - logo::", formData.get('logo'));
-    // console.log("SPNSR SRVC - name::", formData.get('name'));
 
-  
-
-
+    
     return this.http.post(
       backend_uri + "/main/sponsors/add",
       formData,

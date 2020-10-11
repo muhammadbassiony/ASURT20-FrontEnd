@@ -5,6 +5,8 @@ import { catchError } from 'rxjs/operators';
 import { Competition } from '../../models/competition.model';
 import {CompetitionsService} from '../../services/competitions.service';
 
+import { ErrorService } from '../../../errorModal/error.service';
+
 @Component({
   selector: 'app-competition-edit',
   templateUrl: './competition-edit.component.html',
@@ -17,6 +19,7 @@ export class CompetitionEditComponent implements OnInit {
   allComps: any;
 
   constructor(
+    private errorService: ErrorService,
     private competitionsService: CompetitionsService,
     public route: ActivatedRoute) { }
 
@@ -24,6 +27,8 @@ export class CompetitionEditComponent implements OnInit {
     this.competitionsService.getAllCompetitions()
     .subscribe(res => {
       this.allComps = res;
+    }, error => {
+      this.errorService.ErrorCaught.next({ErrorMsg: error, Url: '/home'});
     });
   }
 
@@ -32,11 +37,10 @@ export class CompetitionEditComponent implements OnInit {
     for(let cmp of this.allComps){
       this.competitionsService.updateCompetition(cmp._id, cmp)
       .subscribe(res => {
-        console.log('SUCCESS COMP UPDATED :: ', cmp.name);
-      },
-      (err => {
-        return null; // use error handling functionality
-      }));
+        // console.log('SUCCESS COMP UPDATED :: ', cmp.name);
+      }, error => {
+        this.errorService.ErrorCaught.next({ErrorMsg: error, Url: '/home'});
+      });
     }
   }
   

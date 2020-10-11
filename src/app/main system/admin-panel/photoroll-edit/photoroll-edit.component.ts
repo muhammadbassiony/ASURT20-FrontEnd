@@ -54,10 +54,8 @@ export class PhotorollEditComponent implements OnInit {
       'images': this.fb.array([])
     });
     
-    //patching values to photorollForm from already available data
     if(!this.currentPhotoroll.images) return ;
     this.currentPhotoroll.images.forEach(ip => {
-      // const control = new FormControl(ip, [],[ImgMimeType]); // cant mime check on image *PATHS*
       const control = new FormControl(ip);
       (<FormArray>this.photorollForm.get('images')).push(control);
     });
