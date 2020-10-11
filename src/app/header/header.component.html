@@ -70,16 +70,24 @@
                     <a routerLink="" (click)="onToggleHeader()" class="navigation__link">Home</a>
                 </li>
                 <li class="navigation__item">
-                    <div class="dropdown">
-                        <a class="navigation__link dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Competitions</a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <div  *ngFor="let comp of allComps; let i = index">
-                                <a *ngIf="comp.visible" class="dropdown-item" (click)="onToggleHeader()" [routerLink]="['/competition', comp.name | lowercase]" [state]="{ compId: comp._id}">{{ comp.name }}</a>
-                            </div>
+                  <div class="panel-group" role="tablist">
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="collapseListGroupHeading1">
+                        <h4 class="panel-title font-size-inherit font-weight-normal">
+                          <a class="navigation__link collapsed" data-toggle="collapse" href="#collapseListGroup1" aria-expanded="false" aria-controls="collapseListGroup1">
+                            Competitions
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseListGroup1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="collapseListGroupHeading1">
+                        <div style="width: 100%" *ngFor="let comp of allComps; let i = index">
+                          <ul class="list-group">
+                            <li class="list-group-item"><a *ngIf="comp.visible" class="color-red navigation__link" (click)="onToggleHeader()" [routerLink]="['/competition', comp.name | lowercase]" [state]="{ compId: comp._id}">{{ comp.name }}</a></li>
+                          </ul>
                         </div>
-
+                      </div>
                     </div>
+                  </div>
                 </li>
                 <li class="navigation__item">
                     <a [routerLink]="['/sponsors']" (click)="onToggleHeader()" class="navigation__link">Sponsors</a>

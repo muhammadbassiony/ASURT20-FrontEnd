@@ -4,6 +4,24 @@ header, h1, p, svg, div, nav, ul, li, img {
   margin: 0;
   box-sizing: border-box;
 }
+a {
+  text-decoration: none;
+  color: white !important;
+}
+a:hover {
+  text-decoration: none;
+  color: lightgray;
+}
+/*UTILITIES*/
+.color-red {
+  color: #b21212 !important;
+}
+.color-red:hover {
+  color: red !important;
+}
+.font-size-inherit {
+  font-size: inherit !important;
+}
 .utility-margin-bottom-big {
   font-size: 8px;
   margin-bottom: 15em;
@@ -42,7 +60,7 @@ header, h1, p, svg, div, nav, ul, li, img {
 @media only screen and (max-width: 900px)  {
   .header {
     padding: 0;
-    height: 82em;
+    height: 80em;
     flex-direction: column;
   }
 }
@@ -152,6 +170,7 @@ header, h1, p, svg, div, nav, ul, li, img {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 1.5em 0;
   }
 }
 .navigation__item:nth-child(1) {
@@ -160,18 +179,18 @@ header, h1, p, svg, div, nav, ul, li, img {
 .navigation__link:link,
 .navigation__link:visited {
   font-size: 2em;
-  color: white !important; /*This is set to important to overwrite the bootstrap styling*/
+  color: white;
   text-decoration: none;
   transition: all .3s;
 }
 .navigation__link:hover,
 .navigation__link:active,
 .navigation__link:focus {
-  color: #b21212 !important; /*This is set to important to overwrite the bootstrap styling*/
+  color: #b21212;
 }
 
 .social-links {
-  height: 100%;
+  height: 9em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -180,6 +199,7 @@ header, h1, p, svg, div, nav, ul, li, img {
 }
 @media only screen and (max-width: 900px) {
   .social-links {
+    padding: 2em;
     margin: 0;
   }
 }
@@ -209,7 +229,7 @@ header, h1, p, svg, div, nav, ul, li, img {
   /*background-color: #b21212;*/
   fill: #5B51D8;
 }
-/*Bootstrap modification*/
+/*BOOTSTRAP OVERWRITE*/
 .dropdown {
   color: white;
 }
@@ -226,4 +246,22 @@ header, h1, p, svg, div, nav, ul, li, img {
 .dropdown-item:focus {
   color: white;
   background-color: #b21212;
+}
+.panel-group, .panel, .panel-default, .panel-collapse.show, .panel-heading, .collapsing {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@media only screen and (min-width: 900px) {
+  .panel-title {
+    margin-bottom: 0;
+  }
+}
+.list-group-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 !important;
 }
