@@ -103,8 +103,9 @@ export class EditProfileComponent implements OnInit, EditProfileDeactivateGuard 
   }
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-    // return this.profileForm.valid ? true : false;
-    if(!this.completedProfile) alert('please complete profile first');
-    return this.completedProfile; 
+    
+    if(!this.profileForm.valid) alert('Please complete profile first');
+    return this.profileForm.valid ? true : false;
+    //return this.completedProfile; 
   }
 }
