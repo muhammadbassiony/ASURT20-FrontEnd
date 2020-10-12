@@ -43,12 +43,17 @@ export class EditProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.usersService.authUser
-    .subscribe(res => {
+    .pipe(switchMap(res => {
       this.authUser = res;
       this.userId = this.authUser._id;
-      // console.log('EDIT-PROFILE :: AUTHUSER :: \n', this.authUser);
+      console.log('EDIT-PROFILE :: AUTHUSER :: \n', this.authUser, this.userId);
+      return this.usersService.getUser(this.userId);
+    }))
+    .subscribe(res => {
+      this.user = res;
+      console.log('GOTTEN THEM USEERAAR :: \n', this.user);
     })
-    console.log('EDIT PROFILE USERID :: ', this.userId);
+    // console.log('EDIT PROFILE USERID :: ', );
 
     this.profileForm = this.fb.group({
       'name': [ , [Validators.required, Validators.minLength(8)]], 
@@ -69,10 +74,15 @@ export class EditProfileComponent implements OnInit {
 
   onSubmit(profileForm: FormGroup){
     console.log('EDIT PROFILE FORM :: \n', this.profileForm);
-    this.user = this.profileForm.value;
+    this.user = {...this.user, ...this.profileForm.value};
     let ngbDate = this.profileForm.value.birthDate;
     this.user.birthDate = new Date(ngbDate.year, ngbDate.month-1, ngbDate.day);
     console.log('USERRRRRR FROM FORM :: \n', this.user);
+
+    this.usersService.addUserInfo(this.userId, this.user)
+    .subscribe(res => {
+      console.log('ADDED DEM INFOOOO :: \n', res);
+    })
     // this.usersService.authUser.next(this.authUser);
     // this.router.navigate(['dashboard']);
   }
