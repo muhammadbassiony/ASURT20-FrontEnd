@@ -43,6 +43,8 @@ export class PhotorollEditComponent implements OnInit {
     this.photorollService.getAllPhotorolls()
     .subscribe(res => {
       this.allPhotorolls = res;
+    }, error => {
+      this.errorService.ErrorCaught.next({ErrorMsg: error.message, Url: '/home'});
     });
 
     this.photorollForm = this.fb.group({
@@ -57,8 +59,6 @@ export class PhotorollEditComponent implements OnInit {
     // this.photorollForm.reset();
     this.photorollForm = this.fb.group({    // restting to a new form without saving
       'images': this.fb.array([])
-    }, error => {
-      this.errorService.ErrorCaught.next({ErrorMsg: error.message, Url: '/home'});
     });
     
     if(!this.currentPhotoroll.images) return ;
