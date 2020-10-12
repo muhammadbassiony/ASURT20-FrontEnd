@@ -3,6 +3,10 @@ import { ActivatedRoute, Params, Router, Data, NavigationStart, NavigationExtras
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
+import { CompetitionsService } from '../../services/competitions.service';
+import { ErrorService } from '../../../shared/errorModal/error.service';
+import { Competition } from '../../models/competition.model';
+
 @Component({
   selector: 'app-ever',
   templateUrl: './ever.component.html',
@@ -11,10 +15,13 @@ import { filter, map } from 'rxjs/operators';
 export class EverComponent implements OnInit {
 
   competitionColor = '#158000'; //ever accent color
-  photorollId = "";
+  photorollId = null;
   compId: string;
+  comp: Competition;
 
   constructor(
+    private errorService: ErrorService,
+    private competitionsService: CompetitionsService,
     private route: ActivatedRoute,
     private router: Router
   ) {
@@ -24,6 +31,14 @@ export class EverComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.competitionsService.getCompetition(this.compId)
+    .subscribe(res => {
+      this.comp = res;
+      this.photorollId = this.comp.photoroll;
+      console.log('EVER MAN :: ', this.comp, this.photorollId)
+    }, error => {
+      this.errorService.ErrorCaught.next({ErrorMsg: error.message, Url: '/home'});
+    });
   }
 
 }

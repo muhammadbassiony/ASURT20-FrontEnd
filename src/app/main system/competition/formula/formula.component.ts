@@ -4,6 +4,10 @@ import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
 
+import { CompetitionsService } from '../../services/competitions.service';
+import { ErrorService } from '../../../shared/errorModal/error.service';
+import { Competition } from '../../models/competition.model';
+
 @Component({
   selector: 'app-formula',
   templateUrl: './formula.component.html',
@@ -17,6 +21,8 @@ export class FormulaComponent implements OnInit {
 
 
   constructor(
+    private errorService: ErrorService,
+    private competitionsService: CompetitionsService,
     private route: ActivatedRoute,
     private router: Router
   ) {
