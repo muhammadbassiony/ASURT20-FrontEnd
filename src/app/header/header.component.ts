@@ -9,7 +9,7 @@ import { CompetitionsService } from '../main system/services/competitions.servic
 
 import { ActivatedRoute, Params, Router, Data, NavigationStart, NavigationExtras } from '@angular/router';
 import { Competition } from '../main system/models/competition.model';
-import { ErrorService } from '../errorModal/error.service';
+import { ErrorService } from '../shared/errorModal/error.service';
 
 @Component({
   selector: 'app-header',

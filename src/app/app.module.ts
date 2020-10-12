@@ -81,8 +81,8 @@ import { ViewInterviewComponent } from './recruitment system/interviews/admin-in
 import { EverComponent } from './main system/competition/ever/ever.component';
 
 
-import { ErrorModalComponent } from './errorModal/error-modal.component';
-import { ErrorService } from './errorModal/error.service';
+import { ErrorModalComponent } from './shared/errorModal/error-modal.component';
+import { ErrorService } from './shared/errorModal/error.service';
 
 
 

@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 import {RegisterResponseData, UserService} from '../user.service';
 import {Observable} from 'rxjs';
 import {JwtHelperService} from '@auth0/angular-jwt';
-import { ErrorService } from 'src/app/errorModal/error.service';
+import { ErrorService } from '../../shared/errorModal/error.service';
 import { Location } from '@angular/common';
 
 @Component({

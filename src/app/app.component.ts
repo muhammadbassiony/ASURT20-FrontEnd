@@ -10,7 +10,7 @@ import { UserService } from './authorization/user.service';
 
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { ActivatedRoute, Params, Router, Data, NavigationStart, NavigationExtras } from '@angular/router';
-import { ErrorService } from './errorModal/error.service';
+import { ErrorService } from './shared/errorModal/error.service';
 
 @Component({
   selector: 'app-root',

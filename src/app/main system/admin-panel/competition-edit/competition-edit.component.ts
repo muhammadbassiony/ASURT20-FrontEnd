@@ -5,7 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { Competition } from '../../models/competition.model';
 import {CompetitionsService} from '../../services/competitions.service';
 
-import { ErrorService } from '../../../errorModal/error.service';
+import { ErrorService } from '../../../shared/errorModal/error.service';
 
 @Component({
   selector: 'app-competition-edit',
