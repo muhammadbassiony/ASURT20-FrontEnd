@@ -29,6 +29,7 @@ export class PhotorollEditComponent implements OnInit {
   allPhotorolls: any;
   photorollForm: FormGroup; // for edit by path
   currentPhotoroll: any; // stores all needed to edit photoroll properties
+  newPhotos: File[] = [];
 
   constructor( 
     private errorService: ErrorService,
@@ -52,8 +53,9 @@ export class PhotorollEditComponent implements OnInit {
 
   
   onPhotorollSelect(){
-    console.log('CHANGE ::', this.currentPhotoroll);
-    
+    // console.log('CHANGE ::', this.currentPhotoroll);
+    this.newPhotos = [];
+
     // this.photorollForm.reset();
     this.photorollForm = this.fb.group({    // restting to a new form without saving
       'images': this.fb.array([])
@@ -65,11 +67,11 @@ export class PhotorollEditComponent implements OnInit {
       const control = new FormControl(newPath);
       (<FormArray>this.photorollForm.get('images')).push(control);
     });
-    console.log('CHANGE AFTER ::  \N', this.photorollForm, this.currentPhotoroll, this.allPhotorolls);
+    // console.log('CHANGE AFTER ::  \N', this.photorollForm, this.currentPhotoroll);
   }
 
 
-  newPhotos: File[] = [];
+  
   newImg: File = null;
   onImgAdded(files: FileList) {
     this.newImg = files.item(0);
@@ -100,24 +102,26 @@ export class PhotorollEditComponent implements OnInit {
     //   this.allPhotorolls, this.newPhotos);
     
     let paths = [];
-    this.currentPhotoroll.images = this.newPhotos;
-    this.photorollForm.value.images.forEach(el => {
-      if(typeof(el) == 'string'){
-        paths.push(el)
+    
+    for(let im in this.photorollForm.value.images){
+      if(typeof(this.photorollForm.value.images[im]) == 'string'){
+        paths.push(this.currentPhotoroll.images[im]);
       }
-    });
-    this.currentPhotoroll.paths = paths;
-    console.log('NEW CURRENT PH :: \n', this.currentPhotoroll);
+    }
+    
+    this.currentPhotoroll.images = this.newPhotos;
+    let updatedPhotoroll = {...this.currentPhotoroll, paths: paths};
+    console.log('NEW CURRENT PH :: \n', updatedPhotoroll);
 
 
-    this.photorollService.updatePhotoroll(this.currentPhotoroll)
+    this.photorollService.updatePhotoroll(updatedPhotoroll)
     .subscribe(res => {
       this.currentPhotoroll = null;
       this.photorollForm.reset();
       //reset and remain here on re-route to another page?
       console.log('\nserver result :::\n', res);
     }, error => {
-      this.errorService.ErrorCaught.next({ErrorMsg: error, Url: '/home'});
+      this.errorService.ErrorCaught.next({ErrorMsg: error.message, Url: '/home'});
     });
     //handle error
   }

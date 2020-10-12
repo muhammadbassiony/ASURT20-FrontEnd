@@ -34,20 +34,15 @@ export class PhotorollService {
     );
   }
 
-  updatePhotoroll(newPh: Photoroll){
-    console.log('PH SERVICE UPDATE FORMDATA   newwwwww ::\n', newPh);
+  updatePhotoroll(newPh: any){
     let phForm = new FormData;
     phForm.append('_id', newPh._id);
     phForm.append('title', newPh.title);
-    phForm.append('images', JSON.stringify(newPh.images));
-    console.log('PH SERVICE UPDATE FORMDATA ::\n', phForm);
-
-    // let formData = new FormData();
-    // formData.append('_id', newPh._id);
-    // formData.append('title', newPh.title);
-    // formData.append('images', JSON.stringify(newPh.images));
-    // console.log('PH SERVICE UPDATE FORMDATA 2222 ::\n', phForm);
-
+    phForm.append('imgPaths', JSON.stringify(newPh.paths));
+    // phForm.append('images', JSON.stringify(newPh.images));
+    for (let i = 0; i < newPh.images.length; i++) {
+      phForm.append(newPh.images[i].name, newPh.images[i])
+    }
 
     return this.http.post(
       backend_uri + '/main/photorolls/update',
@@ -81,79 +76,4 @@ export class PhotorollService {
     );
   }
 
-  // initialize () {
-  //   const photoroll: Photoroll = new Photoroll(1, 'landing-page', 4, ['https://placeimg.com/1080/500/nat','https://placeimg.com/1080/500/nature','https://placeimg.com/1080/500/arch','https://placeimg.com/1080/500/history']);
-  //   this.photoroll.push(photoroll) ;
-  //   // console.log(this.photoroll);
-  //   return this.photoroll ;
-  // }
-
-  // getPhotorollByName(name: string): Photoroll {
-  //   for (let i = 0; i < this.photoroll.length; i++)  {
-  //     if (this.photoroll[i].photorollName === name) {
-  //       console.log('founded');
-  //       return this.photoroll[i];
-  //     }
-  //     console.log('not found');
-  //   }
-  //   return null;
-  // }
-
-
-  // // getPhotos() {
-  // //   this.http
-  // //     .get<{ message: string; imagePaths: string[] }>("http://localhost:3000/api/photo-roll")
-  // //     // .pipe(
-  // //       // map(photoData => {
-  // //       //   return photoData.photos.map(photoroll => {
-  // //       //     return {
-  // //       //       imagePaths: photoroll.imagePaths,
-  // //       //       noPhotos: photoroll.imagePaths.length
-  // //       //     };
-  // //       //   });
-  // //       // })).subscribe(transformedPhotos => {
-  // //     .subscribe(imagePaths => {
-  // //         this.photoroll.imagePaths = imagePaths.imagePaths;
-  // //         this.photoroll.noPhotos = imagePaths.imagePaths.length;
-  // //         this.photorollUpdated.next(this.photoroll);
-  // //       });
-  // // }
-  // //
-  // // addPhotoroll(activeImage: File, otherImages: File[]) {
-  // //   const photoroll  = new FormData();
-  // //   photoroll.append("activeImage", activeImage);
-  // //   for (let i = 0 ; i< otherImages.length;i++) {
-  // //     photoroll.append("otherImages", otherImages[i]);
-  // //   }
-  // //   //console.log(photoroll); //form data
-  // //   console.log(activeImage);
-  // //   console.log(otherImages); //image selected on other images
-  // //   this.http
-  // //     .post<{ message: string; photoroll: Photoroll }>(
-  // //       "http://localhost:3000/api/photo-roll",
-  // //       photoroll
-  // //     )
-  // //     .subscribe(responseData => {
-  // //       const photoroll: Photoroll = null;
-  // //         // imagePath1: responseData.photoroll.imagePath1,
-  // //         // imagePath2: responseData.photoroll.imagePath2,
-  // //         // imagePath3: responseData.photoroll.imagePath3,
-  // //         photoroll.noPhotos = responseData.photoroll.imagePaths.length;
-  // //         photoroll.imagePaths = responseData.photoroll.imagePaths;
-  // //         this.photoroll = photoroll;
-  // //       // this.router.navigate(["/"]);
-  // //
-  // //     });
-  // // }
-
-
-  // updatePhotoroll(value: any , newPhotoroll: Photoroll) {
-  //   this.photoroll[value.index] = newPhotoroll;
-  //   this.photoroll[value.index].noPhotos =  newPhotoroll.imagePaths.length;
-  //   console.log(this.photoroll[value.index]);
-  //   let pr = this.photoroll[value.index];
-  //   this.photorollChanged.next(pr);
-  //   console.log("done updating photoroll");
-
-  // }
 }
