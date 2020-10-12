@@ -53,8 +53,7 @@ export class SponsorsEditComponent implements OnInit {
     
   }
 
-  onSubmit(sponsorEditForm: FormGroup)
-  {
+  onSubmit(sponsorEditForm: FormGroup){
     // console.log('SPNSR FORM ::\n', sponsorEditForm);
     let fd = {
       logo: this.img,
