@@ -104,20 +104,20 @@
 
 .Competition {
   padding: 6em;
-  background-image: url(../../../../assets/img/abstract-checkered-curve-white-gradient-sport-champion_33869-73.png);
+  /* background-image: url(../../../../assets/img/abstract-checkered-curve-white-gradient-sport-champion_33869-73.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  position: relative;
+  position: relative; */
   /* background-o */
 }
 
 .Competition__Mobile {
   padding-left: 1.3em !important;
   padding-right: 1.3em !important;
-  background-image: url(../../../../assets/img/abstract-checkered-curve-white-gradient-sport-champion_33869-73.png);
+  /* background-image: url(../../../../assets/img/abstract-checkered-curve-white-gradient-sport-champion_33869-73.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  position: relative;
+  position: relative; */
   /* background-o */
 }
 
@@ -292,6 +292,12 @@
   }
 }
 
+.Competition__Background {
+  background-image: url(../../../../assets/img/abstract-checkered-curve-white-gradient-sport-champion_33869-73.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+}
 
 
 .SponsorsAlt {
@@ -299,19 +305,19 @@
   padding: 2em;
   /*background-color: rgb(238, 244, 247);*/
   /* background-image: url(../../../../assets/img/abstract-checkered-curve-white-gradient-sport-champion_33869-73.png); */
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat;
   background-size: 100% 100%;
-  position: relative;
+  position: relative; */
 }
 
 .SponsorsAlt__Mobile {
   margin-top: 0em;
   padding: 2em;
  /* background-color: rgb(238, 244, 247);*/
- /* background-image: url(../../../../assets/img/abstract-checkered-curve-white-gradient-sport-champion_33869-73.png); */
+ /* background-image: url(../../../../assets/img/abstract-checkered-curve-white-gradient-sport-champion_33869-73.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  position: relative;
+  position: relative; */
 }
 
 @media only screen and (max-width: 75em) {
@@ -324,7 +330,7 @@
 
 }
 
-@media only screen and (max-width: 30em) {
+@media only screen and (max-width: 35em) {
   .SponsorsAlt {
    /* padding: 2.5em !important;*/
     display: none;
@@ -332,15 +338,16 @@
   }
 
   .SponsorsAlt__Mobile {
-    padding: 1em !important;
+    padding: 2em !important;
+
   }
 
-}
+} 
 
-@media only screen and (min-width: 30em) {
-  .SponsorsAlt__Mobile {
-    /*padding: 2.5em !important;*/
-    display: none;
+  @media only screen and (min-width: 35em) {
+    .SponsorsAlt__Mobile {
+      /*padding: 2.5em !important;*/
+      display: none;
 
   }
 }
@@ -350,7 +357,7 @@
 }
 
 .logo__halfWidth {
-  width: 50%;
+  width: 30%;
 }
 
 .logo {
