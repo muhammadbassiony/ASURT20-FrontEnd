@@ -96,13 +96,15 @@ export class EditProfileComponent implements OnInit, EditProfileDeactivateGuard 
     this.usersService.addUserInfo(this.userId, this.user)
     .subscribe(res => {
       // console.log('ADDED DEM INFOOOO :: \n', res);
+      this.router.navigate(['dashboard']);
+    }, error => {
+      //implement error modal here
     });
-    // this.usersService.authUser.next(this.authUser);
-    // this.router.navigate(['dashboard']);
   }
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     // return this.profileForm.valid ? true : false;
-    return this.completedProfile;
+    if(!this.completedProfile) alert('please complete profile first');
+    return this.completedProfile; 
   }
 }

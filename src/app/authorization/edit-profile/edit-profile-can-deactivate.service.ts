@@ -12,6 +12,7 @@ export class EditProfileDeactivateGuard implements CanDeactivate<CanComponentDea
                 currentState: RouterStateSnapshot,
                 nextState?: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     
+            
             return component.canDeactivate();
   }
 }
