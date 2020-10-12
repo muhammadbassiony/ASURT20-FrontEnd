@@ -7,7 +7,7 @@
       <div class="carousel-inner">
         <div class="carousel-item" *ngFor="let item of photoroll.newImgs; let index = index; let isFirst=first" 
             [ngClass]="{active:isFirst}">
-                <img [src]="item" class="d-block w-100" [alt]="photo" style="height: 80vh;">
+                <img [src]="item" class="d-block w-100" [alt]="photo">
         </div>
       </div>
   

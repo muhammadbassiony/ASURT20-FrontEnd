@@ -20,7 +20,7 @@ export class EverComponent implements OnInit {
   ) {
     let x = this.router.getCurrentNavigation().extras.state;
     this.compId = x.compId;
-    console.log('EVER COMP PHiD::', this.compId);
+    // console.log('EVER COMP PHiD::', this.compId);
   }
 
   ngOnInit(): void {

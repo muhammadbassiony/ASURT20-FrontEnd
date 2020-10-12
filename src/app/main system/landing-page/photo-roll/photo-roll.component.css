@@ -21,6 +21,12 @@
 /*}*/
 
 /* utility classes */
-
-
+img{
+  height: 90vh;
+}
+@media only screen and (max-width: 50rem){
+  img{
+    height: 30vh;
+  }
+}
 
