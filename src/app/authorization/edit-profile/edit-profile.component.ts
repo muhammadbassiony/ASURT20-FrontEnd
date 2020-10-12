@@ -46,14 +46,24 @@ export class EditProfileComponent implements OnInit {
     .pipe(switchMap(res => {
       this.authUser = res;
       this.userId = this.authUser._id;
-      console.log('EDIT-PROFILE :: AUTHUSER :: \n', this.authUser, this.userId);
+      // console.log('EDIT-PROFILE :: AUTHUSER :: \n', this.authUser, this.userId);
       return this.usersService.getUser(this.userId);
     }))
     .subscribe(res => {
       this.user = res;
-      console.log('GOTTEN THEM USEERAAR :: \n', this.user);
+
+      for(let i in this.user){
+        if(this.profileForm.get(i)){
+          this.profileForm.get(i).patchValue(this.user[i]);
+        }
+      }
+
+      let date = new Date(this.user.birthDate);
+      this.model = this.user.birthDate ? 
+        { day: date.getUTCDate(), month: date.getUTCMonth() + 1, year: date.getUTCFullYear()} : null;
+      
     })
-    // console.log('EDIT PROFILE USERID :: ', );
+    
 
     this.profileForm = this.fb.group({
       'name': [ , [Validators.required, Validators.minLength(8)]], 
@@ -63,26 +73,25 @@ export class EditProfileComponent implements OnInit {
       'university': [ , [Validators.required, Validators.minLength(3)]], 
       'faculty': [ , [Validators.required]], 
       'department': [ , [Validators.required]], 
-      'gradYear': [ , [Validators.required, Validators.minLength(4)]], 
+      'graduationYear': [ , [Validators.required, Validators.minLength(4)]], 
       'credit': [ , [Validators.required]], 
       'collegeId': [ , [Validators.required, Validators.minLength(4)]], 
-      'emrgName': [ , [Validators.required]], 
-      'emrgMobile': [ , [Validators.required, Validators.pattern("[0-9 ]{11}")]], 
-      'emrgRelation': [ , [Validators.required]] 
+      'emergencyContact_name': [ , [Validators.required]], 
+      'emergencyContact_mobile': [ , [Validators.required, Validators.pattern("[0-9 ]{11}")]], 
+      'emergencyContact_relation': [ , [Validators.required]] 
     });
   }
 
   onSubmit(profileForm: FormGroup){
-    console.log('EDIT PROFILE FORM :: \n', this.profileForm);
+
     this.user = {...this.user, ...this.profileForm.value};
     let ngbDate = this.profileForm.value.birthDate;
     this.user.birthDate = new Date(ngbDate.year, ngbDate.month-1, ngbDate.day);
-    console.log('USERRRRRR FROM FORM :: \n', this.user);
 
     this.usersService.addUserInfo(this.userId, this.user)
     .subscribe(res => {
-      console.log('ADDED DEM INFOOOO :: \n', res);
-    })
+      // console.log('ADDED DEM INFOOOO :: \n', res);
+    });
     // this.usersService.authUser.next(this.authUser);
     // this.router.navigate(['dashboard']);
   }
