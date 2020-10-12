@@ -35,7 +35,6 @@ export class EverComponent implements OnInit {
     .subscribe(res => {
       this.comp = res;
       this.photorollId = this.comp.photoroll;
-      console.log('EVER MAN :: ', this.comp, this.photorollId)
     }, error => {
       this.errorService.ErrorCaught.next({ErrorMsg: error.message, Url: '/home'});
     });

@@ -62,6 +62,6 @@
         </div>
     </div>
 
-    <app-photo-roll [photorollId]=photorollId></app-photo-roll>
+    <app-photo-roll *ngIf="photorollId" [photorollId]=photorollId></app-photo-roll>
 
 </main>

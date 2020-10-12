@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router, Data, NavigationStart, NavigationExtras } from '@angular/router';
 
+
+import { CompetitionsService } from '../../services/competitions.service';
+import { ErrorService } from '../../../shared/errorModal/error.service';
+import { Competition } from '../../models/competition.model';
+
+
 @Component({
   selector: 'app-shell',
   templateUrl: './shell.component.html',
@@ -8,21 +14,29 @@ import { ActivatedRoute, Params, Router, Data, NavigationStart, NavigationExtras
 })
 export class ShellComponent implements OnInit {
   
-  photorollId = "";
   competitionColor = '#E5AC00';
+  photorollId = null;
   compId: string;
+  comp: Competition;
 
   constructor(
+    private errorService: ErrorService,
+    private competitionsService: CompetitionsService,
     private route: ActivatedRoute,
     private router: Router
   ) {
     let x = this.router.getCurrentNavigation().extras.state;
     this.compId = x.compId;
-    console.log('SHELL COMP PHiD::', this.compId);
   }
 
   ngOnInit(): void {
-    // console.log('SHELL ONINIT STATE HISTORY ::\n', history.state);
+    this.competitionsService.getCompetition(this.compId)
+    .subscribe(res => {
+      this.comp = res;
+      this.photorollId = this.comp.photoroll;
+    }, error => {
+      this.errorService.ErrorCaught.next({ErrorMsg: error.message, Url: '/home'});
+    });
   }
 
 }

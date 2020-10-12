@@ -27,7 +27,7 @@
     </div>
 
   
-    <app-photo-roll [photorollId]=photorollId></app-photo-roll>
+    <app-photo-roll *ngIf="photorollId" [photorollId]=photorollId></app-photo-roll>
 
     <div class="container">
         <div class="row py-5">

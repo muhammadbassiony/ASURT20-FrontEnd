@@ -16,8 +16,9 @@ import { Competition } from '../../models/competition.model';
 export class FormulaComponent implements OnInit {
 
   competitionColor = '#800000'; //formula accent color
-  photorollId = "";
+  photorollId = null;
   compId: string;
+  comp: Competition;
 
 
   constructor(
@@ -28,11 +29,16 @@ export class FormulaComponent implements OnInit {
   ) {
     let x = this.router.getCurrentNavigation().extras.state;
     this.compId = x.compId;
-    console.log('FORMULA COMP PHiD::', this.compId);
   }
 
   ngOnInit(): void {
-    // console.log('FORMULA ONINIT STATE HISTORY ::\n', history.state);
+    this.competitionsService.getCompetition(this.compId)
+    .subscribe(res => {
+      this.comp = res;
+      this.photorollId = this.comp.photoroll;
+    }, error => {
+      this.errorService.ErrorCaught.next({ErrorMsg: error.message, Url: '/home'});
+    });
     
   }
 
