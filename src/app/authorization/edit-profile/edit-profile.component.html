@@ -10,23 +10,24 @@
       <h1 class="mb-4 mt-4" style="color: white;">Complete your profile!</h1>
       <hr>
       
-      <form #profileForm = "ngForm" (ngSubmit)="onSubmit(profileForm)">
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit(profileForm)">
 
         <div class="row"><p style="color: white; font-size: 130%;">Full Name</p></div>
         <div class="row">
-          <input type="text" class="form-control form-control-lg" placeholder="Name">
+          <input type="text" class="form-control form-control-lg" placeholder="Name" formControlName="name">
         </div>
         <br>
 
         <div class="row"><p style="color: white; font-size: 130%;">Mobile</p></div>
         <div class="row">
-          <input type="text" class="form-control form-control-lg" placeholder="Mobile">
+          <input type="text" class="form-control form-control-lg" placeholder="Mobile" formControlName="mobile">
+          <label style="color: white;">Please do not add the country code</label>
         </div>
         <br>
 
         <div class="row"><p style="color: white; font-size: 130%;">Gender</p></div>
-        <select class="custom-select">
-          <option selected>Choose Gender</option>
+        <select class="custom-select" formControlName="gender">
+          <option selected disabled>Choose Gender</option>
           <option value="male">male</option>
           <option value="female">female</option>
         </select>
@@ -36,7 +37,7 @@
         <div class="row"><p style="color: white; font-size: 130%;">Birthdate</p></div>
         <div class="input-group rounded" style="background-color: white;">
           <input class="form-control" placeholder="yyyy-mm-dd" style="margin: 5px 5px; width: 50%;"
-                 name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+                 name="dp" ngbDatepicker #d="ngbDatepicker" formControlName="birthDate">
           <div class="input-group-append">
             <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
           </div>
@@ -47,37 +48,41 @@
         <hr>
         <div class="row"><p style="color: white; font-size: 130%;">University</p></div>
         <div class="row">
-          <input type="text" class="form-control form-control-lg" placeholder="University">
+          <input type="text" class="form-control form-control-lg" placeholder="University" formControlName="university">
         </div>
         <br>
 
         <div class="row"><p style="color: white; font-size: 130%;">Faculty</p></div>
         <div class="row">
-          <input type="text" class="form-control form-control-lg" placeholder="Faculty">
+          <input type="text" class="form-control form-control-lg" placeholder="Faculty" formControlName="faculty">
         </div>
         <br>
 
         <div class="row"><p style="color: white; font-size: 130%;">Department</p></div>
         <div class="row">
-          <input type="text" class="form-control form-control-lg" placeholder="Department">
+          <input type="text" class="form-control form-control-lg" placeholder="Department" formControlName="department">
         </div>
         <br>
 
         <div class="row"><p style="color: white; font-size: 130%;">Graduation Year</p></div>
         <div class="row">
-          <input type="text" class="form-control form-control-lg" placeholder="Graduation Year">
+          <input type="text" class="form-control form-control-lg" placeholder="Graduation Year" formControlName="gradYear">
         </div>
         <br>
 
         <div class="row"><p style="color: white; font-size: 130%;">Credit</p></div>
-        <div class="row">
-          <input type="text" class="form-control form-control-lg" placeholder="Credit">
-        </div>
+        <select class="custom-select" formControlName="credit">
+          <option selected disabled>Choose Gender</option>
+          <option value="male">Credit</option>
+          <option value="female">Mainstream</option>
+          <option value="female">NA</option>
+        </select>
+        <br>
         <br>
 
         <div class="row"><p style="color: white; font-size: 130%;">College ID</p></div>
         <div class="row">
-          <input type="text" class="form-control form-control-lg" placeholder="College ID">
+          <input type="text" class="form-control form-control-lg" placeholder="College ID" formControlName="collegeId">
         </div>
         <br>
 
@@ -85,56 +90,33 @@
 
         <div class="row"><p style="color: white; font-size: 130%;">Emergency Contact Name</p></div>
         <div class="row">
-          <input type="text" class="form-control form-control-lg" placeholder="Emergency Contact Name">
-        </div>
-        <br>
-
-        <div class="row"><p style="color: white; font-size: 130%;">Emergency Contact Mobile</p></div>
-        <div class="row">
-          <input type="text" class="form-control form-control-lg" placeholder="Emergency Contact Mobile">
+          <input type="text" class="form-control form-control-lg" placeholder="Emergency Contact Name" formControlName="emrgName">
         </div>
         <br>
 
         <div class="row"><p style="color: white; font-size: 130%;">Emergency Contact Relation</p></div>
         <div class="row">
-          <input type="text" class="form-control form-control-lg" placeholder="Emergency Contact Relation">
+          <input type="text" class="form-control form-control-lg" placeholder="Emergency Contact Relation" formControlName="emrgRelation">
         </div>
         <br>
 
+        <div class="row"><p style="color: white; font-size: 130%;">Emergency Contact Mobile</p></div>
+        <div class="row">
+          <input type="tel" class="form-control form-control-lg" placeholder="Emergency Contact Mobile" formControlName="emrgMobile">
+          <label style="color: white;">Please do not add the country code</label>
+        </div>
+        
+        <br>
 
+
+        <hr>
+        <button type="submit" class="btn btn-outline-dark btn-block mt-4 mb-4"
+                        
+                        style="color: white; border-color: white;">Submit</button>
+                        <!-- [disabled]="!profileForm.valid"  -->
       </form>
     </div>
-      
-<!-- 
-        <div class="col-lg-8">
-          <div class="card text-center card-form" style="background-color: #b21212">
-            <div class="card-body">
-              <h1 class="mb-4 mt-4" style="color: white;">Complete your profile!</h1>
-
-<br>
-              <form #profileForm = "ngForm" (ngSubmit)="onSubmit(profileForm)">
-
-
-                <div class="row input-group-text" style="margin-left: 30px;">
-                  
-                </div>
-              
-
-
-                <div class="form-group">
-                  <h4 style="color: white;">bla bla</h4>
-                  <span class="input-group-text">
-                  <input type="password" class="form-control form-control-lg ml-4" placeholder="password"
-                          name="password" ngModel required minlength="6"></span>
-                </div>
-
-                <button type="submit" class="btn btn-outline-dark btn-block mt-4 mb-4"
-                        [disabled]="!signInForm.valid" style="color: white;">Submit</button>
-              </form>
-
-            </div>
-          </div>
-        </div>-->
+    
       
   </div>
   </header>
