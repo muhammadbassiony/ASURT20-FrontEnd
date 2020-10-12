@@ -51,7 +51,7 @@
 <!--END SVG-->
 
 <div class="utility-margin-bottom-big" style="background-color: #1f1f1f;">
-    <header class="header" id="header" [ngClass]="{'header-closed':applyMql('900px')}">
+    <header class="header" id="header" [ngClass]="{'header-closed':matchMql('900px')}">
         <a style="cursor: pointer;" id="header-toggle-link" (click)="onToggleHeader()"><span class="header-toggle"></span></a>
         <h1 class="logo-container">
             <a routerLink="home" (click)="onToggleHeader()" class="logo-link">
@@ -70,7 +70,18 @@
                     <a routerLink="" (click)="onToggleHeader()" class="navigation__link">Home</a>
                 </li>
                 <li class="navigation__item">
-                  <div class="panel-group" role="tablist">
+                  <div class="dropdown" *ngIf="!matchMql('900px')">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Competitions
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <div style="width: 100%" *ngFor="let comp of allComps; let i = index">
+                        <a *ngIf="comp.visible" class="color-red dropdown-item" (click)="onToggleHeader()" [routerLink]="['/competition', comp.name | lowercase]" [state]="{ compId: comp._id}">{{ comp.name }}</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel-group" role="tablist" *ngIf="matchMql('900px')">
                     <div class="panel panel-default">
                       <div class="panel-heading" role="tab" id="collapseListGroupHeading1">
                         <h4 class="panel-title font-size-inherit font-weight-normal">

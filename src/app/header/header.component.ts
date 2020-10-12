@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     const header = document.getElementById('header');
-    if (this.applyMql('900px')) {
+    if (this.matchMql('900px')) {
       header.classList.add('header-closed');
     }
 
@@ -67,7 +67,7 @@ export class HeaderComponent implements OnInit {
     header.classList.toggle('header-closed');
   }
 
-  applyMql(bp: string) {
+  matchMql(bp: string) {
     let mql = window.matchMedia(`only screen and (max-width: ${bp})`);
     return mql.matches;
   }

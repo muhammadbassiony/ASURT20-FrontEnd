@@ -247,7 +247,12 @@ a:hover {
   color: white;
   background-color: #b21212;
 }
-.panel-group, .panel, .panel-default, .panel-collapse.show, .panel-heading, .collapsing {
+#dropdownMenuLink, #dropdownMenuLink:focus {
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+}
+.panel-group, .panel, .panel-default, .show.panel-collapse, .panel-heading, .collapsing {
   width: 100%;
   display: flex;
   flex-direction: column;
