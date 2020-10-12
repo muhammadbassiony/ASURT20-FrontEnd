@@ -43,7 +43,6 @@ export class PhotorollEditComponent implements OnInit {
     this.photorollService.getAllPhotorolls()
     .subscribe(res => {
       this.allPhotorolls = res;
-      console.log('RECEIVED ALL PHS ::\n', this.allPhotorolls);
     });
 
     this.photorollForm = this.fb.group({
@@ -53,12 +52,13 @@ export class PhotorollEditComponent implements OnInit {
 
   
   onPhotorollSelect(){
-    // console.log('CHANGE ::', this.currentPhotoroll);
     this.newPhotos = [];
 
     // this.photorollForm.reset();
     this.photorollForm = this.fb.group({    // restting to a new form without saving
       'images': this.fb.array([])
+    }, error => {
+      this.errorService.ErrorCaught.next({ErrorMsg: error.message, Url: '/home'});
     });
     
     if(!this.currentPhotoroll.images) return ;
@@ -67,7 +67,6 @@ export class PhotorollEditComponent implements OnInit {
       const control = new FormControl(newPath);
       (<FormArray>this.photorollForm.get('images')).push(control);
     });
-    // console.log('CHANGE AFTER ::  \N', this.photorollForm, this.currentPhotoroll);
   }
 
 
@@ -117,9 +116,10 @@ export class PhotorollEditComponent implements OnInit {
     this.photorollService.updatePhotoroll(updatedPhotoroll)
     .subscribe(res => {
       this.currentPhotoroll = null;
+      this.newPhotos = [];
       this.photorollForm.reset();
       //reset and remain here on re-route to another page?
-      console.log('\nserver result :::\n', res);
+      // console.log('\nserver result :::\n', res);
     }, error => {
       this.errorService.ErrorCaught.next({ErrorMsg: error.message, Url: '/home'});
     });
