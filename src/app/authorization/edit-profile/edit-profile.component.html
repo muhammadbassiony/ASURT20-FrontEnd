@@ -4,7 +4,7 @@
 </div>
 <div class="dark-overlay" *ngIf="!isLoading">
   <header id="home-section">
-  <div class="home-inner container">
+  <div class="home-inner container" style="padding: 50px;">
 
     <div class="card text-center card-form" style="margin: 4% 11%; background-color: #b21212; padding: 52px;">
       <h1 class="mb-4 mt-4" style="color: white;">Complete your profile!</h1>
@@ -14,10 +14,94 @@
 
         <div class="row"><p style="color: white; font-size: 130%;">Full Name</p></div>
         <div class="row">
-          <input type="text" class="form-control form-control-lg" placeholder="Name" name="email">
+          <input type="text" class="form-control form-control-lg" placeholder="Name">
+        </div>
+        <br>
+
+        <div class="row"><p style="color: white; font-size: 130%;">Mobile</p></div>
+        <div class="row">
+          <input type="text" class="form-control form-control-lg" placeholder="Mobile">
+        </div>
+        <br>
+
+        <div class="row"><p style="color: white; font-size: 130%;">Gender</p></div>
+        <select class="custom-select">
+          <option selected>Choose Gender</option>
+          <option value="male">male</option>
+          <option value="female">female</option>
+        </select>
+        <br>
+        <br>
+
+        <div class="row"><p style="color: white; font-size: 130%;">Birthdate</p></div>
+        <div class="input-group rounded" style="background-color: white;">
+          <input class="form-control" placeholder="yyyy-mm-dd" style="margin: 5px 5px; width: 50%;"
+                 name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+          </div>
         </div>
 
-        
+        <br>
+
+        <hr>
+        <div class="row"><p style="color: white; font-size: 130%;">University</p></div>
+        <div class="row">
+          <input type="text" class="form-control form-control-lg" placeholder="University">
+        </div>
+        <br>
+
+        <div class="row"><p style="color: white; font-size: 130%;">Faculty</p></div>
+        <div class="row">
+          <input type="text" class="form-control form-control-lg" placeholder="Faculty">
+        </div>
+        <br>
+
+        <div class="row"><p style="color: white; font-size: 130%;">Department</p></div>
+        <div class="row">
+          <input type="text" class="form-control form-control-lg" placeholder="Department">
+        </div>
+        <br>
+
+        <div class="row"><p style="color: white; font-size: 130%;">Graduation Year</p></div>
+        <div class="row">
+          <input type="text" class="form-control form-control-lg" placeholder="Graduation Year">
+        </div>
+        <br>
+
+        <div class="row"><p style="color: white; font-size: 130%;">Credit</p></div>
+        <div class="row">
+          <input type="text" class="form-control form-control-lg" placeholder="Credit">
+        </div>
+        <br>
+
+        <div class="row"><p style="color: white; font-size: 130%;">College ID</p></div>
+        <div class="row">
+          <input type="text" class="form-control form-control-lg" placeholder="College ID">
+        </div>
+        <br>
+
+        <hr>
+
+        <div class="row"><p style="color: white; font-size: 130%;">Emergency Contact Name</p></div>
+        <div class="row">
+          <input type="text" class="form-control form-control-lg" placeholder="Emergency Contact Name">
+        </div>
+        <br>
+
+        <div class="row"><p style="color: white; font-size: 130%;">Emergency Contact Mobile</p></div>
+        <div class="row">
+          <input type="text" class="form-control form-control-lg" placeholder="Emergency Contact Mobile">
+        </div>
+        <br>
+
+        <div class="row"><p style="color: white; font-size: 130%;">Emergency Contact Relation</p></div>
+        <div class="row">
+          <input type="text" class="form-control form-control-lg" placeholder="Emergency Contact Relation">
+        </div>
+        <br>
+
+
       </form>
     </div>
       

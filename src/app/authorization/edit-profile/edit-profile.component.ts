@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params, Router, Data } from '@angular/router';
 import { take } from 'rxjs/operators';
+
+import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+
 import { AuthUser } from '../authUser.model';
 
 import { UserService } from '../user.service';
@@ -12,6 +15,8 @@ import { UserService } from '../user.service';
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit {
+
+  model: NgbDateStruct;
 
   isLoading = false;
   userId: string;
@@ -25,7 +30,6 @@ export class EditProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.userId = this.route.snapshot.paramMap.get('userId');
     this.usersService.authUser
     .subscribe(res => {
       this.authUser = res;
