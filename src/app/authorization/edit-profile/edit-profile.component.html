@@ -111,9 +111,9 @@
 
         <hr>
         <button type="submit" class="btn btn-outline-dark btn-block mt-4 mb-4"
-                        
+                        [disabled]="!profileForm.valid"
                         style="color: white; border-color: white;">Submit</button>
-                        <!-- [disabled]="!profileForm.valid"  -->
+                         
       </form>
     </div>
     

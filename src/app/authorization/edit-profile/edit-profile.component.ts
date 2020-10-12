@@ -19,12 +19,14 @@ import { User } from '../user.model';
 
 import { UserService } from '../user.service';
 
+import { EditProfileDeactivateGuard } from './edit-profile-can-deactivate.service';
+
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.css']
 })
-export class EditProfileComponent implements OnInit {
+export class EditProfileComponent implements OnInit, EditProfileDeactivateGuard {
 
   model: NgbDateStruct;
 
@@ -33,6 +35,8 @@ export class EditProfileComponent implements OnInit {
   profileForm: FormGroup;
   authUser: AuthUser;
   user: User;
+
+  completedProfile = false;
 
   constructor(
     private fb: FormBuilder,
@@ -62,6 +66,7 @@ export class EditProfileComponent implements OnInit {
       this.model = this.user.birthDate ? 
         { day: date.getUTCDate(), month: date.getUTCMonth() + 1, year: date.getUTCFullYear()} : null;
       
+        this.completedProfile = this.user.name && this.user.credit ? true : false;
     })
     
 
@@ -94,5 +99,10 @@ export class EditProfileComponent implements OnInit {
     });
     // this.usersService.authUser.next(this.authUser);
     // this.router.navigate(['dashboard']);
+  }
+
+  canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+    // return this.profileForm.valid ? true : false;
+    return this.completedProfile;
   }
 }

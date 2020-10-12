@@ -84,6 +84,7 @@ import { EverComponent } from './main system/competition/ever/ever.component';
 import { ErrorModalComponent } from './shared/errorModal/error-modal.component';
 import { ErrorService } from './shared/errorModal/error.service';
 
+import { EditProfileDeactivateGuard } from './authorization/edit-profile/edit-profile-can-deactivate.service';
 
 
 
@@ -186,7 +187,8 @@ FullCalendarModule.registerPlugins([
       useClass: AuthInterceptorService,
       multi: true,
     },
-    ErrorService
+    ErrorService,
+    EditProfileDeactivateGuard
   ],
   bootstrap: [AppComponent],
 })

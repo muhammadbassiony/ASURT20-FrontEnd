@@ -40,6 +40,7 @@ import { UserInterviewsComponent } from './recruitment system/interviews/user-in
 import { AdminInterviewsComponent } from './recruitment system/interviews/admin-interviews/admin-interviews.component';
 import { ViewInterviewComponent } from './recruitment system/interviews/admin-interviews/view-interview/view-interview.component';
 
+import { EditProfileDeactivateGuard } from './authorization/edit-profile/edit-profile-can-deactivate.service';
 
 
 
@@ -72,7 +73,8 @@ const routes: Routes = [
   
   { path: 'sign-up', component: SignUpComponent },
   { path: 'sign-in', component: SignInComponent },
-  { path: 'edit-profile', component: EditProfileComponent, canActivate: [AdminGuardService], data: { accessLevel: 0} },
+  { path: 'edit-profile', component: EditProfileComponent, canActivate: [AdminGuardService], 
+    canDeactivate: [EditProfileDeactivateGuard],data: { accessLevel: 0} },
 
   
   { path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuardService], data: { accessLevel: 0} },
