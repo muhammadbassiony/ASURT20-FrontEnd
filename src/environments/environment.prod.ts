@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  backend_uri: 'http://localhost:3000/api',
-  backend_uri_static: 'http://localhost:3000/'
+  backend_uri: 'http://104.237.129.57/api',
+  backend_uri_static: 'http://104.237.129.57'
 };
