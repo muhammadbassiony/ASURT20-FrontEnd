@@ -191,30 +191,6 @@ export class UserService {
     );
   }
 
-  // addNewUser(newUser: User){
-
-  //   let user = {
-  //     email: newUser.email,
-  //     name: newUser.name,
-  //     password: newUser.password
-  //   };
-
-  //   return this.http.post( 
-  //     backend_uri + '/auth/user/add-user', 
-  //     user,
-  //     { responseType: 'json' }
-  //   )
-  //   .pipe(
-  //     map(res => {
-  //       let body = <User>res['user'];    
-  //       return body || [];    
-  //     }),
-  //     catchError(errorRes => {
-  //       return throwError(errorRes);
-  //     })
-  //   );
-  // }
-
   addMember(newMember: Member){
 
     let member = {
