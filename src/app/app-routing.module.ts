@@ -32,6 +32,8 @@ import { SetQuestionsComponent } from './recruitment system/applications/start-a
 import { ViewSingleAppComponent } from './recruitment system/applications/view-applications/view-single-app/view-single-app.component';
 import { ViewAllAppsComponent } from './recruitment system/applications/view-applications/view-all-apps/view-all-apps.component';
 import { ViewAllUsersComponent } from './recruitment system/users/view-all-users/view-all-users.component';
+import { ViewAllMembersComponent } from './recruitment system/users/view-all-members/view-all-members.component';
+
 import { UserEventsComponent } from './recruitment system/dashboard/user-events/user-events.component';
 import { AdminEventsComponent } from './recruitment system/dashboard/admin-events/admin-events.component';
 import { ViewSingleUserComponent } from './recruitment system/users/view-single-user/view-single-user.component';
@@ -80,6 +82,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuardService], data: { accessLevel: 0} },
   
   {path: 'view-all-users', component: ViewAllUsersComponent, canActivate: [AdminGuardService], data: { accessLevel: 3} },
+  {path: 'view-all-members', component: ViewAllMembersComponent, canActivate: [AdminGuardService], data: { accessLevel: 3} },
   {path: 'view-user', component: ViewSingleUserComponent, canActivate: [AdminGuardService], data: { accessLevel: 3} },
  
   {path: 'event/new', component: NewEventComponent, data: { accessLevel: 3} },

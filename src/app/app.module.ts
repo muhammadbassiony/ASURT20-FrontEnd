@@ -86,6 +86,7 @@ import { ErrorService } from './shared/errorModal/error.service';
 
 import { EditProfileDeactivateGuard } from './authorization/edit-profile/edit-profile-can-deactivate.service';
 import { ValidationMsgComponent } from './authorization/edit-profile/validation-msg/validation-msg.component';
+import { ViewAllMembersComponent } from './recruitment system/users/view-all-members/view-all-members.component';
 
 
 
@@ -142,6 +143,7 @@ FullCalendarModule.registerPlugins([
     EverComponent,
     ErrorModalComponent,
     ValidationMsgComponent,
+    ViewAllMembersComponent,
   ],
   imports: [
     BrowserModule,
