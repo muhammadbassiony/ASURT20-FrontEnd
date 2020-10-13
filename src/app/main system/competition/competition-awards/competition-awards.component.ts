@@ -26,19 +26,9 @@ export class CompetitionAwardsComponent implements OnInit{
   ) { }
   
   ngOnInit(): void {
-    // for(let awId of this.awardIds){
-    //   console.log('AWARDS ID :: ', awId);
-    //   this.competitionsService.
-    // }
-    // if(this.awards) 
-    console.log('RECEIVED AWARDSSSS :: \n', this.awards);
     for(let aw of this.awards){
       aw.img = this.backend_uri + aw.imagePath;
-    }
-    console.log('RECEIVED AWARDSSSS 222 :: \n', this.awards);
-    
-    // this.images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
-  
+    }  
   }
 
   
