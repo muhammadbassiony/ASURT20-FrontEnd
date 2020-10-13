@@ -38,7 +38,7 @@
                 <input type="password" class="form-control form-control-lg ml-4" placeholder="password"
                        name="password" [(ngModel)]="password" required minlength="8" /></span>
                 </div>
-                
+
 
                 <div class="form-group">
                 <span class="input-group-text"><i class="fa fa-lock prefix ml-2"></i>
@@ -54,7 +54,7 @@
                         [disabled]="!signUpForm.valid && (signUpForm.value.password !== signUpForm.value.confirmPassword)">Submit</button>
 
                 <div class="form-group mt-4" style="color: white;">
-                    <a routerLink="/register/sign-in" style="color: white;">Have an account?</a>
+                    <a routerLink="/sign-in" style="color: white;">Have an account?</a>
                 </div>
 
             </form>

@@ -9,13 +9,15 @@
     <div class="card text-center card-form" style="margin: 4% 11%; background-color: #b21212; padding: 52px;">
       <h1 class="mb-4 mt-4" style="color: white;">Complete your profile!</h1>
       <hr>
-      
+
       <form [formGroup]="profileForm" (ngSubmit)="onSubmit(profileForm)">
 
         <div class="row"><p style="color: white; font-size: 130%;">Full Name</p></div>
         <div class="row">
           <input type="text" class="form-control form-control-lg" placeholder="Name" formControlName="name">
         </div>
+        <app-validation-msg [formControl]="profileForm.controls.name"
+                            [msg]="'Name must be 8 or more characters!'"></app-validation-msg>
         <br>
 
         <div class="row"><p style="color: white; font-size: 130%;">Mobile</p></div>
@@ -23,6 +25,8 @@
           <input type="text" class="form-control form-control-lg" placeholder="Mobile" formControlName="mobile">
           <label style="color: white;">Please do not add the country code</label>
         </div>
+        <app-validation-msg [formControl]="profileForm.controls.mobile"
+                            [msg]="'Mobile number must be exactly 11 numbers!'"></app-validation-msg>
         <br>
 
         <div class="row"><p style="color: white; font-size: 130%;">Gender</p></div>
@@ -32,6 +36,8 @@
           <option value="FEMALE">female</option>
         </select>
         <br>
+        <app-validation-msg [formControl]="profileForm.controls.gender"
+                            [msg]="'Please specify your gender!'"></app-validation-msg>
         <br>
 
         <div class="row"><p style="color: white; font-size: 130%;">Birthdate</p></div>
@@ -39,10 +45,11 @@
           <input class="form-control" placeholder="yyyy-mm-dd" style="margin: 5px 5px; width: 50%;"
                  name="dp" ngbDatepicker #d="ngbDatepicker" formControlName="birthDate" [(ngModel)]="model">
           <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+            <button style="font-size: 1.3rem" class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">&rarr;</button>
           </div>
         </div>
-
+        <app-validation-msg [formControl]="profileForm.controls.birthDate"
+                            [msg]="'Please choose a date!'"></app-validation-msg>
         <br>
 
         <hr>
@@ -50,34 +57,44 @@
         <div class="row">
           <input type="text" class="form-control form-control-lg" placeholder="University" formControlName="university">
         </div>
+        <app-validation-msg [formControl]="profileForm.controls.university"
+                            [msg]="'University name must be 3 characters or more!'"></app-validation-msg>
         <br>
 
         <div class="row"><p style="color: white; font-size: 130%;">Faculty</p></div>
         <div class="row">
           <input type="text" class="form-control form-control-lg" placeholder="Faculty" formControlName="faculty">
         </div>
+        <app-validation-msg [formControl]="profileForm.controls.faculty"
+                            [msg]="'Please enter faculty name!'"></app-validation-msg>
         <br>
 
         <div class="row"><p style="color: white; font-size: 130%;">Department</p></div>
         <div class="row">
           <input type="text" class="form-control form-control-lg" placeholder="Department" formControlName="department">
         </div>
+        <app-validation-msg [formControl]="profileForm.controls.department"
+                            [msg]="'Please enter department name!'"></app-validation-msg>
         <br>
 
         <div class="row"><p style="color: white; font-size: 130%;">Graduation Year</p></div>
         <div class="row">
           <input type="text" class="form-control form-control-lg" placeholder="Graduation Year" formControlName="graduationYear">
         </div>
+        <app-validation-msg [formControl]="profileForm.controls.graduationYear"
+                            [msg]="'Please enter your graduation year!'"></app-validation-msg>
         <br>
 
         <div class="row"><p style="color: white; font-size: 130%;">Credit</p></div>
         <select class="custom-select" formControlName="credit">
-          <option selected disabled>Choose Gender</option>
+          <option selected disabled>Choose System</option>
           <option value="CREDIT">Credit</option>
           <option value="MAINSTREAM">Mainstream</option>
           <option value="NA">NA</option>
         </select>
         <br>
+        <app-validation-msg [formControl]="profileForm.controls.credit"
+                            [msg]="'Please choose your discipline!'"></app-validation-msg>
         <br>
 
         <div class="row"><p style="color: white; font-size: 130%;">College ID</p></div>
@@ -85,19 +102,24 @@
           <input type="text" class="form-control form-control-lg" placeholder="College ID" formControlName="collegeId">
         </div>
         <br>
-
+        <app-validation-msg [formControl]="profileForm.controls.collegeId"
+                            [msg]="'College Id must be 4 numbers or more!'"></app-validation-msg>
         <hr>
 
         <div class="row"><p style="color: white; font-size: 130%;">Emergency Contact Name</p></div>
         <div class="row">
           <input type="text" class="form-control form-control-lg" placeholder="Emergency Contact Name" formControlName="emergencyContact_name">
         </div>
+        <app-validation-msg [formControl]="profileForm.controls.emergencyContact_name"
+                            [msg]="'Please enter emergency contact name!'"></app-validation-msg>
         <br>
 
         <div class="row"><p style="color: white; font-size: 130%;">Emergency Contact Relation</p></div>
         <div class="row">
           <input type="text" class="form-control form-control-lg" placeholder="Emergency Contact Relation" formControlName="emergencyContact_relation">
         </div>
+        <app-validation-msg [formControl]="profileForm.controls.emergencyContact_relation"
+                            [msg]="'Please enter emergency contact relation!'"></app-validation-msg>
         <br>
 
         <div class="row"><p style="color: white; font-size: 130%;">Emergency Contact Mobile</p></div>
@@ -105,7 +127,8 @@
           <input type="tel" class="form-control form-control-lg" placeholder="Emergency Contact Mobile" formControlName="emergencyContact_mobile">
           <label style="color: white;">Please do not add the country code</label>
         </div>
-        
+        <app-validation-msg [formControl]="profileForm.controls.emergencyContact_mobile"
+                            [msg]="'Mobile number must be exactly 11 numbers!'"></app-validation-msg>
         <br>
 
 
@@ -113,11 +136,11 @@
         <button type="submit" class="btn btn-outline-dark btn-block mt-4 mb-4"
                         [disabled]="!profileForm.valid"
                         style="color: white; border-color: white;">Submit</button>
-                         
+
       </form>
     </div>
-    
-      
+
+
   </div>
   </header>
 </div>
