@@ -69,7 +69,7 @@ export class UserApplicationComponent implements OnInit {
     .pipe(switchMap(res => {
       this.eventData = res;
       this.team = res['team'];
-      // console.log('fetched event:: \n', this.eventData, '\nteam ::\n', this.team);
+      console.log('fetched event:: \n', this.eventData, '\nteam ::\n', this.team);
 
       const userAnswers = <FormGroup>this.appForm.get('userAnswers');
       this.eventData.questions.forEach(qs => {

@@ -1,10 +1,11 @@
-<h1 class="card-title text-center">Users Events Comp.</h1>
+<!-- <h1 class="card-title text-center">Users Events Comp.</h1> -->
 
-<div class="card border container" style="" name="main-card">
+<div class="card border container" name="main-card">
     <!-- <h1 class="card-title text-center">Users Events Comp.</h1>
     <hr> -->
 
-    <h2 class="card-title text-center">My applications:</h2>
+    <h1 class="card-title text-center">My applications</h1>
+    <br>
     <div class="alert alert-warning text-center" role="alert" *ngIf="appliedTo.length == 0">
         <strong>You have no current applications!</strong> Check the available positions section for any open positions!
     </div>
@@ -41,10 +42,14 @@
             </div>
         </div>
     </div>
+</div>
+<hr>
+<div class="card border container" name="main-card">
 
-    <hr>
+    
 
-    <h2 class="text-center">Available positions:</h2>
+    <h1 class="text-center">Available positions</h1>
+    <br>
     <div class="alert alert-warning text-center" role="alert" *ngIf="didntApply.length == 0">
         <strong>We are Sorry!</strong> There are no available events at the moment!
         please check later and follow our official pages for more information about upcoming events
@@ -53,13 +58,13 @@
     <div *ngIf="didntApply.length > 0">
         <div *ngFor="let ev of didntApply">
             <div *ngIf="ev.eventActive" class="card row shadow" name="event-card">
-                 <div class="col-sm text-center mb-2">
-                <h2 class="">{{ev.team.name}} recruitment</h2>
-              </div>
-              <div class="col-sm text-center">
-                <button class="btn-primary "
+                 <div class="col-md-8 mb-2">
+                    <h2 class="">{{ev.team.name}} recruitment</h2>
+                </div>
+                <div class="col-md-4 float-left">
+                    <button class="btn btn-primary "
                             [routerLink]="['/application', userId, { eventId: ev._id}]">Apply!</button>
-                          </div>
+                </div>
             </div>
         </div>
     </div>

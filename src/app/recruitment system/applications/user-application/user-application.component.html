@@ -1,10 +1,11 @@
 <div class="card shadow-lg container" >
-  <h2 class="card-title text-center ">{{eventData.team.name}} Application</h2>
+  <h1 class="card-title text-center ">{{eventData.team.name}} Application</h1>
+  <br>
   <hr>
 
   <form [formGroup]="appForm" (ngSubmit)="onSubmit(appForm)">
     <!-- <h1 class="card-title">{{team.teamId}} Application</h1> -->
-
+    <br>
     <h4 class="text-center mb-3">Select your preferred subteams</h4>
     <div class="row">
       <div class="col text-center">
@@ -27,6 +28,7 @@
       <p class="alert alert-danger">Subteam choices must be different!</p></span>
 
     <hr>
+    <br>
     <h3 class="text-center mb-3">Upload your CV</h3>
     <!-- <label>Please Upload a Pdf version only.</label> -->
     <!-- <input type="file" class="form-control-file" formControlName="userCV"  -->
@@ -40,7 +42,7 @@
     </div>
     <hr>
 
-    <h3 class="text-center mb-3">Fill in the Application:</h3>
+    <h3 class="text-center mb-3" *ngIf="eventData.questions.length > 0">Fill in the Application</h3>
     <div formGroupName="userAnswers">
 
         <div
@@ -57,11 +59,13 @@
 
 
     <!-- ************ -->
-
-    <button [disabled]="appForm.status == 'INVALID'" type="submit"
+    <div class="row text-center">
+      <button [disabled]="appForm.status == 'INVALID'" type="submit"
         class="btn btn-primary" style="margin: 10px;">Submit</button>
     <button type="button" class="btn btn-danger" style="margin: 10px;"
         [routerLink]="['/dashboard']">Cancel</button>
+    </div>
+    
 
   </form>
 </div>
