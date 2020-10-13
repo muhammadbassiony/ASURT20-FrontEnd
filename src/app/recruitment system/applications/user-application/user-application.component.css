@@ -3,7 +3,11 @@
     float: none; /* Added */
     margin-bottom: 2em; /* Added */
     margin-top: 2em;
-    padding: 30px;
+    /*padding: 30px;*/
+    width: auto;
+    padding: 2em;
+    border-radius: 3px;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.55)
 }
 
 textarea {

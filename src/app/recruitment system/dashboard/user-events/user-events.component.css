@@ -1,16 +1,19 @@
 .card[name="main-card"]{
-    margin: 0 auto; 
-    float: none; 
+    margin: 0 auto;
+    float: none;
     margin-bottom: 2em;
     margin-top: 2em;
     padding: 30px;
 }
 
 .card{
-    float: none; 
+    float: none;
     margin-bottom: 2em;
     /* margin-top: 2em; */
-    padding: 30px;
+    width: auto;
+    padding: 2em;
+    border-radius: 3px;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.55)
 }
 
 /* .card[name="event-card"]{
@@ -24,7 +27,7 @@
     padding: 2%;
     /* padding-inline: 20px;
     padding-inline-end: 1%;
-    padding-inline-start: 3%; 
+    padding-inline-start: 3%;
 } */
 
 .bottom-right {
@@ -42,4 +45,12 @@
 
 button{
     size: 50%;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  /* Set the hr color */
+  color: #333; /* old IE */
+  background-color: #333; /* Modern Browsers */
 }

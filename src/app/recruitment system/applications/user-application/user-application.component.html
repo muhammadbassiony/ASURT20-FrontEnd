@@ -1,20 +1,21 @@
-<div class="card shadow-lg container" style="width: 60%; align-self: center;">
-  <h1 class="card-title">{{eventData.team.name}} Application</h1>
+<div class="card shadow-lg container" >
+  <h2 class="card-title text-center ">{{eventData.team.name}} Application</h2>
+  <hr>
 
   <form [formGroup]="appForm" (ngSubmit)="onSubmit(appForm)">
     <!-- <h1 class="card-title">{{team.teamId}} Application</h1> -->
 
-    <h3>Select your preferred subteams</h3>
+    <h4 class="text-center mb-3">Select your preferred subteams</h4>
     <div class="row">
-      <div class="col">
-        <label>Subteam First Choice</label>
+      <div class="col text-center">
+        <label>Subteam First Choice:</label>
         <select class="form-control" formControlName="selectedSubteam1" >
           <option selected disabled>Choose Subteam...</option>
           <option *ngFor="let st of eventData.activeSubteams" [ngValue]="st">{{ st.name }}</option>
         </select>
       </div>
-      <div class="col">
-        <label>Subteam Second Choice</label>
+      <div class="col text-center">
+        <label>Subteam Second Choice:</label>
         <select id="" class="form-control" formControlName="selectedSubteam2">
           <option selected disabled>Choose Subteam...</option>
           <option *ngFor="let st of eventData.activeSubteams" [ngValue]="st">{{ st.name }}</option>
@@ -26,32 +27,40 @@
       <p class="alert alert-danger">Subteam choices must be different!</p></span>
 
     <hr>
-    <h3>Upload your CV</h3>
+    <h3 class="text-center mb-3">Upload your CV</h3>
     <!-- <label>Please Upload a Pdf version only.</label> -->
     <!-- <input type="file" class="form-control-file" formControlName="userCV"  -->
-    <input type="file" class="form-control-file" style="margin: 20px;"
+    <div class="col text-center mb-2">
+    <input type="file" class="form-control-file"
       accept="application/pdf" (input)="onCvSelected($event.target.files)">
-    <label>Please Upload a Pdf version only. 
+    </div>
+    <div class="col text-center">
+    <label class="text-info">*Please Upload a Pdf version only.
       Maximum file size is 5 MB.</label>
+    </div>
     <hr>
 
-    <h2>Fill in the Application</h2>
+    <h3 class="text-center mb-3">Fill in the Application:</h3>
     <div formGroupName="userAnswers">
-      
-        <div style="margin: 20px;"
+
+        <div
           *ngFor="let q of objectKeys(appForm['controls'].userAnswers['controls']); let i = index">
-            <h3>{{q}}</h3>
-            <textarea rows="3" cols="80" [formControlName]="q"></textarea>
+          <div class="col ">
+            <h3>{{q}} :</h3>
+          </div>
+          <div class="col text-center">
+            <textarea class="form-control" rows="3" cols="80" [formControlName]="q"></textarea>
+          </div>
         </div>
-      
+
     </div>
 
 
     <!-- ************ -->
-    
-    <button [disabled]="appForm.status == 'INVALID'" type="submit" 
+
+    <button [disabled]="appForm.status == 'INVALID'" type="submit"
         class="btn btn-primary" style="margin: 10px;">Submit</button>
-    <button type="button" class="btn btn-danger" style="margin: 10px;" 
+    <button type="button" class="btn btn-danger" style="margin: 10px;"
         [routerLink]="['/dashboard']">Cancel</button>
 
   </form>
