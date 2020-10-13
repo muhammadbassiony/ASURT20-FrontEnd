@@ -18,6 +18,7 @@ export class ShellComponent implements OnInit {
   photorollId = null;
   compId: string;
   comp: Competition;
+  awards = null;
 
   constructor(
     private errorService: ErrorService,
@@ -33,6 +34,7 @@ export class ShellComponent implements OnInit {
     this.competitionsService.getCompetition(this.compId)
     .subscribe(res => {
       this.comp = res;
+      this.awards = this.comp.awards;
       this.photorollId = this.comp.photoroll;
     }, error => {
       this.errorService.ErrorCaught.next({ErrorMsg: error.message, Url: '/home'});

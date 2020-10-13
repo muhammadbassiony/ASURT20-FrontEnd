@@ -41,8 +41,9 @@
     </div>
 
 
-    <!-- awards -->
-    <app-competition-awards [compColor]=competitionColor></app-competition-awards>
+    <div *ngIf="awards">
+        <app-competition-awards [compColor]=competitionColor [awards]=awards></app-competition-awards>
+    </div>
 
     <div class="container">
         <div class="row py-5">

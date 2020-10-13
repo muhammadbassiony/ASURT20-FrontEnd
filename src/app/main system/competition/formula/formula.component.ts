@@ -37,7 +37,6 @@ export class FormulaComponent implements OnInit {
     .subscribe(res => {
       this.comp = res;
       this.awards = this.comp.awards;
-      console.log('COMP :: ', this.comp, this.awards);
       this.photorollId = this.comp.photoroll;
     }, error => {
       this.errorService.ErrorCaught.next({ErrorMsg: error.message, Url: '/home'});
