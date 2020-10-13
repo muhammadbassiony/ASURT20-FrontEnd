@@ -46,6 +46,7 @@ a:hover {
   position: fixed;
   top: 0;
   left: 0;
+  min-height: 15em;
   height: 15em;
   width: 100%;
   padding-left: 10em;
@@ -54,15 +55,17 @@ a:hover {
   align-items: center;
   /*justify-content: center;*/
   box-shadow: 0 2em 4em rgba(0, 0, 0, 0.4);
-  transition: all 0.3s;
+  transition: all 0.7s;
   z-index: 2000;
 }
 @media only screen and (max-width: 900px)  {
   .header {
+    min-height: 43em;
+    height: auto;
+    max-height: 90em;
     padding: 0;
-    height: unset;
     flex-direction: column;
-    overflow: auto;
+    transition: all 0.7s;
   }
 }
 .header-min {
@@ -77,11 +80,17 @@ a:hover {
     padding: 0;
   }
   .header-closed {
-    /*height: 15em;*/
+    min-height: 15em;
+    height: 15em;
+    max-height: 15em;
+    transition: all 0.7s;
   }
   .header-closed > .navigation,
   .header-closed > .social-links {
-    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-100%);
+    /*display: none;*/
   }
 }
 .header-toggle {
@@ -142,8 +151,11 @@ a:hover {
   height: 100%;
 }
 .navigation {
+  opacity: 1;
   margin-right: 6em;
-  transition: all 0.3s;
+  transition: all 0.7s;
+  visibility: visible;
+  transform: translateY(0);
 }
 @media only screen and (max-width: 900px)  {
   .navigation {
@@ -163,7 +175,7 @@ a:hover {
 }
 .navigation__item {
   padding: 2.5em;
-  transition: all .3s;
+  transition: all 0.7s;
 }
 @media only screen and (max-width: 900px) {
   .navigation__item {
@@ -182,7 +194,7 @@ a:hover {
   font-size: 2em;
   color: white;
   text-decoration: none;
-  transition: all .3s;
+  transition: all 0.7s;
 }
 .navigation__link:hover,
 .navigation__link:active,
@@ -196,7 +208,7 @@ a:hover {
   justify-content: center;
   align-items: center;
   margin-right: 6em;
-  transition: all 0.3s;
+  transition: all 0.7s;
 }
 @media only screen and (max-width: 900px) {
   .social-links {
