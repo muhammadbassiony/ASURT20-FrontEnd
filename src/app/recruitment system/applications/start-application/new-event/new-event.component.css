@@ -1,9 +1,21 @@
-.card {
-    margin: 0 auto; /* Added */
-    float: none; /* Added */
-    margin-bottom: 2em; /* Added */
+.card[name="main-card"]{
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 2em;
     margin-top: 2em;
     padding: 30px;
+}
+
+.card{
+    float: none;
+    margin-bottom: 4em;
+    /* margin-top: 2em; */
+    /*padding: 30px;*/
+    /* SAMY EDIT */
+    width: auto;
+    padding: 2em;
+    border-radius: 3px;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.55)
 }
 
 .std-btn {

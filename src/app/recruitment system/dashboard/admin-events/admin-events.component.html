@@ -1,4 +1,4 @@
-<div class="card border shadow-lg container" style="" name="main-card">
+<div class="card border shadow-lg container" name="main-card">
     <div class="col-sm-12 text-center"><h1 class="h1 card-title">Admin Events Comp.</h1></div>
     <div class="row" style="float: right;">
         <div class="col-sm-4">
@@ -21,8 +21,8 @@
                 <p>{{ event.season }} Season</p>
             </div>
             <div class="col text-center">
-                <button *ngIf="!event.eventActive" class="btn-success" (click)="onStatusClick(event._id)">Activate</button>
-                <button *ngIf="event.eventActive" class="btn-danger" (click)="onStatusClick(event._id)">Deactivate</button>
+                <button *ngIf="!event.eventActive" class="btn btn-success std-btn" (click)="onStatusClick(event._id)">Activate</button>
+                <button *ngIf="event.eventActive" class="btn btn-danger std-btn" (click)="onStatusClick(event._id)">Deactivate</button>
             </div>
         </div>
         <hr>

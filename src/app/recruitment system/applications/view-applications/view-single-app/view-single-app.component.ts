@@ -87,7 +87,6 @@ export class ViewSingleAppComponent implements OnInit {
         this.user = this.app.user;
         this.questions = this.app.userAnswers;
         this.pdfSRC = this.backend_uri + this.app.cvPath;
-        // console.log('PDF SRC :: ', this.pdfSRC);
         
         this.viewAppForm = new FormGroup({
           applicationPhase: new FormControl(this.app.currentPhase),
