@@ -53,15 +53,16 @@ a:hover {
   display: flex;
   align-items: center;
   /*justify-content: center;*/
-   box-shadow: 0 2em 4em rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2em 4em rgba(0, 0, 0, 0.4);
   transition: all 0.3s;
   z-index: 2000;
 }
 @media only screen and (max-width: 900px)  {
   .header {
     padding: 0;
-    height: 80em;
+    height: unset;
     flex-direction: column;
+    overflow: auto;
   }
 }
 .header-min {
@@ -72,11 +73,11 @@ a:hover {
 }
 @media only screen and (max-width: 900px) {
   .header-min {
-    height: 78em;
+    height: unset;
     padding: 0;
   }
   .header-closed {
-    height: 15em;
+    /*height: 15em;*/
   }
   .header-closed > .navigation,
   .header-closed > .social-links {
@@ -128,8 +129,8 @@ a:hover {
 @media only screen and (max-width: 900px) {
   .logo-container {
     font-size: 7px;
-    max-height: 11em;
-    margin: 2em auto 0 auto;
+    height: 11em;
+    margin: 2em auto 2em auto;
   }
 }
 
