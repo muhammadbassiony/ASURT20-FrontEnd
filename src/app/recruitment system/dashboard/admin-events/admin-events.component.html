@@ -1,6 +1,7 @@
 <div class="card border shadow-lg container" name="main-card">
-    <div class="col-sm-12 text-center"><h1 class="h1 card-title">Admin Events Comp.</h1></div>
-    <div class="row" style="float: right;">
+    <div class="col-sm-12 text-center"><h1 class="h1 card-title">Manage Recruitment Events</h1></div>
+    <br>
+    <div class="row float-right">
         <div class="col-sm-4">
             <button class="btn btn-outline-success std-btn"
                     [routerLink]="['/manage-interviews']">
@@ -10,10 +11,12 @@
             <button class="btn-outline-primary btn std-btn" [routerLink]="['/event/new']">Start New Event!</button>
         </div>
     </div>
+    <br>
     <hr>
-    <div class="col text-center mb-3 text-primary">
+    <br>
+    <!-- <div class="col text-center mb-3 text-primary">
       <h2>Team Application Info</h2>
-    </div>
+    </div> -->
     <div *ngFor="let event of allEvents" class="card col-sm-12 shadow " name="event-card">
         <div class="row">
             <div class="col text-center">

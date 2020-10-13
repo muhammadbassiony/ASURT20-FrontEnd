@@ -86,6 +86,8 @@ export class NewEventComponent implements OnInit {
 
   cancel(){
     //remove all data and go back to dashboard here
+    this.newEventForm.reset();
+    this.router.navigate(['dashboard']);
   }
 
 }

@@ -35,8 +35,8 @@ hr {
   border: none;
   height: 1px;
   /* Set the hr color */
-  color: #333; /* old IE */
-  background-color: #333; /* Modern Browsers */
+  color: rgb(97, 97, 97); /* old IE */
+  background-color: rgb(97, 97, 97); /* Modern Browsers */
 }
 .bottom-right {
     /* position: absolute; */
@@ -54,7 +54,7 @@ hr {
 
 .std-btn {
     /* margin-left: 60%; */
-    border: none;
+    /* border: none; */
     /* padding: 10px; */
     border-radius: 3px;
     -webkit-border-radius: 3px;
