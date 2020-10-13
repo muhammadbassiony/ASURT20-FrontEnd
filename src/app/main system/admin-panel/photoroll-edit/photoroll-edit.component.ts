@@ -74,6 +74,8 @@ export class PhotorollEditComponent implements OnInit {
   newImg: File = null;
   onImgAdded(files: FileList) {
     this.newImg = files.item(0);
+    if(!this.newImg) return;
+    
     this.newPhotos.push(this.newImg);
 
     const control = new FormControl(this.newImg, [], [ImgMimeType]); 
