@@ -99,7 +99,7 @@ export class CompetitionsService {
     awardData.append('title', newAward.title);
     awardData.append('description', newAward.description);
     awardData.append('awardImg', newAward.awardImg);
-    console.log('COMPSERVICE - ADD NEW AWARD FD :: \n', awardData);
+    console.log('COMPSERVICE - ADD NEW AWARD FD :: \n', awardData.get('title'), awardData.get('awardImg'));
 
     return this.http.post(
       backend_uri + '/main/competitions/add-award/' + compId,

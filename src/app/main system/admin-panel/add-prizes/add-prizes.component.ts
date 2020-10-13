@@ -14,6 +14,8 @@ import { Award } from "../../models/award.model";
 import { Competition } from '../../models/competition.model';
 import { CompetitionsService } from '../../services/competitions.service';
 
+import { environment } from '../../../../environments/environment';
+
 @Component({
   selector: 'app-add-prizes',
   templateUrl: './add-prizes.component.html',
@@ -21,8 +23,7 @@ import { CompetitionsService } from '../../services/competitions.service';
 })
 export class AddPrizesComponent implements OnInit {
 
-  // THIS APPROACH SHOULD BE CHANGED LATER
-  backend_uri = 'http://localhost:3000/';
+  backend_uri = environment.backend_uri_static;
 
   selectedImg: File = null;
   allComps: any;
@@ -82,7 +83,7 @@ export class AddPrizesComponent implements OnInit {
     let newAward: Award = {
       title: this.awardsForm.value.title,
       description: this.awardsForm.value.description,
-      awardImg: this.awardsForm.value.image
+      awardImg: this.newImg
     };
 
     console.log('AWARD EDIT : FROM :: \n', this.awardsForm);
