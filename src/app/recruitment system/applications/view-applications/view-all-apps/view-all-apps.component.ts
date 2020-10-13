@@ -8,6 +8,7 @@ import {ViewSingleAppComponent}  from '../view-single-app/view-single-app.compon
 
 import { ActivatedRoute, Params, Router, Data } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import {Location} from "@angular/common";
 import { map, switchMap } from 'rxjs/operators';
 import { Observable, pipe, Subscription } from 'rxjs';
 
@@ -30,16 +31,17 @@ export class ViewAllAppsComponent implements OnInit {
   query: string; //search query -- dont remove
 
   constructor(
-    private applicationsService: ApplicationsService, 
+    private applicationsService: ApplicationsService,
     private usersService: UserService,
     private eventsService: EventsService,
     private http: HttpClient,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private location: Location) { }
 
   ngOnInit(): void {
     this.eventId = this.route.snapshot.paramMap.get('eventId');
-    
+
     this.eventsService.getEvent(this.eventId)
     .pipe(switchMap(res => {
       console.log('fetched the event itself ::', res);
@@ -56,7 +58,7 @@ export class ViewAllAppsComponent implements OnInit {
   }
 
   update():void{
-    
+
   }
   // getUser(userId: string){
   //   return this.usersService.getUser(userId);
@@ -73,9 +75,13 @@ export class ViewAllAppsComponent implements OnInit {
     } // when nothing has typed
     else{
       this.filteredItems = Object.assign([], this.allApps).filter(
-      item => (item.user.name.toLowerCase().indexOf(value.toLowerCase()) > -1  || item.user.email.toLowerCase().indexOf(value.toLowerCase()) > -1) 
-      
+      item => (item.user.name.toLowerCase().indexOf(value.toLowerCase()) > -1  || item.user.email.toLowerCase().indexOf(value.toLowerCase()) > -1)
+
       )
-    } 
+    }
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

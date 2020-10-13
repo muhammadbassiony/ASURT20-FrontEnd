@@ -5,10 +5,11 @@ import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
 import interactionPlugin from '@fullcalendar/interaction'; // a plugin
 import { DateSelectArg, EventClickArg, EventApi } from '@fullcalendar/angular';
 
-  
+
 import { ActivatedRoute, Params, Router, Data } from '@angular/router';
 
 import { HttpClient } from '@angular/common/http';
+import {Location} from "@angular/common";
 import { map, switchMap } from 'rxjs/operators';
 import { Observable, pipe, Subscription } from 'rxjs';
 
@@ -24,7 +25,7 @@ import { EventsService } from '../../services/events.service';
   styleUrls: ['./admin-interviews.component.css']
 })
 export class AdminInterviewsComponent implements OnInit {
-  
+
   eventId: string;
 
   calendarOptions: CalendarOptions;
@@ -41,8 +42,9 @@ export class AdminInterviewsComponent implements OnInit {
     private eventsService: EventsService,
     private http: HttpClient,
     private route: ActivatedRoute,
-    private router: Router) 
-    { 
+    private router: Router,
+    private location: Location)
+    {
       const name = Calendar.name;
     }
 
@@ -74,11 +76,11 @@ export class AdminInterviewsComponent implements OnInit {
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
     };
 
-    this.calendarOptions.validRange = { 
+    this.calendarOptions.validRange = {
       //set dynamically according to recieved Recruitment event interviews range
-      start: '2020-08-12', 
-      end: '2023-05-29' 
-    }; 
+      start: '2020-08-12',
+      end: '2023-05-29'
+    };
     this.calendarOptions.navLinks = true;
     this.calendarOptions.height = 1140;
 
@@ -106,7 +108,7 @@ export class AdminInterviewsComponent implements OnInit {
     //   { title: 'event 2', date: '2020-08-20', backgroundColor: 'yellow' }
     // ];
 
-    
+
     this.calendarOptions.select = this.addNewSlot.bind(this);
     // this.calendarOptions.eventsSet = (x) => {
     //   console.log("xx\n", x);
@@ -116,7 +118,7 @@ export class AdminInterviewsComponent implements OnInit {
     this.calendarOptions.eventAdd = (x) => {
       // console.log("eventAdd",x);
     };
-    
+
   }
 
   getDiffInMinutes(start: Date, end: Date){
@@ -129,15 +131,15 @@ export class AdminInterviewsComponent implements OnInit {
     console.log(typeof(selectInfo), selectInfo);
     const calendarApi = selectInfo.view.calendar;
 
-    let start = new Date(selectInfo.start); 
-    let end = new Date(selectInfo.end); 
+    let start = new Date(selectInfo.start);
+    let end = new Date(selectInfo.end);
     if(this.getDiffInMinutes(start, end) != 45){
-      return false; 
+      return false;
     }
     // console.log(selectInfo.startStr, '\n',selectInfo.endStr,  '\n',
     //   selectInfo.allDay, '\n', selectInfo.start, '\n', selectInfo.end);
 
-    let newIntrv = { 
+    let newIntrv = {
       start: new Date(selectInfo.startStr),
       end: new Date(selectInfo.endStr),
       title: "Empty Slot",
@@ -179,7 +181,7 @@ export class AdminInterviewsComponent implements OnInit {
   //   this.calendarOptions.headerToolbar = {
   //     left: 'prev,next myCustomButton',
   //     center: 'title',
-  //     right: '' 
+  //     right: ''
   //   };
   // }
 
@@ -194,4 +196,7 @@ export class AdminInterviewsComponent implements OnInit {
   //   }];
   // }
 
+  goBack(): void {
+    this.location.back();
+  }
 }

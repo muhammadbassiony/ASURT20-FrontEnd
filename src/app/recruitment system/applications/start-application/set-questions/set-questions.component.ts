@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, 
-  FormControl, 
-  FormGroup, 
-  Validators, 
-  ReactiveFormsModule, 
-  RequiredValidator, 
+import {FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+  RequiredValidator,
   FormArray} from '@angular/forms';
 
 import { ActivatedRoute, Params, Router, Data } from '@angular/router';
 
 import { HttpClient } from '@angular/common/http';
+import {Location} from "@angular/common";
 import { map, switchMap, toArray } from 'rxjs/operators';
 import { Observable, pipe, Subscription } from 'rxjs';
 
@@ -36,12 +37,14 @@ export class SetQuestionsComponent implements OnInit {
 
   questionsForm: FormGroup;
 
-  constructor(private http: HttpClient,
-    private fb: FormBuilder, 
+  constructor(
+    private http: HttpClient,
+    private fb: FormBuilder,
     private eventsService: EventsService,
-    private teamsService: TeamsService, 
+    private teamsService: TeamsService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private location: Location) { }
 
     keys() : Array<string> {
       var keys = Object.values(ApplicationPhase);
@@ -53,7 +56,7 @@ export class SetQuestionsComponent implements OnInit {
   ngOnInit(): void {
     this.eventId = this.route.snapshot.queryParamMap.get('eventId');
     this.phases = this.keys();
-    
+
     this.questionsForm = this.fb.group({
       'phase': [ '', Validators.required],
       'activeSubs': this.fb.group({}),
@@ -81,7 +84,7 @@ export class SetQuestionsComponent implements OnInit {
       // console.log(this.questionsForm);
     });
 
-    
+
   }
 
   onAddQuestion() {
@@ -108,7 +111,7 @@ export class SetQuestionsComponent implements OnInit {
       if(this.questionsForm.value.activeSubs[j._id]){
         newSubs.push(j._id);
       }
-    }    
+    }
     this.eventData.activeSubteams = newSubs;
     this.eventData.eventActive = true; //activate here
     this.eventData.currentPhase = this.model;
@@ -121,8 +124,10 @@ export class SetQuestionsComponent implements OnInit {
       this.router.navigate(['dashboard']);
     });
 
-    
+
   }
-  
+  goBack() {
+    this.location.back();
+  }
 
 }
