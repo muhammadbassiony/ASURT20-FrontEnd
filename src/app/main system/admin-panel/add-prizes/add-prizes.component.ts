@@ -41,7 +41,7 @@ export class AddPrizesComponent implements OnInit {
     this.competitionsService.getAllCompetitionsPopulated()
     .subscribe(res => {
       this.allComps = res;
-      console.log('GOT ALL COMPS :: \n', this.allComps);
+      // console.log('GOT ALL COMPS :: \n', this.allComps);
     });
 
     this.awardsForm = this.fb.group({
@@ -52,7 +52,7 @@ export class AddPrizesComponent implements OnInit {
   }
 
   onCompSelect(){
-    console.log('COMP CHANGE :: CURRENT COMP :: \n', this.currentComp);
+    // console.log('COMP CHANGE :: CURRENT COMP :: \n', this.currentComp);
     this.currentComp.awards.forEach(aw => {
       let im = this.backend_uri + aw['imagePath'];
       aw['path'] = im;
@@ -86,7 +86,7 @@ export class AddPrizesComponent implements OnInit {
       awardImg: this.newImg
     };
 
-    console.log('AWARD EDIT : FROM :: \n', this.awardsForm);
+    // console.log('AWARD EDIT : FROM :: \n', this.awardsForm);
     this.competitionsService.addNewAward(this.currentComp._id, newAward)
     .subscribe(res => {
       alert('Award added succesfully!');

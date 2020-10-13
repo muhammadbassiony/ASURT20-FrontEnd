@@ -1,6 +1,10 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { Award } from '../../models/award.model';
-// import { AwardsService } from '../../services/award.service';
+
+import { CompetitionsService } from '../../services/competitions.service';
+import { ErrorService } from '../../../shared/errorModal/error.service';
+
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-competition-awards',
@@ -9,21 +13,31 @@ import { Award } from '../../models/award.model';
 })
 export class CompetitionAwardsComponent implements OnInit{
 
-  awards: Award[];
-  images: any;
-  // compColor = '#800000';
+  // awards: Award[];
+  // images: any;
+  backend_uri = environment.backend_uri_static;
+  
   @Input('compColor') compColor: string;
+  @Input('awards') awards = null;
 
-  constructor() { }
+  constructor(
+    private errorService: ErrorService,
+    private competitionsService: CompetitionsService
+  ) { }
   
   ngOnInit(): void {
-    // this.prizeService.getPrize(this.competitionName).toPromise()
-    // .then(prizes=>{
-    //   this.prizes=prizes;
-    // })
-    // .catch()
-    // this.awards = this.awardsService.dummyPrizes;
-    this.images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
+    // for(let awId of this.awardIds){
+    //   console.log('AWARDS ID :: ', awId);
+    //   this.competitionsService.
+    // }
+    // if(this.awards) 
+    console.log('RECEIVED AWARDSSSS :: \n', this.awards);
+    for(let aw of this.awards){
+      aw.img = this.backend_uri + aw.imagePath;
+    }
+    console.log('RECEIVED AWARDSSSS 222 :: \n', this.awards);
+    
+    // this.images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
   
   }
 

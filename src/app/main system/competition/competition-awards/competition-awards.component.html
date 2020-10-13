@@ -12,20 +12,20 @@
 <div class="d-flex justify-content-between ph" style="margin-bottom: 35px;">
 
 
-<ngb-carousel *ngIf="images">
-    <!-- <div *ngFor="let award of awards; let i = index">
-        <ng-template ngbSlide >
-            <p style="color: black;">{{ award }}</p>
+<ngb-carousel *ngIf="awards">
+    <!-- <div *ngFor="let award of awards; let i = index"> -->
+        <ng-template ngbSlide *ngFor="let award of awards; let i = index">
+            
             <div class="picsum-img-wrapper">
-              <img [src]="images[i]" alt="Award Photo">
+              <img [src]="award.img" alt="Award Photo">
             </div>
             <div class="carousel-caption">
               <h3>{{ award.title }}</h3>
               <p>{{ award.description }}</p>
             </div>
           </ng-template>
-    </div> -->
-    
+    <!-- </div> -->
+<!--     
     <ng-template ngbSlide >
       <div class="picsum-img-wrapper">
         <img [src]="images[0]" alt="Random first slide">
@@ -52,7 +52,7 @@
         <h3>Third slide label</h3>
         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
       </div>
-    </ng-template>
+    </ng-template> -->
   </ngb-carousel>
 
 </div>
