@@ -1,16 +1,17 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import {FormBuilder, 
-    FormControl, 
-    FormGroup, 
-    Validators, 
-    ReactiveFormsModule, 
-    RequiredValidator, 
+import {FormBuilder,
+    FormControl,
+    FormGroup,
+    Validators,
+    ReactiveFormsModule,
+    RequiredValidator,
     FormArray} from '@angular/forms';
 
-    
+
 import { ActivatedRoute, Params, Router, Data } from '@angular/router';
 
 import { HttpClient } from '@angular/common/http';
+import {Location} from "@angular/common";
 import { map, switchMap } from 'rxjs/operators';
 import { Observable, pipe, Subscription } from 'rxjs';
 
@@ -30,12 +31,12 @@ import { pdfMimeType } from './pdf-mime-type.validator';
   styleUrls: ['./user-application.component.css']
 })
 export class UserApplicationComponent implements OnInit {
-  
+
   newApp: Application;
 
   appForm: FormGroup;
   userAnswers: FormGroup;
-  
+
   eventId: string;
   userId: string;
 
@@ -44,13 +45,14 @@ export class UserApplicationComponent implements OnInit {
   team: any;
 
   constructor(
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private applicationsService: ApplicationsService,
     private eventsService: EventsService,
     private usersService: UserService,
     private http: HttpClient,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private location: Location) { }
 
 
   ngOnInit(): void {
@@ -58,12 +60,12 @@ export class UserApplicationComponent implements OnInit {
     this.userId = this.route.snapshot.paramMap.get('userId');
 
     this.appForm = this.fb.group({
-      'selectedSubteam1': [ , [Validators.required]],   
+      'selectedSubteam1': [ , [Validators.required]],
       'selectedSubteam2': [ , [Validators.required]],
       'userCV': [ , [Validators.required], [pdfMimeType]],
       'userAnswers': this.fb.group({})
     });
-    
+
 
     this.eventsService.getEvent(this.eventId)
     .pipe(switchMap(res => {
@@ -75,7 +77,7 @@ export class UserApplicationComponent implements OnInit {
       this.eventData.questions.forEach(qs => {
         userAnswers.addControl(qs, new FormControl('', [Validators.required, Validators.minLength(15)]));
       });
-      
+
       return this.usersService.getUser(this.userId);
     }))
     .subscribe(res => {
@@ -116,6 +118,9 @@ export class UserApplicationComponent implements OnInit {
     return same && touched1 && touched2;
   }
 
+  goBack() {
+    this.location.back();
+  }
 
   onSubmit(appForm: FormGroup){
     // console.log(appForm.value);

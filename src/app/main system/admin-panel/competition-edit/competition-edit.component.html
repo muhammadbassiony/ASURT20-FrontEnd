@@ -1,8 +1,9 @@
 <main class="row p-5 utility-min-height" style="background-color: #b21212;">
+  <a class="btn btn-primary ml-3 mt-3"  (click)="goBack()">&lt;&lt;Back</a>
 
 <div class="container justify-content-center align-items-center" style="margin-left: 30%; margin-right: 30%;">
 
-  <div class="row form-group text-light" style="margin-top: 60px; margin-bottom: 20px;"><h1>Choose competition to view</h1></div>
+  <div class="row form-group text-light" style="margin-top: 20px; margin-bottom: 20px;"><h1>Choose competition to view</h1></div>
   <hr>
 
   <div class="row form-group form-check" *ngFor="let cmp of allComps; let i = index">

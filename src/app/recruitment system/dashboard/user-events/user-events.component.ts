@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router, Data } from '@angular/router';
 
 import { HttpClient } from '@angular/common/http';
+import { Location } from "@angular/common";
 import { map, switchMap } from 'rxjs/operators';
 import { Observable, pipe, Subscription } from 'rxjs';
 
@@ -21,7 +22,7 @@ export class UserEventsComponent implements OnInit {
 
   allEvents: Event[];
 
-  // userId: string; 
+  // userId: string;
   userApps: any;
   // modEvents = [];
   appliedTo: any;
@@ -31,14 +32,15 @@ export class UserEventsComponent implements OnInit {
 
   constructor(
     private eventsService: EventsService,
-    private applicationsService: ApplicationsService, 
+    private applicationsService: ApplicationsService,
     private usersService: UserService,
     private http: HttpClient,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private location: Location) { }
 
   ngOnInit(): void {
-     
+
     this.applicationsService.getUserEvents(this.userId)
     .pipe(switchMap(res => {
       this.appliedTo = res['appliedTo'];
@@ -49,12 +51,11 @@ export class UserEventsComponent implements OnInit {
     .subscribe(res => {
       this.userApps = res; //getting the user apps as appliedTo contains events only
       // didntApply := user doesnt have apps to those duh!
-      // console.log('resss ::\n', this.userApps); 
+      // console.log('resss ::\n', this.userApps);
     });
-
-    
-    
   }
-    
+  goBack() {
+    this.location.back();
+  }
 
 }
