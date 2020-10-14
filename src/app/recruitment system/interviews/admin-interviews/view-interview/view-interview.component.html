@@ -2,7 +2,8 @@
 
 <div class="card border container" name="main-card" *ngIf="!isLoading">
 
-    <div class="row">
+  <a class="btn btn-primary ml-3 mt-3"  (click)="goBack()">&lt;&lt;Back</a>
+  <div class="row">
         <div class="col-sm-8"><h1 class="card-title">Manage individual interviews</h1></div>
         <div class="col-sm-4"><button class="btn-danger std-btn float-right" (click)="deleteInterview()">Delete Interview!</button></div>
     </div>
@@ -30,6 +31,6 @@
             <button class="btn btn-success std-btn float-right" style="margin-right: 5%;" (click)="onSubmit()">Confirm</button>
         </div>
     </div>
-    
+
 </div>
 

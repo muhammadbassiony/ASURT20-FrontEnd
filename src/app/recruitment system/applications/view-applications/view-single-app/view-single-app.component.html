@@ -1,6 +1,6 @@
-<a class=" m-4" (click)="goBack()">&lt;&lt;Back</a>
+<a class="btn btn-primary ml-3 mt-3"  (click)="goBack()">&lt;&lt;Back</a>
 <div class="card border shadow-lg container"  name="main-card">
-    
+
     <div class="center" *ngIf="app">
 
         <h1 class=" my-4 card-title" style="font-size: 220%;">
@@ -28,8 +28,8 @@
         </p>
 
         <br>
-    
-        
+
+
         <label>University </label>
         <p style="font-size: 140%;">
             {{user.university}}
@@ -39,7 +39,7 @@
         <p style="font-size: 140%;">
             {{user.faculty}}
         </p>
-        <br> 
+        <br>
         <label>Department</label>
         <p style="font-size: 140%;">
             {{user.department}}
@@ -63,7 +63,7 @@
                 </h3>
             </div>
         </div>
-        
+
 
         <div *ngFor="let q of questions" style="margin: 30px 25px;">
             <label style="font-size:100%; color: rgb(158, 12, 41);">{{q.question}}</label>
@@ -73,14 +73,14 @@
         <hr>
         <h2>Applicant's CV</h2>
         <br>
-        
+
         <pdf-viewer [src]="pdfSRC" [render-text]="true" style="display: block; height: 100vh;"
             [zoom-scale]="page-width"></pdf-viewer>
         <br>
         <button class="st-btn btn-outline-primary" (click)="downloadCV()">Download CV</button>
         <br>
         <hr>
-        
+
         <h2>Update Application status </h2>
         <br>
         <div class="col-md-6">
@@ -91,13 +91,13 @@
             <select class="custom-select" [(ngModel)]="app.currentPhaseStatus" style="margin: 15px;">
                 <option *ngFor="let s of statuses " [value]="s">{{ s }}</option>
             </select>
-        
-            <button type="submit " class="btn-success rounded m-3 text-floral-white bottom-right " 
+
+            <button type="submit " class="btn-success rounded m-3 text-floral-white bottom-right "
                 (click)="onSubmit()">Save Changes</button>
         </div>
 
     </div>
-    
-    
-    
+
+
+
 </div>

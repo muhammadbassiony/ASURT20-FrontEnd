@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router, Data } from '@angular/router';
 
 import { HttpClient } from '@angular/common/http';
+import {Location} from "@angular/common";
 import { map, switchMap } from 'rxjs/operators';
 import { from, Observable, pipe, Subscription } from 'rxjs';
 
@@ -23,7 +24,7 @@ export class ViewInterviewComponent implements OnInit {
 
   model = InterviewStatus.scheduled;
   statuses: string[];
-  ivId: string; 
+  ivId: string;
   interview: any;
   app: string;
   isLoading = true;
@@ -39,11 +40,12 @@ export class ViewInterviewComponent implements OnInit {
     private interviewsService: InterviewsService,
     private http: HttpClient,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private location: Location) { }
 
   ngOnInit() {
     console.log('VIEW SINGLE IV HEREEEE :: \n\n');
-    
+
     this.ivId = this.route.snapshot.paramMap.get('ivId');
     console.log('RECEIVED ID ::', this.ivId);
     // this.model = null;
@@ -61,7 +63,7 @@ export class ViewInterviewComponent implements OnInit {
       console.log('THIS . INTERVIEW', this.interview);
 
     })
-    
+
   }
 
   onSubmit(){
@@ -79,6 +81,9 @@ export class ViewInterviewComponent implements OnInit {
       // console.log('INTRV DELETE :: \N', res);
       this.router.navigate(['manage-interviews']);
     });
+  }
+  goBack() {
+    this.location.back();
   }
 
 }

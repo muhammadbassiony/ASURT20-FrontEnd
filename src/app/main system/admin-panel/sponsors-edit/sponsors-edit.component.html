@@ -15,10 +15,11 @@
 </div>
 
 <div style="background-color: #b21212">
-    <div class="row">
+  <a class="btn btn-primary ml-3 mt-3"  (click)="goBack()">&lt;&lt;Back</a>
+  <div class="row">
         <div class="col-12">
-            <div class="card">
-                <div class="card-header card-header-text card-header-info">
+            <div class="card border-0">
+                <div class="card-header card-header-text card-header-info border-0">
                     <div class="card-text">
                         <h4 class="card-title text-center text-white">Sponsors Dashboard</h4>
                     </div>
@@ -30,8 +31,8 @@
     <div class="container text-center min-vh-100" *ngIf="isGettingSponsors">
         <app-loading-spinner></app-loading-spinner>
     </div>
-    
-    
+
+
 
     <div [ngStyle]="{'display': !isGettingSponsors? 'block': 'none'}">
         <h4 class="m-3 text-center text-white"> Select the sponsors to display on the website</h4>
@@ -44,7 +45,7 @@
                     <input type="checkbox" class="custom-checkbox" [(ngModel)]="sponsor.isChecked">
                     <h6 class="d-inline pt-4 text-white ml-3">{{sponsor.name}}</h6>
                     <button class="btn btn-success btn-block" style="width: 40%; margin-top: 15px;" (click)="onEditSponsor(sponsor)">edit</button>
-                    
+
                 </div>
             </div>
         </div>

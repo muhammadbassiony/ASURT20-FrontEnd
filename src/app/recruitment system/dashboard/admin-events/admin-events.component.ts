@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
+import {Location} from "@angular/common";
 import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
@@ -27,11 +28,12 @@ export class AdminEventsComponent implements OnInit {
   allEvents: Event[];
 
   constructor(
-    private http: HttpClient, 
+    private http: HttpClient,
     private eventsService: EventsService,
     private applicationsService: ApplicationsService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private location: Location) { }
 
   ngOnInit(): void {
     this.eventsService.getAllEvents()
@@ -44,7 +46,7 @@ export class AdminEventsComponent implements OnInit {
   onStatusClick(eId: string){
     this.eventsService.toggleEventStatus(eId)
     .subscribe(res => {
-      //res is the updated event 
+      //res is the updated event
       let indx = this.allEvents.findIndex(e => e._id === eId);
       this.allEvents[indx] = <Event>res;  //update event in current all events array
     })
@@ -60,7 +62,7 @@ export class AdminEventsComponent implements OnInit {
   }
 
   sendAcc(eventId: string, team: string, phase: string){
-    let conStr = "Are you sure to send acceptance emails for " + team + " recruitment applicants?" 
+    let conStr = "Are you sure to send acceptance emails for " + team + " recruitment applicants?"
       + "\n THIS ACTION CAN NOT BE UNDONE";
     if(confirm(conStr)) {
       this.applicationsService.sendAcceptedEmails(eventId, phase)
@@ -75,8 +77,8 @@ export class AdminEventsComponent implements OnInit {
   }
 
   sendRej(eventId: string, team: string, phase: string){
-    let conStr = "Are you sure to send rejected emails for " + team + " recruitment applicants?" 
-      + "\nWARNING! all applications whose status is anything other than accepted will receive\n" 
+    let conStr = "Are you sure to send rejected emails for " + team + " recruitment applicants?"
+      + "\nWARNING! all applications whose status is anything other than accepted will receive\n"
       + "a rejection email.\n THIS ACTION CAN NOT BE UNDONE";
     // console.log('SEND REJ :: ', eventId, team, phase);
     if(confirm(conStr)) {
@@ -89,6 +91,9 @@ export class AdminEventsComponent implements OnInit {
         alert("error sending emails!");
       });
     }
+  }
+  goBack() {
+    this.location.back();
   }
 
 }

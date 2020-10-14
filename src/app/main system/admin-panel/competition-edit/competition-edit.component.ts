@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Location } from "@angular/common";
 import { catchError } from 'rxjs/operators';
 import { Competition } from '../../models/competition.model';
 import {CompetitionsService} from '../../services/competitions.service';
@@ -14,14 +15,15 @@ import { ErrorService } from '../../../shared/errorModal/error.service';
 })
 export class CompetitionEditComponent implements OnInit {
 
-  
+
   // allComps: Competition[];
   allComps: any;
 
   constructor(
     private errorService: ErrorService,
     private competitionsService: CompetitionsService,
-    public route: ActivatedRoute) { }
+    public route: ActivatedRoute,
+    private location: Location) { }
 
   ngOnInit(): void {
     this.competitionsService.getAllCompetitions()
@@ -43,5 +45,8 @@ export class CompetitionEditComponent implements OnInit {
       });
     }
   }
-  
+  goBack() {
+    this.location.back();
+  }
+
 }

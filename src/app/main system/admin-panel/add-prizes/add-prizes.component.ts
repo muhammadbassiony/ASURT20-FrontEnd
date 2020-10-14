@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, 
-  FormControl, 
-  FormGroup, 
-  Validators, 
-  ReactiveFormsModule, 
-  RequiredValidator, 
+import {FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+  RequiredValidator,
   FormArray} from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Location } from "@angular/common";
 import { ImgMimeType } from '../../../shared/img-mime-type.validator';
 
 import { Award } from "../../models/award.model";
@@ -33,9 +34,10 @@ export class AddPrizesComponent implements OnInit {
   constructor(
     private competitionsService: CompetitionsService,
     private fb: FormBuilder,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    private location: Location
   ) { }
-  
+
 
   ngOnInit(): void {
     this.competitionsService.getAllCompetitionsPopulated()
@@ -76,7 +78,7 @@ export class AddPrizesComponent implements OnInit {
         this.currentComp.awards.splice(indx, 1);
       });
     }
-    
+
   }
 
   onSubmit(awardsForm: FormGroup) {
@@ -95,4 +97,7 @@ export class AddPrizesComponent implements OnInit {
     //add error handling here
   }
 
+  goBack() {
+    this.location.back();
+  }
 }

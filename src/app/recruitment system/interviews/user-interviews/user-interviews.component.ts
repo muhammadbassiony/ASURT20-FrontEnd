@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, 
-  FormControl, 
-  FormGroup, 
-  Validators, 
-  ReactiveFormsModule, 
-  RequiredValidator, 
+import {FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+  RequiredValidator,
   FormArray} from '@angular/forms';
 
-   
+
 import { ActivatedRoute, Params, Router, Data } from '@angular/router';
 
 import { HttpClient } from '@angular/common/http';
+import { Location } from "@angular/common";
 import { map, switchMap } from 'rxjs/operators';
 import { Observable, pipe, Subscription } from 'rxjs';
 
@@ -44,15 +45,16 @@ export class UserInterviewsComponent implements OnInit {
   valid: boolean = false;
 
   constructor(
-    private interviewsService: InterviewsService, 
+    private interviewsService: InterviewsService,
     private usersService: UserService,
     private http: HttpClient,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private location: Location) { }
 
   ngOnInit(): void {
     this.appId = this.route.snapshot.paramMap.get('appId');
-    this.disableTimes = true; 
+    this.disableTimes = true;
 
     this.interviewsService.getAvailableDates()
     .subscribe(res => {
@@ -82,12 +84,12 @@ export class UserInterviewsComponent implements OnInit {
     let tv = this.selectedDay  != null
     // console.log(nv, tv);
     this.valid = nv && tv;
-    
+
   }
 
   onSubmit(){;
     console.log('USER SUBMIT SEL IV :: \n', this.selectedDay, this.selId);
-    
+
     let iv;
     this.interviewsService.getInterview(this.selId)
     .pipe(switchMap(res => {
@@ -102,6 +104,9 @@ export class UserInterviewsComponent implements OnInit {
       this.router.navigate(['dashboard']);
     });
 
+  }
+  goBack() {
+    this.location.back();
   }
 
 }

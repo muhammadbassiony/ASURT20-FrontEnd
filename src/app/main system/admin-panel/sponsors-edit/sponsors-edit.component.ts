@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, SecurityContext} from '@angular/core';
 import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
+import { Location } from "@angular/common";
 import {SponsorsService} from '../../services/sponsors.service';
 import {Sponsor} from '../../models/sponsor.model';
 
@@ -28,7 +29,8 @@ export class SponsorsEditComponent implements OnInit {
 
   constructor(
     private _SponsorsService:SponsorsService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private location: Location
   ){ }
 
   ngOnInit(): void {
@@ -37,10 +39,10 @@ export class SponsorsEditComponent implements OnInit {
     .subscribe(res => {
       this.sponsorsInfo = res;
       for(let sp of this.sponsorsInfo){
-        sp.logoCopy = this.backend_uri +  sp.logo; 
+        sp.logoCopy = this.backend_uri +  sp.logo;
       }
       this.isGettingSponsors = false;
-    }, 
+    },
     error => {
       console.log('ERROR SPONSORS-EDIT :: ',error);
     });
@@ -50,7 +52,7 @@ export class SponsorsEditComponent implements OnInit {
       'sponsorDesc': [ , [Validators.required, Validators.minLength(5)]],
       'sponsorLogo': [ , [Validators.required]]  //img mime NOT working??
     });
-    
+
   }
 
   onSubmit(sponsorEditForm: FormGroup){
@@ -66,8 +68,8 @@ export class SponsorsEditComponent implements OnInit {
     .subscribe((value) => {    //will work
       this.message = 'Sponsor created successfully!';
       this.sponsorEditForm.reset();
-    }, 
-    error => {   
+    },
+    error => {
       this.message = error;
       console.log(error);
     });
@@ -82,7 +84,7 @@ export class SponsorsEditComponent implements OnInit {
       this.editMessage = error;
     });
   }
-  
+
    onEditSponsor(sponsor) {
     this.sponsorEditForm.patchValue({'sponsorName': sponsor.name});
     this.sponsorEditForm.patchValue({'sponsorDesc': sponsor.desc});
@@ -107,5 +109,7 @@ export class SponsorsEditComponent implements OnInit {
     // console.log(this.sponsorEditForm);
   }
 
-
+  goBack() {
+    this.location.back();
+  }
 }
