@@ -66,7 +66,6 @@ export class EditProfileComponent implements OnInit, EditProfileDeactivateGuard 
       this.model = this.user.birthDate ? 
         { day: date.getUTCDate(), month: date.getUTCMonth() + 1, year: date.getUTCFullYear()} : null;
       
-        this.completedProfile = this.user.name && this.user.credit ? true : false;
     })
     
 
@@ -92,7 +91,8 @@ export class EditProfileComponent implements OnInit, EditProfileDeactivateGuard 
     this.user = {...this.user, ...this.profileForm.value};
     let ngbDate = this.profileForm.value.birthDate;
     this.user.birthDate = new Date(ngbDate.year, ngbDate.month-1, ngbDate.day);
-
+    this.user.profileComplete = true;
+    
     this.usersService.addUserInfo(this.userId, this.user)
     .subscribe(res => {
       // console.log('ADDED DEM INFOOOO :: \n', res);

@@ -47,6 +47,7 @@ export class UserService {
       _id: user._id,
       level: user.level,
       token: user.token,
+      profileComplete: user.profileComplete,
       exp: expirationDate.valueOf()
     }
 

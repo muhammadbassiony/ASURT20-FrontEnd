@@ -2,6 +2,7 @@ export interface AuthUser{
   _id: string;
   level: number;
   token: string;
+  profileComplete: boolean;
   exp: number;  //expiration time in milliseconds
 }
 

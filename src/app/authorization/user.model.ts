@@ -38,6 +38,7 @@ export interface User {
     emergencyContact_relation?: string;
     emergencyContact_mobile?: string;
 
+    profileComplete: boolean;
 }
 
 

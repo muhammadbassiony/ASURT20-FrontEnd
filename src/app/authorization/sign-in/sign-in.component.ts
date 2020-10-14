@@ -37,7 +37,12 @@ export class SignInComponent implements OnInit {
     this.usersService.signIn(email, password)
     .subscribe(responseData => {
         this.isLoading = false;
-        this.router.navigate(['/dashboard']);
+        if(responseData['profileComplete']){
+          this.router.navigate(['/dashboard']);
+        } else {
+          this.router.navigate(['/edit-profile']);
+        }
+        
     }, errorMessage => {
         this.isLoading = false;
         this.error = errorMessage;
