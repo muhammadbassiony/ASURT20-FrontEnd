@@ -59,7 +59,7 @@ export class UserService {
   }
 
   signUp(email: string, password: string) {
-    console.log('USERSEVICE SIGNUP :: \n', name);
+    // console.log('USERSEVICE SIGNUP :: \n', name);
     return this.http.post<RegisterResponseData>(
       backend_uri + "/auth/user/signup", 
       {
@@ -321,7 +321,8 @@ export class UserService {
       collegeId: newUser.collegeId,
       emergencyContact_name: newUser.emergencyContact_name,
       emergencyContact_relation: newUser.emergencyContact_relation,
-      emergencyContact_mobile: newUser.emergencyContact_mobile
+      emergencyContact_mobile: newUser.emergencyContact_mobile,
+      profileComplete: newUser.profileComplete
     };
 
     return this.http.put( 

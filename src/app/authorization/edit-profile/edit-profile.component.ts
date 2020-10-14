@@ -55,6 +55,7 @@ export class EditProfileComponent implements OnInit, EditProfileDeactivateGuard 
     }))
     .subscribe(res => {
       this.user = res;
+      console.log(this.user);
 
       for(let i in this.user){
         if(this.profileForm.get(i)){
@@ -77,7 +78,7 @@ export class EditProfileComponent implements OnInit, EditProfileDeactivateGuard 
       'university': [ , [Validators.required, Validators.minLength(3)]], 
       'faculty': [ , [Validators.required]], 
       'department': [ , [Validators.required]], 
-      'graduationYear': [ , [Validators.required, Validators.minLength(4)]], 
+      'graduationYear': [ , [Validators.required, Validators.minLength(4), Validators.maxLength(4)]], 
       'credit': [ , [Validators.required]], 
       'collegeId': [ , [Validators.required, Validators.minLength(4)]], 
       'emergencyContact_name': [ , [Validators.required]], 
@@ -87,15 +88,15 @@ export class EditProfileComponent implements OnInit, EditProfileDeactivateGuard 
   }
 
   onSubmit(profileForm: FormGroup){
-
+    console.log(this.profileForm)
     this.user = {...this.user, ...this.profileForm.value};
     let ngbDate = this.profileForm.value.birthDate;
     this.user.birthDate = new Date(ngbDate.year, ngbDate.month-1, ngbDate.day);
     this.user.profileComplete = true;
-    
+
     this.usersService.addUserInfo(this.userId, this.user)
     .subscribe(res => {
-      // console.log('ADDED DEM INFOOOO :: \n', res);
+      console.log('ADDED DEM INFOOOO :: \n', res);
       this.router.navigate(['dashboard']);
     }, error => {
       //implement error modal here
@@ -103,9 +104,9 @@ export class EditProfileComponent implements OnInit, EditProfileDeactivateGuard 
   }
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-    
-    if(!this.profileForm.valid) alert('Please complete profile first');
-    return this.profileForm.valid ? true : false;
+    console.log('DEACTIVATE GUARDHERE :: ', this.user.profileComplete)
+    if(!this.user.profileComplete) alert('Please complete profile first');
+    return this.user.profileComplete ? true : false;
     //return this.completedProfile; 
   }
 }
