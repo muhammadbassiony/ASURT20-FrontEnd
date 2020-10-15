@@ -92,6 +92,9 @@ export class AdminEventsComponent implements OnInit {
       });
     }
   }
+  onDeleteEvent(eventId: string) {
+    this.eventsService.deleteEvent(eventId);
+  }
   goBack() {
     this.location.back();
   }

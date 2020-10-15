@@ -26,7 +26,8 @@
             </div>
             <div class="col text-center">
                 <button *ngIf="!event.eventActive" class="btn btn-success std-btn" (click)="onStatusClick(event._id)">Activate</button>
-                <button *ngIf="event.eventActive" class="btn btn-danger std-btn" (click)="onStatusClick(event._id)">Deactivate</button>
+                <button *ngIf="event.eventActive" class="btn btn-danger std-btn" (click)="onStatusClick(event._id)">Deactivate</button> |
+                <button class="btn btn-danger std-btn" (click)="onDeleteEvent(event._id)">Delete</button>
             </div>
         </div>
         <hr>
