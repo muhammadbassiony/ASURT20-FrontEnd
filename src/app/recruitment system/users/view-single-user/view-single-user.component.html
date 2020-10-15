@@ -4,23 +4,42 @@
 
     <div class="center">
 
-        <h1 *ngIf="user" class=" my-4 card-title" style="font-size: 220%;">
+        <h2 class="text-center" *ngIf="user" class=" my-4 card-title" >
             View User Profile: View {{user.name}}'s Profile
             <span class="flex-spacer"></span>
-        </h1>
+        </h2>
         <!--p>{{ user | json }}</p>
             for debugging-->
 
         <form *ngIf="viewAppForm" novalidate [formGroup]="viewAppForm" (ngSubmit)="saveChanges()">
+          <div class="row mb-2">
+            <div class="col-sm ">
+              <p>Name: </p>
+            </div>
+            <div class="col-sm text-center">
+              <input  formControlName="name" type="text" class=" form-control" />
+              <mat-error *ngIf="viewAppForm.get('name').hasError('required') && viewAppForm.get('name').touched">Name is required</mat-error>
 
-            <p>
-                <mat-form-field>
+           </div>
+          </div>
+
+                <!-- <mat-form-field>
                     <label>Name: </label>
                     <br>
-                    <input matInput formControlName="name" type="text" class="input-field" />
+                    <input matInput formControlName="name" type="text" class="input-field form-control" />
                     <mat-error *ngIf="viewAppForm.get('name').hasError('required') && viewAppForm.get('name').touched">Name is required</mat-error>
-                </mat-form-field>
+                </mat-form-field> -->
 
+                <div class="row mb-2">
+                  <div class="col-sm ">
+                    <p>Email: </p>
+                    </div>
+                    <div class="col-sm text-center">
+                      <input  formControlName="email" type="email" class="form-control" />
+                    <mat-error *ngIf="viewAppForm.get('email').hasError('required') && viewAppForm.get('email').touched">Please Enter Valid Email</mat-error>
+                    </div>
+                   </div>
+<!--
                 <br>
                 <mat-form-field>
                     <label>Email: </label>
@@ -28,9 +47,19 @@
                     <input matInput formControlName="email" type="email" class="input-field" />
                     <mat-error *ngIf="viewAppForm.get('email').hasError('required') && viewAppForm.get('email').touched">Please Enter Valid Email</mat-error>
 
-                </mat-form-field>
+                </mat-form-field> -->
 
+                <div class="row mb-2">
+                  <div class="col-sm ">
+                    <p>Mobile: </p>
+                  </div>
+                  <div class="col-sm text-center">
+                    <input  formControlName="mobile" type="text" maxlength="13" class="form-control" />
+                    <mat-error *ngIf="viewAppForm.get('mobile').hasError('required') && viewAppForm.get('mobile').touched">Please enter Mobile Number</mat-error>
+                  </div>
+                </div>
 
+<!--
                 <br>
                 <mat-form-field>
                     <label>Mobile: </label>
@@ -38,8 +67,18 @@
                     <input matInput formControlName="mobile" type="text" maxlength="13" class="input-field" />
                     <mat-error *ngIf="viewAppForm.get('mobile').hasError('required') && viewAppForm.get('mobile').touched">Please enter Mobile Number</mat-error>
 
-                </mat-form-field>
+                </mat-form-field> -->
 
+                <div class="row mb-2">
+                  <div class="col-sm ">
+                    <p>Birth Date: </p>
+                  </div>
+                  <div class="col-sm text-center">
+                    <input  formControlName="birthDate" type="date" class="form-control" />
+                    <mat-error *ngIf="viewAppForm.get('birthDate').hasError('required') && viewAppForm.get('birthDate').touched">Birth Date is required</mat-error>
+                  </div>
+                </div>
+<!--
                 <br>
                 <mat-form-field>
                     <label>Birth Date: </label>
@@ -47,9 +86,19 @@
                     <input matInput formControlName="birthDate" type="date" class="input-field" />
                     <mat-error *ngIf="viewAppForm.get('birthDate').hasError('required') && viewAppForm.get('birthDate').touched">Birth Date is required</mat-error>
 
-                </mat-form-field>
+                </mat-form-field> -->
 
-                <br>
+                <div class="row mb-2">
+                  <div class="col-sm ">
+                    <p>University: </p>
+                  </div>
+                  <div class="col-sm text-center">
+                    <input  formControlName="university" type="text" maxlength="40" class="form-control" />
+                    <mat-error *ngIf="viewAppForm.get('university').hasError('required') && viewAppForm.get('university').touched">University is required</mat-error>
+                  </div>
+                </div>
+
+                <!-- <br>
                 <mat-form-field>
                     <label>University: </label>
                     <br>
@@ -59,24 +108,56 @@
 
                 </mat-form-field>
 
-                <br>
-                <mat-form-field>
+                <br> -->
+
+                <div class="row mb-2">
+                  <div class="col-sm ">
+                    <p>Faculty: </p>
+                  </div>
+                  <div class="col-sm text-center">
+                    <input  formControlName="faculty" type="text" maxlength="50" class="form-control" />
+                    <mat-error *ngIf="viewAppForm.get('faculty').hasError('required') && viewAppForm.get('faculty').touched">Faculty is required</mat-error>
+                  </div>
+                </div>
+
+                <!-- <mat-form-field>
                     <label>Faculty: </label>
                     <br>
                     <input matInput formControlName="faculty" type="text" maxlength="50" class="input-field" />
                     <mat-error *ngIf="viewAppForm.get('faculty').hasError('required') && viewAppForm.get('faculty').touched">Faculty is required</mat-error>
 
-                </mat-form-field>
+                </mat-form-field> -->
 
-                <br>
+                <div class="row mb-2">
+                  <div class="col-sm ">
+                    <p>Department: </p>
+                  </div>
+                  <div class="col-sm text-center">
+                    <input  formControlName="department" type="text" maxlength="40" class="form-control" />
+                    <mat-error *ngIf="viewAppForm.get('department').hasError('required') && viewAppForm.get('department').touched">Department is required</mat-error>
+                  </div>
+                </div>
+
+                <!-- <br>
                 <mat-form-field>
                     <label>Department: </label>
                     <br>
                     <input matInput formControlName="department" type="text" maxlength="40" class="input-field" />
                     <mat-error *ngIf="viewAppForm.get('department').hasError('required') && viewAppForm.get('department').touched">Department is required</mat-error>
 
-                </mat-form-field>
-                <br>
+                </mat-form-field> -->
+
+                <div class="row mb-2">
+                  <div class="col-sm ">
+                    <p>College ID: </p>
+                  </div>
+                  <div class="col-sm text-center">
+                    <input formControlName="collegeId" type="text" maxlength="10" class="form-control" />
+                    <mat-error *ngIf="viewAppForm.get('collegeId').hasError('required') && viewAppForm.get('collegeId').touched">College ID is required</mat-error>
+                  </div>
+                </div>
+
+                <!-- <br>
                 <mat-form-field>
                     <label>College ID: </label>
                     <br>
@@ -84,36 +165,51 @@
                     <mat-error *ngIf="viewAppForm.get('collegeId').hasError('required') && viewAppForm.get('collegeId').touched">College ID is required</mat-error>
 
                 </mat-form-field>
-                <br>
-                <mat-form-field>
+                <br> -->
+
+                <div class="row mb-2">
+                  <div class="col-sm ">
+                    <p>Emergency Contact Name: </p>
+                  </div>
+                  <div class="col-sm text-center">
+                    <input  formControlName="emergencyContact_name" type="text" maxlength="40" class="form-control" />
+                    <mat-error *ngIf="viewAppForm.get('emergencyContact_name').hasError('required') && viewAppForm.get('emergencyContact_name').touched">Please Enter your Emergency Contact Name</mat-error>
+                  </div>
+                </div>
+
+                <!-- <mat-form-field>
                     <label>Emergency Contact Name: </label>
                     <br>
                     <input matInput formControlName="emergencyContact_name" type="text" maxlength="40" class="input-field" />
                     <mat-error *ngIf="viewAppForm.get('emergencyContact_name').hasError('required') && viewAppForm.get('emergencyContact_name').touched">Please Enter your Emergency Contact Name</mat-error>
 
-                </mat-form-field>
+                </mat-form-field> -->
 
-                <br>
-                <mat-form-field>
-                    <label>Emergency Contact Relation: </label>
-                    <br>
-                    <input matInput formControlName="emergencyContact_relation" type="text" maxlength="40" class="input-field" />
+                <div class="row mb-2">
+                  <div class="col-sm ">
+                    <p>Emergency Contact Relation: </p>
+                  </div>
+                  <div class="col-sm text-center">
+                    <input  formControlName="emergencyContact_relation" type="text" maxlength="40" class="form-control" />
                     <mat-error *ngIf="viewAppForm.get('emergencyContact_relation').hasError('required') && viewAppForm.get('emergencyContact_relation').touched">Please Enter the relation of your Emergency Contact </mat-error>
+                  </div>
+                </div>
 
-                </mat-form-field>
 
-                <br>
-                <mat-form-field>
-                    <label>Emergency Contact Mobile: </label>
-                    <br>
-                    <input matInput formControlName="emergencyContact_mobile" type="text" maxlength="13" class="input-field" />
+
+                <div class="row mb-2">
+                  <div class="col-sm ">
+                    <p>Emergency Contact Mobile: </p>
+                  </div>
+                  <div class="col-sm text-center">
+                    <input  formControlName="emergencyContact_mobile" type="text" maxlength="13" class="form-control" />
                     <mat-error *ngIf="viewAppForm.get('emergencyContact_mobile').hasError('required') && viewAppForm.get('emergencyContact_mobile').touched">Please Enter your Emergency Contact Mobile Number</mat-error>
+                  </div>
+                </div>
 
-                </mat-form-field>
 
-                <br>
 
-            </p>
+
 
             <hr>
 
