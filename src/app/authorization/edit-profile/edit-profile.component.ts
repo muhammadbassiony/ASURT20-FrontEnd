@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, 
-  FormControl, 
-  FormGroup, 
-  Validators, 
-  ReactiveFormsModule, 
-  RequiredValidator, 
+import {FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+  RequiredValidator,
   FormArray} from '@angular/forms';
 
 import { ActivatedRoute, Params, Router, Data } from '@angular/router';
@@ -64,26 +64,26 @@ export class EditProfileComponent implements OnInit, EditProfileDeactivateGuard 
       }
 
       let date = new Date(this.user.birthDate);
-      this.model = this.user.birthDate ? 
+      this.model = this.user.birthDate ?
         { day: date.getUTCDate(), month: date.getUTCMonth() + 1, year: date.getUTCFullYear()} : null;
-      
+
     })
-    
+
 
     this.profileForm = this.fb.group({
-      'name': [ , [Validators.required, Validators.minLength(8)]], 
-      'mobile': [ , [Validators.required, Validators.pattern("[0-9 ]{11}")]], 
-      'gender': [ , [Validators.required]], 
-      'birthDate': [ , [Validators.required]], 
-      'university': [ , [Validators.required, Validators.minLength(3)]], 
-      'faculty': [ , [Validators.required]], 
-      'department': [ , [Validators.required]], 
-      'graduationYear': [ , [Validators.required, Validators.minLength(4), Validators.maxLength(4)]], 
-      'credit': [ , [Validators.required]], 
-      'collegeId': [ , [Validators.required, Validators.minLength(4)]], 
-      'emergencyContact_name': [ , [Validators.required]], 
-      'emergencyContact_mobile': [ , [Validators.required, Validators.pattern("[0-9 ]{11}")]], 
-      'emergencyContact_relation': [ , [Validators.required]] 
+      'name': [ , [Validators.required, Validators.minLength(8)]],
+      'mobile': [ , [Validators.required, Validators.pattern("[0-9 ]{11}")]],
+      'gender': [ , [Validators.required]],
+      'birthDate': [ , [Validators.required]],
+      'university': [ , [Validators.required, Validators.minLength(3)]],
+      'faculty': [ , [Validators.required]],
+      'department': [ , [Validators.required]],
+      'graduationYear': [ , [Validators.required, Validators.minLength(4), Validators.maxLength(4)]],
+      'credit': [ , [Validators.required]],
+      'collegeId': [ , [Validators.required, Validators.minLength(4)]],
+      'emergencyContact_name': [ , [Validators.required]],
+      'emergencyContact_mobile': [ , [Validators.required, Validators.pattern("[0-9 ]{11}")]],
+      'emergencyContact_relation': [ , [Validators.required]]
     });
   }
 
@@ -107,6 +107,6 @@ export class EditProfileComponent implements OnInit, EditProfileDeactivateGuard 
     console.log('DEACTIVATE GUARDHERE :: ', this.user.profileComplete)
     if(!this.user.profileComplete) alert('Please complete profile first');
     return this.user.profileComplete ? true : false;
-    //return this.completedProfile; 
+    //return this.completedProfile;
   }
 }
