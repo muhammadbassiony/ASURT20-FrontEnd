@@ -4,17 +4,17 @@
 </div>
 <div class="dark-overlay" *ngIf="!isLoading">
   <header id="home-section">
-  <div class="home-inner container" style="padding: 50px;">
+  <div class="home-inner container" >
 
-    <div class="card text-center card-form" style="margin: 4% 11%; background-color: #b21212; padding: 52px;">
-      <h1 class="mb-4 mt-4" style="color: white;">Complete your profile!</h1>
+    <div class="col p-4 card text-center card-form " style="margin: 0% 11%; background-color: #b21212;">
+      <h3 class="mb-4 mt-4" style="color: white;">Complete your profile!</h3>
       <hr>
 
       <form [formGroup]="profileForm" (ngSubmit)="onSubmit(profileForm)">
 
         <div class="row"><p style="color: white; font-size: 130%;">Full Name</p></div>
         <div class="row">
-          <input type="text" class="form-control form-control-lg" placeholder="Name" formControlName="name">
+          <input type="text" class="form-control " placeholder="Name" formControlName="name">
         </div>
         <app-validation-msg [formControl]="profileForm.controls.name"
                             [msg]="'Name must be 8 or more characters!'"></app-validation-msg>
@@ -30,7 +30,7 @@
         <br>
 
         <div class="row"><p style="color: white; font-size: 130%;">Gender</p></div>
-        <select class="custom-select" formControlName="gender">
+        <select class="custom-select form-control" formControlName="gender">
           <option selected disabled>Choose Gender</option>
           <option value="MALE">male</option>
           <option value="FEMALE">female</option>
@@ -85,13 +85,14 @@
                             [msg]="'Please enter your graduation year!'"></app-validation-msg>
         <br>
 
-        <div class="row"><p style="color: white; font-size: 130%;">Credit</p></div>
-        <select class="custom-select" formControlName="credit">
+        <div class="row"><p style="color: white; font-size: 130%;">Credit</p>
+        <select class="custom-select form-control" formControlName="credit">
           <option selected disabled>Choose System</option>
           <option value="CREDIT">Credit</option>
           <option value="MAINSTREAM">Mainstream</option>
           <option value="NA">NA</option>
         </select>
+      </div>
         <br>
         <app-validation-msg [formControl]="profileForm.controls.credit"
                             [msg]="'Please choose your discipline!'"></app-validation-msg>
@@ -133,7 +134,7 @@
 
 
         <hr>
-        <button type="submit" class="btn btn-outline-dark btn-block mt-4 mb-4"
+        <button type="submit" class="btn btn-outline-dark btn-block mt-3 mb-4"
                         [disabled]="!profileForm.valid"
                         style="color: white; border-color: white;">Submit</button>
 

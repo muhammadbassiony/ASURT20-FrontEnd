@@ -27,7 +27,6 @@ export class AdminGuardService implements CanActivate {
             return this.router.createUrlTree(['/sign-in']);
           }
 
-
            if(!user.profileComplete && route.routeConfig.path != 'edit-profile'){
             return this.router.createUrlTree(['edit-profile']);
           }
