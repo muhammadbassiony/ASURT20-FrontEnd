@@ -32,7 +32,7 @@ export class AdminGuardService implements CanActivate {
           }
 
           let userLevel = user.level;
-          console.log('AUTH GUARD HERE :: ROUTEDATA, USERLEVEL ::  ', route.routeConfig.path);
+          // console.log('AUTH GUARD HERE :: ROUTEDATA, USERLEVEL ::  ', route.routeConfig.path);
             // route.data.accessLevel, userLevel, route.data.accessLevel <= userLevel, <Boolean>route.data.accessLevel,
             // route.data.accessLevel && route.data.accessLevel <= userLevel);
 

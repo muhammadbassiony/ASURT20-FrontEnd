@@ -41,3 +41,7 @@ button {
 h4 {
     margin: 20px 10px;
 }
+
+.card-title{
+    font-size: 220%;
+}

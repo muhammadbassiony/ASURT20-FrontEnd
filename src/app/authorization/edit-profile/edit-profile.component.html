@@ -4,17 +4,17 @@
 </div>
 <div class="dark-overlay" *ngIf="!isLoading">
   <header id="home-section">
-  <div class="home-inner container" >
+  <div class="home-inner container">
 
     <div class="col p-4 card text-center card-form " style="margin: 0% 11%; background-color: #b21212;">
-      <h3 class="mb-4 mt-4" style="color: white;">Complete your profile!</h3>
+      <h1 class="mb-4 mt-4" style="color: white;">Complete your profile</h1>
       <hr>
 
       <form [formGroup]="profileForm" (ngSubmit)="onSubmit(profileForm)">
 
         <div class="row"><p style="color: white; font-size: 130%;">Full Name</p></div>
         <div class="row">
-          <input type="text" class="form-control " placeholder="Name" formControlName="name">
+          <input type="text" class="form-control form-control-lg" placeholder="Name" formControlName="name">
         </div>
         <app-validation-msg [formControl]="profileForm.controls.name"
                             [msg]="'Name must be 8 or more characters!'"></app-validation-msg>

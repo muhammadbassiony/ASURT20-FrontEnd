@@ -8,6 +8,7 @@ header {
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    
     /* min-height: 800px; */
   }
 
@@ -23,7 +24,7 @@ header {
 
    #home-section .home-inner {
     /* padding-top: 75px; */
-
+    
   }
 
 .home-inner {
@@ -41,3 +42,7 @@ header {
   .card {
     width: 80%;
   }
+
+.row{
+  margin: 6px 15px;
+}

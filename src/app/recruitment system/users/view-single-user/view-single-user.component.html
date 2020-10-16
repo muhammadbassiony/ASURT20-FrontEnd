@@ -4,10 +4,13 @@
 
     <div class="center">
 
-        <h2 class="text-center" *ngIf="user" class=" my-4 card-title" >
+        <h1 class="text-center" *ngIf="user" class=" my-4 card-title" >
             View User Profile: View {{user.name}}'s Profile
             <span class="flex-spacer"></span>
-        </h2>
+        </h1>
+        <br>
+        <hr>
+        <br>
         <!--p>{{ user | json }}</p>
             for debugging-->
 
@@ -210,8 +213,9 @@
 
 
 
-
+            <br>
             <hr>
+            <br>
 
             <!-- <div class="form-check">
             </div> -->
@@ -287,7 +291,9 @@
 
             </div>
 
+            <br>
             <hr>
+            <br>
             <span class="flex-spacer"></span>
             <button mat-button type="submit" mat-button class="btn-primary rounded m-3 text-floral-white bottom-right std-btn" [disabled]="viewAppForm.invalid">Save Changes</button>
             <!-- <button mat-button class="btn-danger m-3 text-floral-white bottom-right">Reset</button> -->
