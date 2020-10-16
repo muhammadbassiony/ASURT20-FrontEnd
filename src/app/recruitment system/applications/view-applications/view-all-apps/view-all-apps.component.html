@@ -13,21 +13,31 @@
         <br>
         <div class="row">
             <div class="col-sm-4">
-                <select class="custom-select form-control" [(ngModel)]="gradYr" (change)="filterGradYear()">
+                <select class="custom-select form-control" [(ngModel)]="gradYr" (change)="filter()">
+                    <option selected value=""> </option>
                     <option *ngFor="let yr of gradYears" value="{{yr}}">{{yr}}</option>
                   </select>
             </div>
             <div class="col-sm-4">
-                <select class="custom-select form-control" [(ngModel)]="queryPhase" (change)="filterAppPhase()">
+                <select class="custom-select form-control" [(ngModel)]="queryPhase" (change)="filter()">
+                    <option selected value=""> </option>
                     <option *ngFor="let phs of phases" value="{{phs}}">{{phs}}</option>
                   </select>
             </div>
             <div class="col-sm-4">
-                <select class="custom-select form-control" [(ngModel)]="queryStatus" (change)="filterAppStatus()">
+                <select class="custom-select form-control" [(ngModel)]="queryStatus" (change)="filter()">
+                    <option selected value=""> </option>
                     <option *ngFor="let st of statuses" value="{{st}}">{{st}}</option>
                   </select>
             </div>
-
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <button class="btn btn-outline-primary" (click)="assignCopy()">Refresh results</button>
+            </div>
+            <div class="col-sm-4">
+                <button class="btn btn-outline-secondary" (click)="queryPhase = event.currentPhase; filter()">Current Event Phase</button>
+            </div>
         </div>
         
     </div>

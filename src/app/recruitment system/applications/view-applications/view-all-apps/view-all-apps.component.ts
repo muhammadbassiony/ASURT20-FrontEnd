@@ -34,12 +34,12 @@ export class ViewAllAppsComponent implements OnInit {
   query: string; //search query -- dont remove
 
   gradYears = [2019, 2020, 2021, 2022, 2023, 2024, 2025];
-  gradYr: number;
+  gradYr ;
 
   statuses: any;
   phases: any;
-  queryStatus: any;
-  queryPhase: any;
+  queryStatus;
+  queryPhase;
 
   constructor(
     private applicationsService: ApplicationsService,
@@ -81,41 +81,32 @@ export class ViewAllAppsComponent implements OnInit {
 
   }
 
-  update():void{
-
-  }
   
 
   assignCopy(){
     this.filteredItems = Object.assign([], this.allApps);
   }
 
-  filterItem(value){
+  filterItem(value: string){
     if(value===""){
       this.assignCopy();
       console.log("the filtered Items", this.filteredItems);
     } // when nothing has typed
     else{
       this.filteredItems = Object.assign([], this.allApps).filter(
-      item => (item.user.name.toLowerCase().indexOf(value.toLowerCase()) > -1  || item.user.email.toLowerCase().indexOf(value.toLowerCase()) > -1)
-
-      )
+        item => (item.user.name.toLowerCase().indexOf(value.toLowerCase()) > -1  || 
+          item.user.email.toLowerCase().indexOf(value.toLowerCase()) > -1)
+      );
     }
   }
 
 
-  filterGradYear(){
-    console.log('FILTER GRAD :: ', this.gradYr);
-  }
-
-
-  filterAppPhase(){
-    console.log('FILTER PHASE :: ', this.queryPhase);
-  }
-
-
-  filterAppStatus(){
-    console.log('FILTER STATUS :: ', this.queryStatus);
+  filter(){
+     this.filteredItems = Object.assign([], this.allApps)
+      .filter(app => (this.queryStatus? app.currentPhaseStatus == this.queryStatus : true) && 
+        (this.queryPhase? app.currentPhase == this.queryPhase : true) && 
+        (this.gradYr? app.user.graduationYear == this.gradYr : true));
+   
   }
 
 
