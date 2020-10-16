@@ -15,6 +15,7 @@ import { Observable, pipe, Subscription } from 'rxjs';
 
 import { User } from '../../../authorization/user.model';
 import { UserService } from '../../../authorization/user.service';
+import { CDK_CONNECTED_OVERLAY_SCROLL_STRATEGY } from '@angular/cdk/overlay/overlay-directives';
 
 @Component({
   selector: 'app-view-all-users',
@@ -25,6 +26,7 @@ export class ViewAllUsersComponent implements OnInit {
 
   query: string; //search query -- dont delete
   allUsers: User[];
+  filteredItems: any[];
 
   constructor(
     private usersService: UserService,
@@ -35,13 +37,28 @@ export class ViewAllUsersComponent implements OnInit {
   ngOnInit(): void {
     this.usersService.getAllUsers()
     .subscribe(res => {
-      console.log(res);
       this.allUsers = res;
+      this.assignCopy();
     })
   }
 
-  // getUser(userId: string){
-  //   return this.usersService.getUser(userId);
-  // }
+  assignCopy(){
+    this.filteredItems = Object.assign([], this.allUsers);
+  }
+
+  filterItem(value: string){
+    if(value===""){
+      this.assignCopy();
+      // console.log("FILTERED ITEMS FUNC NO INPUT :: \n", this.filteredItems);
+    } // when nothing has typed
+    else{
+  
+      this.filteredItems = Object.assign([], this.allUsers).filter(
+        item => item.name && item.email && (item.name.toLowerCase().indexOf(value.toLowerCase()) > -1  || 
+                item.email.toLowerCase().indexOf(value.toLowerCase()) > -1)
+
+      );
+    }
+  }
 
 }

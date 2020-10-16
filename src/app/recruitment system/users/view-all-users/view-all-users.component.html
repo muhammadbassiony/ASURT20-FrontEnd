@@ -2,17 +2,15 @@
     <h1 class="card-title">View all Users</h1>
 
     <div class="card rounded shadow ">
-        <input type="text" class="form-control form-control-lg" style="height: 50px;" [(ngModel)]="query">
+        <input type="text" class="form-control form-control-lg" style="height: 50px;" 
+            [(ngModel)]="query" #mySearch (input)="filterItem(mySearch.value)" 
+            placeholder="Search applicant name">
     </div>
 
-    <!-- <div class="card rounded row" #users> -->
-    <!-- <div *ngFor="let user of allUsers | search:'name,email':query" class="card col-sm-12" name="user-card"> -->
-    <div *ngFor="let user of allUsers" class="card col-sm-12" name="user-card">
+    <div *ngFor="let user of filteredItems" class="card col-sm-12" name="user-card">
         <h2>{{user.name}}</h2>
         <p style="font-size:80%">{{user.email}}</p>
-        <!-- <span class="badge badge-primary" *ngIf="user.teamMember">TeamMember</span></p> -->
         <button class="btn-success bottom-right" style="font-size: 70%;" [routerLink]="['/view-user']" [queryParams]="{ userId: user._id }">View profile</button>
     </div>
 
-    <!-- </div> -->
 </div>

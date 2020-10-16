@@ -60,9 +60,7 @@ export class ViewAllAppsComponent implements OnInit {
   update():void{
 
   }
-  // getUser(userId: string){
-  //   return this.usersService.getUser(userId);
-  // }
+  
 
   assignCopy(){
     this.filteredItems = Object.assign([], this.allApps);
