@@ -1,11 +1,35 @@
 <a class="btn btn-primary ml-3 mt-3"  (click)="goBack()">&lt;&lt;Back</a>
 <div class="card border shadow-lg container" name="main-card">
     <h1 class="card-title">View all {{event.team.name}} Applicants</h1>
+    <br>
+    <hr>
 
     <div class="card rounded">
-        <input type="text" class="form-control form-control-lg" style="height: 50px;" 
-            [(ngModel)]="query" #mySearch (input)="filterItem(mySearch.value)" 
-            placeholder="Search applicant name">
+        <div class="row">
+            <input type="text" class="form-control form-control-lg" style="height: 50px;" 
+                [(ngModel)]="query" #mySearch (input)="filterItem(mySearch.value)" 
+                placeholder="Search applicant name">
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-4">
+                <select class="custom-select form-control" [(ngModel)]="gradYr" (change)="filterGradYear()">
+                    <option *ngFor="let yr of gradYears" value="{{yr}}">{{yr}}</option>
+                  </select>
+            </div>
+            <div class="col-sm-4">
+                <select class="custom-select form-control" [(ngModel)]="queryPhase" (change)="filterAppPhase()">
+                    <option *ngFor="let phs of phases" value="{{phs}}">{{phs}}</option>
+                  </select>
+            </div>
+            <div class="col-sm-4">
+                <select class="custom-select form-control" [(ngModel)]="queryStatus" (change)="filterAppStatus()">
+                    <option *ngFor="let st of statuses" value="{{st}}">{{st}}</option>
+                  </select>
+            </div>
+
+        </div>
+        
     </div>
 
     <div class="card rounded row container">

@@ -44,3 +44,7 @@
 button{
     size: 50%;
 }
+
+select{
+    margin-top: 5px;
+}

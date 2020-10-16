@@ -12,6 +12,9 @@ import {Location} from "@angular/common";
 import { map, switchMap } from 'rxjs/operators';
 import { Observable, pipe, Subscription } from 'rxjs';
 
+import { ApplicationPhase } from '../../../models/app-phases-enum.model';
+import { ApplicationStatus } from '../../../models/app-status-enum.model';
+
 
 @Component({
   selector: 'app-view-all-apps',
@@ -30,6 +33,14 @@ export class ViewAllAppsComponent implements OnInit {
   // appUsers = [];
   query: string; //search query -- dont remove
 
+  gradYears = [2019, 2020, 2021, 2022, 2023, 2024, 2025];
+  gradYr: number;
+
+  statuses: any;
+  phases: any;
+  queryStatus: any;
+  queryPhase: any;
+
   constructor(
     private applicationsService: ApplicationsService,
     private usersService: UserService,
@@ -39,8 +50,21 @@ export class ViewAllAppsComponent implements OnInit {
     private router: Router,
     private location: Location) { }
 
+    keysPhases(): Array<string> {
+      var keys = Object.values(ApplicationPhase);
+      return keys;
+    }
+    keysStatus(): Array<string> {
+      var keys = Object.values(ApplicationStatus);
+      return keys;
+    }
+
   ngOnInit(): void {
     this.eventId = this.route.snapshot.paramMap.get('eventId');
+    this.phases = this.keysPhases();
+    this.statuses = this.keysStatus();
+
+    // this.gradYears.forEach(y =>  console.log('YR :: ', y));
 
     this.eventsService.getEvent(this.eventId)
     .pipe(switchMap(res => {
@@ -78,6 +102,22 @@ export class ViewAllAppsComponent implements OnInit {
       )
     }
   }
+
+
+  filterGradYear(){
+    console.log('FILTER GRAD :: ', this.gradYr);
+  }
+
+
+  filterAppPhase(){
+    console.log('FILTER PHASE :: ', this.queryPhase);
+  }
+
+
+  filterAppStatus(){
+    console.log('FILTER STATUS :: ', this.queryStatus);
+  }
+
 
   goBack(): void {
     this.location.back();
