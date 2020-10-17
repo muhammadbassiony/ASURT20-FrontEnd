@@ -16,6 +16,11 @@
   /* set precentage of the browser default is better 10 px = 62.5% of 16 */
 }
 
+p
+{
+  /* font-size: 15px; */
+  font-weight: 500	;
+}
 
 @media only screen and (max-width: 75em) {
  .Competition__Mobile, .Competition {
@@ -88,7 +93,10 @@
 }
 
 .paragraph {
-  font-size: 2em;
+ /* font-size: 2em;*/
+ /* font-size: 2.22em; */
+ font-size: 2.4em;
+
 }
 .paragraph:not(:last-child) {
   margin-bottom: 3em;
@@ -103,7 +111,7 @@
 /* competition component */
 
 .Competition {
-  padding: 6em;
+  padding: 5em;
   /* background-image: url(../../../../assets/img/abstract-checkered-curve-white-gradient-sport-champion_33869-73.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -400,4 +408,6 @@
   width: 65%;
 }
 
-
+strong {
+  font-weight: 500;
+}
