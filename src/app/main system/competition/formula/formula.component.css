@@ -10,14 +10,13 @@
     margin-top: 0px;
 }
 
-p{
-    /* color: black; */
+/* p{
     margin-top: 20px;
     margin-bottom: 20px;;
     font-size: 16px;
     margin-left: 20px;
     margin-right: 20px;
-}
+} */
 
 #logo{
     align-self: center;
@@ -32,10 +31,10 @@ p{
 
 
 @media only screen and (min-width: 500px) {
-    p{
+    /* p{
         font-size: 1.25rem; 
         color: black;
-    }
+    } */
     h3{
         margin-top: 20px;
     }
@@ -48,4 +47,25 @@ p{
         margin-right: auto;
         width: 50%;
       }
+}
+
+.paragraph {
+    font-size: 1.5em;
+  }
+.paragraph:not(:last-child) {
+    margin-bottom: 3em;
+}
+
+@media only screen and (max-width: 37.5em) {
+.paragraph {
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 1em;
+    }
+}
+
+p
+{
+  /* font-size: 15px; */
+  font-weight: 500;
 }
