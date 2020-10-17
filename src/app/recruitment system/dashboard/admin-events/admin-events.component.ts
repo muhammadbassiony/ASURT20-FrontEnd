@@ -13,6 +13,8 @@ import { EventsService } from '../../services/events.service';
 import { Event } from '../../models/event.model';
 import { ApplicationsService } from '../../services/applications.service';
 
+import { ErrorService } from '../../../shared/errorModal/error.service';
+
 // TODO ::  IMPLEMENT WITH MODALS
 // import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -33,6 +35,7 @@ export class AdminEventsComponent implements OnInit {
     private applicationsService: ApplicationsService,
     private route: ActivatedRoute,
     private router: Router,
+    private errorService: ErrorService,
     private location: Location) { }
 
   ngOnInit(): void {
@@ -92,9 +95,20 @@ export class AdminEventsComponent implements OnInit {
       });
     }
   }
+
+
   onDeleteEvent(eventId: string) {
-    this.eventsService.deleteEvent(eventId);
+    if(!confirm('Are you sure you want to delete this event?')) return;
+    this.eventsService.deleteEvent(eventId)
+    .subscribe(res => {
+      this.allEvents = this.allEvents.filter(ev => ev._id != eventId);
+      alert('Event Successfully Deleted!');
+    }, error => {
+      this.errorService.ErrorCaught.next({ErrorMsg: error.message, Url: '/home'});
+    });
   }
+
+
   goBack() {
     this.location.back();
   }

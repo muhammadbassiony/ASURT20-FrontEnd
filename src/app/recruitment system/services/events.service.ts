@@ -209,22 +209,22 @@ export class EventsService {
     );
   }
 
-  deleteEvent(eventId: string){ }
 
+  deleteEvent(eventId: string){
+    return this.http.delete(
+      backend_uri + '/rec/event/delete-event/' + eventId,
+      { responseType: 'json' }
+    )
+    .pipe(
+      map(res => {   
+        return null;    
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
+  }
 
-
-  /* *********************  unused - delete later  *************************** */
-
-
-  // endEvent(eventId: string){
-  //   // const indx = this.events.findIndex(e => e.eventId === eventId);
-  //   // this.events[indx].eventActive = false;
-  // }
-
-  // getNumApplicants(eventId: string){
-  //   //get from backend
-  //   return 108;
-  // }
 
 
 }
