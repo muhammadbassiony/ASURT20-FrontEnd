@@ -81,8 +81,7 @@ export class ViewSingleAppComponent implements OnInit {
 
     this.applicationsService.getApplication(this.appId)
       .subscribe(res => {
-        // this.singleAppFormDirective.resetForm();
-        // console.log('fetched user\'s app! ::\n', res);
+        console.log('fetched user\'s app! ::\n', res);
         this.app = res;
         this.user = this.app.user;
         this.questions = this.app.userAnswers;
@@ -117,15 +116,38 @@ export class ViewSingleAppComponent implements OnInit {
       userCV:this.app.cvPath,
       userAnswers:this.app.userAnswers,
       season: this.app.season,
-      currentPhase:this.app.currentPhase,
-      currentPhaseStatus:this.app.currentPhaseStatus,
+      currentPhase: this.app.currentPhase,
+      currentPhaseStatus: this.app.currentPhaseStatus,
       cvPath: this.app.cvPath
     }
     
     this.applicationsService.updateApp(this.app._id, newApp)
-      .subscribe(res=> {
-        alert("Application successfully updated in Database!")
-      });
+    .pipe(switchMap(res => {
+      alert("Application successfully updated in Database!");
+      
+      switch(this.app.currentPhaseStatus){
+        case ApplicationStatus.accepted:
+          console.log(ApplicationStatus.accepted);
+          return this.eventsService.incrementNumAccepted(this.app.event._id);
+          
+        case ApplicationStatus.rejected:
+          console.log(ApplicationStatus.rejected);
+          return this.eventsService.incrementNumRejected(this.app.event._id);
+          
+        case ApplicationStatus.pending_acceptance:
+          console.log(ApplicationStatus.pending_acceptance);
+          return this.eventsService.incrementNumPendAcc(this.app.event._id);
+          
+        case ApplicationStatus.pending_rejection:
+          console.log(ApplicationStatus.pending_rejection);
+          return this.eventsService.incrementNumPendRej(this.app.event._id);
+
+        default:
+          return;
+      }
+        
+    }))
+    .subscribe(res => { });
   }
 
   goBack(): void {
