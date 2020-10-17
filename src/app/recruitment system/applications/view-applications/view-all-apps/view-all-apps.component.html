@@ -41,8 +41,13 @@
         </div>
         
     </div>
+    <br>
 
-    <div class="card rounded row container">
+    <div class="alert alert-warning" role="alert" *ngIf="filteredItems.length == 0">
+        <strong>Warning!</strong> No Applicants yet
+    </div>
+
+    <div class="card rounded row container" *ngIf="filteredItems.length > 0">
         <div *ngFor="let app of filteredItems" class="card col-sm-12" name="user-card">
             {{app.user.name}}
             <p style="font-size:80%; margin-top:10px;">{{app.user.email}}</p>

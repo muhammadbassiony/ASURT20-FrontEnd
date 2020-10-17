@@ -28,8 +28,8 @@ export class ViewAllAppsComponent implements OnInit {
   event: any;
   // eventName: string;
 
-  allApps: any;
-  filteredItems: any[];
+  allApps: any = null;
+  filteredItems: any[] = null;
   // appUsers = [];
   query: string; //search query -- dont remove
 
