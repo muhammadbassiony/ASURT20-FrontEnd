@@ -13,18 +13,21 @@
         <br>
         <div class="row">
             <div class="col-sm-4">
+                <label>Applicant's Graduation Year</label>
                 <select class="custom-select form-control" [(ngModel)]="gradYr" (change)="filter()">
                     <option selected value=""> </option>
                     <option *ngFor="let yr of gradYears" value="{{yr}}">{{yr}}</option>
                   </select>
             </div>
             <div class="col-sm-4">
+                <label>Application Phase</label>
                 <select class="custom-select form-control" [(ngModel)]="queryPhase" (change)="filter()">
                     <option selected value=""> </option>
                     <option *ngFor="let phs of phases" value="{{phs}}">{{phs}}</option>
                   </select>
             </div>
             <div class="col-sm-4">
+                <label>Application Status</label>
                 <select class="custom-select form-control" [(ngModel)]="queryStatus" (change)="filter()">
                     <option selected value=""> </option>
                     <option *ngFor="let st of statuses" value="{{st}}">{{st}}</option>
@@ -33,9 +36,20 @@
         </div>
         <div class="row">
             <div class="col-sm-4">
+                <label>Subteam Choice</label>
+                <select class="custom-select form-control" [(ngModel)]="querySubteam" (change)="filter()">
+                    <option selected value=""> </option>
+                    <option *ngFor="let sub of event.team.subteams" value="{{sub._id}}">{{sub.name}}</option>
+                  </select>
+            </div>
+            <div class="col-sm-4 text-center">
+                <!-- <label></label> -->
+                <br>
                 <button class="btn btn-outline-primary" (click)="assignCopy()">Refresh results</button>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4  text-center">
+                <!-- <label></label> -->
+                <br>
                 <button class="btn btn-outline-secondary" (click)="queryPhase = event.currentPhase; filter()">Current Event Phase</button>
             </div>
         </div>

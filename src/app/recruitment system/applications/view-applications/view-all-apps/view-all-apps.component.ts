@@ -40,6 +40,7 @@ export class ViewAllAppsComponent implements OnInit {
   phases: any;
   queryStatus;
   queryPhase;
+  querySubteam;
 
   constructor(
     private applicationsService: ApplicationsService,
@@ -64,7 +65,6 @@ export class ViewAllAppsComponent implements OnInit {
     this.phases = this.keysPhases();
     this.statuses = this.keysStatus();
 
-    // this.gradYears.forEach(y =>  console.log('YR :: ', y));
 
     this.eventsService.getEvent(this.eventId)
     .pipe(switchMap(res => {
@@ -102,10 +102,11 @@ export class ViewAllAppsComponent implements OnInit {
 
 
   filter(){
-     this.filteredItems = Object.assign([], this.allApps)
+    this.filteredItems = Object.assign([], this.allApps)
       .filter(app => (this.queryStatus? app.currentPhaseStatus == this.queryStatus : true) && 
         (this.queryPhase? app.currentPhase == this.queryPhase : true) && 
-        (this.gradYr? app.user.graduationYear == this.gradYr : true));
+        (this.gradYr? app.user.graduationYear == this.gradYr : true) && 
+        (this.querySubteam ? (app.selSubteam1._id == this.querySubteam || app.selSubteam2._id == this.querySubteam) : true ) );
    
   }
 
