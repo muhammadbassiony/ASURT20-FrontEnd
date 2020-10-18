@@ -87,6 +87,8 @@ import { ErrorService } from './shared/errorModal/error.service';
 import { EditProfileDeactivateGuard } from './authorization/edit-profile/edit-profile-can-deactivate.service';
 import { ValidationMsgComponent } from './authorization/edit-profile/validation-msg/validation-msg.component';
 import { ViewAllMembersComponent } from './recruitment system/users/view-all-members/view-all-members.component';
+import { RequestResetComponent } from './authorization/request-reset/request-reset.component';
+import { ResponseResetComponent } from './authorization/response-reset/response-reset.component';
 
 
 
@@ -144,6 +146,8 @@ FullCalendarModule.registerPlugins([
     ErrorModalComponent,
     ValidationMsgComponent,
     ViewAllMembersComponent,
+    RequestResetComponent,
+    ResponseResetComponent,
   ],
   imports: [
     BrowserModule,
