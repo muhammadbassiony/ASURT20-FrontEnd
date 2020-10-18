@@ -247,7 +247,7 @@
                 </mat-form-field> -->
 
 
-                <mat-select formControlName="team" (selectionChange)="updateSub()" style="width: 70%;">
+                <mat-select formControlName="team" (selectionChange)="updateSub()" >
 
                     <mat-option selected *ngIf="viewAppForm.value.team" [value]="viewAppForm.value.team">
                         {{viewAppForm.value.team}}
