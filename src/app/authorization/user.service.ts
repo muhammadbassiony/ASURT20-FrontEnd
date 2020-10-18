@@ -390,7 +390,7 @@ export class UserService {
   }
 
   validatePasswordResetToken(token: string){
-    console.log('USR SRVC - VALIDATE TOKEN ::', token);
+    
     return this.http.post(
       backend_uri + '/auth/user/valid-password-token',
       { token: token},
@@ -412,7 +412,7 @@ export class UserService {
       token: token,
       password: password
     };
-    console.log('USR SRVC - NEW PASS :: ', body);
+    
     return this.http.post(
       backend_uri + '/auth/user/new-password',
       body,
@@ -426,7 +426,7 @@ export class UserService {
         return throwError(errorRes);
       })
     );
-    
+
   }
 
 }
