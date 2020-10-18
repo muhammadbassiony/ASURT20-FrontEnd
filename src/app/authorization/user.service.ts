@@ -372,6 +372,41 @@ export class UserService {
     );
   }
 
+
+  requestPasswordReset(mail: string){
+    return this.http.put(
+      backend_uri + '/auth/user/req-reset-password',
+      { email: mail },
+      { responseType: 'json' }
+    )
+    .pipe(
+      map(res => {
+        return null;
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
+  }
+
+  validatePasswordResetToken(token: string){
+    console.log('USR SRVC - VALIDATE TOKEN ::', token);
+    return this.http.post(
+      backend_uri + '/auth/user/valid-password-token',
+      { token: token},
+      { responseType: 'json' }
+    )
+    .pipe(
+      map(res => {
+        let body = res['verified'];
+        return body || [];
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
+  }
+
 }
 
 

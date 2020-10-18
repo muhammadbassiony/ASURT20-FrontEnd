@@ -28,7 +28,17 @@ export class RequestResetComponent implements OnInit {
   }
 
   RequestResetUser(RequestResetForm: FormGroup){
-    console.log('PASS RESET REQUEST FORM :: \n', this.RequestResetForm);
+    console.log('PASS RESET REQUEST FORM :: \n', this.RequestResetForm.value.email);
+    this.usersService.requestPasswordReset(this.RequestResetForm.value.email)
+    .subscribe(res => {
+      console.log('RES HEREE BRUB ')
+      this.successMessage = 'Email Sent! please check your email!';
+    }, error => {
+      this.errorMessage = 'We have encountered a problem! Please try again!'
+    })
   }
+
+
+  
 
 }
