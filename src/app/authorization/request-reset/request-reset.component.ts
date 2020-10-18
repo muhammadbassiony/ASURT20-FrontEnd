@@ -9,6 +9,7 @@ import { UserService } from '../user.service';
 })
 export class RequestResetComponent implements OnInit {
 
+  isLoading = false;
   email: string;
   RequestResetForm: FormGroup;
   errorMessage: string = null;

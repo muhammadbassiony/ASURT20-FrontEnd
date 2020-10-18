@@ -29,17 +29,18 @@
                     <div class="form-group">
                     <span class="input-group-text"><i class="fa fa-envelope prefix ml-2"></i>
                     <input type="text" class="form-control form-control-lg ml-4" placeholder="Email"
-                        name="email" required email /></span>
+                        name="email" required email formControlName="email"></span>
                     </div>
 
-                    <span *ngIf="!RequestResetForm.get('email').valid"
-                                class="alert alert-warning">Please enter a valid email!</span>
+                    <div *ngIf="!RequestResetForm.get('email').valid && RequestResetForm.touched"
+                                class="alert alert-warning">Please enter a valid email!</div>
 
                     <hr>
                     
 
                     <button type="submit" class="btn btn-outline-dark btn-block mt-4 mb-4" style="color: white;"
-                            [disabled]="!RequestResetForm.valid">Send Email</button>
+                        [disabled]="!RequestResetForm.valid" >Send Email</button>
+                            
 
                 </form>
 
