@@ -32,7 +32,7 @@ p{
 
 @media only screen and (min-width: 500px) {
     p{
-        font-size: 1.25rem; 
+        font-size: 1.25rem;
         color: black;
     }
     h3{
@@ -55,4 +55,25 @@ p{
       .centered{
           text-align: center;
       }
+}
+
+.paragraph {
+  font-size: 1.5em;
+}
+.paragraph:not(:last-child) {
+  margin-bottom: 3em;
+}
+
+@media only screen and (max-width: 37.5em) {
+  .paragraph {
+    font-size: 1.5em;
+    /* text-align: center;
+    margin-bottom: 1em; */
+  }
+}
+
+p
+{
+  /* font-size: 15px; */
+  font-weight: 500;
 }
