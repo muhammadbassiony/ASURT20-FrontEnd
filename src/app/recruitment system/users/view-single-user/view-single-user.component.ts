@@ -14,7 +14,7 @@ import { Location } from '@angular/common';
 import { ActivatedRoute, Params, Router, Data } from '@angular/router';
 
 import { HttpClient } from '@angular/common/http';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, mergeMap, concatMap } from 'rxjs/operators';
 import { Observable, pipe, Subscription } from 'rxjs';
 
 
@@ -32,17 +32,21 @@ import { Subteam } from '../../models/subteam.model';
 })
 export class ViewSingleUserComponent implements OnInit {
 
-  member: Member;
+  
   team: Team;
   subT: Subteam;
+
   userId: string;
   user: any;
+  member: any;
+
   userForm: FormGroup;
   allTeams: any;
   userMember: Member;
   viewAppForm: FormGroup;
   initiallyMember: boolean = false;
 
+  isMember = false;
 
   optionsSubTeams :Subteam[];
   optionsTeams: Team[];
@@ -56,167 +60,118 @@ export class ViewSingleUserComponent implements OnInit {
     private router: Router,
     private location: Location) { }
 
-  availableSubTeams(): Subteam[] {
-    var answer: Subteam[] = [];
-    if (!this.allTeams) {
-
-      return answer;
-    }
-    //console.log(this.viewAppForm.value.team);
-    //console.log(answer)
-    if(this.initiallyMember){
-
-      answer = this.allTeams.filter(t => t.name === this.viewAppForm.value.team)[0].subteams.filter(t=> t.name!=this.subT.name);
-    }
-    else{
-
-      answer = this.allTeams.filter(t => t.name === this.viewAppForm.value.team)[0].subteams;
-    }
-
-    return answer;
-  }
-
-
-  availableTeams(): Team[] {
     
-    console.log("called avilable teams");
-    var answer: Team[] = [];
 
-    if (!this.allTeams) {
+  // availableSubTeams(): Subteam[] {
+  //   var answer: Subteam[] = [];
+  //   if (!this.allTeams) {
 
-      return answer;
-    }
-    //console.log(this.viewAppForm.value.team);
-    //console.log(answer)
-    if(this.initiallyMember)
-    answer = this.allTeams.filter(t => t.name != this.team.name);
-    else
-    answer = this.allTeams;
+  //     return answer;
+  //   }
+  //   //console.log(this.viewAppForm.value.team);
+  //   //console.log(answer)
 
-    return answer;
-  }
+  //   if(this.initiallyMember){
+  //     answer = this.allTeams
+  //       .filter(t => t.name === this.viewAppForm.value.team)[0].subteams.filter(t=> t.name!=this.subT.name);
+  //   }
+  //   else{
+  //     answer = this.allTeams.filter(t => t.name === this.viewAppForm.value.team)[0].subteams;
+  //   }
 
-  updateSub():void{
-    this.team=this.viewAppForm.value.team;
-    this.optionsTeams=this.allTeams.filter(t => t.name != this.viewAppForm.value.team);
-
-    this.subT=null;
-    this.optionsSubTeams=this.allTeams.filter(t => t.name === this.viewAppForm.value.team)[0].subteams;
+  //   return answer;
+  // }
 
 
-  }
+  // availableTeams(): Team[] {
+    
+  //   console.log("called avilable teams");
+  //   var answer: Team[] = [];
+
+  //   if (!this.allTeams) {
+
+  //     return answer;
+  //   }
+  //   //console.log(this.viewAppForm.value.team);
+  //   //console.log(answer)
+  //   if(this.initiallyMember)
+  //   answer = this.allTeams.filter(t => t.name != this.team.name);
+  //   else
+  //   answer = this.allTeams;
+
+  //   return answer;
+  // }
+
+  // updateSub():void{
+  //   this.team=this.viewAppForm.value.team;
+  //   this.optionsTeams=this.allTeams.filter(t => t.name != this.viewAppForm.value.team);
+
+  //   this.subT=null;
+  //   this.optionsSubTeams=this.allTeams.filter(t => t.name === this.viewAppForm.value.team)[0].subteams;
+
+
+  // }
 
   ngOnInit() {
     this.userId = this.route.snapshot.queryParamMap.get('userId');
-    this.initiallyMember = false;
+    console.log('VIEW SINGLE USER - USERID :: ', this.userId);
+    // this.initiallyMember = false;
+
+    this.userForm = this.fb.group({
+      'userData': this.fb.group({}),
+      'memberData': this.fb.group({
+        'head': [],
+        'team': [],
+        'subteam': []
+      })
+    });
 
     //fields that will not be displayed for change
-    const undesiredFields = ['_id', '__v', 'updatedAt', 'createdAt', 'password'];
+    const undesiredFields = ['_id', '__v', 'updatedAt', 'createdAt', 'password', 'profileComplete'];
 
-    this.usersService.getUser(this.userId).subscribe(res => {
-      console.log('fetched user from backend ::\n', res);
-      this.user = res;
-
-      this.teamsService.getAllTeams().subscribe(teams => {
-        console.log('fetched teamss ::\n', teams);
-        this.allTeams = teams
-        //const userData = <FormGroup>this.userForm.get('userData');
-        // Object.keys(this.user).forEach(field => {
-          //   if(!undesiredFields.includes(field)){
-            //     //creates new formcontrol with the name of the field & adds it to the form with its value
-            //     userData.addControl(field, new FormControl(this.user[field]));
-            
-            //   }
-            // });
-            
-            
-            
-            if (this.user.member != null) {
-              this.initiallyMember = true;
-              
-              this.usersService.getMember(this.user.member).subscribe(res => {
-                console.log("fetched the member", res);
-                this.member = res;
-                this.team = res.team;
-                this.subT = res.subteam;
-                console.log("print team then sub then member", this.team, this.subT, this.initiallyMember);
-                
-                
-                
-                
-                
-                this.viewAppForm = new FormGroup({
-                  
-                  name: new FormControl(this.user.name, [Validators.required]),
-                  email: new FormControl(this.user.email, [Validators.required, Validators.email]),
-                  mobile: new FormControl(this.user.mobile, [Validators.required, Validators.maxLength(13)]),
-                  birthDate: new FormControl(this.user.birthDate?this.user.birthDate.split("T")[0]:"", [Validators.required]),
-                  //either get the date by splitting and returning first half or return empty string if date is empty
-                  university: new FormControl(this.user.university, [Validators.required, Validators.maxLength(40)]),
-                  faculty: new FormControl(this.user.faculty, [Validators.required, Validators.maxLength(50)]),
-                  department: new FormControl(this.user.department, [Validators.required, Validators.maxLength(40)]),
-                  graduationYear: new FormControl(this.user.graduationYear, [Validators.required, Validators.maxLength(4)]),
-                  collegeId: new FormControl(this.user.collegeId, [Validators.required, Validators.maxLength(10)]),
-                  
-                  emergencyContact_name: new FormControl(this.user.emergencyContact_name, [Validators.required, Validators.maxLength(40)]),
-                  emergencyContact_relation: new FormControl(this.user.emergencyContact_relation, [Validators.required, Validators.maxLength(40)]),
-                  emergencyContact_mobile: new FormControl(this.user.emergencyContact_mobile, [Validators.required, Validators.maxLength(13)]),
-                  
-                  
-                  teamMember: new FormControl(this.initiallyMember),
-                  head: new FormControl(this.initiallyMember ? this.member.head : false),
-                  team: new FormControl(this.initiallyMember ? this.team.name : ""),
-                  subTeam: new FormControl(this.initiallyMember ? this.subT.name : "")
-                  
-                  
-                });
-                
-                this.optionsTeams=this.availableTeams();
-                this.optionsSubTeams=this.availableSubTeams();
-                    
-              });
-            } else {
-              
-              
-              
-              this.viewAppForm = new FormGroup({
-                
-                name: new FormControl(this.user.name, [Validators.required]),
-                email: new FormControl(this.user.email, [Validators.required, Validators.email]),
-                mobile: new FormControl(this.user.mobile, [Validators.required, Validators.maxLength(13)]),
-                birthDate: new FormControl(this.user.birthDate?this.user.birthDate.split("T")[0]:"", [Validators.required]),
-                //either get the date by splitting and returning first half or return empty string if date is empty
-                university: new FormControl(this.user.university, [Validators.required, Validators.maxLength(40)]),
-                faculty: new FormControl(this.user.faculty, [Validators.required, Validators.maxLength(50)]),
-                department: new FormControl(this.user.department, [Validators.required, Validators.maxLength(40)]),
-                graduationYear: new FormControl(this.user.graduationYear, [Validators.required, Validators.maxLength(4)]),
-                collegeId: new FormControl(this.user.collegeId, [Validators.required, Validators.maxLength(10)]),
-                
-                emergencyContact_name: new FormControl(this.user.emergencyContact_name, [Validators.required, Validators.maxLength(40)]),
-                emergencyContact_relation: new FormControl(this.user.emergencyContact_relation, [Validators.required, Validators.maxLength(40)]),
-                emergencyContact_mobile: new FormControl(this.user.emergencyContact_mobile, [Validators.required, Validators.maxLength(13)]),
-                
-                
-                teamMember: new FormControl(this.initiallyMember),
-                head: new FormControl(this.initiallyMember ? this.member.head : false),
-                team: new FormControl(this.initiallyMember ? this.team.name : ""),
-                subTeam: new FormControl(this.initiallyMember ? this.subT.name : "")
-                
-                
-              });
-              
-              
+    this.usersService.getUser(this.userId)
+    .pipe(
+      concatMap(res => {
+        this.user = res;
+        console.log('FETCHED USER FROM BACKEND ::\n', this.user);
+        const userData = <FormGroup>this.userForm.get('userData');
+        Object.keys(this.user).forEach(field => {
+            if(!undesiredFields.includes(field)){
+                //creates new formcontrol with the name of the field & 
+                // adds it to the form with its value
+                userData.addControl(field, new FormControl(this.user[field]));
             }
-            this.optionsTeams=this.availableTeams();
-            this.optionsSubTeams=this.availableSubTeams();
-          
-          
-            console.log('updated userdata form controls ::\n', this.viewAppForm);
-            
-          });
-          
         });
+        console.log('NEW FORM AFTER CREATION :: \n', this.userForm);
+
+        if(this.user.member){
+
+          this.usersService.getMember(this.user.member)
+          .subscribe(res => {
+            this.member = res;
+            this.isMember = true;
+            this.userForm.get('memberData').patchValue({ 'head': this.member.head });
+            this.userForm.get('memberData').patchValue({ 'team': this.member.team._id });
+            this.userForm.get('memberData').patchValue({ 'subteam': this.member.subteam._id });
+            
+            console.log('UPDATED MEMBER FORRRMMM ::\n', this.userForm);
+          });
         }
+
+        return this.teamsService.getAllTeams();
+    }))
+    .subscribe(teams => {
+      this.allTeams = teams;
+      // console.log('FETCHED TEAMS ::\n', this.allTeams);
+      for(let t of this.allTeams){
+        console.log('TEAM LLOOP ::', t.name, t._id)
+      }
+      
+    });
+      
+        
+    
+  }
         
         
 
@@ -227,6 +182,7 @@ export class ViewSingleUserComponent implements OnInit {
   //saveChanges(userForm){
   saveChanges(): void {
 
+    console.log('SUBMITTT ::\n', this.isMember , this.userForm);
     // console.log("saving rn")
     // console.log(this.user);
     this.user.name = this.viewAppForm.value.name;

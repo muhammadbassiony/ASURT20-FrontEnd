@@ -1,6 +1,6 @@
 
 <a class="btn btn-primary ml-3 mt-3"  (click)="goBack()">&lt;&lt;Back</a>
-<div class="card border shadow-lg container" name="main-card">
+<div class="card border shadow-lg container" name="main-card" *ngIf="user"> 
 
     <div class="center">
 
@@ -14,24 +14,21 @@
         <!--p>{{ user | json }}</p>
             for debugging-->
 
-        <form *ngIf="viewAppForm" novalidate [formGroup]="viewAppForm" (ngSubmit)="saveChanges()">
-          <div class="row mb-2">
-            <div class="col-sm ">
-              <p>Name: </p>
-            </div>
-            <div class="col-sm text-center">
-              <input  formControlName="name" type="text" class=" form-control" />
-              <mat-error *ngIf="viewAppForm.get('name').hasError('required') && viewAppForm.get('name').touched">Name is required</mat-error>
+        <form *ngIf="userForm" novalidate [formGroup]="userForm" (ngSubmit)="saveChanges()">
+          <div formGroupName="userData">
 
-           </div>
-          </div>
 
-                <!-- <mat-form-field>
-                    <label>Name: </label>
-                    <br>
-                    <input matInput formControlName="name" type="text" class="input-field form-control" />
-                    <mat-error *ngIf="viewAppForm.get('name').hasError('required') && viewAppForm.get('name').touched">Name is required</mat-error>
-                </mat-form-field> -->
+                <div class="row mb-2">
+                  <div class="col-sm ">
+                    <p>Name: </p>
+                  </div>
+                  <div class="col-sm text-center">
+                    <input  formControlName="name" type="text" class=" form-control" />
+                    <mat-error *ngIf="userForm.get('userData')['controls'].name.hasError('required') && userForm.get('userData')['controls'].name.touched">Name is required</mat-error>
+
+                </div>
+                </div>
+
 
                 <div class="row mb-2">
                   <div class="col-sm ">
@@ -39,18 +36,10 @@
                     </div>
                     <div class="col-sm text-center">
                       <input  formControlName="email" type="email" class="form-control" />
-                    <mat-error *ngIf="viewAppForm.get('email').hasError('required') && viewAppForm.get('email').touched">Please Enter Valid Email</mat-error>
+                    <mat-error *ngIf="userForm.get('userData')['controls'].email.hasError('required') && userForm.get('userData')['controls'].email.touched">Please Enter Valid Email</mat-error>
                     </div>
                    </div>
-<!--
-                <br>
-                <mat-form-field>
-                    <label>Email: </label>
-                    <br>
-                    <input matInput formControlName="email" type="email" class="input-field" />
-                    <mat-error *ngIf="viewAppForm.get('email').hasError('required') && viewAppForm.get('email').touched">Please Enter Valid Email</mat-error>
-
-                </mat-form-field> -->
+                   
 
                 <div class="row mb-2">
                   <div class="col-sm ">
@@ -58,19 +47,10 @@
                   </div>
                   <div class="col-sm text-center">
                     <input  formControlName="mobile" type="text" maxlength="13" class="form-control" />
-                    <mat-error *ngIf="viewAppForm.get('mobile').hasError('required') && viewAppForm.get('mobile').touched">Please enter Mobile Number</mat-error>
+                    <mat-error *ngIf="userForm.get('userData')['controls'].mobile.hasError('required') && userForm.get('userData')['controls'].mobile.touched">Please enter Mobile Number</mat-error>
                   </div>
                 </div>
 
-<!--
-                <br>
-                <mat-form-field>
-                    <label>Mobile: </label>
-                    <br>
-                    <input matInput formControlName="mobile" type="text" maxlength="13" class="input-field" />
-                    <mat-error *ngIf="viewAppForm.get('mobile').hasError('required') && viewAppForm.get('mobile').touched">Please enter Mobile Number</mat-error>
-
-                </mat-form-field> -->
 
                 <div class="row mb-2">
                   <div class="col-sm ">
@@ -78,18 +58,10 @@
                   </div>
                   <div class="col-sm text-center">
                     <input  formControlName="birthDate" type="date" class="form-control" />
-                    <mat-error *ngIf="viewAppForm.get('birthDate').hasError('required') && viewAppForm.get('birthDate').touched">Birth Date is required</mat-error>
+                    <mat-error *ngIf="userForm.get('userData')['controls'].birthDate.hasError('required') && userForm.get('userData')['controls'].birthDate.touched">Birth Date is required</mat-error>
                   </div>
                 </div>
-<!--
-                <br>
-                <mat-form-field>
-                    <label>Birth Date: </label>
-                    <br>
-                    <input matInput formControlName="birthDate" type="date" class="input-field" />
-                    <mat-error *ngIf="viewAppForm.get('birthDate').hasError('required') && viewAppForm.get('birthDate').touched">Birth Date is required</mat-error>
-
-                </mat-form-field> -->
+                
 
                 <div class="row mb-2">
                   <div class="col-sm ">
@@ -97,21 +69,11 @@
                   </div>
                   <div class="col-sm text-center">
                     <input  formControlName="university" type="text" maxlength="40" class="form-control" />
-                    <mat-error *ngIf="viewAppForm.get('university').hasError('required') && viewAppForm.get('university').touched">University is required</mat-error>
+                    <mat-error *ngIf="userForm.get('userData')['controls'].university.hasError('required') && userForm.get('userData')['controls'].university.touched">University is required</mat-error>
                   </div>
                 </div>
 
-                <!-- <br>
-                <mat-form-field>
-                    <label>University: </label>
-                    <br>
-                    <input matInput formControlName="university" type="text" maxlength="40" class="input-field" />
-                    <mat-error *ngIf="viewAppForm.get('university').hasError('required') && viewAppForm.get('university').touched">University is required</mat-error>
-
-
-                </mat-form-field>
-
-                <br> -->
+                
 
                 <div class="row mb-2">
                   <div class="col-sm ">
@@ -119,17 +81,10 @@
                   </div>
                   <div class="col-sm text-center">
                     <input  formControlName="faculty" type="text" maxlength="50" class="form-control" />
-                    <mat-error *ngIf="viewAppForm.get('faculty').hasError('required') && viewAppForm.get('faculty').touched">Faculty is required</mat-error>
+                    <mat-error *ngIf="userForm.get('userData')['controls'].faculty.hasError('required') && userForm.get('userData')['controls'].faculty.touched">Faculty is required</mat-error>
                   </div>
                 </div>
 
-                <!-- <mat-form-field>
-                    <label>Faculty: </label>
-                    <br>
-                    <input matInput formControlName="faculty" type="text" maxlength="50" class="input-field" />
-                    <mat-error *ngIf="viewAppForm.get('faculty').hasError('required') && viewAppForm.get('faculty').touched">Faculty is required</mat-error>
-
-                </mat-form-field> -->
 
                 <div class="row mb-2">
                   <div class="col-sm ">
@@ -137,18 +92,11 @@
                   </div>
                   <div class="col-sm text-center">
                     <input  formControlName="department" type="text" maxlength="40" class="form-control" />
-                    <mat-error *ngIf="viewAppForm.get('department').hasError('required') && viewAppForm.get('department').touched">Department is required</mat-error>
+                    <mat-error *ngIf="userForm.get('userData')['controls'].department.hasError('required') && userForm.get('userData')['controls'].department.touched">Department is required</mat-error>
                   </div>
                 </div>
 
-                <!-- <br>
-                <mat-form-field>
-                    <label>Department: </label>
-                    <br>
-                    <input matInput formControlName="department" type="text" maxlength="40" class="input-field" />
-                    <mat-error *ngIf="viewAppForm.get('department').hasError('required') && viewAppForm.get('department').touched">Department is required</mat-error>
-
-                </mat-form-field> -->
+                
 
                 <div class="row mb-2">
                   <div class="col-sm ">
@@ -156,19 +104,11 @@
                   </div>
                   <div class="col-sm text-center">
                     <input formControlName="collegeId" type="text" maxlength="10" class="form-control" />
-                    <mat-error *ngIf="viewAppForm.get('collegeId').hasError('required') && viewAppForm.get('collegeId').touched">College ID is required</mat-error>
+                    <mat-error *ngIf="userForm.get('userData')['controls'].collegeId.hasError('required') && userForm.get('userData')['controls'].collegeId.touched">College ID is required</mat-error>
                   </div>
                 </div>
 
-                <!-- <br>
-                <mat-form-field>
-                    <label>College ID: </label>
-                    <br>
-                    <input matInput formControlName="collegeId" type="text" maxlength="10" class="input-field" />
-                    <mat-error *ngIf="viewAppForm.get('collegeId').hasError('required') && viewAppForm.get('collegeId').touched">College ID is required</mat-error>
-
-                </mat-form-field>
-                <br> -->
+                
 
                 <div class="row mb-2">
                   <div class="col-sm ">
@@ -176,17 +116,11 @@
                   </div>
                   <div class="col-sm text-center">
                     <input  formControlName="emergencyContact_name" type="text" maxlength="40" class="form-control" />
-                    <mat-error *ngIf="viewAppForm.get('emergencyContact_name').hasError('required') && viewAppForm.get('emergencyContact_name').touched">Please Enter your Emergency Contact Name</mat-error>
+                    <mat-error *ngIf="userForm.get('userData')['controls'].emergencyContact_name.hasError('required') && userForm.get('userData')['controls'].emergencyContact_name.touched">Please Enter your Emergency Contact Name</mat-error>
                   </div>
                 </div>
 
-                <!-- <mat-form-field>
-                    <label>Emergency Contact Name: </label>
-                    <br>
-                    <input matInput formControlName="emergencyContact_name" type="text" maxlength="40" class="input-field" />
-                    <mat-error *ngIf="viewAppForm.get('emergencyContact_name').hasError('required') && viewAppForm.get('emergencyContact_name').touched">Please Enter your Emergency Contact Name</mat-error>
-
-                </mat-form-field> -->
+                
 
                 <div class="row mb-2">
                   <div class="col-sm ">
@@ -194,7 +128,7 @@
                   </div>
                   <div class="col-sm text-center">
                     <input  formControlName="emergencyContact_relation" type="text" maxlength="40" class="form-control" />
-                    <mat-error *ngIf="viewAppForm.get('emergencyContact_relation').hasError('required') && viewAppForm.get('emergencyContact_relation').touched">Please Enter the relation of your Emergency Contact </mat-error>
+                    <mat-error *ngIf="userForm.get('userData')['controls'].emergencyContact_relation.hasError('required') && userForm.get('userData')['controls'].emergencyContact_relation.touched">Please Enter the relation of your Emergency Contact </mat-error>
                   </div>
                 </div>
 
@@ -206,54 +140,53 @@
                   </div>
                   <div class="col-sm text-center">
                     <input  formControlName="emergencyContact_mobile" type="text" maxlength="13" class="form-control" />
-                    <mat-error *ngIf="viewAppForm.get('emergencyContact_mobile').hasError('required') && viewAppForm.get('emergencyContact_mobile').touched">Please Enter your Emergency Contact Mobile Number</mat-error>
+                    <mat-error *ngIf="userForm.get('userData')['controls'].emergencyContact_mobile.hasError('required') && userForm.get('userData')['controls'].emergencyContact_mobile.touched">Please Enter your Emergency Contact Mobile Number</mat-error>
                   </div>
                 </div>
 
-
+            </div>
 
 
             <br>
             <hr>
             <br>
 
+            
+
             <!-- <div class="form-check">
-            </div> -->
-            <mat-slide-toggle class="form-check-input" formControlName="teamMember" style="margin-left: 30px;">Member</mat-slide-toggle>
+            </div> formControlName="teamMember"-->
+            <mat-slide-toggle class="form-check-input"  [checked]="isMember" 
+              (change)="isMember = $event.source.checked"
+              style="margin-left: 30px;">Member</mat-slide-toggle>
 
-            <!-- <mat-form-field>
-
-                    <h3> <label for="teamMemberCheckBox">Team Member</label>
-
-                        <input matInput type="checkbox" id="teamMemberCheckBox" class="form-check-input" formControlName="teamMember" style="margin: 7px 20px; size: 150%;">
-                    </h3>
-                </mat-form-field> -->
+            
             <br>
             <br>
             <br>
 
-            <div class="container" *ngIf="viewAppForm.value.teamMember" style="margin-left: 30px;">
-                <mat-slide-toggle class="form-check-input" formControlName="head">Head</mat-slide-toggle>
+            <div formGroupName="memberData" *ngIf="isMember">
+              
+              
+            <div class="container" *ngIf="userForm.get('memberData')" style="margin-left: 30px;">
+                
+              <mat-slide-toggle class="form-check-input" formControlName="head"
+                [checked]="userForm.get('memberData').head" 
+                (change)="userForm.get('memberData').head = $event.source.checked">Head</mat-slide-toggle>
+                
                 <br>
                 <br>
                 <br>
 
-                <!-- <mat-form-field>
-                    <h3 style="margin:0px 0px 0px 10px;">
+                
 
-                        <label for="headCheckBox">Head</label>
-                        <input matInput type="checkbox" id="headCheckBox" class="form-check-input" formControlName="head" style="margin: 7px 20px; size: 150%;">
-                    </h3>
-                </mat-form-field> -->
-
-
+<!-- 
                 <mat-select formControlName="team" (selectionChange)="updateSub()" >
 
-                    <mat-option selected *ngIf="viewAppForm.value.team" [value]="viewAppForm.value.team">
+                    <mat-option selected *ngIf="userForm.get('memberData')['controls'].team" [value]="userForm.get('memberData')['controls'].team">
                         {{viewAppForm.value.team}}
 
                     </mat-option>
-                    <mat-option *ngFor="let t of optionsTeams" [value]="t.name">
+                    <mat-option *ngFor="let t of allTeams" [value]="t._id">
                         {{ t.name }}
                     </mat-option>
                 </mat-select>
@@ -261,33 +194,20 @@
                 <br>
 
                 <br>
-                <!-- <mat-form-field>
-
-                    <select matInput class="custom-select form-control" [disabled]="user.teamMember" formControlName="team">
-                       <option selected disabled>Choose team...</option>
-                       <option selected *ngIf="team">{{team.name}}</option>
-                       <option *ngFor="let t of availableTeams()">{{ t.name }}</option>
-                    </select>
-                </mat-form-field> -->
 
 
-                <mat-select *ngIf="viewAppForm.value.team" formControlName="subTeam">
+                <mat-select *ngIf="userForm.get('memberData')['controls'].team" formControlName="subteam">
 
                     <mat-option selected *ngIf="subT" [value]="subT.name">{{subT.name}}</mat-option>
                     <mat-option *ngFor="let sub of optionsSubTeams" [value]="sub.name">
                         {{ sub.name }}
                     </mat-option>
-                </mat-select>
+                </mat-select> -->
 
-                <!-- <mat-form-field>
-                    <select matInput *ngIf="viewAppForm.value.team" class="custom-select form-control" [disabled]="user.teamMember" formControlName="subTeam">
-                        <option selected disabled>Choose sub-team...</option>
-                        <option selected *ngIf="subT">{{subT.name}}</option>
-                        <option *ngFor="let sub of availableSubTeams()" >{{ sub.name }}</option>
-                    </select>
+      
 
-                </mat-form-field> -->
 
+            </div>
 
             </div>
 
@@ -295,7 +215,9 @@
             <hr>
             <br>
             <span class="flex-spacer"></span>
-            <button mat-button type="submit" mat-button class="btn-primary rounded m-3 text-floral-white bottom-right std-btn" [disabled]="viewAppForm.invalid">Save Changes</button>
+            <button mat-button type="submit" mat-button 
+              class="btn-primary rounded m-3 text-floral-white bottom-right std-btn" 
+              [disabled]="userForm.invalid">Save Changes</button>
             <!-- <button mat-button class="btn-danger m-3 text-floral-white bottom-right">Reset</button> -->
         </form>
     </div>
