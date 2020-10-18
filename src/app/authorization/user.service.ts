@@ -407,6 +407,28 @@ export class UserService {
     );
   }
 
+  newPassword(password: string, token: string){
+    let body = {
+      token: token,
+      password: password
+    };
+    console.log('USR SRVC - NEW PASS :: ', body);
+    return this.http.post(
+      backend_uri + '/auth/user/new-password',
+      body,
+      { responseType: 'json' }
+    )
+    .pipe(
+      map(res => {
+        return null;
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
+    
+  }
+
 }
 
 

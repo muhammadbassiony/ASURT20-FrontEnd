@@ -47,6 +47,10 @@ export class ResponseResetComponent implements OnInit {
 
   onSubmit(passwordResetForm: FormGroup){
     console.log('PASS RESET FORRRRRMMMMM ::', this.passwordResetForm);
+    this.usersService.newPassword(this.passwordResetForm.value.password, this.tokenId)
+    .subscribe(res => {
+      console.log('AHOOYYYY :: ', res);
+    })
   }
 
 }
