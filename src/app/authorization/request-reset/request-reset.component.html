@@ -1,1 +1,55 @@
-<p>request-reset works!</p>
+<!-- HOME SECTION -->
+<div class="container text-center min-vh-100" *ngIf="isLoading">
+<app-loading-spinner></app-loading-spinner>
+<!-- <p style="font-size: 4rem" class="text-center text-primary">Loading...</p> -->
+</div>
+<div class="dark-overlay" *ngIf="!isLoading">
+    <header id="home-section">
+    <div class="home-inner container">
+        <div class="row">
+            <div class="col-lg-2">
+            </div>
+
+        <div class="col-lg-8">
+            <div class="card text-center card-form" style="background-color: #b21212">
+            <div class="card-body">
+                <h1 class="mb-4 mt-4" style="color: white;">Request Password Reset </h1>
+
+<br>
+                <div id="errorMsg" *ngIf="errorMessage" class="alert alert-warning">
+                    <span>{{errorMessage}}</span>
+                </div>
+                <div id="successMsg" *ngIf="successMessage" class="alert alert-success">
+                    <span>{{successMessage}}</span>
+                </div>
+
+                <form [formGroup]="RequestResetForm" 
+                    (ngSubmit)="RequestResetUser(RequestResetForm)">
+                    
+                    <div class="form-group">
+                    <span class="input-group-text"><i class="fa fa-envelope prefix ml-2"></i>
+                    <input type="text" class="form-control form-control-lg ml-4" placeholder="Email"
+                        name="email" required email /></span>
+                    </div>
+
+                    <span *ngIf="!RequestResetForm.get('email').valid"
+                                class="alert alert-warning">Please enter a valid email!</span>
+
+                    <hr>
+                    
+
+                    <button type="submit" class="btn btn-outline-dark btn-block mt-4 mb-4" style="color: white;"
+                            [disabled]="!RequestResetForm.valid">Send Email</button>
+
+                </form>
+
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </header>
+</div>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">

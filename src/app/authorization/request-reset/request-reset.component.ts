@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-request-reset',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RequestResetComponent implements OnInit {
 
-  constructor() { }
+  email: string;
+  RequestResetForm: FormGroup;
+  errorMessage: string = null;
+  successMessage: string = null;
+
+  constructor(
+    private usersService: UserService
+  ) { }
 
   ngOnInit(): void {
+
+    this.RequestResetForm = new FormGroup({
+      'email': new FormControl(null, [Validators.required, Validators.email]),
+    });
+
+  }
+
+  RequestResetUser(RequestResetForm: FormGroup){
+    console.log('PASS RESET REQUEST FORM :: \n', this.RequestResetForm);
   }
 
 }

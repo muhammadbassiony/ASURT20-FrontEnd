@@ -20,6 +20,9 @@ import { AboutUsComponent } from "./main system/about-us/about-us.component";
 import { SignUpComponent } from './authorization/sign-up/sign-up.component';
 import { SignInComponent } from './authorization/sign-in/sign-in.component';
 import { EditProfileComponent } from './authorization/edit-profile/edit-profile.component';
+import { RequestResetComponent } from './authorization/request-reset/request-reset.component';
+import { ResponseResetComponent } from './authorization/response-reset/response-reset.component';
+
 
 import { AdminGuardService } from './authorization/admin-guard.service';
 
@@ -75,6 +78,8 @@ const routes: Routes = [
   
   { path: 'sign-up', component: SignUpComponent },
   { path: 'sign-in', component: SignInComponent },
+  { path: 'request-reset-password', component: RequestResetComponent },
+  { path: 'response-reset-password/:token', component: ResponseResetComponent },
   { path: 'edit-profile', component: EditProfileComponent, canActivate: [AdminGuardService], 
     canDeactivate: [EditProfileDeactivateGuard],data: { accessLevel: 0} },
 
