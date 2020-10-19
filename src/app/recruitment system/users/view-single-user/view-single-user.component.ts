@@ -32,9 +32,6 @@ import { Subteam } from '../../models/subteam.model';
 })
 export class ViewSingleUserComponent implements OnInit {
 
-  
-  team: Team;
-  subT: Subteam;
 
   userId: string;
   user: any;
@@ -42,11 +39,14 @@ export class ViewSingleUserComponent implements OnInit {
 
   userForm: FormGroup;
   allTeams: any;
-  userMember: Member;
-  viewAppForm: FormGroup;
-  initiallyMember: boolean = false;
+  // userMember: Member;
+  // viewAppForm: FormGroup;
+  // initiallyMember: boolean = false;
 
   isMember = false;
+  currentTeam;
+  currentSub;
+  availableSubs;
 
   optionsSubTeams :Subteam[];
   optionsTeams: Team[];
@@ -102,15 +102,16 @@ export class ViewSingleUserComponent implements OnInit {
   //   return answer;
   // }
 
-  // updateSub():void{
-  //   this.team=this.viewAppForm.value.team;
-  //   this.optionsTeams=this.allTeams.filter(t => t.name != this.viewAppForm.value.team);
+  updateSub():void{
+    console.log('TEAM TESSST :: \n', this.userForm.get('memberData')['controls'].team.value, 
+      this.allTeams.find(t => t._id == this.userForm.get('memberData')['controls'].team.value));
 
-  //   this.subT=null;
-  //   this.optionsSubTeams=this.allTeams.filter(t => t.name === this.viewAppForm.value.team)[0].subteams;
+    this.availableSubs = this.allTeams.find(t => t._id == this.userForm.get('memberData')['controls'].team.value)['subteams'];
+    console.log('AVAILABLE SUBSS :: \n', this.availableSubs);
+    // this.availableSubs = this.availableSubs.subteams;
+    // console.log('AVAILABLE SUBSS :: \n', this.availableSubs);
 
-
-  // }
+  }
 
   ngOnInit() {
     this.userId = this.route.snapshot.queryParamMap.get('userId');
@@ -153,8 +154,10 @@ export class ViewSingleUserComponent implements OnInit {
             this.userForm.get('memberData').patchValue({ 'head': this.member.head });
             this.userForm.get('memberData').patchValue({ 'team': this.member.team._id });
             this.userForm.get('memberData').patchValue({ 'subteam': this.member.subteam._id });
-            
-            console.log('UPDATED MEMBER FORRRMMM ::\n', this.userForm);
+            this.currentTeam = this.member.team.name;
+            this.currentSub = this.member.subteam.name;
+            console.log('UPDATED MEMBER FORRRMMM ::\n', this.member, this.userForm);
+            this.updateSub();
           });
         }
 
@@ -162,13 +165,11 @@ export class ViewSingleUserComponent implements OnInit {
     }))
     .subscribe(teams => {
       this.allTeams = teams;
-      // console.log('FETCHED TEAMS ::\n', this.allTeams);
-      for(let t of this.allTeams){
-        console.log('TEAM LLOOP ::', t.name, t._id)
-      }
-      
+      console.log('FETCHED TEAMS ::\n', this.allTeams);
+      this.updateSub();
     });
       
+    // this.updateSub();
         
     
   }
@@ -182,90 +183,110 @@ export class ViewSingleUserComponent implements OnInit {
   //saveChanges(userForm){
   saveChanges(): void {
 
-    console.log('SUBMITTT ::\n', this.isMember , this.userForm);
-    // console.log("saving rn")
-    // console.log(this.user);
-    this.user.name = this.viewAppForm.value.name;
-    this.user.email = this.viewAppForm.value.email;
-    this.user.mobile = this.viewAppForm.value.mobile;
-    this.user.birthDate = this.viewAppForm.value.birthDate;
-    this.user.university = this.viewAppForm.value.university;
-    this.user.faculty = this.viewAppForm.value.faculty;
-    this.user.department = this.viewAppForm.value.department;
-    this.user.graduationYear = this.viewAppForm.value.graduationYear;
-    this.user.collegeId = this.viewAppForm.value.collegeId;
-    this.user.emergencyContact_name = this.viewAppForm.value.emergencyContact_name;
-    this.user.emergencyContact_relation = this.viewAppForm.value.emergencyContact_relation;
-    this.user.emergencyContact_mobile = this.viewAppForm.value.emergencyContact_mobile;
+    let updatedUser = <User>this.user;
+    updatedUser = {...this.user, ...this.userForm.value.userData };
 
+    let updatedMember = <Member>this.member;
+    updatedMember = {...this.member, ...this.userForm.value.memberData};
+    console.log('UPDATEDDD  :: ', updatedUser, updatedMember);
 
-    if (this.viewAppForm.value.teamMember && this.initiallyMember) {
-      console.log("AWEL IF");
-      this.userMember = {
-
-        _id: this.user.member,
-        teamId: this.allTeams.filter(t => t.name == this.viewAppForm.value.team)[0]._id,
-        subteamId: this.allTeams.filter(t => t.name == this.viewAppForm.value.team)[0].subteams.filter(t => t.name == this.viewAppForm.value.subTeam)[0]._id,
-        userId: this.user._id,
-        head: this.viewAppForm.value.head
+    this.usersService.addUserInfo(this.userId, updatedUser)
+    .pipe(switchMap(res => {
+      if(this.user.member) {
+        return this.usersService.updateMember(this.user.member, updatedMember);
+      } else {
+        updatedMember.userId = this.user._id;
+        return this.usersService.addMember(updatedMember);
       }
-      this.usersService.updateMember(this.userMember._id, this.userMember)
-        .pipe(switchMap(res => {
-          console.log('updated member :: \n', res);
-          return this.usersService.addUserInfo(this.user._id, this.user);
-        }))
-        .subscribe(res => {
-          console.log('user updated ::\n', res);
-        });
-
-    } else if (this.viewAppForm.value.teamMember && !this.initiallyMember) {
-      console.log("TANY IF");
-      this.userMember = {
-        _id: '',
-        teamId: this.allTeams.filter(t => t.name == this.viewAppForm.value.team)[0]._id,
-        subteamId: this.allTeams.filter(t => t.name == this.viewAppForm.value.team)[0].subteams.filter(t => t.name == this.viewAppForm.value.subTeam)[0]._id,
-        userId: this.user._id,
-        head: this.viewAppForm.value.head
-      };
-      this.usersService.addMember(this.userMember)
-        .pipe(switchMap(res => {
-          console.log('added new member :: \n', res);
-          return this.usersService.addUserInfo(this.user._id, this.user);
-        }))
-        .subscribe(res => {
-          console.log('user updated ::\n', res);
-        });
-
-
-    } else if (!this.viewAppForm.value.teamMember && !this.initiallyMember) { // no more member
-      console.log('ana hena');
-      this.user.member = null;
-    }
-    else {
-      console.log('3ADET EL IFS KOLAHA HAHA');
-    }
-
-    this.viewAppForm = new FormGroup({
-
-      name: new FormControl(this.user.name, [Validators.required]),
-      email: new FormControl(this.user.email, [Validators.required, Validators.email]),
-      mobile: new FormControl(this.user.mobile, [Validators.required, Validators.maxLength(13)]),
-      birthDate: new FormControl(this.user.birthDate, [Validators.required]),
-      //either get the date by splitting and returning first half or return empty string if date is empty
-      university: new FormControl(this.user.university, [Validators.required, Validators.maxLength(40)]),
-      faculty: new FormControl(this.user.faculty, [Validators.required, Validators.maxLength(50)]),
-      department: new FormControl(this.user.department, [Validators.required, Validators.maxLength(40)]),
-      graduationYear: new FormControl(this.user.graduationYear, [Validators.required, Validators.maxLength(4)]),
-      collegeId: new FormControl(this.user.collegeId, [Validators.required, Validators.maxLength(10)]),
-
-      emergencyContact_name: new FormControl(this.user.emergencyContact_name, [Validators.required, Validators.maxLength(40)]),
-      emergencyContact_relation: new FormControl(this.user.emergencyContact_relation, [Validators.required, Validators.maxLength(40)]),
-      emergencyContact_mobile: new FormControl(this.user.emergencyContact_mobile, [Validators.required, Validators.maxLength(13)]),
-      teamMember: new FormControl(this.user.member ? true : false),
-      head: new FormControl(this.user.member ? this.member.head : false),
-      team: new FormControl(this.member ? this.team.name : ""),
-      subTeam: new FormControl(this.member ? this.subT.name : "")
+    }))
+    .subscribe(res => {
+      console.log('UPDATEDDD MEMMEBEERR :: ', res);
     });
+
+
+    // // console.log("saving rn")
+    // // console.log(this.user);
+    // this.user.name = this.viewAppForm.value.name;
+    // this.user.email = this.viewAppForm.value.email;
+    // this.user.mobile = this.viewAppForm.value.mobile;
+    // this.user.birthDate = this.viewAppForm.value.birthDate;
+    // this.user.university = this.viewAppForm.value.university;
+    // this.user.faculty = this.viewAppForm.value.faculty;
+    // this.user.department = this.viewAppForm.value.department;
+    // this.user.graduationYear = this.viewAppForm.value.graduationYear;
+    // this.user.collegeId = this.viewAppForm.value.collegeId;
+    // this.user.emergencyContact_name = this.viewAppForm.value.emergencyContact_name;
+    // this.user.emergencyContact_relation = this.viewAppForm.value.emergencyContact_relation;
+    // this.user.emergencyContact_mobile = this.viewAppForm.value.emergencyContact_mobile;
+
+
+    // if (this.viewAppForm.value.teamMember && this.initiallyMember) {
+    //   console.log("AWEL IF");
+    //   this.userMember = {
+
+    //     _id: this.user.member,
+    //     teamId: this.allTeams.filter(t => t.name == this.viewAppForm.value.team)[0]._id,
+    //     subteamId: this.allTeams.filter(t => t.name == this.viewAppForm.value.team)[0].subteams.filter(t => t.name == this.viewAppForm.value.subTeam)[0]._id,
+    //     userId: this.user._id,
+    //     head: this.viewAppForm.value.head
+    //   }
+    //   this.usersService.updateMember(this.userMember._id, this.userMember)
+    //     .pipe(switchMap(res => {
+    //       console.log('updated member :: \n', res);
+    //       return this.usersService.addUserInfo(this.user._id, this.user);
+    //     }))
+    //     .subscribe(res => {
+    //       console.log('user updated ::\n', res);
+    //     });
+
+    // } else if (this.viewAppForm.value.teamMember && !this.initiallyMember) {
+    //   console.log("TANY IF");
+    //   this.userMember = {
+    //     _id: '',
+    //     teamId: this.allTeams.filter(t => t.name == this.viewAppForm.value.team)[0]._id,
+    //     subteamId: this.allTeams.filter(t => t.name == this.viewAppForm.value.team)[0].subteams.filter(t => t.name == this.viewAppForm.value.subTeam)[0]._id,
+    //     userId: this.user._id,
+    //     head: this.viewAppForm.value.head
+    //   };
+    //   this.usersService.addMember(this.userMember)
+    //     .pipe(switchMap(res => {
+    //       console.log('added new member :: \n', res);
+    //       return this.usersService.addUserInfo(this.user._id, this.user);
+    //     }))
+    //     .subscribe(res => {
+    //       console.log('user updated ::\n', res);
+    //     });
+
+
+    // } else if (!this.viewAppForm.value.teamMember && !this.initiallyMember) { // no more member
+    //   console.log('ana hena');
+    //   this.user.member = null;
+    // }
+    // else {
+    //   console.log('3ADET EL IFS KOLAHA HAHA');
+    // }
+
+    // this.viewAppForm = new FormGroup({
+
+    //   name: new FormControl(this.user.name, [Validators.required]),
+    //   email: new FormControl(this.user.email, [Validators.required, Validators.email]),
+    //   mobile: new FormControl(this.user.mobile, [Validators.required, Validators.maxLength(13)]),
+    //   birthDate: new FormControl(this.user.birthDate, [Validators.required]),
+    //   //either get the date by splitting and returning first half or return empty string if date is empty
+    //   university: new FormControl(this.user.university, [Validators.required, Validators.maxLength(40)]),
+    //   faculty: new FormControl(this.user.faculty, [Validators.required, Validators.maxLength(50)]),
+    //   department: new FormControl(this.user.department, [Validators.required, Validators.maxLength(40)]),
+    //   graduationYear: new FormControl(this.user.graduationYear, [Validators.required, Validators.maxLength(4)]),
+    //   collegeId: new FormControl(this.user.collegeId, [Validators.required, Validators.maxLength(10)]),
+
+    //   emergencyContact_name: new FormControl(this.user.emergencyContact_name, [Validators.required, Validators.maxLength(40)]),
+    //   emergencyContact_relation: new FormControl(this.user.emergencyContact_relation, [Validators.required, Validators.maxLength(40)]),
+    //   emergencyContact_mobile: new FormControl(this.user.emergencyContact_mobile, [Validators.required, Validators.maxLength(13)]),
+    //   teamMember: new FormControl(this.user.member ? true : false),
+    //   head: new FormControl(this.user.member ? this.member.head : false),
+      // team: new FormControl(this.member ? this.team.name : ""),
+      // subTeam: new FormControl(this.member ? this.subT.name : "")
+    // });
 
 
     //send updated user with this.usersService.updateUser

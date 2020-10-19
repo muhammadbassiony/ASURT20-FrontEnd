@@ -179,13 +179,13 @@
 
                 
 
-<!-- 
+
                 <mat-select formControlName="team" (selectionChange)="updateSub()" >
-
-                    <mat-option selected *ngIf="userForm.get('memberData')['controls'].team" [value]="userForm.get('memberData')['controls'].team">
-                        {{viewAppForm.value.team}}
-
+                  <!-- *ngIf="userForm.get('memberData')['controls'].team" -->
+                    <mat-option selected disabled [value]="currentTeam">
+                        {{currentTeam}}
                     </mat-option>
+
                     <mat-option *ngFor="let t of allTeams" [value]="t._id">
                         {{ t.name }}
                     </mat-option>
@@ -198,11 +198,11 @@
 
                 <mat-select *ngIf="userForm.get('memberData')['controls'].team" formControlName="subteam">
 
-                    <mat-option selected *ngIf="subT" [value]="subT.name">{{subT.name}}</mat-option>
-                    <mat-option *ngFor="let sub of optionsSubTeams" [value]="sub.name">
+                    <mat-option selected disabled [value]="currentSub">{{currentSub}}</mat-option>
+                    <mat-option *ngFor="let sub of availableSubs" [value]="sub._id">
                         {{ sub.name }}
                     </mat-option>
-                </mat-select> -->
+                </mat-select>
 
       
 

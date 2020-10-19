@@ -192,12 +192,12 @@ export class UserService {
     );
   }
 
-  addMember(newMember: Member){
+  addMember(newMember: any){
 
     let member = {
       userId: newMember.userId,
-      teamId: newMember.teamId,
-      subteamId: newMember.subteamId,
+      teamId: newMember.team,
+      subteamId: newMember.subteam,
       head: newMember.head
     };
 
@@ -275,13 +275,13 @@ export class UserService {
     );
   }
 
-  updateMember(memberId: string, newMember: Member){
+  updateMember(memberId: string, newMember: any){
     
     let member = {
       memberId: newMember._id,
-      userId: newMember.userId,
-      teamId: newMember.teamId,
-      subteamId: newMember.subteamId,
+      userId: newMember.user,
+      teamId: newMember.team,
+      subteamId: newMember.subteam,
       head: newMember.head
     };
 
