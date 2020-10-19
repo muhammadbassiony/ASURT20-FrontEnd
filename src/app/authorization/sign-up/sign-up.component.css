@@ -1,6 +1,6 @@
 
 #home-section {
-    background-image: './lights.jpg';
+    background-image: url("lights.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;

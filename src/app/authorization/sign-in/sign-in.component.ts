@@ -13,9 +13,6 @@ import { Location } from '@angular/common';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
-
-
-  
   constructor(private usersService: UserService, private router: Router, private location:Location, private ErrService:ErrorService) { }
 
   ngOnInit(): void {
@@ -37,13 +34,13 @@ export class SignInComponent implements OnInit {
     this.usersService.signIn(email, password)
     .subscribe(responseData => {
         this.isLoading = false;
-        
+
         if(responseData['user']['profileComplete']){
           this.router.navigate(['/dashboard']);
         } else {
           this.router.navigate(['/edit-profile']);
         }
-        
+
     }, errorMessage => {
         this.isLoading = false;
         this.error = errorMessage;
