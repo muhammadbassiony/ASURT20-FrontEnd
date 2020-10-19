@@ -47,7 +47,7 @@ export class UserEventsComponent implements OnInit {
     .pipe(concatMap(res => {
       this.appliedTo = res['appliedTo'];
       this.didntApply = res['didntApply'];
-      // console.log('USER EVENTS APPLIED TO AND DIDNT APPLY TO \n', this.appliedTo, this.didntApply);
+      console.log('USER EVENTS APPLIED TO AND DIDNT APPLY TO \n', this.appliedTo, this.didntApply);
       
       return this.applicationsService.getUserApps(this.userId);
     }))
@@ -60,6 +60,7 @@ export class UserEventsComponent implements OnInit {
         })
       }
       this.userApps = res;
+      console.log('ALL APPS W IVS ::', this.userApps);
     });
   }
 

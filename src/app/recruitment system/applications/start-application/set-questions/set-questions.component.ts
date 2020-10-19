@@ -66,6 +66,7 @@ export class SetQuestionsComponent implements OnInit {
     this.eventsService.getEvent(this.eventId)
     .pipe(switchMap(res => {
       this.eventData = <Event>res;
+      console.log('GOT EVENT :: ', this.eventData);
       this.eventData.questions.forEach(qs => {
         const control = new FormControl(qs, Validators.required);
         (<FormArray>this.questionsForm.get('questions')).push(control);
@@ -76,7 +77,7 @@ export class SetQuestionsComponent implements OnInit {
     }))
     .subscribe((res) => {
       this.team = res;
-      // console.log('setQs get team ::: \n', this.team);
+      console.log('setQs get team ::: \n', this.team);
       const activeSubs = <FormGroup>this.questionsForm.get('activeSubs');
       this.team.subteams.forEach(sub => {
         activeSubs.addControl(sub._id, new FormControl(true));
