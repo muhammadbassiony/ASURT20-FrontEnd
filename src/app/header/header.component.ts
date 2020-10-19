@@ -56,10 +56,11 @@ export class HeaderComponent implements OnInit {
       this.isLoading.emit(false);
       // console.log('HEADER AUTHUSER SUBS :: ', user);
       this.isAuthorized = !!user;
-      this.userId = user._id;
+      if (this.isAuthorized) {
+        this.userId = user._id;
+      }
     }, error => {
-      this.isLoading.emit(false);
-      this.errorService.passError('Error Loading Competitions!', '/home');
+      this.errorService.passError('Error Loading Competitions!', '/loading');
     });
 
 

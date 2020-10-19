@@ -46,11 +46,13 @@ import { AdminInterviewsComponent } from './recruitment system/interviews/admin-
 import { ViewInterviewComponent } from './recruitment system/interviews/admin-interviews/view-interview/view-interview.component';
 
 import { EditProfileDeactivateGuard } from './authorization/edit-profile/edit-profile-can-deactivate.service';
+import {LoadingSpinnerComponent} from "./shared/loading-spinner/loading-spinner.component";
 
 
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent, pathMatch: 'full' },
+  { path: 'loading', component: LoadingSpinnerComponent},
   { path: 'home', component: LandingPageComponent},
   { path: 'competition',
      children:[
@@ -64,10 +66,10 @@ const routes: Routes = [
   { path: 'sponsors', component: SponsorsComponent },
   { path: 'about-us', component: AboutUsComponent },
 
-  { 
-    path: 'edit', component: AdminPanelComponent, 
-    data: { accessLevel: 2 }, 
-    canActivate: [AdminGuardService], 
+  {
+    path: 'edit', component: AdminPanelComponent,
+    data: { accessLevel: 2 },
+    canActivate: [AdminGuardService],
     children:[
       { path: 'add-prize', component: AddPrizesComponent },
       { path: 'competition', component: CompetitionEditComponent },
@@ -75,21 +77,21 @@ const routes: Routes = [
       { path: 'sponsors', component: SponsorsEditComponent }
     ]
   },
-  
+
   { path: 'sign-up', component: SignUpComponent },
   { path: 'sign-in', component: SignInComponent },
   { path: 'request-reset-password', component: RequestResetComponent },
   { path: 'response-reset-password/:token', component: ResponseResetComponent },
-  { path: 'edit-profile', component: EditProfileComponent, canActivate: [AdminGuardService], 
+  { path: 'edit-profile', component: EditProfileComponent, canActivate: [AdminGuardService],
     canDeactivate: [EditProfileDeactivateGuard],data: { accessLevel: 0} },
 
-  
+
   { path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuardService], data: { accessLevel: 0} },
-  
+
   {path: 'view-all-users', component: ViewAllUsersComponent, canActivate: [AdminGuardService], data: { accessLevel: 3} },
   {path: 'view-all-members', component: ViewAllMembersComponent, canActivate: [AdminGuardService], data: { accessLevel: 3} },
   {path: 'view-user', component: ViewSingleUserComponent, canActivate: [AdminGuardService], data: { accessLevel: 3} },
- 
+
   {path: 'event/new', component: NewEventComponent, data: { accessLevel: 3} },
   {path: 'application/set-questions', component: SetQuestionsComponent, canActivate: [AdminGuardService], data: { accessLevel: 2} },
   {path: 'view-applications/:eventId', component: ViewAllAppsComponent, canActivate: [AdminGuardService] , data: { accessLevel: 2} },
