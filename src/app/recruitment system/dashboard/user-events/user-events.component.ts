@@ -4,12 +4,13 @@ import { ActivatedRoute, Params, Router, Data } from '@angular/router';
 
 import { HttpClient } from '@angular/common/http';
 import { Location } from "@angular/common";
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, concatMap } from 'rxjs/operators';
 import { Observable, pipe, Subscription } from 'rxjs';
 
 import { EventsService } from '../../services/events.service';
 import { Event } from '../../models/event.model';
 import { ApplicationsService } from '../../services/applications.service';
+import { InterviewsService } from '../../services/interviews.service';
 import { UserService } from '../../../authorization/user.service';
 import { Application } from '../../models/application.model';
 
@@ -33,6 +34,7 @@ export class UserEventsComponent implements OnInit {
   constructor(
     private eventsService: EventsService,
     private applicationsService: ApplicationsService,
+    private interviewsService: InterviewsService,
     private usersService: UserService,
     private http: HttpClient,
     private route: ActivatedRoute,
@@ -42,18 +44,26 @@ export class UserEventsComponent implements OnInit {
   ngOnInit(): void {
 
     this.applicationsService.getUserEvents(this.userId)
-    .pipe(switchMap(res => {
+    .pipe(concatMap(res => {
       this.appliedTo = res['appliedTo'];
       this.didntApply = res['didntApply'];
-      // console.log('herio mate\n', this.appliedTo, this.didntApply);
+      // console.log('USER EVENTS APPLIED TO AND DIDNT APPLY TO \n', this.appliedTo, this.didntApply);
+      
       return this.applicationsService.getUserApps(this.userId);
     }))
     .subscribe(res => {
-      this.userApps = res; //getting the user apps as appliedTo contains events only
-      // didntApply := user doesnt have apps to those duh!
-      // console.log('resss ::\n', this.userApps);
+
+      for(let app of res){
+        this.interviewsService.getAppInterviews(app._id)
+        .subscribe(res => {
+          app.interview = res;
+        })
+      }
+      this.userApps = res;
     });
   }
+
+
   goBack() {
     this.location.back();
   }
