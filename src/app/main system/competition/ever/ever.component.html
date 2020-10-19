@@ -43,21 +43,24 @@
             </div>
         </div>
 
-        <div class="container">
-            <div class="row py-5">
-                <div class="col-sm-6 col-12">
-                    <p class="text-break text-justify paragraph">Empowerment of an electric vehicle industry in Egypt could make a huge positive impact on the sustainable development strategy for 2030 vision.</p>
-                </div>
-                <div class="col-sm-6 col-12 ">
-                    <img class="w-100" src="assets/img/IT (3)/EVER_3.jpg" alt="Competition Photo" style="border: #800000;">
-                </div>
-            </div>
-        </div>
 
         <!-- <div *ngIf="photorollId"> -->
-            <app-photo-roll *ngIf="photorollId" [photorollId]=photorollId></app-photo-roll>
         <!-- </div> -->
 
+      <div *ngIf="awards">
+        <app-competition-awards [compColor]=competitionColor [awards]=awards></app-competition-awards>
+      </div>
+
+      <div class="container">
+        <div class="row py-5">
+          <div class="col-sm-6 col-12">
+            <p class="text-break text-justify paragraph">Empowerment of an electric vehicle industry in Egypt could make a huge positive impact on the sustainable development strategy for 2030 vision.</p>
+          </div>
+          <div class="col-sm-6 col-12 ">
+            <img class="w-100" src="assets/img/IT (3)/EVER_3.jpg" alt="Competition Photo" style="border: #800000;">
+          </div>
+        </div>
+      </div>
 
         <!-- <div class="container">
             <div class="row py-5">
@@ -70,10 +73,8 @@
             </div>
         </div> -->
 
+      <app-photo-roll *ngIf="photorollId" [photorollId]=photorollId></app-photo-roll>
 
 
-        <div *ngIf="awards">
-            <app-competition-awards [compColor]=competitionColor [awards]=awards></app-competition-awards>
-        </div>
 
     </main>

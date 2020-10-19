@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { RegisterResponseData, UserService } from '../user.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import {ErrorService} from "../../shared/errorModal/error.service";
 
 @Component({
   selector: 'app-sign-up',
@@ -11,7 +12,7 @@ import { Observable } from 'rxjs';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor(private usersService: UserService, private router: Router) { }
+  constructor(private usersService: UserService, private router: Router, private errorService: ErrorService) { }
 
   ngOnInit(): void {
   }
@@ -21,7 +22,7 @@ export class SignUpComponent implements OnInit {
   password: string;
   confirmPassword: string;
   onSignUpSubmit(signUpForm: NgForm) {
-    
+
     if (signUpForm.invalid) {
       return;
     }
@@ -33,15 +34,13 @@ export class SignUpComponent implements OnInit {
 
     this.usersService.signUp(email, password)
     .subscribe(responseData => {
-      // console.log('signup succes res :: \n', responseData);
       this.isLoading = false;
       // this.router.navigate(['edit-profile', responseData.user._id]);
       this.router.navigate(['edit-profile']);
     }, errorMessage => {
-      console.log(errorMessage);
       this.isLoading = false;
-      alert(errorMessage);
       this.error = errorMessage;
+      this.errorService.passError('Error Signing Up!', '/sign-up');
     });
     signUpForm.reset();
   }

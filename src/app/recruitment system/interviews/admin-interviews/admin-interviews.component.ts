@@ -18,6 +18,7 @@ import { InterviewStatus } from '../../models/interview-status-enum.model';
 
 import { InterviewsService } from '../../services/interviews.service';
 import { EventsService } from '../../services/events.service';
+import {ErrorService} from "../../../shared/errorModal/error.service";
 
 @Component({
   selector: 'app-admin-interviews',
@@ -43,7 +44,8 @@ export class AdminInterviewsComponent implements OnInit {
     private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router,
-    private location: Location)
+    private location: Location,
+    private errorService: ErrorService)
     {
       const name = Calendar.name;
     }
@@ -59,6 +61,8 @@ export class AdminInterviewsComponent implements OnInit {
       this.eventIntrvs = res;
       this.calendarOptions.events = this.eventIntrvs;
       // console.log('recieved intrvs ::: \n', this.eventIntrvs);
+    }, error => {
+      this.errorService.passError('Error Getting Interviews!', '/dashboard')
     });
 
   }
@@ -128,7 +132,6 @@ export class AdminInterviewsComponent implements OnInit {
   }
 
   addNewSlot(selectInfo: DateSelectArg){
-    console.log(typeof(selectInfo), selectInfo);
     const calendarApi = selectInfo.view.calendar;
 
     let start = new Date(selectInfo.start);

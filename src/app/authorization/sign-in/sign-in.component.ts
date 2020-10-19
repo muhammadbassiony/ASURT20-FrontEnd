@@ -13,7 +13,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
-  constructor(private usersService: UserService, private router: Router, private location:Location, private ErrService:ErrorService) { }
+  constructor(private usersService: UserService, private router: Router, private location:Location, private errorService:ErrorService) { }
 
   ngOnInit(): void {
   }
@@ -44,7 +44,7 @@ export class SignInComponent implements OnInit {
     }, errorMessage => {
         this.isLoading = false;
         this.error = errorMessage;
-        alert('login insuccesful!');
+        this.errorService.passError('Error Signing in', '/sign-in');
     });
     signInForm.reset();
   }

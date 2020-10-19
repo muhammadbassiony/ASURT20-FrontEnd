@@ -13,7 +13,7 @@ import { Competition } from '../../models/competition.model';
   styleUrls: ['./shell.component.css']
 })
 export class ShellComponent implements OnInit {
-  
+
   competitionColor = '#E5AC00';
   photorollId = null;
   compId: string;
@@ -27,6 +27,9 @@ export class ShellComponent implements OnInit {
     private router: Router
   ) {
     let x = this.router.getCurrentNavigation().extras.state;
+    if (!x) {
+      this.router.navigate(['/home']);
+    }
     this.compId = x.compId;
   }
 

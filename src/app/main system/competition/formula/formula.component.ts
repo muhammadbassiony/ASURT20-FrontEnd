@@ -19,7 +19,7 @@ export class FormulaComponent implements OnInit {
   photorollId = null;
   compId: string;
   comp: Competition;
-  
+
   awards = null;
 
   constructor(
@@ -29,6 +29,9 @@ export class FormulaComponent implements OnInit {
     private router: Router
   ) {
     let x = this.router.getCurrentNavigation().extras.state;
+    if (!x) {
+      this.router.navigate(['/home']);
+    }
     this.compId = x.compId;
   }
 
@@ -41,7 +44,7 @@ export class FormulaComponent implements OnInit {
     }, error => {
       this.errorService.ErrorCaught.next({ErrorMsg: error.message, Url: '/home'});
     });
-    
+
   }
 
 }

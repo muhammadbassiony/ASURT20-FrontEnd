@@ -28,10 +28,13 @@ export class RovComponent implements OnInit {
     private router: Router
   ) {
     let x = this.router.getCurrentNavigation().extras.state;
+    if (!x) {
+      this.router.navigate(['/home']);
+    }
     this.compId = x.compId;
   }
 
-  
+
   ngOnInit(): void {
     this.competitionsService.getCompetition(this.compId)
     .subscribe(res => {

@@ -5,7 +5,7 @@ import { ActivatedRoute, Params, Router, Data } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { map, switchMap, take } from 'rxjs/operators';
 import { Observable, pipe, Subscription } from 'rxjs';
-  
+
 import { UserService } from '../authorization/user.service';
 import { AuthUser } from '../authorization/authUser.model';
 
@@ -33,7 +33,6 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.route);
     this.usersService.authUser
     .pipe(
       take(1),
@@ -46,7 +45,7 @@ export class DashboardComponent implements OnInit {
       this.user = res;
       // console.log('AHOOYY DASHBOARD RECEIVED ALL USER:: ', this.user);
     });
-    
+
   }
 
 }

@@ -20,6 +20,7 @@ import { InterviewStatus } from '../../models/interview-status-enum.model';
 import { InterviewsService } from '../../services/interviews.service';
 import { ApplicationsService } from '../../services/applications.service';
 import { UserService } from '../../../authorization/user.service';
+import {ErrorService} from "../../../shared/errorModal/error.service";
 
 @Component({
   selector: 'app-user-interviews',
@@ -50,6 +51,7 @@ export class UserInterviewsComponent implements OnInit {
     private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router,
+    private errorService: ErrorService,
     private location: Location) { }
 
   ngOnInit(): void {
@@ -65,6 +67,8 @@ export class UserInterviewsComponent implements OnInit {
           this.availableDates.push(iv.date);
         }
       }
+    }, error => {
+      this.errorService.passError('Error Getting Dates!', '/dashboard');
     });
   }
 
@@ -87,9 +91,7 @@ export class UserInterviewsComponent implements OnInit {
 
   }
 
-  onSubmit(){;
-    console.log('USER SUBMIT SEL IV :: \n', this.selectedDay, this.selId);
-
+  onSubmit(){
     let iv;
     this.interviewsService.getInterview(this.selId)
     .pipe(switchMap(res => {
@@ -97,11 +99,12 @@ export class UserInterviewsComponent implements OnInit {
       iv.extendedProps.appId = this.appId;
       iv.extendedProps.ivStatus = InterviewStatus.booked;
       // iv.title = this.
-      console.log('UPDATING IV :: ', iv);
       return this.interviewsService.updateInterview(iv._id, iv);
     }))
     .subscribe(res => {
       this.router.navigate(['dashboard']);
+    }, error => {
+      this.errorService.passError('Error Getting This Interview', '/dashboard');
     });
 
   }

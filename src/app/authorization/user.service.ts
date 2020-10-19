@@ -35,14 +35,14 @@ export class UserService {
 
 
   constructor(
-    private http: HttpClient, 
+    private http: HttpClient,
     private router: Router) { }
 
 
   private handleRegistration(user: any) {
     // console.log('HANDLE REG HERE!!', user);
     const expirationDate = this.decodingHelper.getTokenExpirationDate(user.token);
-    
+
     let authUser: AuthUser = {
       _id: user._id,
       level: user.level,
@@ -61,7 +61,7 @@ export class UserService {
   signUp(email: string, password: string) {
     // console.log('USERSEVICE SIGNUP :: \n', name);
     return this.http.post<RegisterResponseData>(
-      backend_uri + "/auth/user/signup", 
+      backend_uri + "/auth/user/signup",
       {
         // name: name,
         email: email,
@@ -79,7 +79,7 @@ export class UserService {
 
   signIn(email: string, password: string) {
     return this.http.post<RegisterResponseData>(
-      backend_uri + "/auth/user/login", 
+      backend_uri + "/auth/user/login",
       {
         email: email,
         password: password,
@@ -125,7 +125,6 @@ export class UserService {
 
 
   private handleError(errorRes: HttpErrorResponse) {
-    console.log(errorRes);
     let errorMessage = 'An unknown error occurred!';
     if (!errorRes.error || !errorRes.error.error) {
       return throwError(errorMessage);
@@ -145,14 +144,14 @@ export class UserService {
   }
 
 
-  
-  
+
+
   getAllUsers(){
     return this.http.get( backend_uri + '/auth/user/all-users', { responseType: 'json' })
     .pipe(
       map(res => {
-        let body = <User[]>res['allUsers'];    
-        return body || [];    
+        let body = <User[]>res['allUsers'];
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -161,14 +160,14 @@ export class UserService {
   }
 
   getUser(userId: string){
-    return this.http.get( 
-      backend_uri + '/auth/user/get-user/' + userId, 
+    return this.http.get(
+      backend_uri + '/auth/user/get-user/' + userId,
       { responseType: 'json' }
     )
     .pipe(
       map(res => {
-        let body = res['user'];    
-        return body || [];    
+        let body = res['user'];
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -177,14 +176,14 @@ export class UserService {
   }
 
   getAllMembers(){
-    return this.http.get( 
-      backend_uri + '/auth/user/all-members', 
+    return this.http.get(
+      backend_uri + '/auth/user/all-members',
       { responseType: 'json' }
     )
     .pipe(
       map(res => {
-        let body = res['members'];    
-        return body || [];    
+        let body = res['members'];
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -201,31 +200,31 @@ export class UserService {
       head: newMember.head
     };
 
-    return this.http.post( 
-      backend_uri + '/auth/user/add-member', 
+    return this.http.post(
+      backend_uri + '/auth/user/add-member',
       member,
       { responseType: 'json' }
     )
     .pipe(
       map(res => {
-        let body = <Member>res['member'];    
-        return body || [];    
+        let body = <Member>res['member'];
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
       })
     );
   }
-  
+
   getMember(memberId: string){
-    return this.http.get( 
-      backend_uri + '/auth/user/get-member/' + memberId, 
+    return this.http.get(
+      backend_uri + '/auth/user/get-member/' + memberId,
       { responseType: 'json' }
     )
     .pipe(
       map(res => {
         let body = res['member'];
-        return body || [];    
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -234,14 +233,14 @@ export class UserService {
   }
 
   getTeamMembers(teamId: string){
-    return this.http.get( 
-      backend_uri + '/auth/user/get-team-members/' + teamId, 
+    return this.http.get(
+      backend_uri + '/auth/user/get-team-members/' + teamId,
       { responseType: 'json' }
     )
     .pipe(
       map(res => {
         let body = res['members'];
-        return body || [];    
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -259,15 +258,15 @@ export class UserService {
     };
 
 
-    return this.http.put( 
-      backend_uri + '/auth/user/edit-user/' + userId, 
+    return this.http.put(
+      backend_uri + '/auth/user/edit-user/' + userId,
       user,
       { responseType: 'json' }
     )
     .pipe(
       map(res => {
-        let body = <User>res['user'];    
-        return body || [];    
+        let body = <User>res['user'];
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -276,7 +275,7 @@ export class UserService {
   }
 
   updateMember(memberId: string, newMember: any){
-    
+
     let member = {
       memberId: newMember._id,
       userId: newMember.user,
@@ -285,15 +284,15 @@ export class UserService {
       head: newMember.head
     };
 
-    return this.http.put( 
-      backend_uri + '/auth/user/edit-member/' + memberId, 
+    return this.http.put(
+      backend_uri + '/auth/user/edit-member/' + memberId,
       member,
       { responseType: 'json' }
     )
     .pipe(
       map(res => {
-        let body = <Member>res['member'];    
-        return body || [];    
+        let body = <Member>res['member'];
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -325,16 +324,16 @@ export class UserService {
       profileComplete: newUser.profileComplete
     };
 
-    return this.http.put( 
-      backend_uri + '/auth/user/sumbit-user-info/' + userId, 
+    return this.http.put(
+      backend_uri + '/auth/user/sumbit-user-info/' + userId,
       user,
       { responseType: 'json' }
     )
     .pipe(
       map(res => {
-        let body = <User>res['user'];    
+        let body = <User>res['user'];
         // this.authUser.next(authUser);
-        return body || [];    
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -348,23 +347,23 @@ export class UserService {
       { responseType: 'json' }
     )
     .pipe(
-      map(res => {   
-        return null;    
+      map(res => {
+        return null;
       }),
       catchError(errorRes => {
         return throwError(errorRes);
       })
     );
   }
- 
+
   deleteMember(memberId: string){
     return this.http.delete(
       backend_uri + '/auth/user/delete-member/' + memberId,
       { responseType: 'json' }
     )
     .pipe(
-      map(res => {   
-        return null;    
+      map(res => {
+        return null;
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -390,7 +389,7 @@ export class UserService {
   }
 
   validatePasswordResetToken(token: string){
-    
+
     return this.http.post(
       backend_uri + '/auth/user/valid-password-token',
       { token: token},
@@ -412,7 +411,7 @@ export class UserService {
       token: token,
       password: password
     };
-    
+
     return this.http.post(
       backend_uri + '/auth/user/new-password',
       body,

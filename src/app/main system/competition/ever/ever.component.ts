@@ -27,6 +27,9 @@ export class EverComponent implements OnInit {
     private router: Router
   ) {
     let x = this.router.getCurrentNavigation().extras.state;
+    if (!x) {
+      this.router.navigate(['/home']);
+    }
     this.compId = x.compId;
     // console.log('EVER COMP PHiD::', this.compId);
   }
