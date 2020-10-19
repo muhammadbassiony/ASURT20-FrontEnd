@@ -45,3 +45,7 @@ h4 {
 .card-title{
     font-size: 220%;
 }
+
+.mat-slide-toggle{
+    width: 70%;
+}
