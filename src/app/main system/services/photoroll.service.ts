@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
 import { Router } from "@angular/router";
-import { Photoroll } from "../models/photoroll.model";
 
 import { map, catchError, tap } from 'rxjs/operators';
 import { BehaviorSubject, Subject, throwError } from 'rxjs';
@@ -10,23 +9,33 @@ import { BehaviorSubject, Subject, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 const backend_uri = environment.backend_uri;
 
+export interface Photoroll {
+  createdAt: Date,
+  images: string[],
+  newImgs: string[],
+  title: string,
+  updatedAt: Date,
+  __v: number,
+  _id: string
+}
+
 @Injectable({ providedIn: 'root' })
 export class PhotorollService {
-    
+
   // public photorollUpdated = new Subject<Photoroll>();
   // public photorollChanged = new Subject<Photoroll>();
 
   constructor(
-    private http: HttpClient, 
+    private http: HttpClient,
     private router: Router
   ) {}
 
   getAllPhotorolls(){
-    return this.http.get( backend_uri + '/main/photorolls/get-all')
+    return this.http.get<{message: string, photorolls: Photoroll[]}>( backend_uri + '/main/photorolls/get-all')
     .pipe(
       map(res => {
-        let body = res['photorolls'];    
-        return body || [];    
+        let body = res['photorolls'];
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -51,8 +60,8 @@ export class PhotorollService {
     )
     .pipe(
       map(res => {
-        let body = res['photoroll'];    
-        return body || [];    
+        let body = res['photoroll'];
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -61,14 +70,14 @@ export class PhotorollService {
   }
 
   getPhotoroll(phId: string){
-    return this.http.get(
+    return this.http.get<{message: string, photoroll: Photoroll}>(
       backend_uri + '/main/photorolls/get/' + phId,
       { responseType: 'json' }
     )
     .pipe(
       map(res => {
-        let body = res['photoroll'];    
-        return body || [];    
+        let body = res['photoroll'];
+        return body;
       }),
       catchError(errorRes => {
         return throwError(errorRes);

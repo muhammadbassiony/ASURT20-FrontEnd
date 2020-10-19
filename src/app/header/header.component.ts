@@ -53,9 +53,14 @@ export class HeaderComponent implements OnInit {
       return this.usersService.authUser;
     }))
     .subscribe(user => {
+      this.isLoading.emit(false);
       // console.log('HEADER AUTHUSER SUBS :: ', user);
       this.isAuthorized = !!user;
-      this.userId = user._id;
+      if (this.isAuthorized) {
+        this.userId = user._id;
+      }
+    }, error => {
+      this.errorService.passError('Error Loading Competitions!', '/loading');
     });
 
 

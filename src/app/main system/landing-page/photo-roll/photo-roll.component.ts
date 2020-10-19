@@ -1,5 +1,5 @@
 import {Component, Inject, Input, OnDestroy, OnInit} from '@angular/core';
-import {Photoroll} from "../../models/photoroll.model";
+import {Photoroll} from "../../services/photoroll.service";
 import {PhotorollService} from "../../services/photoroll.service";
 import {Subject, Subscription} from 'rxjs';
 import {DOCUMENT} from "@angular/common";
@@ -15,14 +15,14 @@ import { environment } from '../../../../environments/environment';
   styleUrls: ['./photo-roll.component.css']
 })
 export class PhotoRollComponent implements OnInit {
-  
+
   backend_uri = environment.backend_uri_static;
   @Input('photorollId') photorollId: string = ' ';
-  photoroll: any;
-  
+  photoroll: Photoroll;
+
   constructor(
     private errorService: ErrorService,
-    public photorollService: PhotorollService 
+    public photorollService: PhotorollService
   ) { }
 
   ngOnInit(): void {
@@ -34,7 +34,7 @@ export class PhotoRollComponent implements OnInit {
         this.photoroll.newImgs.push(this.backend_uri + i);
       }
     }, error => {
-      this.errorService.ErrorCaught.next({ErrorMsg: error.message, Url: '/home'});
+      this.errorService.passError('Error Loading Photo Roll!', '/home');
     });
   }
 
