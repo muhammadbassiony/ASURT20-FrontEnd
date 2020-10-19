@@ -75,7 +75,7 @@ export class UserApplicationComponent implements OnInit {
 
       const userAnswers = <FormGroup>this.appForm.get('userAnswers');
       this.eventData.questions.forEach(qs => {
-        userAnswers.addControl(qs, new FormControl('', [Validators.required, Validators.minLength(15)]));
+        userAnswers.addControl(qs, new FormControl('', [Validators.required]));
       });
 
       return this.usersService.getUser(this.userId);
@@ -148,12 +148,12 @@ export class UserApplicationComponent implements OnInit {
 
     this.applicationsService.addNewApplication(this.newApp)
     .pipe(switchMap(res => {
-      // console.log('NEW APP AFTER SUBMIT::\n', res);
+      console.log('NEW APP AFTER SUBMIT::\n', res);
       this.appForm.reset();
       return this.eventsService.incrementNumApplicants(this.eventId); //increment when adding a new cv???
     }))
     .subscribe(res => {
-      // console.log('INCREMENT NUM APPLICANTS FOR EVENT::\n', res);
+      console.log('INCREMENT NUM APPLICANTS FOR EVENT::\n', res);
       this.router.navigate(['dashboard']);
     });
 

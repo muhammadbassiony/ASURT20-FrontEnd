@@ -62,6 +62,7 @@ export class UserInterviewsComponent implements OnInit {
     .subscribe(res => {
       this.dayFiltered = res;
       this.avs = res;
+      console.log('AVAILABLE DATES :: ', this.avs);
       for(let iv of this.dayFiltered){
         if(!this.availableDates.includes(iv.date)){
           this.availableDates.push(iv.date);

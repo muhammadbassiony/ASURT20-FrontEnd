@@ -32,8 +32,6 @@ export class ViewInterviewComponent implements OnInit {
 
   keys() : Array<string> {
     var keys = Object.keys(InterviewStatus);
-    // console.log(keys);
-    // return keys.slice(keys.length/2);
     return keys;
   }
 
@@ -49,7 +47,7 @@ export class ViewInterviewComponent implements OnInit {
 
     this.ivId = this.route.snapshot.paramMap.get('ivId');
     // this.model = null;
-    this.ivId = '5f7e6ce69992872008f4bb34';
+    // this.ivId = '5f7e6ce69992872008f4bb34';
     this.interviewsService.getInterview(this.ivId)
     .subscribe(res => {
       this.interview = res;

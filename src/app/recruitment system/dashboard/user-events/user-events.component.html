@@ -15,14 +15,17 @@
             <div *ngIf="app.event.eventActive" class="card col-sm-12 shadow" name="event-card">
 
                 <h2 class="card-title text-center mb-5">{{app.event.team.name}} recruitment</h2>
-                <!-- <p>hailo - {{ app.currentPhase == 'DR_IV' }}</p> -->
+                <!-- <p>hailo - {{ app._id }}</p> -->
                 <div *ngIf="app.currentPhaseStatus == 'ACCEPTED' && app.currentPhase != 'DR_IV'" class="row">
                     <p style="font-size:80%"  class="text-success col">
                         <strong>Congratulations! You have passed this phase!</strong></p>
-                      <div class="col text-center">
-                        <button class="btn-success bottom-right"
-                            [routerLink]="['/book-interview', app._id]">Book Interview</button>
-                          </div>
+                        
+                    <div class="col text-center container">
+                        <div class="row"><button class="btn-success bottom-right" [disabled]="app.interview && app.interview.length > 0"
+                            [routerLink]="['/book-interview', app._id]">Book Interview</button></div>
+                        <div class="row"><label class="alert alert-dark" *ngIf="app.interview && app.interview.length > 0">
+                            You have successfully booked an interview!</label></div>
+                    </div>
                 </div>
 
                 <div *ngIf="app.currentPhaseStatus != 'ACCEPTED' && app.currentPhase != 'DR_IV'" class="row">

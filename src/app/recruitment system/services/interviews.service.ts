@@ -156,4 +156,21 @@ export class InterviewsService {
     );
   }
 
+  getAppInterviews(appId: string){
+    return this.http.get(
+      backend_uri + '/rec/interview/app-intrvs/' + appId,
+      { responseType: 'json' }
+    )
+    .pipe(
+      map(res => {   
+        let body = res['ivs'];
+        return body || [];    
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
+  }
+
+
 }
