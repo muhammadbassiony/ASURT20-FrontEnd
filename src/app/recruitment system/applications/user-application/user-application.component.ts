@@ -75,7 +75,7 @@ export class UserApplicationComponent implements OnInit {
 
       const userAnswers = <FormGroup>this.appForm.get('userAnswers');
       this.eventData.questions.forEach(qs => {
-        userAnswers.addControl(qs, new FormControl('', [Validators.required, Validators.minLength(15)]));
+        userAnswers.addControl(qs, new FormControl('', [Validators.required]));
       });
 
       return this.usersService.getUser(this.userId);

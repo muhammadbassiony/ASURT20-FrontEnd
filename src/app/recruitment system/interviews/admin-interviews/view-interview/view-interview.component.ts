@@ -31,8 +31,6 @@ export class ViewInterviewComponent implements OnInit {
 
   keys() : Array<string> {
     var keys = Object.keys(InterviewStatus);
-    // console.log(keys);
-    // return keys.slice(keys.length/2);
     return keys;
   }
 
@@ -47,20 +45,21 @@ export class ViewInterviewComponent implements OnInit {
     console.log('VIEW SINGLE IV HEREEEE :: \n\n');
 
     this.ivId = this.route.snapshot.paramMap.get('ivId');
-    console.log('RECEIVED ID ::', this.ivId);
+    // console.log('RECEIVED ID ::', this.ivId);
     // this.model = null;
-    this.ivId = '5f7e6ce69992872008f4bb34';
+    // this.ivId = '5f7e6ce69992872008f4bb34';
     this.interviewsService.getInterview(this.ivId)
     .subscribe(res => {
-      console.log('RECEIVED IV FROM BAKEND :: \n', res);
+      // console.log('RECEIVED IV FROM BAKEND :: \n', res);
       this.interview = res;
       this.model = <InterviewStatus>this.interview.extendedProps.ivStatus.toLowerCase();
-      console.log('MODELLLL NEWWW :: \n', this.model);
+      // console.log('MODELLLL NEWWW :: \n', this.model);
       this.statuses = this.keys();
-      console.log('STATUSESSSS \n', this.statuses);
+      // console.log('STATUSESSSS \n', this.statuses);
       this.isLoading = false;
       // this.app = this.interview.extendedProps.application._id;
-      console.log('THIS . INTERVIEW', this.interview);
+      // console.log('THIS . INTERVIEW', this.interview);
+      // console.log(this.interview.extendedProps.application)
 
     })
 
@@ -78,7 +77,7 @@ export class ViewInterviewComponent implements OnInit {
   deleteInterview(){
     this.interviewsService.deleteInterview(this.ivId)
     .subscribe(res => {
-      // console.log('INTRV DELETE :: \N', res);
+      // console.log('INTRV DELETE :: \n', res);
       this.router.navigate(['manage-interviews']);
     });
   }
