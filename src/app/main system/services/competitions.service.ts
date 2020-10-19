@@ -25,8 +25,8 @@ export class CompetitionsService {
     )
     .pipe(
       map(res => {
-        let body = res['competitions'];    
-        return body || [];    
+        let body = res['competitions'];
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -42,8 +42,8 @@ export class CompetitionsService {
     )
     .pipe(
       map(res => {
-        let body = res['competitions'];    
-        return body || [];    
+        let body = res['competitions'];
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -59,8 +59,8 @@ export class CompetitionsService {
     )
     .pipe(
       map(res => {
-        let body = res['competition'];    
-        return body || [];    
+        let body = res['competition'];
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -76,7 +76,7 @@ export class CompetitionsService {
       awards: comp.awards,
       photoroll: comp.photoroll
     };
-    
+
     return this.http.put(
       backend_uri + '/main/competitions/update-comp/' + compId,
       { ...competition },
@@ -84,8 +84,8 @@ export class CompetitionsService {
     )
     .pipe(
       map(res => {
-        let body = res['competition'];    
-        return body || [];    
+        let body = res['competition'];
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -108,8 +108,8 @@ export class CompetitionsService {
     )
     .pipe(
       map(res => {
-        let body = res['award'];    
-        return body || [];    
+        let body = res['award'];
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -124,7 +124,7 @@ export class CompetitionsService {
     awardData.append('description', updatedAward.description);
     awardData.append('awardImg', updatedAward.awardImg);
     console.log('COMPSERVICE - UPDATE AWARD FD :: \n', awardData);
-    
+
     return this.http.put(
       backend_uri + '/main/competitions/update-award/' + awardId,
       { awardData },
@@ -132,8 +132,8 @@ export class CompetitionsService {
     )
     .pipe(
       map(res => {
-        let body = res['award'];    
-        return body || [];    
+        let body = res['award'];
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -149,7 +149,7 @@ export class CompetitionsService {
     )
     .pipe(
       map(res => {
-        return null;    
+        return null;
       }),
       catchError(errorRes => {
         return throwError(errorRes);
