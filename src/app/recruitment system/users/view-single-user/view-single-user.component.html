@@ -35,7 +35,7 @@
                     <p>Email: </p>
                     </div>
                     <div class="col-sm text-center">
-                      <input  formControlName="email" type="email" class="form-control" />
+                      <input disabled formControlName="email" type="email" class="form-control" />
                     <mat-error *ngIf="userForm.get('userData')['controls'].email.hasError('required') && userForm.get('userData')['controls'].email.touched">Please Enter Valid Email</mat-error>
                     </div>
                    </div>
@@ -179,8 +179,8 @@
 
                 
 
-
-                <mat-select formControlName="team" (selectionChange)="updateSub()" >
+                <label>Team</label><br>
+                <mat-select formControlName="team" (selectionChange)="updateSub()" style="width: 70%;">
                   <!-- *ngIf="userForm.get('memberData')['controls'].team" -->
                     <mat-option selected disabled [value]="currentTeam">
                         {{currentTeam}}
@@ -195,8 +195,8 @@
 
                 <br>
 
-
-                <mat-select *ngIf="userForm.get('memberData')['controls'].team" formControlName="subteam">
+                <label>Subteam</label><br>
+                <mat-select *ngIf="userForm.get('memberData')['controls'].team" formControlName="subteam" style="width: 70%;">
 
                     <mat-option selected disabled [value]="currentSub">{{currentSub}}</mat-option>
                     <mat-option *ngFor="let sub of availableSubs" [value]="sub._id">
