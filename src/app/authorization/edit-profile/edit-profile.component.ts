@@ -22,6 +22,7 @@ import { User } from '../user.model';
 import { UserService } from '../user.service';
 
 import { EditProfileDeactivateGuard } from './edit-profile-can-deactivate.service';
+import {ErrorService} from "../../shared/errorModal/error.service";
 
 @Component({
   selector: 'app-edit-profile',
@@ -44,6 +45,7 @@ export class EditProfileComponent implements OnInit, EditProfileDeactivateGuard 
     private fb: FormBuilder,
     private usersService: UserService,
     private route: ActivatedRoute,
+    private errorService: ErrorService,
     private router: Router
   ) { }
 
@@ -51,6 +53,9 @@ export class EditProfileComponent implements OnInit, EditProfileDeactivateGuard 
     this.usersService.authUser
     .pipe(switchMap(res => {
       this.authUser = res;
+      if (!this.authUser) {
+        this.router.navigate(['/sign-in']);
+      }
       this.userId = this.authUser._id;
       // console.log('EDIT-PROFILE :: AUTHUSER :: \n', this.authUser, this.userId);
       return this.usersService.getUser(this.userId);
@@ -68,6 +73,8 @@ export class EditProfileComponent implements OnInit, EditProfileDeactivateGuard 
       this.model = this.user.birthDate ?
         { day: date.getUTCDate(), month: date.getUTCMonth() + 1, year: date.getUTCFullYear()} : null;
 
+    }, (error) => {
+      this.errorService.passError('Error Getting User Profile!', '/dashboard');
     })
 
 
