@@ -66,7 +66,6 @@ export class SetQuestionsComponent implements OnInit {
     this.eventsService.getEvent(this.eventId)
     .pipe(switchMap(res => {
       this.eventData = <Event>res;
-      console.log('GOT EVENT :: ', this.eventData);
       this.eventData.questions.forEach(qs => {
         const control = new FormControl(qs, Validators.required);
         (<FormArray>this.questionsForm.get('questions')).push(control);
@@ -77,7 +76,6 @@ export class SetQuestionsComponent implements OnInit {
     }))
     .subscribe((res) => {
       this.team = res;
-      console.log('setQs get team ::: \n', this.team);
       const activeSubs = <FormGroup>this.questionsForm.get('activeSubs');
       this.team.subteams.forEach(sub => {
         activeSubs.addControl(sub._id, new FormControl(true));
@@ -98,17 +96,13 @@ export class SetQuestionsComponent implements OnInit {
   }
 
   onSubmit(questionsForm: FormGroup){
-    // console.log(this.eventData);
-    // console.log(questionsForm, this.model);
     this.eventData.questions = []; //reset
     for(var i in this.questionsForm.value.questions){
       this.eventData.questions.push(this.questionsForm.value.questions[i]);
     }
-    // console.log(this.eventData);
 
     let newSubs = [];
     for(let j of this.team.subteams){
-      // console.log(j, this.questionsForm.value.activeSubs[j._id]);
       if(this.questionsForm.value.activeSubs[j._id]){
         newSubs.push(j._id);
       }
@@ -116,11 +110,9 @@ export class SetQuestionsComponent implements OnInit {
     this.eventData.activeSubteams = newSubs;
     this.eventData.eventActive = true; //activate here
     this.eventData.currentPhase = this.model;
-    // console.log(this.eventData);
 
     this.eventsService.updateEvent(this.eventId, this.eventData)
     .subscribe(res => {
-      // console.log('setQs final:: \n', res);
       this.questionsForm.reset();  // reset AFTER data saved or redirect and dont reset at all
       this.router.navigate(['dashboard']);
     });
