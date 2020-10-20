@@ -17,21 +17,23 @@
       </div>
     </div>
     <hr>
+<div *ngIf="currentComp">
+  <h2 class="text-light row justify-content-center text-center">{{ currentComp.name }}'s awards</h2>
+  <div class="row d-flex justify-content-center text-center" *ngIf="currentComp">
 
-    <h2 class="text-light row justify-content-center text-center">{{ currentComp.name }}'s awards</h2>
-    <div class="row d-flex justify-content-center text-center" *ngIf="currentComp">
-
-      <div *ngFor="let award of currentComp.awards; let i = index">
-        <div class="col-md-8 rounded" style="color: white;">
-          <div class="img-wrap row">
-            <span class="close" (click)="deleteAward(i)">&times;</span>
-            <img id="{{i}}" [src]="award.path" alt="award image" style="height: 150px; width:250px;">
-          </div>
-          <h3 class="row justify-content-center text-center">{{ award.title }}</h3>
-          <p class="row justify-content-center text-center">{{ award.description }} </p>
+    <div *ngFor="let award of currentComp.awards; let i = index">
+      <div class="col-md-8 rounded" style="color: white;">
+        <div class="img-wrap row">
+          <span class="close" (click)="deleteAward(i)">&times;</span>
+          <img id="{{i}}" [src]="award.path" alt="award image" style="height: 150px; width:250px;">
         </div>
+        <h3 class="row justify-content-center text-center">{{ award.title }}</h3>
+        <p class="row justify-content-center text-center">{{ award.description }} </p>
       </div>
     </div>
+  </div>
+</div>
+
     <hr>
 
 
@@ -57,7 +59,7 @@
                required>
       </div>
 
-      <button class="btn btn-success std-btn" type="submit" [disabled]="!awardsForm.valid">Add Award</button>
+      <button class="btn btn-success std-btn m-0" type="submit" [disabled]="!awardsForm.valid">Add Award</button>
     </form>
 
 
