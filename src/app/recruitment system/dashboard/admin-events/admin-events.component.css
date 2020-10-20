@@ -67,3 +67,7 @@ hr {
 button{
     size: 80%;
 }
+
+.btn{
+    margin: 10px 6px;
+}

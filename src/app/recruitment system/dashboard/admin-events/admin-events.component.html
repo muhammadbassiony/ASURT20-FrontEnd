@@ -33,24 +33,30 @@
         <hr>
         <div class="row" >
             <div class="col">
-                <p class="text-primary" style="margin: 6px; width:90%;">Current number of Applicants: {{event.numApplicants}}</p>
+                
+                <button class="btn btn-outline-warning" [routerLink]="['/application/set-questions']"
+                    [queryParams]="{ eventId: event._id }" style="margin: 10px; width:90%;">Edit Application</button>
                 <button class="btn btn-dark" (click)="getExcel(event._id, event.team.name)" style="margin: 6px; width:90%;">Get Excel File</button>
                 <button class="btn btn-outline-primary" style="margin: 6px; width:90%;"
                     [routerLink]="['/view-applications', event._id]">
                     View all received applications</button>
-
+    
             </div>
+            
             <div class="col">
+                <p class="text-primary" style="margin: 6px; width:90%;">Current number of Applicants: {{event.numApplicants}}</p>
                 <p class="text-success" style="margin: 6px; width:90%;">Number of Accepted Applicants: {{ event.numAccepted }}</p>
-                <p class="text-success" style="margin: 6px; width:90%;">Number of Applicants Pending Acceptance: {{ event.numPendAcc }}</p>
-                <button class="btn btn-outline-warning" [routerLink]="['/application/set-questions']"
-                    [queryParams]="{ eventId: event._id }" style="margin: 10px; width:90%;">Edit Application</button>
-            </div>
-            <div class="col">
                 <p class="text-danger" style="margin: 6px; width:90%;">Number of Rejected Applicants: {{ event.numRejected }}</p>
+                <p class="text-success" style="margin: 6px; width:90%;">Number of Applicants Pending Acceptance: {{ event.numPendAcc }}</p>
+                
                 <p class="text-danger" style="margin: 6px; width:90%;">Number of Applicants Pending Rejection: {{ event.numPendRej }}</p>
 
+                
             </div>
+            
+            <!-- <div class="col">
+                
+            </div> -->
         </div>
 
         <div class="row d-flex justify-content-center" style="margin: 20px;">
