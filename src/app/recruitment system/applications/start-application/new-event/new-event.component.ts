@@ -20,6 +20,7 @@ import { Seasons } from '../../../models/seasons.model';
 
 import { EventsService } from '../../../services/events.service';
 import { TeamsService } from '../../../services/teams.service';
+import {ErrorService} from "../../../../shared/errorModal/error.service";
 
 @Component({
   selector: 'app-new-event',
@@ -33,13 +34,16 @@ export class NewEventComponent implements OnInit {
   newEventForm: FormGroup;
   seasons: string[];
 
-  constructor(private http: HttpClient,
+  constructor(
+    private http: HttpClient,
     private fb: FormBuilder,
     private teamsService: TeamsService,
     private eventsService: EventsService,
     private route: ActivatedRoute,
     private router: Router,
-    private location: Location) { }
+    private location: Location,
+    private errorService: ErrorService
+  ) { }
 
     keys() : Array<string> {
       var keys = Object.keys(Seasons);
@@ -52,6 +56,8 @@ export class NewEventComponent implements OnInit {
     this.teamsService.getAllTeams()
     .subscribe((res) => {
       this.teams = res;
+    }, (error) => {
+      this.errorService.passError('Error Adding New Event!', '/dashboard');
     });
 
     this.newEventForm = this.fb.group({
@@ -81,6 +87,8 @@ export class NewEventComponent implements OnInit {
         { queryParams: { eventId: event['_id'] }
       });
       // return event;
+    }, (error) => {
+      this.errorService.passError('Error Getting All Teams!', '/dashboard');
     });
 
   }
