@@ -37,11 +37,13 @@ hr{
 } */
 
 img{
+    /* margin-left: -50px; */
     height: 90vh;
-    width: 126vh;
+    width: 160vh;
 }
 @media only screen and (max-width: 50rem){
     img{
+        margin-left: 0;
         height: 30vh;
         width: 100%;
     }

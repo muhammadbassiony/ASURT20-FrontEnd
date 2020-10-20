@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row py-5">
             <div class="col-12 py-5 centered">
-                <img class="p-1 rounded center" src="assets/img/Shell.png" height="160px" width="160px"
+                <img class="p-1 rounded center" src="assets/img/Shell.png" height="160px" width="180px"
                 alt="Competion Logo">
                 <h3 class="d-inline-block  shell align-middle" style="font-size: 3.5rem;">Shell</h3>
                 <hr>
@@ -22,6 +22,12 @@
         </div>
     </div>
 
+    
+    <div *ngIf="awards">
+        <app-competition-awards [compColor]=competitionColor [awards]=awards></app-competition-awards>
+    </div>
+
+
     <div class="container">
         <div class="row py-5">
             <div class="col-sm-6 col-12 ">
@@ -30,26 +36,23 @@
             <div class="col-sm-6 col-12">
                 <p class="text-break text-justify paragraph">There are three energy categories within Shell Eco-marathon: battery-electric, hydrogen fuel cell, and internal combustion engine (gasoline, ethanol, or diesel).
                   Prizes are awarded separately for each vehicle class and energy category.
-                  The pinnacle of the competition is the Shell Eco-marathon Drivers' World Championship, where the most energy-efficient UrbanConcept vehicles compete in a race with a limited amount of energy.</p>
+                  The pinnacle of the competition is the Shell Eco-marathon Drivers' World Championship, where the most energy-efficient Urban Concept vehicles compete in a race with a limited amount of energy.</p>
             </div>
         </div>
     </div>
 
-    <div *ngIf="awards">
-        <app-competition-awards [compColor]=competitionColor [awards]=awards></app-competition-awards>
-    </div>
-
     <div class="container">
         <div class="row py-5">
-            <div class="col-sm-6 col-12 ">
-                <img class="w-100" src="assets/img/IT (3)/SHELL/COMPETEION.jpg" alt="Competition Photo" style="border: #800000;">
-            </div>
+            
             <div class="col-sm-6 col-12">
                 <p class="text-break text-justify paragraph">The Eco-Marathon has different classes of competition, according to the energy source used: 
                   Fuel cells, solar cells, gasoline, Diesel fuel and LPG. During the competition, cars must attain an average speed of at least 15 mph (23 km/h) over a distance of 10 miles (16 km). The course is typically a motor racing track or closed-off city streets.
                    The fuel is strictly measured out for each entrant at the start and end of the course. 
                   The difference is used to calculate the vehicle's average fuel consumption. 
                   Solar-powered vehicles are not eligible for the grand prize for fuel efficiency.</p>
+            </div>
+            <div class="col-sm-6 col-12 ">
+                <img class="w-100" src="assets/img/IT (3)/SHELL/COMPETEION.jpg" alt="Competition Photo" style="border: #800000;">
             </div>
         </div>
     </div>
