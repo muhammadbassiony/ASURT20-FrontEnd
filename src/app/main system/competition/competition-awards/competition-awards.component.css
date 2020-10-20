@@ -36,6 +36,10 @@ hr{
     width: 100%;
 } */
 
+.ngb-carousel{
+    margin-left: -100px;
+}
+
 img{
     /* margin-left: -50px; */
     height: 90vh;
@@ -46,6 +50,9 @@ img{
         margin-left: 0;
         height: 30vh;
         width: 100%;
+    }
+    .ngb-carousel{
+        margin-left: 0px;
     }
 }
 
