@@ -20,6 +20,7 @@ import { Team } from '../../../models/team.model';
 import { EventsService } from '../../../services/events.service';
 import { TeamsService } from '../../../services/teams.service';
 import { ApplicationPhase } from '../../../models/app-phases-enum.model';
+import {ErrorService} from "../../../../shared/errorModal/error.service";
 
 
 @Component({
@@ -44,6 +45,7 @@ export class SetQuestionsComponent implements OnInit {
     private teamsService: TeamsService,
     private route: ActivatedRoute,
     private router: Router,
+    private errorService: ErrorService,
     private location: Location) { }
 
     keys() : Array<string> {
@@ -81,6 +83,8 @@ export class SetQuestionsComponent implements OnInit {
         activeSubs.addControl(sub._id, new FormControl(true));
       });
       // console.log(this.questionsForm);
+    }, (error) => {
+      this.errorService.passError('Error Getting All Teams!', '/dashboard');
     });
 
 

@@ -68,20 +68,17 @@ export class ViewAllAppsComponent implements OnInit {
 
     this.eventsService.getEvent(this.eventId)
     .pipe(switchMap(res => {
-      console.log('fetched the event itself ::', res);
       this.event = res;
       return this.applicationsService.getEventApps(this.eventId);
     }))
     .subscribe(res => {
-      console.log('recieved event apps ::\n', res);
       this.allApps = res;
       this.assignCopy();//when you fetch collection from server.
-      console.log("the filtered Items", this.filteredItems);
     });
 
   }
 
-  
+
 
   assignCopy(){
     this.filteredItems = Object.assign([], this.allApps);
@@ -90,11 +87,10 @@ export class ViewAllAppsComponent implements OnInit {
   filterItem(value: string){
     if(value===""){
       this.assignCopy();
-      console.log("the filtered Items", this.filteredItems);
     } // when nothing has typed
     else{
       this.filteredItems = Object.assign([], this.allApps).filter(
-        item => (item.user.name.toLowerCase().indexOf(value.toLowerCase()) > -1  || 
+        item => (item.user.name.toLowerCase().indexOf(value.toLowerCase()) > -1  ||
           item.user.email.toLowerCase().indexOf(value.toLowerCase()) > -1)
       );
     }
@@ -103,11 +99,11 @@ export class ViewAllAppsComponent implements OnInit {
 
   filter(){
     this.filteredItems = Object.assign([], this.allApps)
-      .filter(app => (this.queryStatus? app.currentPhaseStatus == this.queryStatus : true) && 
-        (this.queryPhase? app.currentPhase == this.queryPhase : true) && 
-        (this.gradYr? app.user.graduationYear == this.gradYr : true) && 
+      .filter(app => (this.queryStatus? app.currentPhaseStatus == this.queryStatus : true) &&
+        (this.queryPhase? app.currentPhase == this.queryPhase : true) &&
+        (this.gradYr? app.user.graduationYear == this.gradYr : true) &&
         (this.querySubteam ? (app.selSubteam1._id == this.querySubteam || app.selSubteam2._id == this.querySubteam) : true ) );
-   
+
   }
 
 

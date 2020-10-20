@@ -24,6 +24,7 @@ import { Member } from '../../../authorization/member.model';
 import { User } from '../../../authorization/user.model';
 import { Team } from '../../models/team.model';
 import { Subteam } from '../../models/subteam.model';
+import {ErrorService} from "../../../shared/errorModal/error.service";
 
 @Component({
   selector: 'app-view-single-user',
@@ -58,13 +59,16 @@ export class ViewSingleUserComponent implements OnInit {
     private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router,
+    private errorService: ErrorService,
     private location: Location) { }
 
 
 
   updateSub(): void{
-    this.availableSubs = this.allTeams
-      .find(t => t._id == this.userForm.get('memberData')['controls'].team.value)['subteams'];
+    if (this.allTeams) {
+      this.availableSubs = this.allTeams
+        .find(t => t._id == this.userForm.get('memberData')['controls'].team.value)['subteams'];
+    }
   }
 
   ngOnInit() {
@@ -90,7 +94,7 @@ export class ViewSingleUserComponent implements OnInit {
         const userData = <FormGroup>this.userForm.get('userData');
         Object.keys(this.user).forEach(field => {
             if(!undesiredFields.includes(field)){
-                //creates new formcontrol with the name of the field & 
+                //creates new formcontrol with the name of the field &
                 // adds it to the form with its value
                 userData.addControl(field, new FormControl(this.user[field]));
             }
@@ -110,6 +114,8 @@ export class ViewSingleUserComponent implements OnInit {
             this.currentSub = this.member.subteam.name;
             // console.log('UPDATED MEMBER FORRRMMM ::\n', this.member, this.userForm);
             this.updateSub();
+          }, (error) => {
+            this.errorService.passError('Error Getting User Info!', '/dashboard');
           });
         }
 
@@ -119,14 +125,16 @@ export class ViewSingleUserComponent implements OnInit {
       this.allTeams = teams;
       // console.log('FETCHED TEAMS ::\n', this.allTeams);
       this.updateSub();
+    }, (error) => {
+      this.errorService.passError('Error Getting User Info!', '/dashboard');
     });
-      
+
     // this.updateSub();
-        
-    
+
+
   }
-        
-        
+
+
 
   goBack(): void {
     this.location.back();
@@ -154,6 +162,8 @@ export class ViewSingleUserComponent implements OnInit {
     .subscribe(res => {
       // console.log('UPDATEDDD MEMMEBEERR :: ', res);
       alert('succesfully updated!')
+    }, (error) => {
+      this.errorService.passError('Error Updating Info!', '/dashboard');
     });
 
 
