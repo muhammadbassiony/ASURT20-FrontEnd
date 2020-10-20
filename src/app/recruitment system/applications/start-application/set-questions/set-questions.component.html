@@ -5,9 +5,9 @@
 
 
     <h2 class="text-center mb-2">Update Event Phase</h2>
-    <div class="btn-group btn-group-toggle col-sm-12" ngbRadioGroup name="radioBasic"
+    <!-- <div class="btn-group btn-group-toggle col-sm-12" ngbRadioGroup name="radioBasic"
         [(ngModel)]="model">
-        <!--   -->
+        
         <div class="row">
         <label ngbButtonLabel class="btn-warning col-sm  ml-2" *ngFor="let ph of phases" style="color: white;">
 
@@ -15,6 +15,13 @@
 
         </label>
       </div>
+    </div> -->
+    <div class="row py-5 container">
+    <div class="btn-group btn-group-toggle col-sm-6" ngbRadioGroup name="radioBasic" [(ngModel)]="model">
+        <label ngbButtonLabel class="btn-warning col-sm"  *ngFor="let ph of phases">
+            <input ngbButton type="radio" class="col-sm-2" [value]="ph">{{ph}}
+        </label>
+    </div>
     </div>
 
     <form [formGroup]="questionsForm" (ngSubmit)="onSubmit(questionsForm)">
@@ -52,11 +59,14 @@
                 </div>
             </div>
 
+            <div class="row text-center mb-4 addqs">
             <button
                 class="btn btn-outline-info"
                 type="button"
                 (click)="onAddQuestion()"
-                style="margin-left: 300px; margin-right: 200px;">Add Question</button>
+                >Add Question</button>
+                <!-- style="margin-left: 300px; margin-right: 200px;">Add Question</button> -->
+            </div>
         </div>
 
         <button type="submit" class="btn btn-primary" style="margin: 10px;">Save</button>
