@@ -136,7 +136,7 @@ export class AdminInterviewsComponent implements OnInit {
 
     let start = new Date(selectInfo.start);
     let end = new Date(selectInfo.end);
-    if(this.getDiffInMinutes(start, end) != 45){
+    if(this.getDiffInMinutes(start, end) <= 15){
       return false;
     }
     // console.log(selectInfo.startStr, '\n',selectInfo.endStr,  '\n',

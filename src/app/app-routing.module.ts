@@ -93,7 +93,7 @@ const routes: Routes = [
   {path: 'view-user', component: ViewSingleUserComponent, canActivate: [AdminGuardService], data: { accessLevel: 3} },
 
   {path: 'event/new', component: NewEventComponent, data: { accessLevel: 3} },
-  {path: 'application/set-questions', component: SetQuestionsComponent, canActivate: [AdminGuardService], data: { accessLevel: 2} },
+  {path: 'application/set-questions', component: SetQuestionsComponent, canActivate: [AdminGuardService], data: { accessLevel: 3} },
   {path: 'view-applications/:eventId', component: ViewAllAppsComponent, canActivate: [AdminGuardService] , data: { accessLevel: 2} },
   {path: 'view-application/:appId', component: ViewSingleAppComponent , canActivate: [AdminGuardService], data: { accessLevel: 2} },
 
