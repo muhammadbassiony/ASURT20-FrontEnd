@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AbstractControl} from "@angular/forms";
+import {AbstractControl, FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-validation-msg',
@@ -9,7 +9,7 @@ import {AbstractControl} from "@angular/forms";
 export class ValidationMsgComponent implements OnInit {
 
   constructor() { }
-  @Input() formControl: AbstractControl;
+  @Input() inputFormControl: AbstractControl & FormControl;
   @Input() msg: string;
   ngOnInit(): void {
   }
