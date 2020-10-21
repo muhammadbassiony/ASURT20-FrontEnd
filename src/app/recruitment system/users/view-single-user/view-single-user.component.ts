@@ -160,12 +160,7 @@ export class ViewSingleUserComponent implements OnInit {
       }
     }))
     .subscribe(res => {
-<<<<<<< HEAD
       alert('succesfully updated!')
-=======
-      // console.log('UPDATEDDD MEMMEBEERR :: ', res);
-      alert('Successfully Updated!')
->>>>>>> 7ad3fec108d80e86d785fefaaadfc8b414f5a090
     }, (error) => {
       this.errorService.passError('Error Updating Info!', '/dashboard');
     });
