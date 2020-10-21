@@ -44,7 +44,7 @@ export class SignInComponent implements OnInit {
     }, errorMessage => {
         this.isLoading = false;
         this.error = errorMessage;
-        this.errorService.passError('Error Signing in', '/sign-in');
+        this.errorService.passError('Error Signing in!', '/sign-in');
     });
     signInForm.reset();
   }

@@ -164,6 +164,8 @@ export class AdminInterviewsComponent implements OnInit {
       // console.log('intrv booked in backend :: ', res);
       // let url = '/interview/' + res._id;
       // console.log('ROUTE ::', url);
+    }, (error) => {
+      this.errorService.passError('Error Adding New Interview!', '/dashboard')
     });
 
   }

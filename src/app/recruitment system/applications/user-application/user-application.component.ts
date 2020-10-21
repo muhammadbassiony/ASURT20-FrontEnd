@@ -24,6 +24,7 @@ import { EventsService } from "../../services/events.service";
 import { UserService } from '../../../authorization/user.service';
 
 import { pdfMimeType } from './pdf-mime-type.validator';
+import {ErrorService} from "../../../shared/errorModal/error.service";
 
 @Component({
   selector: 'app-user-application',
@@ -48,6 +49,7 @@ export class UserApplicationComponent implements OnInit {
     private fb: FormBuilder,
     private applicationsService: ApplicationsService,
     private eventsService: EventsService,
+    private errorService: ErrorService,
     private usersService: UserService,
     private http: HttpClient,
     private route: ActivatedRoute,
@@ -83,6 +85,8 @@ export class UserApplicationComponent implements OnInit {
     .subscribe(res => {
       this.user = res;
       // console.log('fetched user:: \n', this.user);
+    }, (error) => {
+      this.errorService.passError('Error Getting User Events Data!', '/dashboard')
     });
 
   }
@@ -148,13 +152,13 @@ export class UserApplicationComponent implements OnInit {
 
     this.applicationsService.addNewApplication(this.newApp)
     .pipe(switchMap(res => {
-      console.log('NEW APP AFTER SUBMIT::\n', res);
       this.appForm.reset();
       return this.eventsService.incrementNumApplicants(this.eventId); //increment when adding a new cv???
     }))
     .subscribe(res => {
-      console.log('INCREMENT NUM APPLICANTS FOR EVENT::\n', res);
       this.router.navigate(['dashboard']);
+    }, (error) => {
+      this.errorService.passError('Error Adding New Application!', '/dashboard')
     });
 
   }

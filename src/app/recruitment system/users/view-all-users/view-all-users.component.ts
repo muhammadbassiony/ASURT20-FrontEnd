@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, 
-  FormControl, 
-  FormGroup, 
-  Validators, 
-  ReactiveFormsModule, 
-  RequiredValidator, 
+import {FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+  RequiredValidator,
   FormArray} from '@angular/forms';
 
 import { ActivatedRoute, Params, Router, Data } from '@angular/router';
@@ -16,6 +16,7 @@ import { Observable, pipe, Subscription } from 'rxjs';
 import { User } from '../../../authorization/user.model';
 import { UserService } from '../../../authorization/user.service';
 import { CDK_CONNECTED_OVERLAY_SCROLL_STRATEGY } from '@angular/cdk/overlay/overlay-directives';
+import {ErrorService} from "../../../shared/errorModal/error.service";
 
 @Component({
   selector: 'app-view-all-users',
@@ -31,6 +32,7 @@ export class ViewAllUsersComponent implements OnInit {
   constructor(
     private usersService: UserService,
     private http: HttpClient,
+    private errorService: ErrorService,
     private route: ActivatedRoute,
     private router: Router) { }
 
@@ -39,6 +41,8 @@ export class ViewAllUsersComponent implements OnInit {
     .subscribe(res => {
       this.allUsers = res;
       this.assignCopy();
+    }, (error) => {
+      this.errorService.passError('Error Getting All Users!', '/dashboard')
     })
   }
 
@@ -52,9 +56,9 @@ export class ViewAllUsersComponent implements OnInit {
       // console.log("FILTERED ITEMS FUNC NO INPUT :: \n", this.filteredItems);
     } // when nothing has typed
     else{
-  
+
       this.filteredItems = Object.assign([], this.allUsers).filter(
-        item => item.name && item.email && (item.name.toLowerCase().indexOf(value.toLowerCase()) > -1  || 
+        item => item.name && item.email && (item.name.toLowerCase().indexOf(value.toLowerCase()) > -1  ||
                 item.email.toLowerCase().indexOf(value.toLowerCase()) > -1)
 
       );

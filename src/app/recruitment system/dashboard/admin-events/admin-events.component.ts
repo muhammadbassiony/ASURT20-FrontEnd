@@ -43,6 +43,8 @@ export class AdminEventsComponent implements OnInit {
     .subscribe(res => {
       // console.log('admin evs ::\n', res);
       this.allEvents = res;
+    }, (error) => {
+      this.errorService.passError('Error Getting Events!', '/dashboard')
     })
   }
 
@@ -52,6 +54,8 @@ export class AdminEventsComponent implements OnInit {
       //res is the updated event
       let indx = this.allEvents.findIndex(e => e._id === eId);
       this.allEvents[indx] = <Event>res;  //update event in current all events array
+    }, (error) => {
+      this.errorService.passError('Error Updating Event!', '/dashboard')
     })
   }
 
@@ -61,6 +65,8 @@ export class AdminEventsComponent implements OnInit {
     .subscribe(res => {
       let fileName = team + '.csv';
       saveAs(res, fileName);
+    }, (error) => {
+      this.errorService.passError('Error Getting Excel File!', '/dashboard')
     })
   }
 
@@ -70,11 +76,9 @@ export class AdminEventsComponent implements OnInit {
     if(confirm(conStr)) {
       this.applicationsService.sendAcceptedEmails(eventId, phase)
       .subscribe(res => {
-        console.log('acceptance emails sent!\n', res);
         alert("acceptance emails sent!");
-      },
-      error => {
-        alert("error sending emails!");
+      }, (error) => {
+        this.errorService.passError('Error Sending Acceptance Emails!', '/dashboard')
       });
     }
   }
@@ -87,11 +91,9 @@ export class AdminEventsComponent implements OnInit {
     if(confirm(conStr)) {
       this.applicationsService.sendRejectedEmails(eventId, phase)
       .subscribe(res => {
-        console.log('rejection emails sent!\n', res);
         alert("rejection emails sent!");
-      },
-      error => {
-        alert("error sending emails!");
+      }, (error) => {
+        this.errorService.passError('Error Sending Rejection Emails!', '/dashboard')
       });
     }
   }

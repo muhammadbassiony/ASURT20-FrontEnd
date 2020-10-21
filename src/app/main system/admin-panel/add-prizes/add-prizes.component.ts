@@ -16,6 +16,7 @@ import { Competition } from '../../models/competition.model';
 import { CompetitionsService } from '../../services/competitions.service';
 
 import { environment } from '../../../../environments/environment';
+import {ErrorService} from "../../../shared/errorModal/error.service";
 
 @Component({
   selector: 'app-add-prizes',
@@ -35,6 +36,7 @@ export class AddPrizesComponent implements OnInit {
     private competitionsService: CompetitionsService,
     private fb: FormBuilder,
     public route: ActivatedRoute,
+    private errorService: ErrorService,
     private location: Location
   ) { }
 
@@ -44,6 +46,8 @@ export class AddPrizesComponent implements OnInit {
     .subscribe(res => {
       this.allComps = res;
       // console.log('GOT ALL COMPS :: \n', this.allComps);
+    }, (error) => {
+      this.errorService.passError('Error Getting All Competitions!', '/home')
     });
 
     this.awardsForm = this.fb.group({

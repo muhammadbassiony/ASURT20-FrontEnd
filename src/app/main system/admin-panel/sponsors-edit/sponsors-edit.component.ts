@@ -10,6 +10,7 @@ import { environment } from '../../../../environments/environment';
 import {HttpErrorResponse} from '@angular/common/http';
 
 import { ImgMimeType } from '../../../shared/img-mime-type.validator';
+import {ErrorService} from "../../../shared/errorModal/error.service";
 
 
 
@@ -30,6 +31,7 @@ export class SponsorsEditComponent implements OnInit {
   constructor(
     private _SponsorsService:SponsorsService,
     private fb: FormBuilder,
+    private errorService: ErrorService,
     private location: Location
   ){ }
 
@@ -42,9 +44,8 @@ export class SponsorsEditComponent implements OnInit {
         sp.logoCopy = this.backend_uri +  sp.logo;
       }
       this.isGettingSponsors = false;
-    },
-    error => {
-      console.log('ERROR SPONSORS-EDIT :: ',error);
+    }, (error) => {
+      this.errorService.passError('Error Getting Current Sponsors!', '/home')
     });
 
     this.sponsorEditForm = this.fb.group({
@@ -68,10 +69,9 @@ export class SponsorsEditComponent implements OnInit {
     .subscribe((value) => {    //will work
       this.message = 'Sponsor created successfully!';
       this.sponsorEditForm.reset();
-    },
-    error => {
+    }, (error) => {
       this.message = error;
-      console.log(error);
+      this.errorService.passError('Error Creating Sponsor!', '/edit/sponsors');
     });
   }
 
@@ -79,9 +79,8 @@ export class SponsorsEditComponent implements OnInit {
     this._SponsorsService.updateAllSponsors(this.sponsorsInfo)
     .subscribe(res => {
       this.editMessage = 'All requests are a success!';
-    },
-    error => {
-      this.editMessage = error;
+    }, (error) => {
+      this.errorService.passError('Error Updating Sponsors!', '/edit/sponsors')
     });
   }
 

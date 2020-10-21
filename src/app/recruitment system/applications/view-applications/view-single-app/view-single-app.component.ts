@@ -9,7 +9,7 @@ import {
   ReactiveFormsModule,
   RequiredValidator,
   FormArray
-} from '@angular/forms'; //why do we need forms here? 
+} from '@angular/forms'; //why do we need forms here?
 
 
 import { ActivatedRoute, Params, Router, Data } from '@angular/router';
@@ -30,6 +30,7 @@ import { EventsService } from '../../../services/events.service';
 import { Team } from '../../../models/team.model';
 
 import { environment } from '../../../../../environments/environment';
+import {ErrorService} from "../../../../shared/errorModal/error.service";
 // const backend_uri = environment.backend_uri;
 
 @Component({
@@ -55,6 +56,7 @@ export class ViewSingleAppComponent implements OnInit {
     private applicationsService: ApplicationsService,
     private usersService: UserService,
     private eventsService: EventsService,
+    private errorService: ErrorService,
     private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router,
@@ -81,7 +83,6 @@ export class ViewSingleAppComponent implements OnInit {
 
     this.applicationsService.getApplication(this.appId)
       .subscribe(res => {
-        console.log('fetched user\'s app! ::\n', res);
         this.app = res;
         this.user = this.app.user;
         this.questions = this.app.userAnswers;
@@ -91,7 +92,9 @@ export class ViewSingleAppComponent implements OnInit {
           applicationPhase: new FormControl(this.app.currentPhase),
           applicationStatus:new FormControl(this.app.currentPhaseStatus)
         })
-       
+
+      }, (error) => {
+        this.errorService.passError('Error Getting Applications!', '/dashboard')
       });
 
   }
@@ -120,24 +123,24 @@ export class ViewSingleAppComponent implements OnInit {
       currentPhaseStatus: this.app.currentPhaseStatus,
       cvPath: this.app.cvPath
     }
-    
+
     this.applicationsService.updateApp(this.app._id, newApp)
     .pipe(switchMap(res => {
       alert("Application successfully updated in Database!");
-      
+
       switch(this.app.currentPhaseStatus){
         case ApplicationStatus.accepted:
           console.log(ApplicationStatus.accepted);
           return this.eventsService.incrementNumAccepted(this.app.event._id);
-          
+
         case ApplicationStatus.rejected:
           console.log(ApplicationStatus.rejected);
           return this.eventsService.incrementNumRejected(this.app.event._id);
-          
+
         case ApplicationStatus.pending_acceptance:
           console.log(ApplicationStatus.pending_acceptance);
           return this.eventsService.incrementNumPendAcc(this.app.event._id);
-          
+
         case ApplicationStatus.pending_rejection:
           console.log(ApplicationStatus.pending_rejection);
           return this.eventsService.incrementNumPendRej(this.app.event._id);
@@ -145,9 +148,11 @@ export class ViewSingleAppComponent implements OnInit {
         default:
           return;
       }
-        
+
     }))
-    .subscribe(res => { });
+    .subscribe(res => { }, (error) => {
+      this.errorService.passError('Error Updating Application!', '/dashboard')
+    });
   }
 
   goBack(): void {

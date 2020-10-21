@@ -14,6 +14,7 @@ import { Observable, pipe, Subscription } from 'rxjs';
 
 import { ApplicationPhase } from '../../../models/app-phases-enum.model';
 import { ApplicationStatus } from '../../../models/app-status-enum.model';
+import {ErrorService} from "../../../../shared/errorModal/error.service";
 
 
 @Component({
@@ -46,6 +47,7 @@ export class ViewAllAppsComponent implements OnInit {
     private applicationsService: ApplicationsService,
     private usersService: UserService,
     private eventsService: EventsService,
+    private errorService: ErrorService,
     private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router,
@@ -74,6 +76,8 @@ export class ViewAllAppsComponent implements OnInit {
     .subscribe(res => {
       this.allApps = res;
       this.assignCopy();//when you fetch collection from server.
+    }, (error) => {
+      this.errorService.passError('Error Getting Events!', '/dashboard')
     });
 
   }

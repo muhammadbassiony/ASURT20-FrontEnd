@@ -18,19 +18,19 @@ import { ErrorService } from './shared/errorModal/error.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  
+
   title = 'ASURT20-FrontEnd';
   isAdminMode = false;
   isAuthorized = false;
   isLoading = true;
   err = "this is error";
-  
-  
+
+
   constructor(
     private usersService: UserService,
     private route: ActivatedRoute,
     private router: Router,
-    private ErrService:ErrorService ) { }
+    private errorService: ErrorService) { }
 
 
   ngOnInit() {
@@ -43,16 +43,18 @@ export class AppComponent implements OnInit{
         this.isAuthorized = true;
         this.isAdminMode = user.level >= 1;
       }
+    }, (error) => {
+      this.errorService.passError('Error Keeping You Signed In!', '/home');
     });
   }
-  
+
   toggleLoading(val){
     // console.log('APP COMP TS - LOADING VAL ::: ', this.route);
     this.isLoading = val;
     // this.router.navigate(['/']);
   }
-  
-  
+
+
   @HostListener('window:scroll', ['$event'])
   onWindowScroll(event) {
     let mql = window.matchMedia("screen and (max-width: 900px)");
