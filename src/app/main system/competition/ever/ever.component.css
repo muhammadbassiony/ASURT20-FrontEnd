@@ -1,6 +1,29 @@
 /*FADE-IN EFFECT. PLEASE DO NOT REMOVE SO THE COMPONENT IS FADED IN WHEN IT IS LOADED*/
 @import "../../../shared/fade-in.css";
 
+
+@media only screen and (max-width: 75em) {
+  .container {
+     font-size: 56.25%;
+   }
+ }
+ @media only screen and (max-width: 56.25em) {
+  .container {
+     font-size: 50%;
+   }
+ }
+ @media only screen and (max-width: 37.5em) {
+  .container {
+     font-size: 46%;
+   }
+ }
+ @media only screen and (min-width: 112.5em) {
+  .container {
+     font-size: 75%;
+   }
+ }
+
+
 .ever{
     color: #158000;
 }
@@ -67,8 +90,8 @@ p{
 @media only screen and (max-width: 37.5em) {
   .paragraph {
     font-size: 1.5em;
-    /* text-align: center;
-    margin-bottom: 1em; */
+    text-align: center;
+    margin-bottom: 1em;
   }
 }
 
