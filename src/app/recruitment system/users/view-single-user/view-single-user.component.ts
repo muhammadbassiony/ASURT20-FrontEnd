@@ -148,7 +148,7 @@ export class ViewSingleUserComponent implements OnInit {
 
     let updatedMember = <Member>this.member;
     updatedMember = {...this.member, ...this.userForm.value.memberData};
-    // console.log('UPDATEDDD  :: ', updatedUser, updatedMember);
+    
 
     this.usersService.addUserInfo(this.userId, updatedUser)
     .pipe(switchMap(res => {
@@ -160,7 +160,6 @@ export class ViewSingleUserComponent implements OnInit {
       }
     }))
     .subscribe(res => {
-      // console.log('UPDATEDDD MEMMEBEERR :: ', res);
       alert('succesfully updated!')
     }, (error) => {
       this.errorService.passError('Error Updating Info!', '/dashboard');
