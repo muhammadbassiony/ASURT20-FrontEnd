@@ -148,7 +148,7 @@ export class ViewSingleUserComponent implements OnInit {
 
     let updatedMember = <Member>this.member;
     updatedMember = {...this.member, ...this.userForm.value.memberData};
-    
+
 
     this.usersService.addUserInfo(this.userId, updatedUser)
     .pipe(switchMap(res => {
