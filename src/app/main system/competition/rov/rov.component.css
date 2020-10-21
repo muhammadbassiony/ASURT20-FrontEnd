@@ -95,3 +95,8 @@ p
   /* font-size: 15px; */
   font-weight: 500;
 }
+/*UTILITIES*/
+.img-border {
+  border-radius: 2px !important;
+  border: 0.3rem solid #177EE5 !important;
+}
