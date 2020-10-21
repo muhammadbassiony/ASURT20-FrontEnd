@@ -115,7 +115,7 @@ export class PhotorollEditComponent implements OnInit {
 
     this.currentPhotoroll.images = this.newPhotos;
     let updatedPhotoroll = {...this.currentPhotoroll, paths: paths};
-    console.log('NEW CURRENT PH :: \n', updatedPhotoroll);
+    // console.log('NEW CURRENT PH :: \n', updatedPhotoroll);
 
 
     this.photorollService.updatePhotoroll(updatedPhotoroll)

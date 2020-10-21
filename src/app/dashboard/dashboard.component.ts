@@ -13,6 +13,7 @@ import { ViewInterviewComponent } from '../recruitment system/interviews/admin-i
 import { AdminEventsComponent } from '../recruitment system/dashboard/admin-events/admin-events.component';
 import { UserEventsComponent } from '../recruitment system/dashboard/user-events/user-events.component';
 import { User } from '../authorization/user.model';
+import {ErrorService} from "../shared/errorModal/error.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -29,6 +30,7 @@ export class DashboardComponent implements OnInit {
     private usersService: UserService,
     private http: HttpClient,
     private route: ActivatedRoute,
+    private errorService: ErrorService,
     private router: Router
   ) { }
 
@@ -44,6 +46,8 @@ export class DashboardComponent implements OnInit {
     .subscribe(res => {
       this.user = res;
       // console.log('AHOOYY DASHBOARD RECEIVED ALL USER:: ', this.user);
+    }, (error) => {
+      this.errorService.passError('Error Getting User Info!', '/home')
     });
 
   }

@@ -30,7 +30,6 @@ export class RequestResetComponent implements OnInit {
   RequestResetUser(RequestResetForm: FormGroup){
     this.usersService.requestPasswordReset(this.RequestResetForm.value.email)
     .subscribe(res => {
-      console.log('RES HEREE BRUB ')
       this.successMessage = 'Email Sent! please check your email!';
     }, error => {
       this.errorMessage = 'We have encountered a problem! Please try again!'
@@ -38,6 +37,6 @@ export class RequestResetComponent implements OnInit {
   }
 
 
-  
+
 
 }

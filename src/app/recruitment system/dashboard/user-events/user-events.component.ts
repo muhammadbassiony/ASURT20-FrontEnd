@@ -13,6 +13,7 @@ import { ApplicationsService } from '../../services/applications.service';
 import { InterviewsService } from '../../services/interviews.service';
 import { UserService } from '../../../authorization/user.service';
 import { Application } from '../../models/application.model';
+import {ErrorService} from "../../../shared/errorModal/error.service";
 
 @Component({
   selector: 'app-user-events',
@@ -33,6 +34,7 @@ export class UserEventsComponent implements OnInit {
 
   constructor(
     private eventsService: EventsService,
+    private errorService: ErrorService,
     private applicationsService: ApplicationsService,
     private interviewsService: InterviewsService,
     private usersService: UserService,
@@ -60,7 +62,8 @@ export class UserEventsComponent implements OnInit {
         })
       }
       this.userApps = res;
-      // console.log('ALL APPS W IVS ::', this.userApps);
+    }, (error) => {
+      this.errorService.passError('Error Getting Interviews!', '/dashboard')
     });
   }
 

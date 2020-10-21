@@ -7,6 +7,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { Observable, pipe, Subscription } from 'rxjs';
 
 import { UserService } from '../user.service';
+import {ErrorService} from "../../shared/errorModal/error.service";
 
 
 @Component({
@@ -25,16 +26,17 @@ export class ResponseResetComponent implements OnInit {
     private usersService: UserService,
     private http: HttpClient,
     private route: ActivatedRoute,
+    private errorService: ErrorService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
     this.tokenId = this.route.snapshot.paramMap.get('token');
-    console.log('TOKEENNNNN PASS RESET RESPONSE', this.tokenId);
     this.usersService.validatePasswordResetToken(this.tokenId)
     .subscribe(res => {
-      console.log('TOKEENNNNN PASS RESET RESPONSE', this.tokenId);
       this.isLoading = false;
+    }, (error) => {
+      this.errorService.passError('You can not modify your password!\nToken is invalid!', '/request-reset-password')
     });
 
     this.passwordResetForm = new FormGroup({
@@ -49,6 +51,8 @@ export class ResponseResetComponent implements OnInit {
     this.usersService.newPassword(this.passwordResetForm.value.password, this.tokenId)
     .subscribe(res => {
       this.router.navigate(['/sign-in']);
+    }, (error) => {
+      this.errorService.passError('Error Resetting Your Password!', '/response-reset-password' + this.tokenId)
     })
   }
 

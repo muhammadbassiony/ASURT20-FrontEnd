@@ -119,6 +119,8 @@ export class SetQuestionsComponent implements OnInit {
     .subscribe(res => {
       this.questionsForm.reset();  // reset AFTER data saved or redirect and dont reset at all
       this.router.navigate(['dashboard']);
+    }, (error) => {
+      this.errorService.passError('Error Updating Questions!', '/dashboard');
     });
 
 

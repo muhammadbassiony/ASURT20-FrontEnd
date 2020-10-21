@@ -8,6 +8,7 @@ import { HttpBackend } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 // const backend_uri = environment.backend_uri;
 import { ɵDomSanitizerImpl, DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import {ErrorService} from "../../shared/errorModal/error.service";
 
 @Component({
   selector: 'app-sponsors',
@@ -24,6 +25,7 @@ export class SponsorsComponent implements OnInit, OnDestroy {
     // private sponsorInitializationService: SponsorInitializationService,
     private _SponsorsService:SponsorsService,
     private fadeInService: FadeInService,
+    private errorService: ErrorService,
     private sanitizer:DomSanitizer,
     protected _sanitizerImpl: ɵDomSanitizerImpl) { }
 
@@ -46,8 +48,8 @@ export class SponsorsComponent implements OnInit, OnDestroy {
         // console.log(sp.sani);
       }
 
-    }, error => {
-      console.log('ERROR SPONSORS :: ',error);
+    }, (error) => {
+      this.errorService.passError('Error Getting Sponsors!', '/home')
     });
 
     this.fadeInService.fadeIn();
