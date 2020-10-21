@@ -102,6 +102,10 @@ p
 }
 /*UTILITIES*/
 .img-border {
-  border-radius: 2px !important;
+  /* border-radius: 2px !important;
   border: 0.3rem solid #158000 !important;
+  -webkit-border-radius: 2px !important;
+  -moz-border-radius: 2px !important;
+  -ms-border-radius: 2px !important;
+  -o-border-radius: 2px !important; */
 }

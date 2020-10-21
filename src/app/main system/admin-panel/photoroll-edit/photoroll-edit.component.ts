@@ -115,7 +115,7 @@ export class PhotorollEditComponent implements OnInit {
 
     this.currentPhotoroll.images = this.newPhotos;
     let updatedPhotoroll = {...this.currentPhotoroll, paths: paths};
-    console.log('NEW CURRENT PH :: \n', updatedPhotoroll);
+    // console.log('NEW CURRENT PH :: \n', updatedPhotoroll);
 
 
     this.photorollService.updatePhotoroll(updatedPhotoroll)
@@ -124,7 +124,7 @@ export class PhotorollEditComponent implements OnInit {
       this.newPhotos = [];
       this.photorollForm.reset();
       //reset and remain here on re-route to another page?
-      console.log('\nserver result :::\n', res);
+      // console.log('\nserver result :::\n', res);
     }, error => {
       this.errorService.ErrorCaught.next({ErrorMsg: error.message, Url: '/home'});
     });
