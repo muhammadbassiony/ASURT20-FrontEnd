@@ -27,7 +27,8 @@ export class AdminGuardService implements CanActivate {
             return this.router.createUrlTree(['/sign-in']);
           }
 
-           if(!user.profileComplete && route.routeConfig.path != 'edit-profile'){
+          
+          if(!user.profileComplete && route.routeConfig.path != 'edit-profile'){
             return this.router.createUrlTree(['edit-profile']);
           }
 
@@ -38,8 +39,6 @@ export class AdminGuardService implements CanActivate {
 
           if(route.data.accessLevel!= null && route.data.accessLevel <= userLevel){
             // //users access level is equal to that of allowed by this route
-            // if(!user.profileComplete && route.routeConfig.path != 'edit-profile')  return this.router.createUrlTree(['/edit-profile']);
-            // // console.log('AUTH GUARD RETURNING TRUE HERE\n');
             return true;
           }
 

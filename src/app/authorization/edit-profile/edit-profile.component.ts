@@ -75,7 +75,7 @@ export class EditProfileComponent implements OnInit, EditProfileDeactivateGuard 
 
     }, (error) => {
       this.errorService.passError('Error Getting User Profile!', '/dashboard');
-    })
+    });
 
 
     this.profileForm = this.fb.group({
@@ -101,17 +101,26 @@ export class EditProfileComponent implements OnInit, EditProfileDeactivateGuard 
     this.user.birthDate = new Date(ngbDate.year, ngbDate.month-1, ngbDate.day);
     this.user.profileComplete = true;
 
+    // console.log('EDIT KSOM PROFILE AHO BEFORE ::', this.user);
     this.usersService.addUserInfo(this.userId, this.user)
     .subscribe(res => {
+      this.user = <User>res;
+      this.authUser.profileComplete = true;
+      this.usersService.authUser.next(this.authUser);
       this.router.navigate(['dashboard']);
     }, error => {
-      //implement error modal here
+      this.errorService.passError('Error Saving Profile!', '/home');
     });
   }
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-    if(!this.user.profileComplete) alert('Please complete profile first');
-    return this.user.profileComplete ? true : false;
+    
+    if(!this.user.profileComplete){ 
+      alert('Please complete profile first');
+      return false;
+    }
+    return true;
+    // return this.user.profileComplete ? true : false;
     //return this.completedProfile;
   }
 }

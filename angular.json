@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "../../pet 2 - Copy/angular",
+            "outputPath": "../ASURT20-BackEnd/angular",
             // "outputPath": "dist/ASURT20-FrontEnd",
             "index": "src/index.html",
             "main": "src/main.ts",
