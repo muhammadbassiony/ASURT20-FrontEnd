@@ -6,11 +6,11 @@
 
     <h1 class="card-title text-center">My applications</h1>
     <br>
-    <div class="alert alert-warning text-center" role="alert" *ngIf="appliedTo.length == 0">
+    <div class="alert alert-warning text-center" role="alert" *ngIf="appliedTo && appliedTo.length == 0">
         <strong>You have no current applications!</strong> Check the available positions section for any open positions!
     </div>
 
-    <div *ngIf="appliedTo.length > 0">
+    <div *ngIf="appliedTo && appliedTo.length > 0">
         <div *ngFor="let app of userApps">
             <div *ngIf="app.event.eventActive" class="card col-sm-12 shadow" name="event-card">
 
@@ -19,7 +19,7 @@
                 <div *ngIf="app.currentPhaseStatus == 'ACCEPTED' && app.currentPhase != 'DR_IV'" class="row">
                     <p style="font-size:80%"  class="text-success col">
                         <strong>Congratulations! You have passed this phase!</strong></p>
-                        
+
                     <div class="col text-center container">
                         <div class="row"><button class="btn-success bottom-right" [disabled]="app.interview && app.interview.length > 0"
                             [routerLink]="['/book-interview', app._id]">Book Interview</button></div>
@@ -53,12 +53,12 @@
 
     <h1 class="text-center">Available positions</h1>
     <br>
-    <div class="alert alert-warning text-center" role="alert" *ngIf="didntApply.length == 0">
+    <div class="alert alert-warning text-center" role="alert" *ngIf="didntApply && didntApply.length == 0">
         <strong>We are Sorry!</strong> There are no available events at the moment!
         please check later and follow our official pages for more information about upcoming events
     </div>
 
-    <div *ngIf="didntApply.length > 0">
+    <div *ngIf="didntApply && didntApply.length > 0">
         <div *ngFor="let ev of didntApply">
             <div *ngIf="ev.eventActive" class="card row shadow" name="event-card">
               <div class="row">

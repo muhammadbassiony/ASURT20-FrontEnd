@@ -73,7 +73,6 @@ export class UserApplicationComponent implements OnInit {
     .pipe(switchMap(res => {
       this.eventData = res;
       this.team = res['team'];
-      console.log('fetched event:: \n', this.eventData, '\nteam ::\n', this.team);
 
       const userAnswers = <FormGroup>this.appForm.get('userAnswers');
       this.eventData.questions.forEach(qs => {
@@ -84,7 +83,6 @@ export class UserApplicationComponent implements OnInit {
     }))
     .subscribe(res => {
       this.user = res;
-      // console.log('fetched user:: \n', this.user);
     }, (error) => {
       this.errorService.passError('Error Getting User Events Data!', '/dashboard')
     });
@@ -98,7 +96,6 @@ export class UserApplicationComponent implements OnInit {
   fileToUpload: File = null;
   onCvSelected(files: FileList){
     this.fileToUpload = files.item(0);
-    console.log(this.fileToUpload);
     if(this.fileToUpload.size > 5*1024*1024){
       alert("Pdf maximum size is 5MB");
       this.appForm.get('userCv').setErrors({ 'sizeInvalid' : true });
@@ -112,7 +109,6 @@ export class UserApplicationComponent implements OnInit {
 
     this.appForm.patchValue({ 'userCV' : this.fileToUpload });
     this.appForm.get("userCV").updateValueAndValidity();
-    // console.log('USER APP FORM ::\n', this.appForm);
   }
 
   checkSubValidity(){
@@ -127,7 +123,6 @@ export class UserApplicationComponent implements OnInit {
   }
 
   onSubmit(appForm: FormGroup){
-    // console.log(appForm.value);
 
     let answers: any = [];
     for(let i in this.appForm.value.userAnswers){
@@ -148,7 +143,6 @@ export class UserApplicationComponent implements OnInit {
       currentPhaseStatus: ApplicationStatus.pending
     };
 
-    // console.log('NEW APP BEFORE SUBMIT::\n', this.newApp);
 
     this.applicationsService.addNewApplication(this.newApp)
     .pipe(switchMap(res => {

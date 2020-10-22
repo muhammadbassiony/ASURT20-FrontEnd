@@ -30,10 +30,10 @@ export class ApplicationsService {
   private events: Event[];
   private users: User[];
   private applications: Application[];
- 
+
   constructor(private http: HttpClient) {}
 
-  getAllApplications(){ 
+  getAllApplications(){
     //why?
   }
 
@@ -44,8 +44,8 @@ export class ApplicationsService {
     )
     .pipe(
       map(res => {
-        let body = res['application'];    
-        return body || [];  
+        let body = res['application'];
+        return body || [];
       })
       ,
       catchError(errorRes => {
@@ -55,8 +55,7 @@ export class ApplicationsService {
   }
 
   addNewApplication(newApp: any){
-    console.log("adding new app", newApp);
-    
+
     const appData = new FormData();
     appData.append('userId', newApp.userId);
     appData.append('eventId', newApp.eventId);
@@ -65,16 +64,15 @@ export class ApplicationsService {
     appData.append('selectedSubteam2', newApp.selectedSubteam2);
     appData.append('userAnswers', JSON.stringify(newApp.userAnswers));
 
-    return this.http.post( 
-      backend_uri + '/rec/application/add-new-app', 
-      appData, 
+    return this.http.post(
+      backend_uri + '/rec/application/add-new-app',
+      appData,
       { responseType: 'json' }
     )
     .pipe(
       map(res => {
-        console.log('created new app - app service ::\n', res);
-        let body = res['application'];  
-        return body || [];    
+        let body = res['application'];
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -83,14 +81,14 @@ export class ApplicationsService {
   }
 
   getUserApps(userId: string){
-    return this.http.get( 
-      backend_uri + '/rec/application/user-apps/' + userId,  
+    return this.http.get(
+      backend_uri + '/rec/application/user-apps/' + userId,
       { responseType: 'json' }
     )
     .pipe(
       map(res => {
-        let body = res['applications'];  
-        return body || [];    
+        let body = res['applications'];
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -99,14 +97,14 @@ export class ApplicationsService {
   }
 
   getEventApps(eventId: string){
-    return this.http.get( 
-      backend_uri + '/rec/application/event-apps/' + eventId,  
+    return this.http.get(
+      backend_uri + '/rec/application/event-apps/' + eventId,
       { responseType: 'json' }
     )
     .pipe(
       map(res => {
-        let body = res['applications'];  
-        return body || [];    
+        let body = res['applications'];
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -115,14 +113,14 @@ export class ApplicationsService {
   }
 
   getSubteamApps(subteamId: string){
-    return this.http.get( 
-      backend_uri + '/rec/application/subteam-apps/' + subteamId,  
+    return this.http.get(
+      backend_uri + '/rec/application/subteam-apps/' + subteamId,
       { responseType: 'json' }
     )
     .pipe(
       map(res => {
-        let body = res['applications'];  
-        return body || [];    
+        let body = res['applications'];
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -131,7 +129,7 @@ export class ApplicationsService {
   }
 
   updateApp(appId: string, newApp: Application){
-    
+
     let app = {
       userId: newApp.userId,
       eventId: newApp.eventId,
@@ -142,16 +140,16 @@ export class ApplicationsService {
       currentPhase: newApp.currentPhase,
       currentPhaseStatus: newApp.currentPhaseStatus
     };
-    
-    return this.http.put( 
-      backend_uri + '/rec/application/update-app/' + appId, 
-      app, 
+
+    return this.http.put(
+      backend_uri + '/rec/application/update-app/' + appId,
+      app,
       { responseType: 'json' }
     )
     .pipe(
       map(res => {
-        let body = res['app'];  
-        return body || [];    
+        let body = res['app'];
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -160,17 +158,17 @@ export class ApplicationsService {
   }
 
   getUserEvents(userId: string){
-    return this.http.get( 
-      backend_uri + '/rec/application/user-event-apps/' + userId,  
+    return this.http.get(
+      backend_uri + '/rec/application/user-event-apps/' + userId,
       { responseType: 'json' }
     )
     .pipe(
       map(res => {
-        let body = { 
+        let body = {
           appliedTo: res['appliedTo'],
           didntApply: res['didntApply']
-        };  
-        return body || [];    
+        };
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -179,8 +177,8 @@ export class ApplicationsService {
   }
 
   sendAcceptedEmails(eventId: string, phase: string){
-    return this.http.post( 
-      backend_uri + '/rec/application/send-acc-mails/' + eventId,  
+    return this.http.post(
+      backend_uri + '/rec/application/send-acc-mails/' + eventId,
       {
         phase: phase
       },
@@ -188,7 +186,7 @@ export class ApplicationsService {
     )
     .pipe(
       map(res => {
-        return null;    
+        return null;
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -197,8 +195,8 @@ export class ApplicationsService {
   }
 
   sendRejectedEmails(eventId: string, phase: string){
-    return this.http.post( 
-      backend_uri + '/rec/application/send-rej-mails/' + eventId,  
+    return this.http.post(
+      backend_uri + '/rec/application/send-rej-mails/' + eventId,
       {
         phase: phase
       },
@@ -206,7 +204,7 @@ export class ApplicationsService {
     )
     .pipe(
       map(res => {
-        return null;    
+        return null;
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -215,8 +213,8 @@ export class ApplicationsService {
   }
 
   getEventExcel(eventId: string){
-    return this.http.get( 
-      backend_uri + '/rec/application/event-csv/' + eventId,  
+    return this.http.get(
+      backend_uri + '/rec/application/event-csv/' + eventId,
       // { responseType: 'json' }
       { responseType: 'blob' }
     )
@@ -224,7 +222,7 @@ export class ApplicationsService {
       map(res => {
         // let body = res['csvPath'];
         let body = res;
-        return body || [];    
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
