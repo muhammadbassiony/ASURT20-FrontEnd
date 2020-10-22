@@ -88,7 +88,7 @@ export class UserService {
     pipe(
       catchError(this.handleError),
       tap((responseData) => {
-        // console.log('LOGIN TAP -- EXP DATE JWTHELPER ::', responseData);
+        console.log('LOGIN TAP -- EXP DATE JWTHELPER ::', responseData);
         this.handleRegistration(responseData.user);
       }));
   }

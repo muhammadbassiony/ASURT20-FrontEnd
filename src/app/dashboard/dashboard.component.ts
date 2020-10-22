@@ -38,16 +38,18 @@ export class DashboardComponent implements OnInit {
     this.usersService.authUser
     .pipe(
       take(1),
-      switchMap(res => {
-        this.authUser = res;
-        return this.usersService.getUser(this.authUser._id);
-      })
+      // switchMap(res => {
+      //   this.authUser = res;
+      //   return this.usersService.getUser(this.authUser._id);
+      // })
     )
     .subscribe(res => {
-      this.user = res;
+      // this.user = res;
+      this.authUser = res;
       // console.log('AHOOYY DASHBOARD RECEIVED ALL USER:: ', this.user);
     }, (error) => {
       this.errorService.passError('Error Getting User Info!', '/home')
+      
     });
 
   }

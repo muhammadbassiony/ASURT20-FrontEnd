@@ -1,8 +1,8 @@
 <body style="padding-top: 50px;" class="utility-min-height">
 
 <app-admin-events *ngIf="authUser.level>1"></app-admin-events>
-<div *ngIf="user">
-  <app-user-events *ngIf="authUser.level<1" [userId]=user._id></app-user-events>
+<div *ngIf="authUser">
+  <app-user-events *ngIf="authUser.level<1" [userId]=authUser._id></app-user-events>
 </div>
 <div *ngIf="authUser.level == 1" class="container" style="padding: 100px; color: #b21212;">
     <h1 style="font-size: 250%;"> DASHBOARD UNDER CONSTRUCTION !! </h1>
