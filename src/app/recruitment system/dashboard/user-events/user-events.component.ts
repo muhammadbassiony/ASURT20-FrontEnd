@@ -49,7 +49,7 @@ export class UserEventsComponent implements OnInit {
     .pipe(concatMap(res => {
       this.appliedTo = res['appliedTo'];
       this.didntApply = res['didntApply'];
-      
+      // console.log('USER EVENTSSSS ::: ', this.appliedTo, this.didntApply);
       
       return this.applicationsService.getUserApps(this.userId);
     }))
@@ -62,8 +62,9 @@ export class UserEventsComponent implements OnInit {
         })
       }
       this.userApps = res;
+      // console.log('USER APPPSS ::: ', this.userApps);
     }, (error) => {
-      this.errorService.passError('Error Getting Interviews!', '/dashboard')
+      // this.errorService.passError('Error Getting Interviews!', '/dashboard')
     });
   }
 
