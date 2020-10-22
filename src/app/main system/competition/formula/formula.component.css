@@ -63,12 +63,15 @@
 }
 
 @media only screen and (max-width: 500px) {
-    .center {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 50%;
-      }
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+  .centered{
+    text-align: center;
+  }
 }
 
 .paragraph {
