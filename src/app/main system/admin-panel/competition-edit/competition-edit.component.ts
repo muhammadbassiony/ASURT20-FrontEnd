@@ -35,7 +35,7 @@ export class CompetitionEditComponent implements OnInit {
   }
 
   updateComps(){
-    console.log('MANAGE COMPS  ::\n', this.allComps);
+    // console.log('MANAGE COMPS  ::\n', this.allComps);
     for(let cmp of this.allComps){
       this.competitionsService.updateCompetition(cmp._id, cmp)
       .subscribe(res => {

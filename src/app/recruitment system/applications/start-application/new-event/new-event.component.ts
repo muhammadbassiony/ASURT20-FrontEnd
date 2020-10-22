@@ -67,8 +67,6 @@ export class NewEventComponent implements OnInit {
   }
 
   onSubmit(newEventForm: FormGroup){
-    // console.log("onsubmit here\n", this.newEventForm.value.eventTeam);
-
 
     let teamId = this.newEventForm.value.eventTeam._id;
     let season = this.newEventForm.value.season;
@@ -78,10 +76,10 @@ export class NewEventComponent implements OnInit {
       eventActive: false,
       questions:[]
     };
-
+    
     this.eventsService.addNewEvent(this.newEvent)
     .subscribe(event => {
-      // console.log('evennnnnt :::  ', event);  //returned created event with _id field
+      
       this.router.navigate(
         ['application', 'set-questions'],
         { queryParams: { eventId: event['_id'] }

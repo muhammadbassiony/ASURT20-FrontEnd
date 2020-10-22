@@ -34,18 +34,20 @@ export class AdminGuardService implements CanActivate {
           }
 
           let userLevel = user.level;
-          // console.log('AUTH GUARD HERE :: ROUTEDATA, USERLEVEL ::  ', route.routeConfig.path);
+          // console.log('AUTH GUARD HERE :: ROUTEDATA, USERLEVEL ::  ', user , route);
             // route.data.accessLevel, userLevel, route.data.accessLevel <= userLevel, <Boolean>route.data.accessLevel,
             // route.data.accessLevel && route.data.accessLevel <= userLevel);
 
           if(route.data.accessLevel!= null && route.data.accessLevel <= userLevel){
             // //users access level is equal to that of allowed by this route
+            // console.log('GUARD HEREE :: 1');
             return true;
           } else if (route.data.accessLevel!= null && route.data.accessLevel > userLevel) {
             this.errorService.passError('You Can Not Access This Page!', '/home');
             return false
           }
 
+          // console.log('GUARD HEREE :: 2');
           return this.router.createUrlTree(['/']);
         })
       );
