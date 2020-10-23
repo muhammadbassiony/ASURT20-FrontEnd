@@ -41,7 +41,6 @@ export class AdminEventsComponent implements OnInit {
   ngOnInit(): void {
     this.eventsService.getAllEvents()
     .subscribe(res => {
-      // console.log('admin evs ::\n', res);
       this.allEvents = res;
     }, (error) => {
       this.errorService.passError('Error Getting Events!', '/dashboard')
@@ -53,7 +52,7 @@ export class AdminEventsComponent implements OnInit {
     .subscribe(res => {
       //res is the updated event
       let indx = this.allEvents.findIndex(e => e._id === eId);
-      this.allEvents[indx] = <Event>res;  //update event in current all events array
+      this.allEvents[indx].eventActive = res;  //update event in current all events array
     }, (error) => {
       this.errorService.passError('Error Updating Event!', '/dashboard')
     })
