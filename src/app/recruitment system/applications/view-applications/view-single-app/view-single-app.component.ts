@@ -110,7 +110,7 @@ export class ViewSingleAppComponent implements OnInit {
 
 
   onSubmit(){
-    // console.log('SUBMITT :: \n', this.app);
+    
     var newApp : Application = {
       userId:this.user._id,
       eventId: this.app.event._id,
@@ -122,35 +122,13 @@ export class ViewSingleAppComponent implements OnInit {
       currentPhase: this.app.currentPhase,
       currentPhaseStatus: this.app.currentPhaseStatus,
       cvPath: this.app.cvPath
-    }
+    };
+
 
     this.applicationsService.updateApp(this.app._id, newApp)
-    .pipe(switchMap(res => {
-      alert("Application successfully updated in Database!");
-
-      switch(this.app.currentPhaseStatus){
-        case ApplicationStatus.accepted:
-          console.log(ApplicationStatus.accepted);
-          return this.eventsService.incrementNumAccepted(this.app.event._id);
-
-        case ApplicationStatus.rejected:
-          console.log(ApplicationStatus.rejected);
-          return this.eventsService.incrementNumRejected(this.app.event._id);
-
-        case ApplicationStatus.pending_acceptance:
-          console.log(ApplicationStatus.pending_acceptance);
-          return this.eventsService.incrementNumPendAcc(this.app.event._id);
-
-        case ApplicationStatus.pending_rejection:
-          console.log(ApplicationStatus.pending_rejection);
-          return this.eventsService.incrementNumPendRej(this.app.event._id);
-
-        default:
-          return;
-      }
-
-    }))
-    .subscribe(res => { }, (error) => {
+    .subscribe(res => { 
+      if(res) alert("Application successfully updated in Database!");
+    }, (error) => {
       this.errorService.passError('Error Updating Application!', '/dashboard')
     });
   }

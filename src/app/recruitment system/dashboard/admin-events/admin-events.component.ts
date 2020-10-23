@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 import {Location} from "@angular/common";
-import { map } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
+
+import { map, switchMap, take } from 'rxjs/operators';
+import { Observable, pipe, Subscription } from 'rxjs';
 
 import { ActivatedRoute, Params, Router, Data } from '@angular/router';
 
@@ -14,6 +15,8 @@ import { Event } from '../../models/event.model';
 import { ApplicationsService } from '../../services/applications.service';
 
 import { ErrorService } from '../../../shared/errorModal/error.service';
+import { UserService } from '../../../authorization/user.service';
+import { AuthUser } from 'src/app/authorization/authUser.model';
 
 // TODO ::  IMPLEMENT WITH MODALS
 // import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -27,25 +30,38 @@ import { ErrorService } from '../../../shared/errorModal/error.service';
 })
 export class AdminEventsComponent implements OnInit {
 
-  allEvents: Event[];
+  allEvents: Event[] = null;
+  authUser: AuthUser;
 
   constructor(
     private http: HttpClient,
     private eventsService: EventsService,
     private applicationsService: ApplicationsService,
+    private usersService: UserService,
     private route: ActivatedRoute,
     private router: Router,
     private errorService: ErrorService,
     private location: Location) { }
 
   ngOnInit(): void {
-    this.eventsService.getAllEvents()
+    
+    this.usersService.authUser
+    .pipe(
+      take(1),
+      switchMap(res => {
+        this.authUser = res;
+        console.log('AUTHUSER ADMIN DASH : ', this.authUser);
+        return this.eventsService.getAllEvents();
+      })
+    )
     .subscribe(res => {
       this.allEvents = res;
+      console.log('ALL EVVS :: ', this.allEvents);
     }, (error) => {
       this.errorService.passError('Error Getting Events!', '/dashboard')
-    })
+    });
   }
+
 
   onStatusClick(eId: string){
     this.eventsService.toggleEventStatus(eId)
