@@ -8,3 +8,25 @@ html, body, footer {
   margin: 0;
   overflow-x: hidden;
 }
+html::-webkit-scrollbar {
+  width: 25px;
+  background-color: #1f1f1f;
+}
+html::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+}
+.scroll-default::-webkit-scrollbar-thumb {
+  background-color: #b21212;
+}
+.scroll-formula::-webkit-scrollbar-thumb {
+  background-color: #800000;
+}
+.scroll-shell::-webkit-scrollbar-thumb {
+  background-color: #e5ac00;
+}
+.scroll-rov::-webkit-scrollbar-thumb {
+  background-color: #177EE5;
+}
+.scroll-ever::-webkit-scrollbar-thumb {
+  background-color: #158000;
+}

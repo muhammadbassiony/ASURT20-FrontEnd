@@ -5,7 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 import {DOCUMENT} from "@angular/common";
-import {FadeInService} from "./shared/fade-in.service";
+import {FadeInService} from "./shared/fade-in/fade-in.service";
 import { UserService } from './authorization/user.service';
 
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';

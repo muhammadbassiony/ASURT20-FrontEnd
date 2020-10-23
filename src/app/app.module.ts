@@ -45,7 +45,7 @@ import { PhotoRollFetcherService } from './main system/services/photo-roll-fetch
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { AboutUsComponent } from './main system/about-us/about-us.component';
 
-import { FadeInService } from './shared/fade-in.service';
+import { FadeInService } from './shared/fade-in/fade-in.service';
 import { AdminGuardService } from './authorization/admin-guard.service';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -89,6 +89,7 @@ import { ValidationMsgComponent } from './authorization/edit-profile/validation-
 import { ViewAllMembersComponent } from './recruitment system/users/view-all-members/view-all-members.component';
 import { RequestResetComponent } from './authorization/request-reset/request-reset.component';
 import { ResponseResetComponent } from './authorization/response-reset/response-reset.component';
+import { ScrollbarDirective } from './shared/scrollbar/scrollbar.directive';
 
 
 
@@ -148,6 +149,7 @@ FullCalendarModule.registerPlugins([
     ViewAllMembersComponent,
     RequestResetComponent,
     ResponseResetComponent,
+    ScrollbarDirective,
   ],
   imports: [
     BrowserModule,

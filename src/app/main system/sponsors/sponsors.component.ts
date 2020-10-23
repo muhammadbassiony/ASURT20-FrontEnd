@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit, Input, SecurityContext} from '@angular/core';
 import {SponsorsService} from '../services/sponsors.service';
 import {Sponsor} from '../models/sponsor.model'
-import {FadeInService} from "../../shared/fade-in.service";
+import {FadeInService} from "../../shared/fade-in/fade-in.service";
 import {Subscription} from 'rxjs';
 import { HttpBackend } from '@angular/common/http';
 
