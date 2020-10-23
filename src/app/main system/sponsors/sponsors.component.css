@@ -1,5 +1,5 @@
 /*FADE-IN EFFECT. PLEASE DO NOT REMOVE SO THE COMPONENT IS FADED IN WHEN IT IS LOADED*/
-@import "../../shared/fade-in.css";
+@import "../../shared/fade-in/fade-in.css";
 
 /*Margin to push the section away from the header*/
 .explore-section {

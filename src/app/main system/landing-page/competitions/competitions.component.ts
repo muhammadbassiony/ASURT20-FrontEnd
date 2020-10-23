@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FadeInService} from "../../../shared/fade-in.service";
+import {FadeInService} from "../../../shared/fade-in/fade-in.service";
 
 @Component({
   selector: 'app-competitions',

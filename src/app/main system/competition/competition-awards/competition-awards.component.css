@@ -1,4 +1,4 @@
-@import "../../../shared/fade-in.css";
+@import "../../../shared/fade-in/fade-in.css";
 .card{
     width: 18rem;
 }
@@ -44,7 +44,7 @@ hr{
 } */
 
 .col{
-    
+
 }
 
 img{
@@ -88,7 +88,7 @@ img{
 
 .ph{
     margin: 0 0;
-    margin-left: 0; 
+    margin-left: 0;
     margin-right: 0;
 }
 /* .carousel-caption{
@@ -101,7 +101,7 @@ img{
 
 @media only screen and (min-width: 500px) {
     .ph{
-        margin-left: 18%; 
+        margin-left: 18%;
         margin-right: 20%;
     }
     /* .carousel-caption{
@@ -115,10 +115,10 @@ img{
         margin-right: 2rem;
     } */
     /* img {
-        
+
         width: 1200px;
         margin-right: 200px;
-        
+
     } */
     /* .awardsPhoto {
         height: 100vh;
