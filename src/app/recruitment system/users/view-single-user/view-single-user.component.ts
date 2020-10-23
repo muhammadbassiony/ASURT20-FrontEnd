@@ -99,7 +99,7 @@ export class ViewSingleUserComponent implements OnInit {
                 userData.addControl(field, new FormControl(this.user[field]));
             }
         });
-        console.log('NEW FORM AFTER CREATION :: \n', this.userForm);
+        // console.log('NEW FORM AFTER CREATION :: \n', this.userForm);
 
         if(this.user.member){
 
@@ -112,7 +112,7 @@ export class ViewSingleUserComponent implements OnInit {
             this.userForm.get('memberData').patchValue({ 'subteam': this.member.subteam._id });
             this.currentTeam = this.member.team.name;
             this.currentSub = this.member.subteam.name;
-            console.log('UPDATED MEMBER FORRRMMM ::\n', this.member, this.userForm);
+            // console.log('UPDATED MEMBER FORRRMMM ::\n', this.member, this.userForm);
             this.updateSub();
           }, (error) => {
             this.errorService.passError('Error Getting User Info!', '/dashboard');
@@ -141,7 +141,7 @@ export class ViewSingleUserComponent implements OnInit {
 
   //saveChanges(userForm){
   saveChanges(): void {
-    console.log(this.isMember, this.userForm);
+    // console.log(this.isMember, this.userForm);
     let updatedUser = <User>this.user;
     updatedUser = {...this.user, ...this.userForm.value.userData };
 
