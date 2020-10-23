@@ -49,7 +49,7 @@
         <div
           *ngFor="let q of objectKeys(appForm['controls'].userAnswers['controls']); let i = index">
           <div class="col ">
-            <h3>{{q}} :</h3>
+            <h3>{{q}}</h3>
           </div>
           <div class="col text-center">
             <textarea class="form-control" rows="3" cols="80" [formControlName]="q"></textarea>

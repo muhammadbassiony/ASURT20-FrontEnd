@@ -70,7 +70,19 @@ export class UserApplicationComponent implements OnInit {
 
 
     this.eventsService.getEvent(this.eventId)
-    .pipe(switchMap(res => {
+    // .pipe(switchMap(res => {
+    //   this.eventData = res;
+    //   this.team = res['team'];
+
+    //   const userAnswers = <FormGroup>this.appForm.get('userAnswers');
+    //   this.eventData.questions.forEach(qs => {
+    //     userAnswers.addControl(qs, new FormControl('', [Validators.required]));
+    //   });
+
+    //   return this.usersService.getUser(this.userId);
+    // }))
+    .subscribe(res => {
+      // this.user = res;
       this.eventData = res;
       this.team = res['team'];
 
@@ -78,11 +90,6 @@ export class UserApplicationComponent implements OnInit {
       this.eventData.questions.forEach(qs => {
         userAnswers.addControl(qs, new FormControl('', [Validators.required]));
       });
-
-      return this.usersService.getUser(this.userId);
-    }))
-    .subscribe(res => {
-      this.user = res;
     }, (error) => {
       this.errorService.passError('Error Getting User Events Data!', '/dashboard')
     });

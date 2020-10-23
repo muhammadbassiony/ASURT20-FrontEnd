@@ -34,7 +34,6 @@ export class SignInComponent implements OnInit {
     this.usersService.signIn(email, password)
     .subscribe(responseData => {
         this.isLoading = false;
-        console.log('SIGN IN A7A :: ', responseData);
         if(responseData['user']['profileComplete']){
           this.router.navigate(['/dashboard']);
         } else {
@@ -44,10 +43,9 @@ export class SignInComponent implements OnInit {
     }, errorMessage => {
         this.isLoading = false;
         this.error = errorMessage;
-        console.log('SIGN IN A7A error:: ', errorMessage);
         this.errorService.passError('Error Signing in!', '/sign-in');
     });
-    
+
     signInForm.reset();
   }
 }
