@@ -10,13 +10,13 @@ html, body, footer {
 }
 html::-webkit-scrollbar {
   width: 25px;
-  background-color: #1f1f1f;
+  background-color: transparent;
 }
 html::-webkit-scrollbar-thumb {
   border-radius: 100px;
 }
 .scroll-default::-webkit-scrollbar-thumb {
-  background-color: #b21212;
+  background-color: gray;
 }
 .scroll-formula::-webkit-scrollbar-thumb {
   background-color: #800000;
