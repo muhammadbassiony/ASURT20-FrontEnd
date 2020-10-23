@@ -215,12 +215,10 @@ export class ApplicationsService {
   getEventExcel(eventId: string){
     return this.http.get(
       backend_uri + '/rec/application/event-csv/' + eventId,
-      // { responseType: 'json' }
       { responseType: 'blob' }
     )
     .pipe(
       map(res => {
-        // let body = res['csvPath'];
         let body = res;
         return body || [];
       }),

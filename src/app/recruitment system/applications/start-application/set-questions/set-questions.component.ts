@@ -87,10 +87,11 @@ export class SetQuestionsComponent implements OnInit {
       this.errorService.passError('Error Getting All Teams!', '/dashboard');
     });
 
-
+    console.log('MODEL PHASSSE TECH??? ', this.model != 'TECH_MISSION')
   }
 
   onAddQuestion() {
+    console.log('MODEL PHASSSE TECH??? ', this.model != 'TECH_MISSION')
     const control = new FormControl(null, Validators.required);
     (<FormArray>this.questionsForm.get('questions')).push(control);
   }

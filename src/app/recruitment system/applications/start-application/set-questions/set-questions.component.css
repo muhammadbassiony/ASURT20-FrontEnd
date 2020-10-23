@@ -33,20 +33,12 @@
 button{
     size: 80%;
 }
-.addqs{
-    margin-left: 30%;
-    margin-right: 22%;
-}
+
 
 @media only screen and (max-width: 50rem){
-    .btn-group{
-        /* width: 40%; */
-        margin-left: -48px;
-    }
+    
     .card{
         padding: 30px;
     }
-    .addqs{
-        margin-left: 20%;
-    }
+    
 }

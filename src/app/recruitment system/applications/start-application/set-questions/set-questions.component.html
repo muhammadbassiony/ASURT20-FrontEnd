@@ -1,7 +1,7 @@
 <a class="btn btn-primary ml-3 mt-3"  (click)="goBack()">&lt;&lt;Back</a>
 <div class="card container" style="margin-top: 2em" *ngIf="team">
-    <h1 class="card-title text-primary text-center mb-4">Edit {{team.name}} Application Questions</h1>
-
+    <h1 class="card-title text-primary text-center mb-4">Manage {{team.name}} Recruitment</h1>
+    <br>
 
 
     <h2 class="text-center mb-2">Update Event Phase</h2>
@@ -16,13 +16,27 @@
         </label>
       </div>
     </div> -->
-    <div class="row py-5 container">
-    <div class="btn-group btn-group-toggle col-sm-6" ngbRadioGroup name="radioBasic" [(ngModel)]="model">
-        <label ngbButtonLabel class="btn-warning col-sm"  *ngFor="let ph of phases">
-            <input ngbButton type="radio" class="col-sm-2" [value]="ph">{{ph}}
-        </label>
+    <!-- <div class="row py-5 container"> -->
+    <div class="col d-flex justify-content-center text-center">
+        <div class="btn-group">
+            <div class="btn-group btn-group-toggle col-sm-6" ngbRadioGroup name="radioBasic" [(ngModel)]="model">
+                <label ngbButtonLabel class="btn-warning col-sm"  *ngFor="let ph of phases">
+                    <input ngbButton type="radio" class="col-sm-2" [value]="ph">{{ph}}
+                </label>
+            </div>
+        </div>
     </div>
+    <!-- </div> -->
+
+
+    <hr>
+    <h2 class="text-center mb-2">Send Mission Emails</h2>
+    <div *ngIf="model != 'TECH_MISSION' " class="alert alert-info text-center mb-2">This functionality is only available only if the current event phase is the tech mission.</div>
+    <div *ngIf="model == 'TECH_MISSION' " class="row py-5 container">
+        <p>hi</p>
+        
     </div>
+
 
     <form [formGroup]="questionsForm" (ngSubmit)="onSubmit(questionsForm)">
 
@@ -41,6 +55,7 @@
 
         <div formArrayName="questions">
             <h2 class="text-center mb-3">Your Questions</h2>
+            <br>
 
             <div class="form-group"
                 *ngFor="let question of questionsForm.get('questions')['controls']; let i = index">
@@ -59,16 +74,20 @@
                 </div>
             </div>
 
-            <div class="row text-center mb-4 addqs">
-            <button
+        <!-- <div class="row text-center mb-4"> -->
+            <div class="col d-flex justify-content-center text-center">
+                <button
                 class="btn btn-outline-info"
                 type="button"
                 (click)="onAddQuestion()"
                 >Add Question</button>
+            </div>
+            
                 <!-- style="margin-left: 300px; margin-right: 200px;">Add Question</button> -->
             </div>
-        </div>
+        <!-- </div> -->
 
+        <hr>
         <button type="submit" class="btn btn-primary" style="margin: 10px;">Save</button>
         <button type="button" class="btn btn-danger" style="margin: 10px;">Cancel</button>
     </form>
