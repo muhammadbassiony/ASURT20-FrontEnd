@@ -27,7 +27,7 @@ import { ErrorService } from '../../../shared/errorModal/error.service';
 })
 export class AdminEventsComponent implements OnInit {
 
-  allEvents: Event[];
+  allEvents: Event[] = null;
 
   constructor(
     private http: HttpClient,

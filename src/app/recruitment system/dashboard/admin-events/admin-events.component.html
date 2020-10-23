@@ -15,11 +15,11 @@
     <br>
     <hr>
     <br>
-    <div *ngIf="allEvents.length == 0" class="alert alert-warning col text-center mb-3">
+    <div *ngIf="!allEvents" class="alert alert-warning col text-center mb-3">
       <h2>No events created!</h2>
     </div>
 
-    <div *ngIf="allEvents.length>0">
+    <div *ngIf="allEvents">
         <div *ngFor="let event of allEvents" class="card col-sm-12 shadow " name="event-card">
             <div class="row">
                 <div class="col text-center">
@@ -46,7 +46,8 @@
                 </div>
                 
                 <div class="col">
-                    <p class="text-primary" style="margin: 6px; width:90%;">Current number of Applicants: {{event.numApplicants}}</p>
+                    <p class="text-primary" style="margin: 6px; width:90%;"><strong>Current number of Applicants: {{event.numApplicants}}</strong></p>
+                    <div class="alert alert-info" role="alert">The Following Statistics are for <strong>The Current Phase Only!</strong></div>
                     <p class="text-success" style="margin: 6px; width:90%;">Number of Accepted Applicants: {{ event.numAccepted }}</p>
                     <p class="text-danger" style="margin: 6px; width:90%;">Number of Rejected Applicants: {{ event.numRejected }}</p>
                     <p class="text-success" style="margin: 6px; width:90%;">Number of Applicants Pending Acceptance: {{ event.numPendAcc }}</p>
