@@ -10,7 +10,7 @@
     <div *ngFor="let user of filteredItems" class="card col-sm-12" name="user-card">
         <h2>{{user.name}}</h2>
         <p style="font-size:80%">{{user.email}}
-            <span class="badge badge-primary" *ngIf="user.member">Team Member</span></p>
+            <span class="badge badge-primary" *ngIf="user.member">member</span></p>
         <button class="btn-success bottom-right" style="font-size: 70%;" [routerLink]="['/view-user']" [queryParams]="{ userId: user._id }">View profile</button>
     </div>
 

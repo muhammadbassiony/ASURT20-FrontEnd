@@ -50,13 +50,13 @@ export class AdminEventsComponent implements OnInit {
       take(1),
       switchMap(res => {
         this.authUser = res;
-        console.log('AUTHUSER ADMIN DASH : ', this.authUser);
+        // console.log('AUTHUSER ADMIN DASH : ', this.authUser);
         return this.eventsService.getAllEvents();
       })
     )
     .subscribe(res => {
       this.allEvents = res;
-      console.log('ALL EVVS :: ', this.allEvents);
+      // console.log('ALL EVVS :: ', this.allEvents);
     }, (error) => {
       this.errorService.passError('Error Getting Events!', '/dashboard')
     });
