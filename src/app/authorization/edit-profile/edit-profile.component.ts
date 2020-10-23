@@ -11,8 +11,9 @@ import {
 
 import { ActivatedRoute, Params, Router, Data } from '@angular/router';
 import { take } from 'rxjs/operators';
-import { map, switchMap } from 'rxjs/operators';
-import { Observable, pipe, Subscription } from 'rxjs';
+import { map, switchMap, catchError } from 'rxjs/operators';
+import { Observable, pipe, Subscription, throwError} from 'rxjs';
+import { of } from 'rxjs';
 
 import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
@@ -58,8 +59,10 @@ export class EditProfileComponent implements OnInit, EditProfileDeactivateGuard 
       }
       this.userId = this.authUser._id;
       // console.log('EDIT-PROFILE :: AUTHUSER :: \n', this.authUser, this.userId);
-      return this.usersService.getUser(this.userId);
-    }))
+      if(this.userId) return this.usersService.getUser(this.userId);
+      return of(null);
+    }),
+    catchError(err => throwError("ERROR NOT CATCHED")))
     .subscribe(res => {
       this.user = res;
 
@@ -74,6 +77,7 @@ export class EditProfileComponent implements OnInit, EditProfileDeactivateGuard 
         { day: date.getUTCDate(), month: date.getUTCMonth() + 1, year: date.getUTCFullYear()} : null;
 
     }, (error) => {
+      // console.log('EDIT PF ERR ::', error);
       this.errorService.passError('Error Getting User Profile!', '/dashboard');
     });
 

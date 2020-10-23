@@ -44,7 +44,7 @@ export class UserEventsComponent implements OnInit {
     private location: Location) { }
 
   ngOnInit(): void {
-    console.log('EVENTS MOFO :: USER ID :: ', this.userId);
+    
     this.applicationsService.getUserEvents(this.userId)
     .pipe(concatMap(res => {
       this.appliedTo = res['appliedTo'];
@@ -65,7 +65,7 @@ export class UserEventsComponent implements OnInit {
       // console.log('USER APPPSS ::: ', this.userApps);
     }, (error) => {
       // console.log('USR EVVVS ERR ::', error);
-      this.errorService.passError('Error Getting Interviews!', '/home')
+      this.errorService.passError('Error Getting Events!', '/home')
     });
   }
 

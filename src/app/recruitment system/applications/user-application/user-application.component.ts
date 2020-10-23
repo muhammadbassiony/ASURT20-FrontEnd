@@ -91,7 +91,7 @@ export class UserApplicationComponent implements OnInit {
         userAnswers.addControl(qs, new FormControl('', [Validators.required]));
       });
     }, (error) => {
-      this.errorService.passError('Error Getting User Events Data!', '/dashboard')
+      this.errorService.passError('Error Getting Data!', '/dashboard')
     });
 
   }

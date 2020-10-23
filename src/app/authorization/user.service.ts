@@ -357,6 +357,7 @@ export class UserService {
   }
 
   deleteMember(memberId: string){
+    
     return this.http.delete(
       backend_uri + '/auth/user/delete-member/' + memberId,
       { responseType: 'json' }

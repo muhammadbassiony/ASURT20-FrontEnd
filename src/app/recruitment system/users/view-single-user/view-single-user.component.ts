@@ -90,7 +90,7 @@ export class ViewSingleUserComponent implements OnInit {
     .pipe(
       concatMap(res => {
         this.user = res;
-        // console.log('FETCHED USER FROM BACKEND ::\n', this.user);
+        console.log('FETCHED USER FROM BACKEND ::\n', this.user);
         const userData = <FormGroup>this.userForm.get('userData');
         Object.keys(this.user).forEach(field => {
             if(!undesiredFields.includes(field)){
@@ -99,7 +99,7 @@ export class ViewSingleUserComponent implements OnInit {
                 userData.addControl(field, new FormControl(this.user[field]));
             }
         });
-        // console.log('NEW FORM AFTER CREATION :: \n', this.userForm);
+        console.log('NEW FORM AFTER CREATION :: \n', this.userForm);
 
         if(this.user.member){
 
@@ -112,7 +112,7 @@ export class ViewSingleUserComponent implements OnInit {
             this.userForm.get('memberData').patchValue({ 'subteam': this.member.subteam._id });
             this.currentTeam = this.member.team.name;
             this.currentSub = this.member.subteam.name;
-            // console.log('UPDATED MEMBER FORRRMMM ::\n', this.member, this.userForm);
+            console.log('UPDATED MEMBER FORRRMMM ::\n', this.member, this.userForm);
             this.updateSub();
           }, (error) => {
             this.errorService.passError('Error Getting User Info!', '/dashboard');
@@ -131,7 +131,6 @@ export class ViewSingleUserComponent implements OnInit {
 
     // this.updateSub();
 
-
   }
 
 
@@ -142,21 +141,24 @@ export class ViewSingleUserComponent implements OnInit {
 
   //saveChanges(userForm){
   saveChanges(): void {
-
+    console.log(this.isMember, this.userForm);
     let updatedUser = <User>this.user;
     updatedUser = {...this.user, ...this.userForm.value.userData };
 
     let updatedMember = <Member>this.member;
     updatedMember = {...this.member, ...this.userForm.value.memberData};
 
-
+    
     this.usersService.addUserInfo(this.userId, updatedUser)
     .pipe(switchMap(res => {
-      if(this.user.member) {
+      if(this.user.member && this.isMember) {
         return this.usersService.updateMember(this.user.member, updatedMember);
-      } else {
+      } else if(this.isMember && !this.user.member) {
         updatedMember.userId = this.user._id;
         return this.usersService.addMember(updatedMember);
+      } else {
+        
+        return this.usersService.deleteMember(this.member._id);
       }
     }))
     .subscribe(res => {
