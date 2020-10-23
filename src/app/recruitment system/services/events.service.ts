@@ -9,7 +9,7 @@ import { map, catchError, tap } from 'rxjs/operators';
 import { Subject, throwError } from 'rxjs';
 
 import { Event } from '../models/event.model';
-import { Team } from '../models/team.model'; 
+import { Team } from '../models/team.model';
 
 
 import { environment } from '../../../environments/environment';
@@ -19,18 +19,18 @@ const backend_uri = environment.backend_uri;
   providedIn: 'root'
 })
 export class EventsService {
-  
+
   private teams: Team[];
   private events: Event[];
-  
+
   constructor(private http: HttpClient) {}
 
   getAllEvents(){
     return this.http.get( backend_uri + '/rec/event/all-events', { responseType: 'json' })
     .pipe(
       map(res => {
-        let body = <Event[]>res['events'];    
-        return body || [];    
+        let body = <Event[]>res['events'];
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -47,8 +47,8 @@ export class EventsService {
     .pipe(
       map(res => {
         // console.log('events service get event', res['event']);
-        let body = <Event>res['event'];    
-        return body || [];  
+        let body = <Event>res['event'];
+        return body || [];
       })
       ,
       catchError(errorRes => {
@@ -59,15 +59,15 @@ export class EventsService {
 
   addNewEvent(newEvent: Event){
     // console.log('hereee::\n', {...newEvent});
-    return this.http.post( 
-      backend_uri + '/rec/event/add-event', 
-      { ...newEvent }, 
+    return this.http.post(
+      backend_uri + '/rec/event/add-event',
+      { ...newEvent },
       { responseType: 'json' }
     )
     .pipe(
       map(res => {
-        let body = <Event[]>res['event'];  
-        return body || [];    
+        let body = <Event[]>res['event'];
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -75,10 +75,10 @@ export class EventsService {
     );
   }
 
-  
+
   updateEvent(eventId: string, newEvent: any){
     // console.log("EVENTS-SERVICE :: updating event ::\n", newEvent);
-    
+
     let updatedEvent = {
       teamId: newEvent.team,
       season: newEvent.season,
@@ -88,15 +88,15 @@ export class EventsService {
       currentPhase: newEvent.currentPhase
     };
 
-    return this.http.put( 
-      backend_uri + '/rec/event/update-event/' + eventId, 
-      updatedEvent , 
+    return this.http.put(
+      backend_uri + '/rec/event/update-event/' + eventId,
+      updatedEvent ,
       { responseType: 'json' }
     )
     .pipe(
       map(res => {
-        let body = <Event>res['event'];  
-        return body || [];    
+        let body = <Event>res['event'];
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -107,15 +107,14 @@ export class EventsService {
 
   toggleEventStatus(eventId: string){
     //if already active then deactivates and vice versa
-    return this.http.put( 
-      backend_uri + '/rec/event/edit-event-status/' + eventId, 
-      null , 
+    return this.http.put(
+      backend_uri + '/rec/event/edit-event-status/' + eventId,
+      null ,
       { responseType: 'json' }
     )
     .pipe(
       map(res => {
-        let body = <Event>res['event'];  
-        return body || [];    
+        return res['eventActive'];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -125,15 +124,15 @@ export class EventsService {
 
 
   incrementNumApplicants(eventId: string){
-    return this.http.put( 
-      backend_uri + '/rec/event/increment-event-applicants/' + eventId, 
-      null , 
+    return this.http.put(
+      backend_uri + '/rec/event/increment-event-applicants/' + eventId,
+      null ,
       { responseType: 'json' }
     )
     .pipe(
       map(res => {
-        let body = <Event>res['event'];  
-        return body || [];    
+        let body = <Event>res['event'];
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -142,15 +141,15 @@ export class EventsService {
   }
 
   incrementNumAccepted(eventId: string){
-    return this.http.put( 
-      backend_uri + '/rec/event/increment-num-acc/' + eventId, 
-      null , 
+    return this.http.put(
+      backend_uri + '/rec/event/increment-num-acc/' + eventId,
+      null ,
       { responseType: 'json' }
     )
     .pipe(
       map(res => {
-        let body = <Event>res['event'];  
-        return body || [];    
+        let body = <Event>res['event'];
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -159,15 +158,15 @@ export class EventsService {
   }
 
   incrementNumRejected(eventId: string){
-    return this.http.put( 
-      backend_uri + '/rec/event/increment-num-rej/' + eventId, 
-      null , 
+    return this.http.put(
+      backend_uri + '/rec/event/increment-num-rej/' + eventId,
+      null ,
       { responseType: 'json' }
     )
     .pipe(
       map(res => {
-        let body = <Event>res['event'];  
-        return body || [];    
+        let body = <Event>res['event'];
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -176,15 +175,15 @@ export class EventsService {
   }
 
   incrementNumPendAcc(eventId: string){
-    return this.http.put( 
-      backend_uri + '/rec/event/increment-num-pendacc/' + eventId, 
-      null , 
+    return this.http.put(
+      backend_uri + '/rec/event/increment-num-pendacc/' + eventId,
+      null ,
       { responseType: 'json' }
     )
     .pipe(
       map(res => {
-        let body = <Event>res['event'];  
-        return body || [];    
+        let body = <Event>res['event'];
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -193,15 +192,15 @@ export class EventsService {
   }
 
   incrementNumPendRej(eventId: string){
-    return this.http.put( 
-      backend_uri + '/rec/event/increment-num-pendrej/' + eventId, 
-      null , 
+    return this.http.put(
+      backend_uri + '/rec/event/increment-num-pendrej/' + eventId,
+      null ,
       { responseType: 'json' }
     )
     .pipe(
       map(res => {
-        let body = <Event>res['event'];  
-        return body || [];    
+        let body = <Event>res['event'];
+        return body || [];
       }),
       catchError(errorRes => {
         return throwError(errorRes);
@@ -216,8 +215,8 @@ export class EventsService {
       { responseType: 'json' }
     )
     .pipe(
-      map(res => {   
-        return null;    
+      map(res => {
+        return null;
       }),
       catchError(errorRes => {
         return throwError(errorRes);
