@@ -16,7 +16,7 @@
         </label>
       </div>
     </div> -->
-    <!-- <div class="row py-5 container"> -->
+    <br>
     <div class="col d-flex justify-content-center text-center">
         <div class="btn-group">
             <div class="btn-group btn-group-toggle col-sm-6" ngbRadioGroup name="radioBasic" [(ngModel)]="model">
@@ -26,15 +26,45 @@
             </div>
         </div>
     </div>
-    <!-- </div> -->
 
 
     <hr>
     <h2 class="text-center mb-2">Send Mission Emails</h2>
-    <div *ngIf="model != 'TECH_MISSION' " class="alert alert-info text-center mb-2">This functionality is only available only if the current event phase is the tech mission.</div>
-    <div *ngIf="model == 'TECH_MISSION' " class="row py-5 container">
-        <p>hi</p>
-        
+    <div *ngIf="eventData.currentPhase != 'TECH_MISSION' " class="alert alert-info text-center mb-2">This functionality is only available only if the current event phase is the tech mission.</div>
+    <div *ngIf="eventData.currentPhase == 'TECH_MISSION' " class=" py-5 container">
+        <div class="row">
+            <br>
+            <h3 class="text-center mb-3">Upload the mission file</h3>
+        </div>
+        <div class="row">
+            <div class="col text-center mb-2">
+            <input type="file" class="form-control-file"
+            accept="application/pdf" (input)="onMissionSelect($event.target.files)">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+            <label class="text-info">*Please Upload a Pdf version only.
+            Maximum file size is 5 MB.</label>
+            </div>
+            <hr>
+        </div>
+        <div class="row">
+            <br>
+            <br>
+            <div class="alert alert-danger" role="alert">
+                <strong>Warning!</strong> This action can not be undone! You will send a mission 
+                email to all applications whose current phase is the technical mission phase.
+            </div>
+            <div class="col d-flex justify-content-center text-center">
+                
+                <button
+                class="btn btn-primary"
+                type="button"
+                (click)="sendMissionEmails()"
+                >Send Mission Emails</button>
+            </div>
+        </div>
     </div>
 
 

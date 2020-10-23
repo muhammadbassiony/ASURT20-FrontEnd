@@ -229,4 +229,25 @@ export class ApplicationsService {
   }
 
   deleteApplication(appId: string){ }
+
+
+  sendMission(eventId: string, mission: File){
+    let fd = new FormData;
+    fd.append('mission', mission);
+    
+    return this.http.post(
+      backend_uri + '/rec/application/send-mission/' + eventId,
+      fd,
+      { responseType: 'json' }
+    )
+    .pipe(
+      map(res => {
+        let body = res;
+        return body || [];
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ModuleWithComponentFactories, OnInit } from '@angular/core';
 import {FormBuilder,
   FormControl,
   FormGroup,
@@ -21,6 +21,7 @@ import { EventsService } from '../../../services/events.service';
 import { TeamsService } from '../../../services/teams.service';
 import { ApplicationPhase } from '../../../models/app-phases-enum.model';
 import {ErrorService} from "../../../../shared/errorModal/error.service";
+import { ApplicationsService } from 'src/app/recruitment system/services/applications.service';
 
 
 @Component({
@@ -43,6 +44,7 @@ export class SetQuestionsComponent implements OnInit {
     private fb: FormBuilder,
     private eventsService: EventsService,
     private teamsService: TeamsService,
+    private applicationsService: ApplicationsService,
     private route: ActivatedRoute,
     private router: Router,
     private errorService: ErrorService,
@@ -87,11 +89,11 @@ export class SetQuestionsComponent implements OnInit {
       this.errorService.passError('Error Getting All Teams!', '/dashboard');
     });
 
-    console.log('MODEL PHASSSE TECH??? ', this.model != 'TECH_MISSION')
+    console.log('MODEL PHASSSE TECH??? ', this.eventData.currentPhase != 'TECH_MISSION')
   }
 
   onAddQuestion() {
-    console.log('MODEL PHASSSE TECH??? ', this.model != 'TECH_MISSION')
+    console.log('MODEL PHASSSE TECH??? ', this.eventData.currentPhase != 'TECH_MISSION')
     const control = new FormControl(null, Validators.required);
     (<FormArray>this.questionsForm.get('questions')).push(control);
   }
@@ -128,6 +130,40 @@ export class SetQuestionsComponent implements OnInit {
   }
   goBack() {
     this.location.back();
+  }
+
+
+  fileToUpload: File = null;
+  onMissionSelect(files: FileList){
+    this.fileToUpload = files.item(0);
+
+    if(this.fileToUpload.size > 5*1024*1024){
+      alert("Pdf maximum size is 5MB");
+      this.fileToUpload = null;
+      return;
+    }
+
+    if (this.fileToUpload.type != 'application/pdf') {
+      alert("The file must be PDF");
+      this.fileToUpload = null;
+      return;
+    }
+
+    console.log('MISSION FILEE :: ', this.fileToUpload)
+    
+  }
+
+  sendMissionEmails(){
+    console.log('SENDING MISSION EMAILS', this.eventId, this.fileToUpload);
+    if(!confirm('Are you sure you want to send mission emails? \nThis action can NOT be undone!')
+      || !this.fileToUpload) return;
+
+    this.applicationsService.sendMission(this.eventId, this.fileToUpload)
+    .subscribe(res => {
+      alert('Mission emails successfully sent!');
+    }, (error) => {
+      this.errorService.passError('Error Sending Mission!', '/dashboard');
+    })
   }
 
 }
