@@ -149,12 +149,12 @@ export class SetQuestionsComponent implements OnInit {
       return;
     }
 
-    console.log('MISSION FILEE :: ', this.fileToUpload)
+    // console.log('MISSION FILEE :: ', this.fileToUpload)
     
   }
 
   sendMissionEmails(){
-    console.log('SENDING MISSION EMAILS', this.eventId, this.fileToUpload);
+    // console.log('SENDING MISSION EMAILS', this.eventId, this.fileToUpload);
     if(!confirm('Are you sure you want to send mission emails? \nThis action can NOT be undone!')
       || !this.fileToUpload) return;
 

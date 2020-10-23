@@ -9,11 +9,12 @@ html, body, footer {
   overflow-x: hidden;
 }
 html::-webkit-scrollbar {
-  width: 25px;
+  width: 5px;
   background-color: transparent;
 }
 html::-webkit-scrollbar-thumb {
   border-radius: 100px;
+  background-color: rgba(1, 1, 1, 0);
 }
 .scroll-default::-webkit-scrollbar-thumb {
   background-color: gray;

@@ -90,7 +90,7 @@ export class ViewSingleUserComponent implements OnInit {
     .pipe(
       concatMap(res => {
         this.user = res;
-        console.log('FETCHED USER FROM BACKEND ::\n', this.user);
+        // console.log('FETCHED USER FROM BACKEND ::\n', this.user);
         const userData = <FormGroup>this.userForm.get('userData');
         Object.keys(this.user).forEach(field => {
             if(!undesiredFields.includes(field)){
@@ -171,7 +171,7 @@ export class ViewSingleUserComponent implements OnInit {
   }
 
   deleteUser(){
-    console.log('DELETE USER :: \n', this.user, this.member, this.isMember);
+    // console.log('DELETE USER :: \n', this.user, this.member, this.isMember);
     if(!confirm('Are you sure you want to delete this data? \nThis action CAN NOT BE UNDONE !')) return;
 
     if(this.isMember){
