@@ -218,6 +218,8 @@
             <button mat-button type="submit" mat-button 
               class="btn-primary rounded m-3 text-floral-white bottom-right std-btn" 
               [disabled]="userForm.invalid">Save Changes</button>
+            <button type="button" class="btn-danger rounded m-3 text-floral-white bottom-right std-btn"
+              (click)="deleteUser()">Delete User</button>
             <!-- <button mat-button class="btn-danger m-3 text-floral-white bottom-right">Reset</button> -->
         </form>
     </div>

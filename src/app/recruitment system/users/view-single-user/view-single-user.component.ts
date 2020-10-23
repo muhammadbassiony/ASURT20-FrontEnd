@@ -139,7 +139,7 @@ export class ViewSingleUserComponent implements OnInit {
     this.location.back();
   }
 
-  //saveChanges(userForm){
+  
   saveChanges(): void {
     // console.log(this.isMember, this.userForm);
     let updatedUser = <User>this.user;
@@ -168,6 +168,34 @@ export class ViewSingleUserComponent implements OnInit {
     });
 
 
+  }
+
+  deleteUser(){
+    console.log('DELETE USER :: \n', this.user, this.member, this.isMember);
+    if(!confirm('Are you sure you want to delete this data? \nThis action CAN NOT BE UNDONE !')) return;
+
+    if(this.isMember){
+
+      this.usersService.deleteMember(this.member._id)
+      .pipe(concatMap(res => {
+        return this.usersService.deleteUser(this.userId);
+      }))
+      .subscribe(res => {
+        alert('User Successfully deleted!');
+        this.router.navigate(['view-all-users']);
+      }, err => {
+        this.errorService.passError('Error Deleting User!', '/dashboard');
+      });
+
+    } else {
+      this.usersService.deleteUser(this.userId)
+      .subscribe(res => {
+        alert('User Successfully deleted!');
+        this.router.navigate(['view-all-users']);
+      }, err => {
+        this.errorService.passError('Error Deleting User!', '/dashboard');
+      });
+    }
   }
 
 }
