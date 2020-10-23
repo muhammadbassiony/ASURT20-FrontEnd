@@ -108,6 +108,11 @@ export class UserApplicationComponent implements OnInit {
       this.appForm.get('userCv').setErrors({ 'sizeInvalid' : true });
       return;
     }
+    if (this.fileToUpload.type != 'application/pdf') {
+      alert("The file must be PDF");
+      this.appForm.get('userCv').setErrors({ 'typeInvalid' : true });
+      return;
+    }
     // if(this.fileToUpload.type !== 'application/pdf'){
     //   alert("Only pdf files are allowed");
     //   this.appForm.get('userCv').setErrors({ 'invalidFormat': true });
