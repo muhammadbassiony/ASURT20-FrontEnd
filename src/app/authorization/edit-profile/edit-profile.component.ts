@@ -77,8 +77,10 @@ export class EditProfileComponent implements OnInit, EditProfileDeactivateGuard 
         { day: date.getUTCDate(), month: date.getUTCMonth() + 1, year: date.getUTCFullYear()} : null;
 
     }, (error) => {
-      // console.log('EDIT PF ERR ::', error);
-      this.errorService.passError('Error Getting User Profile!', '/dashboard');
+      const path = this.router.getCurrentNavigation().extractedUrl.root.children.primary.segments[0].path;
+      if (path != 'sign-in') {
+        this.errorService.passError('Error Getting User Profile!', '/dashboard');
+      }
     });
 
 
@@ -118,8 +120,8 @@ export class EditProfileComponent implements OnInit, EditProfileDeactivateGuard 
   }
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-    
-    if(!this.user.profileComplete){ 
+
+    if(!this.user.profileComplete){
       alert('Please complete profile first');
       return false;
     }
