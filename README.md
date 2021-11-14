@@ -1,5 +1,11 @@
 # ASURT20FrontEnd
 
+## This is the FrontEnd code for the ASU Racing Team Website, Created by the ASURT team for the 19-20 season
+
+## You can find our website at asurt.org
+
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.4.
 
 ## Development server
